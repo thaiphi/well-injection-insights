@@ -18,4 +18,4 @@ Run the preserved analytics tests in an isolated copy because some existing test
 
 The home route opens the full original app at /analytics/index.html. Asset paths, module workers and evidence URLs retain the original /dist, /data, /reference and /exhibits roots. Public assets are generated at dev/build; source and tests remain in the private repository.
 
-No database or paid backend is required. GitHub synchronization updates Lovable's editor preview; publication remains a separate release-gated action.
+The external backend is the existing **Portfolio Supabase** project. The app includes a read-only connection check in Data & sources; imported files and results remain session-only because cloud saving is not configured. See [connection scope and verification](integrations/portfolio/README.md). No new database or paid service was provisioned. GitHub synchronization updates Lovable's editor preview; publication remains a separate release-gated action.

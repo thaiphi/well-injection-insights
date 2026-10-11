@@ -6,11 +6,14 @@ import {
   readFileSync,
   readdirSync,
   rmSync,
+  writeFileSync,
 } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join, resolve, sep } from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
+import { withPortfolioEntry } from "./portfolio-entry.mjs";
+import { portfolioConfigError } from "../integrations/portfolio/client.mjs";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const app = join(root, "swd-injection-analytics");
@@ -27,6 +30,10 @@ function resetGenerated(path, boundary) {
 
 /** Keep the original application intact; assemble its existing static URL contract. */
 export function prepareSwd() {
+  const backend = join(root, "integrations", "portfolio");
+  const config = JSON.parse(readFileSync(join(backend, "config.json"), "utf8"));
+  const configError = portfolioConfigError(config);
+  if (configError) throw Error(configError);
   const compiler = require.resolve("typescript/bin/tsc");
   const version = JSON.parse(
     readFileSync(require.resolve("typescript/package.json"), "utf8"),
@@ -54,6 +61,11 @@ export function prepareSwd() {
     if (entry.isSymbolicLink()) throw Error("Web assets cannot be symlinks");
     cpSync(join(app, "web", entry.name), target, { recursive: true });
   }
+  const htmlEntry = join(publicRoot, "analytics", "index.html");
+  writeFileSync(htmlEntry, withPortfolioEntry(readFileSync(htmlEntry, "utf8")));
+  resetGenerated(join(publicRoot, "backend"), publicRoot);
+  for (const name of ["config.json", "client.mjs", "panel.mjs", "entry.mjs"])
+    cpSync(join(backend, name), join(publicRoot, "backend", name));
   const originalPdf = join(app, "output", "pdf", "swd-technical-exhibit.pdf");
   if (existsSync(originalPdf)) {
     resetGenerated(join(publicRoot, "output"), publicRoot);

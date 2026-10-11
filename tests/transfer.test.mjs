@@ -4,6 +4,7 @@ import { readFile, readdir, stat } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import { resolve, join } from "node:path";
 import { staticEntry } from "../scripts/static-entry.mjs";
+import { PORTFOLIO_ENTRY } from "../scripts/portfolio-entry.mjs";
 
 const root = resolve(".");
 const app = join(root, "swd-injection-analytics");
@@ -38,12 +39,21 @@ test("static assembly preserves original web assets, compiled model and public e
     const target =
       entry === "index.html" ? join(publicRoot, "analytics", entry) : join(publicRoot, entry);
     if ((await stat(source)).isDirectory()) await compare(source, target);
-    else assert.deepEqual(await readFile(target), await readFile(source), entry);
+    else if (entry === "index.html") {
+      const generated = await readFile(target, "utf8");
+      assert.equal(generated.split(PORTFOLIO_ENTRY).length, 2);
+      assert.equal(generated.replace(PORTFOLIO_ENTRY, ""), await readFile(source, "utf8"));
+    } else assert.deepEqual(await readFile(target), await readFile(source), entry);
   }
   assert.deepEqual(
     await readFile(join(app, "output/pdf/swd-technical-exhibit.pdf")),
     await readFile(join(publicRoot, "output/pdf/swd-technical-exhibit.pdf")),
   );
+  for (const name of ["config.json", "client.mjs", "panel.mjs", "entry.mjs"])
+    assert.deepEqual(
+      await readFile(join(publicRoot, "backend", name)),
+      await readFile(join(root, "integrations/portfolio", name)),
+    );
   for (const privatePath of [
     "src",
     "tests",

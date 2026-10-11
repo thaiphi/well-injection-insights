@@ -33,6 +33,7 @@ dist-ssr
 
 # Analytics assets are assembled from the exact preserved source at dev/build.
 /public/analytics/
+/public/backend/
 /public/dist/
 /public/data/
 /public/reference/
