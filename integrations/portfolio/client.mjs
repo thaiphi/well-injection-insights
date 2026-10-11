@@ -9,6 +9,21 @@ export function portfolioConfigError(config) {
   return null;
 }
 
+/** Local asset only: private preview hosts require their existing same-origin session. */
+export async function loadPortfolioConfig({ fetchImpl = globalThis.fetch } = {}) {
+  const response = await fetchImpl("/backend/config.json", {
+    credentials: "same-origin",
+    cache: "no-store",
+    redirect: "error",
+    signal: AbortSignal.timeout(8000),
+  });
+  if (!response.ok) throw Error("Connection configuration unavailable");
+  const config = await response.json();
+  const invalid = portfolioConfigError(config);
+  if (invalid) throw Error(invalid);
+  return config;
+}
+
 /** Read-only service probe. This does not verify sign-in, database access or saving. */
 export async function checkPortfolioApi(
   config,

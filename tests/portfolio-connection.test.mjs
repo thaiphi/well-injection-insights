@@ -35,6 +35,28 @@ function checker() {
   return client.checkPortfolioApi;
 }
 
+test("local configuration retains same-origin preview access without external credentials", async () => {
+  assert.equal(typeof client?.loadPortfolioConfig, "function");
+  const loaded = await client.loadPortfolioConfig({
+    fetchImpl: async (url, init) => {
+      assert.equal(url, "/backend/config.json");
+      assert.equal(init.credentials, "same-origin");
+      assert.equal(init.redirect, "error");
+      assert.equal(init.body, undefined);
+      assert.equal(init.headers, undefined);
+      return Response.json(config);
+    },
+  });
+  assert.deepEqual(loaded, config);
+  for (const response of [
+    new Response("Preview authentication required", { status: 401 }),
+    Response.json({ ...config, projectRef: "wrong" }),
+    new Response("<html>preview</html>"),
+  ]) {
+    await assert.rejects(client.loadPortfolioConfig({ fetchImpl: async () => response }));
+  }
+});
+
 test("connection probes only Portfolio Auth health without uploading data or cookies", async () => {
   const result = await checker()(config, {
     fetchImpl: async (url, init) => {
