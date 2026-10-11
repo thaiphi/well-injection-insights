@@ -11,6 +11,8 @@
 
 ## Preserved engineering application
 
+For a new computer/session, read [HANDOVER.md](HANDOVER.md). An unchanged accessible copy of the historical shared delegation workflow is at [handover/context/agent-workflow.md](handover/context/agent-workflow.md); use it when the nested instructions' original sibling path is unavailable. Copied governing documents retain historical wording; current owner authorization and dated verified outcomes still govern.
+
 The application is in `swd-injection-analytics/`. The outer TanStack project is a hosting adapter, not a replacement engineering implementation. Read the nested instructions for engineering changes; their sibling workflow links describe the original local workspace and are historical when unavailable here. Do not regenerate calculations, discard reference fixtures, or replace imports/exports with illustrative output.
 
 `migration/source-manifest.json` records the exact transferred working files. The initial transfer must pass byte/hash preservation. Later intentional engineering changes require a reviewed new baseline rather than silently weakening this gate. Keep original references, source licenses, tests, assumptions, units and evidence classifications intact.

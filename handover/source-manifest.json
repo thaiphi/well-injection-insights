@@ -1,0 +1,102 @@
+{
+  "captured": "2026-10-11",
+  "note": "Exact read-only copies; original sibling and attachments untouched. Design concepts are JPEG, not renamed PNG.",
+  "files": [
+    {
+      "path": "context/01-swd-injection-analytics.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\01-swd-injection-analytics.md",
+      "sha256": "a6cf530eea429d8b89dfada9db15315f98c0e89617d54dadc03d269b802dbafb",
+      "bytes": 17039
+    },
+    {
+      "path": "context/02-texas-rrc-explorer.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\02-texas-rrc-explorer.md",
+      "sha256": "8c907e6099740ed32c02d967d6d56e9d883ff2c52bcf7931ba865a200e7edffe",
+      "bytes": 9750
+    },
+    {
+      "path": "context/05-architecture-integration.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\05-architecture-integration.md",
+      "sha256": "ba1bef721eb10fa2b5cb6855eefff5d9aa85ab8652fe8a99d59e7b239265ee05",
+      "bytes": 9508
+    },
+    {
+      "path": "context/06-delivery-roadmap.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\06-delivery-roadmap.md",
+      "sha256": "e326c1ce5fba0cd76b485352959d156cae80275118e5d4a27f49b5ff99f3d307",
+      "bytes": 12741
+    },
+    {
+      "path": "context/2026-10-09-plan-compliance-completion.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\2026-10-09-plan-compliance-completion.md",
+      "sha256": "65b1ada6ba34e8d2405a9e8ae3f9cfde27554706ed7aacb023455ba0087c99ae",
+      "bytes": 53877
+    },
+    {
+      "path": "context/2026-10-09-repository-setup.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\2026-10-09-repository-setup.md",
+      "sha256": "7666f5e91946ad26085e59ba81e7a128888c5008c7a80e3dfe125518d6dfe50b",
+      "bytes": 10830
+    },
+    {
+      "path": "context/agent-workflow.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\agent-workflow.md",
+      "sha256": "ff5066460bb3da9c8d7fb88d5de64d577623f925ff6a56491aa311058055376b",
+      "bytes": 7011
+    },
+    {
+      "path": "context/feasibility/2026-10-08-demo-data-strategy.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\feasibility\\2026-10-08-demo-data-strategy.md",
+      "sha256": "13620c3557b5aac8ba30178400c908def8226ae83c8e8413d7f7241f1b2d65ea",
+      "bytes": 6526
+    },
+    {
+      "path": "context/feasibility/2026-10-09-nexus-engineering-reuse.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\feasibility\\2026-10-09-nexus-engineering-reuse.md",
+      "sha256": "2752357db7a43dbae8ebf2b5cd7018f7f792e7ce1b82e4e2a2243de18208fe59",
+      "bytes": 6601
+    },
+    {
+      "path": "context/feasibility/2026-10-09-nexus-dependency-map.md",
+      "source": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\phi-analytics\\docs\\swd-intelligence-lab\\feasibility\\2026-10-09-nexus-dependency-map.md",
+      "sha256": "974f8f685df956b6c8bc17591b48f6666340613fa238752ef9e8e00ade20edeb",
+      "bytes": 7948
+    },
+    {
+      "path": "design/01-start-import.jpg",
+      "source": "C:\\Users\\thai.phi\\.codex\\codex-remote-attachments\\01a12294-ee3c-7b92-b7bc-28a10fd40647\\65207C45-AF46-46A8-A6A8-96BC0E1723FA\\6-Photo-6.jpg",
+      "sha256": "57d9abd70b1ccf856589beb24fff1126add50305608e4f68429c5904a0ddf6ea",
+      "bytes": 236466
+    },
+    {
+      "path": "design/02-history-forecast.jpg",
+      "source": "C:\\Users\\thai.phi\\.codex\\codex-remote-attachments\\01a12294-ee3c-7b92-b7bc-28a10fd40647\\65207C45-AF46-46A8-A6A8-96BC0E1723FA\\5-Photo-5.jpg",
+      "sha256": "2e33ff58307aafeca1f577bfba3249a76694c4788b1857dd128e7a6e39ff6820",
+      "bytes": 214391
+    },
+    {
+      "path": "design/03-curves-schedules.jpg",
+      "source": "C:\\Users\\thai.phi\\.codex\\codex-remote-attachments\\01a12294-ee3c-7b92-b7bc-28a10fd40647\\65207C45-AF46-46A8-A6A8-96BC0E1723FA\\4-Photo-4.jpg",
+      "sha256": "6c8c3f5038e501511056ee4e9b7dd24f72a314813f3df4abc581c527a7319fb7",
+      "bytes": 208700
+    },
+    {
+      "path": "design/04-injectivity-capacity.jpg",
+      "source": "C:\\Users\\thai.phi\\.codex\\codex-remote-attachments\\01a12294-ee3c-7b92-b7bc-28a10fd40647\\65207C45-AF46-46A8-A6A8-96BC0E1723FA\\3-Photo-3.jpg",
+      "sha256": "41d7b16243897aee3236dc239fa60c4ac972c90d1096f6624cd617839a4af9ef",
+      "bytes": 217215
+    },
+    {
+      "path": "design/05-sweeps-pvt.jpg",
+      "source": "C:\\Users\\thai.phi\\.codex\\codex-remote-attachments\\01a12294-ee3c-7b92-b7bc-28a10fd40647\\65207C45-AF46-46A8-A6A8-96BC0E1723FA\\2-Photo-2.jpg",
+      "sha256": "f48510cb944b9137ba2642e295345dba1431c1f08a57cbfe4757df1005ada9ff",
+      "bytes": 213527
+    },
+    {
+      "path": "design/06-hydraulics-reports.jpg",
+      "source": "C:\\Users\\thai.phi\\.codex\\codex-remote-attachments\\01a12294-ee3c-7b92-b7bc-28a10fd40647\\65207C45-AF46-46A8-A6A8-96BC0E1723FA\\1-Photo-1.jpg",
+      "sha256": "0535814b769b9edafb5ec8c31fc227407621eb0235932335b09d72d24a78ee45",
+      "bytes": 208362
+    }
+  ]
+}

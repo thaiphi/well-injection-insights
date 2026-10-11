@@ -1,2 +1,5 @@
 # Preserve transferred fixture/source bytes on every platform, including CRLF.
 swd-injection-analytics/** -text
+# Keep handover source snapshots and design attachments byte-exact across computers.
+handover/context/** -text
+handover/design/** -text

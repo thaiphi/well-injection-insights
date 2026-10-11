@@ -2,6 +2,8 @@
 
 The existing engineering application is preserved in [swd-injection-analytics/](swd-injection-analytics/README.md). This project hosts its current interface, calculations, imports and evidence; it does not regenerate them from the Lovable placeholder.
 
+Moving to another computer: start with [HANDOVER.md](HANDOVER.md) for clone/setup steps, project identities, portable governing documents/design references, verification commands and unfinished work.
+
 See [migration/README.md](migration/README.md) for source preservation, runtime and acceptance boundaries. [migration/source-manifest.json](migration/source-manifest.json) records the 182 transferred files and their original hashes.
 
 ## Development and verification

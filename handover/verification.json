@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-11",
+  "scope": "Documentation-only handover, not fresh product acceptance",
+  "baseCommit": "e5b58e875e0d5030db3da5ebf849ef420c3e0d31",
+  "contextAndDesign": {
+    "status": "PASS",
+    "files": 16,
+    "exactSourceBytes": true
+  },
+  "newAndUpdatedDocumentLinks": {
+    "status": "PASS",
+    "documents": 3,
+    "localLinks": 32
+  },
+  "destinationInstall": {
+    "status": "UNRUN",
+    "reason": "No access to destination computer; frozen clean installation remains a first-run gate"
+  },
+  "transferTests": {
+    "status": "PASS",
+    "checks": 3,
+    "originalFileHashes": 182
+  },
+  "gitAttributes": {
+    "status": "PASS",
+    "paths": [
+      "handover/context/** -text",
+      "handover/design/** -text"
+    ]
+  },
+  "indexedHashes": {
+    "status": "PASS",
+    "originalFiles": 182,
+    "contextAndDesignFiles": 16
+  },
+  "independentReview": {
+    "status": "APPROVE",
+    "reviewer": "GPT-6 Astra/high",
+    "scope": "Read-only documentation/provenance review; no destination installation or new runtime acceptance"
+  }
+}
