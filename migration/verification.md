@@ -30,3 +30,11 @@ The full staged whitespace check reports existing CRLF/trailing-whitespace in th
 ## Repository integrity
 
 The transfer preserves Lovable's initial commit as its parent. No source repository history, local datasets, reference fixtures or phi-analytics files are changed. Generated assets, dependency installs and local QA scratch output are excluded. Staged source bytes must match the manifest before committing, including files ignored by the preserved application's own ignore rules.
+
+## Post-push verification
+
+GitHub main and Lovable both identified transfer commit `31675667ca6d9fd4bc08ac0cca16facc7c1c1e31`; the GitHub repository remains private and the Lovable project remains unpublished. The initial standalone preview briefly showed the old scaffold. After synchronization and refreshing, both the editor's live preview and the standalone preview loaded the actual six-area SWD application at `/analytics/index.html`.
+
+The hosted PVT page calculated 21 points and successfully downloaded `brine-pvt/1` JSON containing the inputs, computed rows, units, assumptions, pinned source hashes, method version and limitations. Its first point at 500 psia matched the local smoke result: Bw 1.0294804085597111, density 1005.7584181306123 kg/m³ and viscosity 0.38322648979144563 cP. Hosted preview evidence is in `hosted-pvt.jpg`.
+
+No Lovable AI message, database provisioning, permission change or public deployment was invoked. Hosted end-to-end walkthroughs beyond this transfer smoke remain unrun; local comprehensive engineering tests and the exact-source preservation gate are recorded above.
