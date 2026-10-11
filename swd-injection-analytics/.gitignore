@@ -1,0 +1,34 @@
+# Dependencies, compiled files and local verification output
+/node_modules/
+/dist/
+/output/
+/tmp/
+/coverage/
+/.cache/
+# Generated exhibits; retain the recorded carried-reference audit
+/exhibits/*
+!/exhibits/carried-oracle-coverage.json
+# Local Graphify graphs and staged source copies
+.graphify-local/
+graphify-out/
+# Local environments, credentials and private key material
+.env
+.env.*
+.aws/
+.ssh/
+.credentials/
+credentials.json
+secrets.json
+*.pem
+*.key
+*.p12
+*.pfx
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.log
+# Editor and operating-system clutter
+.DS_Store
+Thumbs.db
+# Keep data/explorer/, explorer-pin.json, reference/, source and public assets.

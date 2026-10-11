@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "synthetic": {
+    "reference": "synthetic-water/seed-417/v1",
+    "seed": 417,
+    "source": "src/planning.ts/syntheticActuals",
+    "kind": "synthetic"
+  },
+  "injectors": {
+    "source": "src/engineering.ts/INJECTORS",
+    "kind": "assumed"
+  },
+  "public": {
+    "source": "data/explorer/injection_monthly.csv",
+    "kind": "public-reported",
+    "sha256": "1831e77daa33af7bcb49ee62d36d170c40031e2603b1e0015ae20144fe94f3a3",
+    "note": "Observation-only sample; never assign these UICs a fictional scenario or convert reported surface pressure to BHP. A user reimport retains user acquisition and unverified assertion."
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "sourceCommit": "de631ad2952bf42b80a6738ff980992975be4cdc",
+  "referenceFile": "reference/nexus/components/black-oil-tables/engine/__tests__/pyrtValidation.test.ts",
+  "referenceSha256": "c2bc16011d47908b1e7eb4aa4bee5d1abe319c300bdda2e3d870b156b37750d1",
+  "oracleRecordedAt": "2026-04-16",
+  "liveMcpCall": false,
+  "runner": "direct Node literal-fixture audit; upstream Vitest not executed",
+  "pressureMatching": "Each oracle pressure is evaluated exactly as the first point of a two-row P to P+1 psia table; no nearest-grid skips.",
+  "exclusions": [
+    "Rs below 100 psia: original documented extrapolation exclusion.",
+    "Oil compressibility: original tolerance 999 is effectively skipped; no agreement claim.",
+    "Gas compressibility: original ideal/real-gas difference exclusion.",
+    "Water compressibility: absent from recorded oracle."
+  ],
+  "cases": [
+    {
+      "label": "Light oil (API=35, T=200, GOR=500, sg=0.70)",
+      "pressures": 7,
+      "comparisons": 62,
+      "maxRelativeErrorByField": {
+        "bo": 0.018702529616694077,
+        "oilDensity": 0.008060276752224331,
+        "oilViscosity": 0.010130072581301013,
+        "zFactor": 0.012314170201055899,
+        "bg": 0.012252288131542072,
+        "gasViscosity": 0.008651713537235197,
+        "bw": 0.021277264549822754,
+        "waterViscosity": 0.034495021396111776,
+        "rs": 0.016690696059810838
+      }
+    },
+    {
+      "label": "Medium oil (API=25, T=180, GOR=300, sg=0.75)",
+      "pressures": 7,
+      "comparisons": 62,
+      "maxRelativeErrorByField": {
+        "bo": 0.010839274954858055,
+        "oilDensity": 0.001183596323947477,
+        "oilViscosity": 0.011251235635820478,
+        "zFactor": 0.011067620421454129,
+        "bg": 0.010990199242472172,
+        "gasViscosity": 0.008674665357383024,
+        "bw": 0.018833334287425948,
+        "waterViscosity": 0.05132681108109632,
+        "rs": 0.019972763309308895
+      }
+    },
+    {
+      "label": "Heavy oil (API=15, T=160, GOR=100, sg=0.80)",
+      "pressures": 7,
+      "comparisons": 62,
+      "maxRelativeErrorByField": {
+        "bo": 0.0067846673850084135,
+        "oilDensity": 0.0008202706546565415,
+        "oilViscosity": 0.012760585745637229,
+        "zFactor": 0.008180149957773114,
+        "bg": 0.008085995644459738,
+        "gasViscosity": 0.007357866875395638,
+        "bw": 0.01642204210808864,
+        "waterViscosity": 0.07060723307297176,
+        "rs": 0.024057596815186752
+      }
+    },
+    {
+      "label": "Very light oil (API=45, T=220, GOR=800, sg=0.65)",
+      "pressures": 7,
+      "comparisons": 62,
+      "maxRelativeErrorByField": {
+        "bo": 0.03152757301683976,
+        "oilDensity": 0.02912559188684055,
+        "oilViscosity": 0.008877995891784207,
+        "zFactor": 0.013148867820391876,
+        "bg": 0.013101558520297166,
+        "gasViscosity": 0.008046845843067077,
+        "bw": 0.027054517153618476,
+        "waterViscosity": 0.022076854090391822,
+        "rs": 0.012191405831006528
+      }
+    }
+  ],
+  "comparisons": 248,
+  "failures": []
+}

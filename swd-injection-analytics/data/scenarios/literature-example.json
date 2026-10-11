@@ -1,0 +1,48 @@
+{
+  "id": "jin-2022-entrada-radial-skin/v1",
+  "label": "Published Entrada parameters — assumed steady skin comparison",
+  "origin": "literature",
+  "source": {
+    "authors": "Lu Jin, Andrew K. Wojtanowicz and Jun Ge",
+    "title": "Prediction of Pressure Increase during Waste Water Injection to Prevent Seismic Events",
+    "journal": "Energies 2022, 15, 2101",
+    "doi": "10.3390/en15062101",
+    "url": "https://doi.org/10.3390/en15062101",
+    "pdfUrl": "https://psecommunity.org/wp-content/plugins/wpor/includes/file/2303/LAPSE-2023.14636-1v1.pdf",
+    "license": "CC BY 4.0",
+    "table": "Appendix A, Table A1, PDF page 18",
+    "equations": "Equations 18, 21 and 22, PDF page 10; units in Equation 15 discussion, PDF page 9",
+    "verifiedOn": "2026-10-10",
+    "verification": "Independently retrieved full PDF text; equations, units and Table A1 checked. PDF pixels unavailable; no paper numerical curve values digitized."
+  },
+  "parameters": {
+    "permeabilityMd": {"value": 256, "origin": "literature", "unit": "mD", "selected": "Table A1 field column; 0.256 D in published equation"},
+    "thicknessFt": {"value": 15, "origin": "literature", "unit": "ft", "selected": "Converted to 4.572 m using 0.3048 m/ft"},
+    "wellRadiusFt": {"value": 0.292, "origin": "literature", "unit": "ft", "selected": "Converted to 0.0890016 m; paper SI column rounds to 0.089002 m"},
+    "formationRadiusFt": {"value": 1000, "origin": "literature", "unit": "ft", "selected": "Converted to 304.8 m"},
+    "formationPressurePsi": {"value": 2560, "origin": "literature", "unit": "reported psi", "selected": "Field column retained; paired 17656 kPa is rounded"},
+    "fracturingReferencePsi": {"value": 4334, "origin": "literature", "unit": "reported psi", "selected": "Published comparison reference only; never an operating, safe or permitted limit"},
+    "waterViscosityCp": {"value": 1, "origin": "literature", "unit": "cP", "selected": "Both source columns agree"},
+    "rateRangeBblPerDay": {"value": [2000, 10000], "origin": "literature", "unit": "reservoir bbl/day", "selected": "Table A1 bpd range; interpreted as reservoir volume because equation q is m3/s; no stock-tank inference"}
+  },
+  "pairedUnitDecisions": [
+    "Use Table A1 field-side values and explicit conversions, avoiding mixed rounded columns.",
+    "The 256 mD and 2.5e-13 m2 pair is rounded; retain 0.256 D and the literal published 2e-6 coefficient.",
+    "The coefficient approximates 1 D as 1e-12 m2; exact Darcy conversion is 9.869233e-13 m2. Exact-SI pressure differences would be about 1.325% larger; they are not silently substituted.",
+    "Rate conversion uses 0.158987294928 m3/bbl and 86400 s/day; paired 318–1590 m3/day values are rounded.",
+    "Pressure is reported psi with absolute/gauge basis unspecified; all pressures share the formation datum. Pressure differences cancel a common offset.",
+    "Reject inconsistent oil density pair 7.18 lbm/ft3 versus 860 kg/m3; neither is used.",
+    "Do not use the inconsistent depth pair 5914 ft versus 1797 m; depth and wellhead conversion are outside this example."
+  ],
+  "assumptions": {
+    "origin": "assumed",
+    "baselineSkin": 0,
+    "defaultComparedSkin": 5,
+    "comparedSkinRange": [0, 50],
+    "defaultSelectedRateBblPerDay": 5000,
+    "tableRatesBblPerDay": [2000, 5000, 10000],
+    "completion": "The full published 15 ft formation thickness is assumed to be the contributing injection interval h; no partial-penetration correction is applied.",
+    "scope": "Steady radial homogeneous single-phase water flow with fixed formation pressure and viscosity; externally selected constant skin, no oil-invasion or time evolution.",
+    "volumeBasis": "Reservoir volumetric rate; no B_w or stock-tank conversion is applied."
+  }
+}

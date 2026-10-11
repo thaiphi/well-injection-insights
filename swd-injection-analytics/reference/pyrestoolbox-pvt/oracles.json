@@ -1,0 +1,490 @@
+{
+  "provenance": {
+    "schemaVersion": 1,
+    "method": "Gas-free brine_props subset: modified Spivey, IAPWS-IF97 freshwater density, source brine viscosity",
+    "packageMetadataVersion": "2.5.0",
+    "sourceSnapshot": "Existing owner-authorized local pyrestoolbox-mcp environment; hashes identify actual files, not a claimed clean release",
+    "upstream": "https://github.com/mwburgoyne/pyResToolbox",
+    "license": "GPL-3.0-or-later",
+    "recordedAt": "2026-10-10T04:55:58.157Z",
+    "liveMcpCall": false,
+    "referenceExecution": "Fresh existing local Python library executed via direct Node script with absolute interpreter and -B; no dependency installation",
+    "files": [
+      {
+        "path": "pyrestoolbox/brine/brine.py",
+        "name": "brine.py",
+        "sha256": "2325c6ae8879c49b8d7fac189d0011fe7656dec13758c199ffc2cc015aae8294"
+      },
+      {
+        "path": "pyrestoolbox/plyasunov/iapws_if97.py",
+        "name": "iapws_if97.py",
+        "sha256": "57161a48170edf580d42d7e862bbb895663a9f223461c7bd067fc6f81e1723ed"
+      },
+      {
+        "path": "pyrestoolbox-2.5.0.dist-info/licenses/LICENSE",
+        "name": "LICENSE",
+        "sha256": "63fcc3314a2c239e9d7bde465609690b5f468a50e0ff4aaee64826cb85e2c0a1"
+      }
+    ],
+    "assumptions": {
+      "dissolvedMethaneSaturation": 0,
+      "dissolvedCO2": "Not supported",
+      "salinity": "NaCl weight percent, not mg/L TDS",
+      "sourceDensityUnit": "g/cm3 (specific-gravity-like numerical density); multiply by 1000 for kg/m3",
+      "standardReference": "15 C, 0.1013 MPa freshwater; source saline standard integral uses 0.1015 MPa"
+    },
+    "scope": "Educational single-phase gas-free aqueous brine; no hydraulics or capacity coupling"
+  },
+  "cases": [
+    {
+      "pressurePsia": 100,
+      "temperatureF": 60,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 0.9998118478856709,
+      "densityGPerCm3": 0.9992891208858689,
+      "viscosityCp": 1.1246700632314197,
+      "compressibilityPerPsi": 0.0000032337775470882408,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 60,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 0.9969524935020211,
+      "densityGPerCm3": 1.0021551769386519,
+      "viscosityCp": 1.1226442826517735,
+      "compressibilityPerPsi": 0.000003177140960619331,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 60,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 0.9907834889033007,
+      "densityGPerCm3": 1.0083949861042336,
+      "viscosityCp": 1.1182464828627132,
+      "compressibilityPerPsi": 0.0000030581185525718717,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 60,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 0.9819854218797771,
+      "densityGPerCm3": 1.0174296687749265,
+      "viscosityCp": 1.1119093769263917,
+      "compressibilityPerPsi": 0.000002895415960438564,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 60,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 0.9710408620773691,
+      "densityGPerCm3": 1.0288970748229371,
+      "viscosityCp": 1.103917603354292,
+      "compressibilityPerPsi": 0.000002703626150145715,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 100,
+      "temperatureF": 60,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 0.9998899070107005,
+      "densityGPerCm3": 1.0355225909870005,
+      "viscosityCp": 1.215164012535224,
+      "compressibilityPerPsi": 0.00000289674020191671,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 60,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 0.9973281550982753,
+      "densityGPerCm3": 1.0381824496947485,
+      "viscosityCp": 1.2129752322536487,
+      "compressibilityPerPsi": 0.0000028503883459823852,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 60,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 0.9917834201411609,
+      "densityGPerCm3": 1.0439865863679203,
+      "viscosityCp": 1.208223573778232,
+      "compressibilityPerPsi": 0.0000027525127527450777,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 60,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 0.9838359170040152,
+      "densityGPerCm3": 1.052419991295404,
+      "viscosityCp": 1.2013765674168146,
+      "compressibilityPerPsi": 0.0000026176850823149343,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 60,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 0.9738891985208683,
+      "densityGPerCm3": 1.0631687760599853,
+      "viscosityCp": 1.192741754453764,
+      "compressibilityPerPsi": 0.0000024572019893450387,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 100,
+      "temperatureF": 60,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0000437391845551,
+      "densityGPerCm3": 1.1501633045029418,
+      "viscosityCp": 1.7705447789239215,
+      "compressibilityPerPsi": 0.000002129109759900088,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 60,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 0.9981621288623166,
+      "densityGPerCm3": 1.1523314484180787,
+      "viscosityCp": 1.7673556345287795,
+      "compressibilityPerPsi": 0.000002102283441243521,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 60,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 0.9940580444495154,
+      "densityGPerCm3": 1.1570889830130047,
+      "viscosityCp": 1.7604322694372425,
+      "compressibilityPerPsi": 0.000002045023766840055,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 60,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 0.9881048666103986,
+      "densityGPerCm3": 1.1640602638196555,
+      "viscosityCp": 1.7504558948578355,
+      "compressibilityPerPsi": 0.0000019647531043559727,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 60,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 0.9805464178884015,
+      "densityGPerCm3": 1.173033311553941,
+      "viscosityCp": 1.737874611301867,
+      "compressibilityPerPsi": 0.000001867040419984089,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 100,
+      "temperatureF": 180,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0292916257047613,
+      "densityGPerCm3": 0.9706686400376164,
+      "viscosityCp": 0.3441650056511884,
+      "compressibilityPerPsi": 0.00000317698360696452,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 180,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0263719875512098,
+      "densityGPerCm3": 0.9734298233418017,
+      "viscosityCp": 0.34601697316649904,
+      "compressibilityPerPsi": 0.000003120859498933991,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 180,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0200948032679553,
+      "densityGPerCm3": 0.9794198532570186,
+      "viscosityCp": 0.3500689081106763,
+      "compressibilityPerPsi": 0.000003002970565232408,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 180,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0111831096921784,
+      "densityGPerCm3": 0.9880516129557304,
+      "viscosityCp": 0.3559914279381684,
+      "compressibilityPerPsi": 0.0000028419411689258444,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 180,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0001418962698518,
+      "densityGPerCm3": 0.9989593539188935,
+      "viscosityCp": 0.3636190928707211,
+      "compressibilityPerPsi": 0.0000026523069898706595,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 100,
+      "temperatureF": 180,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.030682972319395,
+      "densityGPerCm3": 1.004584935442799,
+      "viscosityCp": 0.3823096666144108,
+      "compressibilityPerPsi": 0.0000029218093950611003,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 180,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.0279918321704908,
+      "densityGPerCm3": 1.0072147995799938,
+      "viscosityCp": 0.384366892281557,
+      "compressibilityPerPsi": 0.0000028734354166585622,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 180,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.022193888602115,
+      "densityGPerCm3": 1.0129277808786632,
+      "viscosityCp": 0.38886791322272063,
+      "compressibilityPerPsi": 0.000002771468936787059,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 180,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.0139351201034053,
+      "densityGPerCm3": 1.0211783443341784,
+      "viscosityCp": 0.3954468406080939,
+      "compressibilityPerPsi": 0.000002631402362897156,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 180,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.0036600722880296,
+      "densityGPerCm3": 1.0316327368180198,
+      "viscosityCp": 0.4039198985585763,
+      "compressibilityPerPsi": 0.000002465279505593983,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 100,
+      "temperatureF": 180,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0328653768662206,
+      "densityGPerCm3": 1.1136142593895513,
+      "viscosityCp": 0.5622376816517742,
+      "compressibilityPerPsi": 0.0000022834587688255735,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 180,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0307527108436028,
+      "densityGPerCm3": 1.115896761277118,
+      "viscosityCp": 0.5652631081338552,
+      "compressibilityPerPsi": 0.0000022518791019173387,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 180,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0261778049212222,
+      "densityGPerCm3": 1.1208716522535642,
+      "viscosityCp": 0.5718824635936225,
+      "compressibilityPerPsi": 0.0000021847360868776463,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 180,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0196073179407978,
+      "densityGPerCm3": 1.1280947002528003,
+      "viscosityCp": 0.5815576593940945,
+      "compressibilityPerPsi": 0.000002091207544753248,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 180,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0113472763181075,
+      "densityGPerCm3": 1.1373082606159113,
+      "viscosityCp": 0.5940184284370733,
+      "compressibilityPerPsi": 0.0000019782869381036764,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 100,
+      "temperatureF": 250,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0601101057492899,
+      "densityGPerCm3": 0.9424503144593455,
+      "viscosityCp": 0.22993817104369996,
+      "compressibilityPerPsi": 0.000003641871133244897,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 250,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.056654888423562,
+      "densityGPerCm3": 0.9455320876010149,
+      "viscosityCp": 0.23166909003976183,
+      "compressibilityPerPsi": 0.0000035637811438183964,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 250,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0492895113975353,
+      "densityGPerCm3": 0.9521691503370295,
+      "viscosityCp": 0.23544126176840557,
+      "compressibilityPerPsi": 0.000003401692236430944,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 250,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0389646272513644,
+      "densityGPerCm3": 0.9616314899652769,
+      "viscosityCp": 0.24092562729254693,
+      "compressibilityPerPsi": 0.000003184438902860475,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 250,
+      "salinityWtPercent": 0,
+      "bwRbPerStb": 1.0263567827103344,
+      "densityGPerCm3": 0.9734442441025124,
+      "viscosityCp": 0.24795192976781552,
+      "compressibilityPerPsi": 0.0000029345475024923394,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 100,
+      "temperatureF": 250,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.0596929400109685,
+      "densityGPerCm3": 0.9770835947994091,
+      "viscosityCp": 0.2585987398076367,
+      "compressibilityPerPsi": 0.000003326325831930372,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 250,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.056533445674794,
+      "densityGPerCm3": 0.9800054995402155,
+      "viscosityCp": 0.26054540864064935,
+      "compressibilityPerPsi": 0.000003259984167148843,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 250,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.0497811211231858,
+      "densityGPerCm3": 0.9863090184948872,
+      "viscosityCp": 0.2647877614911462,
+      "compressibilityPerPsi": 0.0000031216305354646833,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 250,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.040276164662558,
+      "densityGPerCm3": 0.9953208795717574,
+      "viscosityCp": 0.2709557239775394,
+      "compressibilityPerPsi": 0.0000029348012199385635,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 250,
+      "salinityWtPercent": 5,
+      "bwRbPerStb": 1.0286086025353316,
+      "densityGPerCm3": 1.0066108572856374,
+      "viscosityCp": 0.278857817646304,
+      "compressibilityPerPsi": 0.0000027179121464407147,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 100,
+      "temperatureF": 250,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.057848798180695,
+      "densityGPerCm3": 1.0873138143051648,
+      "viscosityCp": 0.38163156380222873,
+      "compressibilityPerPsi": 0.0000025643048802921413,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 1000,
+      "temperatureF": 250,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0554067312310667,
+      "densityGPerCm3": 1.0898297098847693,
+      "viscosityCp": 0.38450439400820846,
+      "compressibilityPerPsi": 0.0000025222792582347877,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 3000,
+      "temperatureF": 250,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0501567509814014,
+      "densityGPerCm3": 1.0952780245740255,
+      "viscosityCp": 0.390765119616308,
+      "compressibilityPerPsi": 0.0000024336474435850593,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 6000,
+      "temperatureF": 250,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.0426940834094067,
+      "densityGPerCm3": 1.1031170407594635,
+      "viscosityCp": 0.3998675969559374,
+      "compressibilityPerPsi": 0.0000023117942513248613,
+      "solutionGasScfPerStb": 0
+    },
+    {
+      "pressurePsia": 10000,
+      "temperatureF": 250,
+      "salinityWtPercent": 20,
+      "bwRbPerStb": 1.033417600290437,
+      "densityGPerCm3": 1.11301918158228,
+      "viscosityCp": 0.411529248386898,
+      "compressibilityPerPsi": 0.0000021671169705572747,
+      "solutionGasScfPerStb": 0
+    }
+  ]
+}

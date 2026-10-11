@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "source": "Owner-authorized ESP Nexus local main extraction",
+  "branch": "main",
+  "head": "de631ad2952bf42b80a6738ff980992975be4cdc",
+  "extractedAt": "2026-10-09T11:11:06.044Z",
+  "transformations": [
+    "Import aliases rewritten to relative ESM .js paths; calculation bodies unchanged",
+    "Only ZFactorCalculation and TraverseWarning are extracted from wellbore.ts; no pump/UI/private case dependencies"
+  ],
+  "files": [
+    {
+      "source": "src/utils/constants.ts",
+      "destination": "src/vendor/nexus/utils/constants.ts",
+      "sourceSha256": "b39ab7cc2134a24a80301c843f504067454e06a3534d4a92b63d7b22efb6b876",
+      "destinationSha256": "b39ab7cc2134a24a80301c843f504067454e06a3534d4a92b63d7b22efb6b876"
+    },
+    {
+      "source": "src/utils/pvt/correlations.ts",
+      "destination": "src/vendor/nexus/utils/pvt/correlations.ts",
+      "sourceSha256": "2fde02c29a8f6d3e4f5a64c8b961775d6690aa9d4ce1ba08212f71df6468bef0",
+      "destinationSha256": "24cb0a75a5538ecaefaea0d060e9540c82a278ebc04f1a2378b1c06104e2ecc1"
+    },
+    {
+      "source": "src/utils/pvt/types.ts",
+      "destination": "src/vendor/nexus/utils/pvt/types.ts",
+      "sourceSha256": "6e536b157d10cbecbfac7b7008cb5b565930dc1045826e0782e68157e805285d",
+      "destinationSha256": "7a0624865a4bf4fccdb134a51a6877c4d409d9a7b14ac8c2e90765bd07807522"
+    },
+    {
+      "source": "src/utils/pvt/constants.ts",
+      "destination": "src/vendor/nexus/utils/pvt/constants.ts",
+      "sourceSha256": "02806e2580b77f44b51f82814f82db0de9a0e44a97d48bcb139823f1e7f78aa7",
+      "destinationSha256": "02f1c9c544ac0dbdda585887b69a098f5cbf031d1c874dad6bbde7231f98187e"
+    },
+    {
+      "source": "src/utils/pvt/sourGasCorrections.ts",
+      "destination": "src/vendor/nexus/utils/pvt/sourGasCorrections.ts",
+      "sourceSha256": "930688bfcfcb747d4c8fd81a55b28c3e493f7963c44a0e09cae3a5ddef2ea7c0",
+      "destinationSha256": "802c992fc0fbb19be2f961ac0ca9266fa5fe6035e99db169b537f5744d3d7959"
+    },
+    {
+      "source": "src/utils/multiphaseFlow/types.ts",
+      "destination": "src/vendor/nexus/utils/multiphaseFlow/types.ts",
+      "sourceSha256": "e4e46e5c21e24ece8e19b7711ba1eabb917c97c7fd450309f2cd1ba257ba5aa4",
+      "destinationSha256": "47ca041a6dbf4b4dd7111a600bfff68b4da081184d21f25ef95ef46318bbb5a8"
+    },
+    {
+      "source": "src/components/black-oil-tables/types.ts",
+      "destination": "src/vendor/nexus/components/black-oil-tables/types.ts",
+      "sourceSha256": "14358e115bcdd6683fb13df9eec3c4642f4caef5f3a002fde2ea1491f14e3614",
+      "destinationSha256": "661b98cf1a45e64de17e29c6761d62145bdfae5e12a41d14b7a8a3e60f763420"
+    },
+    {
+      "source": "src/components/black-oil-tables/engine/generateBlackOilTable.ts",
+      "destination": "src/vendor/nexus/components/black-oil-tables/engine/generateBlackOilTable.ts",
+      "sourceSha256": "f7cb365724b3ff312827185970459f266f8de82347a2100df5a08eedb6e510c7",
+      "destinationSha256": "27538b80a3e923622d4e4a113f717e1f2fdec3f26809b54b9cf1f01aae395003"
+    },
+    {
+      "source": "src/components/black-oil-tables/engine/pressureArray.ts",
+      "destination": "src/vendor/nexus/components/black-oil-tables/engine/pressureArray.ts",
+      "sourceSha256": "79e9e13c4cb917338805f1ca87e9d08028bec9560a7f1a291b6bab1845bae5b8",
+      "destinationSha256": "79e9e13c4cb917338805f1ca87e9d08028bec9560a7f1a291b6bab1845bae5b8"
+    },
+    {
+      "source": "src/components/black-oil-tables/engine/pbRsbReconciliation.ts",
+      "destination": "src/vendor/nexus/components/black-oil-tables/engine/pbRsbReconciliation.ts",
+      "sourceSha256": "71e8929c0ad52bbddcb0614b23c91cec824173657c50248810be5f036ed4fddb",
+      "destinationSha256": "e6fbc9c5b7205484b43f312a06e872fce459aa2930485962a68e77de79c45063"
+    },
+    {
+      "source": "src/types/wellbore.ts",
+      "destination": "src/vendor/nexus/types/wellbore.ts",
+      "sourceSha256": "85c113ec10808d23eadf0f51dc22a15c5158bbb4ce89ef140ad8207387b96ded",
+      "destinationSha256": "0063c42dace673532bdd1cf4732737dc81639c9f6caf76c93b580b27e15a4afe",
+      "selectedTypes": [
+        "ZFactorCalculation",
+        "TraverseWarning"
+      ]
+    },
+    {
+      "source": "src/utils/pvt/__tests__/correlations.test.ts",
+      "destination": "reference/nexus/utils/pvt/__tests__/correlations.test.ts",
+      "sourceSha256": "c25c47423d4fa09c3a827fe14e16c1dee9bf443a10dd2f61ca109980b011cea3",
+      "destinationSha256": "c25c47423d4fa09c3a827fe14e16c1dee9bf443a10dd2f61ca109980b011cea3",
+      "purpose": "Unmodified upstream reference test; not a claim that Vitest was run"
+    },
+    {
+      "source": "src/components/black-oil-tables/engine/__tests__/pyrtValidation.test.ts",
+      "destination": "reference/nexus/components/black-oil-tables/engine/__tests__/pyrtValidation.test.ts",
+      "sourceSha256": "c2bc16011d47908b1e7eb4aa4bee5d1abe319c300bdda2e3d870b156b37750d1",
+      "destinationSha256": "c2bc16011d47908b1e7eb4aa4bee5d1abe319c300bdda2e3d870b156b37750d1",
+      "purpose": "Unmodified upstream reference test; not a claim that Vitest was run"
+    },
+    {
+      "source": "src/components/black-oil-tables/engine/generateBlackOilTable.test.ts",
+      "destination": "reference/nexus/components/black-oil-tables/engine/generateBlackOilTable.test.ts",
+      "sourceSha256": "c1241c230753442457c329be64ed6203b62228eb439a03bf7e44706309a69343",
+      "destinationSha256": "c1241c230753442457c329be64ed6203b62228eb439a03bf7e44706309a69343",
+      "purpose": "Unmodified upstream reference test; not a claim that Vitest was run"
+    },
+    {
+      "source": "src/components/black-oil-tables/engine/pressureArray.test.ts",
+      "destination": "reference/nexus/components/black-oil-tables/engine/pressureArray.test.ts",
+      "sourceSha256": "006b97fa77776abb083ed740ff70b9c2048b9e46458a74ca4b84064d98ea20e2",
+      "destinationSha256": "006b97fa77776abb083ed740ff70b9c2048b9e46458a74ca4b84064d98ea20e2",
+      "purpose": "Unmodified upstream reference test; not a claim that Vitest was run"
+    },
+    {
+      "source": "src/components/black-oil-tables/engine/pbRsbReconciliation.test.ts",
+      "destination": "reference/nexus/components/black-oil-tables/engine/pbRsbReconciliation.test.ts",
+      "sourceSha256": "41d7c2c20b8132ee8e47d00820279d6121912dffa4c94ddc05183f203a66e8d2",
+      "destinationSha256": "41d7c2c20b8132ee8e47d00820279d6121912dffa4c94ddc05183f203a66e8d2",
+      "purpose": "Unmodified upstream reference test; not a claim that Vitest was run"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "method": "Gas-free brine_props subset: modified Spivey, IAPWS-IF97 freshwater density, source brine viscosity",
+  "packageMetadataVersion": "2.5.0",
+  "sourceSnapshot": "Existing owner-authorized local pyrestoolbox-mcp environment; hashes identify actual files, not a claimed clean release",
+  "upstream": "https://github.com/mwburgoyne/pyResToolbox",
+  "license": "GPL-3.0-or-later",
+  "recordedAt": "2026-10-10T04:55:58.157Z",
+  "liveMcpCall": false,
+  "referenceExecution": "Fresh existing local Python library executed via direct Node script with absolute interpreter and -B; no dependency installation",
+  "files": [
+    {
+      "path": "pyrestoolbox/brine/brine.py",
+      "name": "brine.py",
+      "sha256": "2325c6ae8879c49b8d7fac189d0011fe7656dec13758c199ffc2cc015aae8294"
+    },
+    {
+      "path": "pyrestoolbox/plyasunov/iapws_if97.py",
+      "name": "iapws_if97.py",
+      "sha256": "57161a48170edf580d42d7e862bbb895663a9f223461c7bd067fc6f81e1723ed"
+    },
+    {
+      "path": "pyrestoolbox-2.5.0.dist-info/licenses/LICENSE",
+      "name": "LICENSE",
+      "sha256": "63fcc3314a2c239e9d7bde465609690b5f468a50e0ff4aaee64826cb85e2c0a1"
+    }
+  ],
+  "assumptions": {
+    "dissolvedMethaneSaturation": 0,
+    "dissolvedCO2": "Not supported",
+    "salinity": "NaCl weight percent, not mg/L TDS",
+    "sourceDensityUnit": "g/cm3 (specific-gravity-like numerical density); multiply by 1000 for kg/m3",
+    "standardReference": "15 C, 0.1013 MPa freshwater; source saline standard integral uses 0.1015 MPa"
+  },
+  "scope": "Educational single-phase gas-free aqueous brine; no hydraulics or capacity coupling"
+}

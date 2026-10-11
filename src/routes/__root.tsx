@@ -78,17 +78,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Well Injection Analysis" },
+      { title: "SWD Injection Analytics" },
       {
         name: "description",
         content:
-          "Tools for analyzing well injection data, performance, and reservoir response.",
+          "Reservoir and disposal engineering with traceable inputs, bounded calculations and technical evidence.",
       },
-      { property: "og:title", content: "Well Injection Analysis" },
+      { property: "og:title", content: "SWD Injection Analytics" },
       {
         property: "og:description",
         content:
-          "Tools for analyzing well injection data, performance, and reservoir response.",
+          "Reservoir and disposal engineering with traceable inputs, bounded calculations and technical evidence.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

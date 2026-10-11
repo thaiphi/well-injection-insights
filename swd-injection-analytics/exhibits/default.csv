@@ -1,0 +1,880 @@
+section,record,field,value,unit,provenance
+metadata,exhibit,content_sha256,40eecb1020b29b66513d2c395529905d5c7edc5a1311802b1cb4d27db4421bec,SHA-256,calculated
+metadata,source,nexus_commit,de631ad2952bf42b80a6738ff980992975be4cdc,Git commit,Nexus local main
+inputs,planning,fixtureId,synthetic-water/seed-417/v1,,synthetic / assumed
+inputs,planning,forecastId,forecast/synthetic-water/seed-417/v1/2025-12/exponential-log-fit/1,,synthetic / assumed
+inputs,planning,cutoff,2025-12,,synthetic / assumed
+inputs,planning,trainingMonths,"[""2025-01"",""2025-02"",""2025-03"",""2025-04"",""2025-05"",""2025-06"",""2025-07"",""2025-08"",""2025-09"",""2025-10"",""2025-11"",""2025-12""]",,synthetic / assumed
+inputs,planning,forecastModels,"[{""producerId"":""FICTIONAL-PROD-01"",""monthlySlope"":-0.014791201159842237,""logRate"":8.051946604940676},{""producerId"":""FICTIONAL-PROD-02"",""monthlySlope"":-0.01996947156614183,""logRate"":7.933913205842795}]",,synthetic / assumed
+inputs,planning,newProducerTypeCurve,"{""initialRateStbd"":6000,""monthlyExponentialDecline"":0.025,""formula"":""q(age months) = 6000 * exp(-0.025 * age)"",""provenance"":""assumed fictional planning curve""}",,synthetic / assumed
+inputs,planning,controls,"{""newWellStart"":""2026-04"",""expansionMonth"":""2026-08"",""expansionStbd"":2000}",,synthetic / assumed
+inputs,planning,publicArtifactId,rrc-2026-10-09-uic000020838-v1,,synthetic / assumed
+inputs,planning,nexusSourceCommit,de631ad2952bf42b80a6738ff980992975be4cdc,,synthetic / assumed
+inputs,FICTIONAL-INJ-A,id,FICTIONAL-INJ-A,,assumed
+inputs,FICTIONAL-INJ-A,reservoirPsia,2000,psia,assumed
+inputs,FICTIONAL-INJ-A,limitPsia,3500,psia,assumed
+inputs,FICTIONAL-INJ-A,injectivityStbdPerPsi,5,,assumed
+inputs,FICTIONAL-INJ-A,operatingCeilingStbd,9000,stb/day,assumed
+inputs,FICTIONAL-INJ-A,availability,0.9,,assumed
+inputs,FICTIONAL-INJ-A,datum,Formation reference depth; all pressures bottomhole psia,,assumed
+inputs,FICTIONAL-INJ-B,id,FICTIONAL-INJ-B,,assumed
+inputs,FICTIONAL-INJ-B,reservoirPsia,2000,psia,assumed
+inputs,FICTIONAL-INJ-B,limitPsia,3500,psia,assumed
+inputs,FICTIONAL-INJ-B,injectivityStbdPerPsi,2.5,,assumed
+inputs,FICTIONAL-INJ-B,operatingCeilingStbd,5000,stb/day,assumed
+inputs,FICTIONAL-INJ-B,availability,0.9,,assumed
+inputs,FICTIONAL-INJ-B,datum,Formation reference depth; all pressures bottomhole psia,,assumed
+planning,2026-01,month,2026-01,,calculated from synthetic / assumed
+planning,2026-01,days,31,,calculated from synthetic / assumed
+planning,2026-01,forecastStbd,5828.956001994955,stb/day,calculated from synthetic / assumed
+planning,2026-01,forecastBbl,180697.6360618436,bbl/month,calculated from synthetic / assumed
+planning,2026-01,actualBbl,204340.44057980747,bbl/month,calculated from synthetic / assumed
+planning,2026-01,varianceBbl,23642.804517963872,bbl/month,calculated from synthetic / assumed
+planning,2026-01,variancePct,13.084180309847632,percent,calculated from synthetic / assumed
+planning,2026-01,newDemandStbd,0,stb/day,calculated from synthetic / assumed
+planning,2026-01,demandStbd,5828.956001994955,stb/day,calculated from synthetic / assumed
+planning,2026-01,demandBbl,180697.6360618436,bbl/month,calculated from synthetic / assumed
+planning,2026-01,availableStbd,10125,stb/day,calculated from synthetic / assumed
+planning,2026-01,capacityBbl,313875,bbl/month,calculated from synthetic / assumed
+planning,2026-01,headroomBbl,133177.3639381564,bbl/month,calculated from synthetic / assumed
+planning,2026-01,shortfallBbl,0,bbl/month,calculated from synthetic / assumed
+planning,2026-02,month,2026-02,,calculated from synthetic / assumed
+planning,2026-02,days,28,,calculated from synthetic / assumed
+planning,2026-02,forecastStbd,5729.453882180627,stb/day,calculated from synthetic / assumed
+planning,2026-02,forecastBbl,160424.70870105756,bbl/month,calculated from synthetic / assumed
+planning,2026-02,actualBbl,181182.58702130194,bbl/month,calculated from synthetic / assumed
+planning,2026-02,varianceBbl,20757.878320244374,bbl/month,calculated from synthetic / assumed
+planning,2026-02,variancePct,12.939327419272747,percent,calculated from synthetic / assumed
+planning,2026-02,newDemandStbd,0,stb/day,calculated from synthetic / assumed
+planning,2026-02,demandStbd,5729.453882180627,stb/day,calculated from synthetic / assumed
+planning,2026-02,demandBbl,160424.70870105756,bbl/month,calculated from synthetic / assumed
+planning,2026-02,availableStbd,10125,stb/day,calculated from synthetic / assumed
+planning,2026-02,capacityBbl,283500,bbl/month,calculated from synthetic / assumed
+planning,2026-02,headroomBbl,123075.29129894244,bbl/month,calculated from synthetic / assumed
+planning,2026-02,shortfallBbl,0,bbl/month,calculated from synthetic / assumed
+planning,2026-03,month,2026-03,,calculated from synthetic / assumed
+planning,2026-03,days,31,,calculated from synthetic / assumed
+planning,2026-03,forecastStbd,5631.68789235816,stb/day,calculated from synthetic / assumed
+planning,2026-03,forecastBbl,174582.32466310295,bbl/month,calculated from synthetic / assumed
+planning,2026-03,actualBbl,187127.17303423845,bbl/month,calculated from synthetic / assumed
+planning,2026-03,varianceBbl,12544.848371135507,bbl/month,calculated from synthetic / assumed
+planning,2026-03,variancePct,7.185634854698894,percent,calculated from synthetic / assumed
+planning,2026-03,newDemandStbd,0,stb/day,calculated from synthetic / assumed
+planning,2026-03,demandStbd,5631.68789235816,stb/day,calculated from synthetic / assumed
+planning,2026-03,demandBbl,174582.32466310295,bbl/month,calculated from synthetic / assumed
+planning,2026-03,availableStbd,10125,stb/day,calculated from synthetic / assumed
+planning,2026-03,capacityBbl,313875,bbl/month,calculated from synthetic / assumed
+planning,2026-03,headroomBbl,139292.67533689705,bbl/month,calculated from synthetic / assumed
+planning,2026-03,shortfallBbl,0,bbl/month,calculated from synthetic / assumed
+planning,2026-04,month,2026-04,,calculated from synthetic / assumed
+planning,2026-04,days,30,,calculated from synthetic / assumed
+planning,2026-04,forecastStbd,5535.627100869437,stb/day,calculated from synthetic / assumed
+planning,2026-04,forecastBbl,166068.8130260831,bbl/month,calculated from synthetic / assumed
+planning,2026-04,actualBbl,186060.09639545175,bbl/month,calculated from synthetic / assumed
+planning,2026-04,varianceBbl,19991.28336936864,bbl/month,calculated from synthetic / assumed
+planning,2026-04,variancePct,12.037951620831281,percent,calculated from synthetic / assumed
+planning,2026-04,newDemandStbd,6000,stb/day,calculated from synthetic / assumed
+planning,2026-04,demandStbd,11535.627100869437,stb/day,calculated from synthetic / assumed
+planning,2026-04,demandBbl,346068.8130260831,bbl/month,calculated from synthetic / assumed
+planning,2026-04,availableStbd,10125,stb/day,calculated from synthetic / assumed
+planning,2026-04,capacityBbl,303750,bbl/month,calculated from synthetic / assumed
+planning,2026-04,headroomBbl,-42318.81302608311,bbl/month,calculated from synthetic / assumed
+planning,2026-04,shortfallBbl,42318.81302608311,bbl/month,calculated from synthetic / assumed
+planning,2026-05,month,2026-05,,calculated from synthetic / assumed
+planning,2026-05,days,31,,calculated from synthetic / assumed
+planning,2026-05,forecastStbd,5441.241137785744,stb/day,calculated from synthetic / assumed
+planning,2026-05,forecastBbl,168678.47527135807,bbl/month,calculated from synthetic / assumed
+planning,2026-05,actualBbl,185853.7108740159,bbl/month,calculated from synthetic / assumed
+planning,2026-05,varianceBbl,17175.235602657835,bbl/month,calculated from synthetic / assumed
+planning,2026-05,variancePct,10.18223313616484,percent,calculated from synthetic / assumed
+planning,2026-05,newDemandStbd,5851.859472169996,stb/day,calculated from synthetic / assumed
+planning,2026-05,demandStbd,11293.10060995574,stb/day,calculated from synthetic / assumed
+planning,2026-05,demandBbl,350086.11890862795,bbl/month,calculated from synthetic / assumed
+planning,2026-05,availableStbd,10125,stb/day,calculated from synthetic / assumed
+planning,2026-05,capacityBbl,313875,bbl/month,calculated from synthetic / assumed
+planning,2026-05,headroomBbl,-36211.11890862795,bbl/month,calculated from synthetic / assumed
+planning,2026-05,shortfallBbl,36211.11890862795,bbl/month,calculated from synthetic / assumed
+planning,2026-06,month,2026-06,,calculated from synthetic / assumed
+planning,2026-06,days,30,,calculated from synthetic / assumed
+planning,2026-06,forecastStbd,5348.500184533233,stb/day,calculated from synthetic / assumed
+planning,2026-06,forecastBbl,160455.00553599698,bbl/month,calculated from synthetic / assumed
+planning,2026-06,actualBbl,171747.9586015844,bbl/month,calculated from synthetic / assumed
+planning,2026-06,varianceBbl,11292.953065587411,bbl/month,calculated from synthetic / assumed
+planning,2026-06,variancePct,7.038080879972246,percent,calculated from synthetic / assumed
+planning,2026-06,newDemandStbd,5707.3765470042845,stb/day,calculated from synthetic / assumed
+planning,2026-06,demandStbd,11055.876731537517,stb/day,calculated from synthetic / assumed
+planning,2026-06,demandBbl,331676.3019461255,bbl/month,calculated from synthetic / assumed
+planning,2026-06,availableStbd,10125,stb/day,calculated from synthetic / assumed
+planning,2026-06,capacityBbl,303750,bbl/month,calculated from synthetic / assumed
+planning,2026-06,headroomBbl,-27926.301946125517,bbl/month,calculated from synthetic / assumed
+planning,2026-06,shortfallBbl,27926.301946125517,bbl/month,calculated from synthetic / assumed
+planning,2026-07,month,2026-07,,calculated from synthetic / assumed
+planning,2026-07,days,31,,calculated from synthetic / assumed
+planning,2026-07,forecastStbd,5257.374963712793,stb/day,calculated from synthetic / assumed
+planning,2026-07,forecastBbl,162978.6238750966,bbl/month,calculated from synthetic / assumed
+planning,2026-07,actualBbl,186254.39896749673,bbl/month,calculated from synthetic / assumed
+planning,2026-07,varianceBbl,23275.775092400145,bbl/month,calculated from synthetic / assumed
+planning,2026-07,variancePct,14.281489522354915,percent,calculated from synthetic / assumed
+planning,2026-07,newDemandStbd,5566.460917971317,stb/day,calculated from synthetic / assumed
+planning,2026-07,demandStbd,10823.83588168411,stb/day,calculated from synthetic / assumed
+planning,2026-07,demandBbl,335538.91233220743,bbl/month,calculated from synthetic / assumed
+planning,2026-07,availableStbd,10125,stb/day,calculated from synthetic / assumed
+planning,2026-07,capacityBbl,313875,bbl/month,calculated from synthetic / assumed
+planning,2026-07,headroomBbl,-21663.91233220743,bbl/month,calculated from synthetic / assumed
+planning,2026-07,shortfallBbl,21663.91233220743,bbl/month,calculated from synthetic / assumed
+planning,2026-08,month,2026-08,,calculated from synthetic / assumed
+planning,2026-08,days,31,,calculated from synthetic / assumed
+planning,2026-08,forecastStbd,5167.836729110615,stb/day,calculated from synthetic / assumed
+planning,2026-08,forecastBbl,160202.93860242906,bbl/month,calculated from synthetic / assumed
+planning,2026-08,actualBbl,177828.03540841016,bbl/month,calculated from synthetic / assumed
+planning,2026-08,varianceBbl,17625.0968059811,bbl/month,calculated from synthetic / assumed
+planning,2026-08,variancePct,11.001731278925405,percent,calculated from synthetic / assumed
+planning,2026-08,newDemandStbd,5429.024508215757,stb/day,calculated from synthetic / assumed
+planning,2026-08,demandStbd,10596.861237326371,stb/day,calculated from synthetic / assumed
+planning,2026-08,demandBbl,328502.69835711754,bbl/month,calculated from synthetic / assumed
+planning,2026-08,availableStbd,12125,stb/day,calculated from synthetic / assumed
+planning,2026-08,capacityBbl,375875,bbl/month,calculated from synthetic / assumed
+planning,2026-08,headroomBbl,47372.30164288246,bbl/month,calculated from synthetic / assumed
+planning,2026-08,shortfallBbl,0,bbl/month,calculated from synthetic / assumed
+planning,2026-09,month,2026-09,,calculated from synthetic / assumed
+planning,2026-09,days,30,,calculated from synthetic / assumed
+planning,2026-09,forecastStbd,5079.857255895794,stb/day,calculated from synthetic / assumed
+planning,2026-09,forecastBbl,152395.7176768738,bbl/month,calculated from synthetic / assumed
+planning,2026-09,actualBbl,172425.4624310729,bbl/month,calculated from synthetic / assumed
+planning,2026-09,varianceBbl,20029.744754199084,bbl/month,calculated from synthetic / assumed
+planning,2026-09,variancePct,13.143246450447087,percent,calculated from synthetic / assumed
+planning,2026-09,newDemandStbd,5294.981415507573,stb/day,calculated from synthetic / assumed
+planning,2026-09,demandStbd,10374.838671403366,stb/day,calculated from synthetic / assumed
+planning,2026-09,demandBbl,311245.160142101,bbl/month,calculated from synthetic / assumed
+planning,2026-09,availableStbd,12125,stb/day,calculated from synthetic / assumed
+planning,2026-09,capacityBbl,363750,bbl/month,calculated from synthetic / assumed
+planning,2026-09,headroomBbl,52504.839857899,bbl/month,calculated from synthetic / assumed
+planning,2026-09,shortfallBbl,0,bbl/month,calculated from synthetic / assumed
+planning,2026-10,month,2026-10,,calculated from synthetic / assumed
+planning,2026-10,days,31,,calculated from synthetic / assumed
+planning,2026-10,forecastStbd,4993.408831001516,stb/day,calculated from synthetic / assumed
+planning,2026-10,forecastBbl,154795.673761047,bbl/month,calculated from synthetic / assumed
+planning,2026-10,actualBbl,169109.17327949376,bbl/month,calculated from synthetic / assumed
+planning,2026-10,varianceBbl,14313.49951844677,bbl/month,calculated from synthetic / assumed
+planning,2026-10,variancePct,9.246705137600971,percent,calculated from synthetic / assumed
+planning,2026-10,newDemandStbd,5164.247858550347,stb/day,calculated from synthetic / assumed
+planning,2026-10,demandStbd,10157.656689551863,stb/day,calculated from synthetic / assumed
+planning,2026-10,demandBbl,314887.3573761077,bbl/month,calculated from synthetic / assumed
+planning,2026-10,availableStbd,12125,stb/day,calculated from synthetic / assumed
+planning,2026-10,capacityBbl,375875,bbl/month,calculated from synthetic / assumed
+planning,2026-10,headroomBbl,60987.64262389229,bbl/month,calculated from synthetic / assumed
+planning,2026-10,shortfallBbl,0,bbl/month,calculated from synthetic / assumed
+planning,2026-11,month,2026-11,,calculated from synthetic / assumed
+planning,2026-11,days,30,,calculated from synthetic / assumed
+planning,2026-11,forecastStbd,4908.464243686245,stb/day,calculated from synthetic / assumed
+planning,2026-11,forecastBbl,147253.92731058734,bbl/month,calculated from synthetic / assumed
+planning,2026-11,actualBbl,166248.6607059756,bbl/month,calculated from synthetic / assumed
+planning,2026-11,varianceBbl,18994.733395388263,bbl/month,calculated from synthetic / assumed
+planning,2026-11,variancePct,12.89930512707118,percent,calculated from synthetic / assumed
+planning,2026-11,newDemandStbd,5036.742124615244,stb/day,calculated from synthetic / assumed
+planning,2026-11,demandStbd,9945.20636830149,stb/day,calculated from synthetic / assumed
+planning,2026-11,demandBbl,298356.19104904466,bbl/month,calculated from synthetic / assumed
+planning,2026-11,availableStbd,12125,stb/day,calculated from synthetic / assumed
+planning,2026-11,capacityBbl,363750,bbl/month,calculated from synthetic / assumed
+planning,2026-11,headroomBbl,65393.80895095534,bbl/month,calculated from synthetic / assumed
+planning,2026-11,shortfallBbl,0,bbl/month,calculated from synthetic / assumed
+planning,2026-12,month,2026-12,,calculated from synthetic / assumed
+planning,2026-12,days,31,,calculated from synthetic / assumed
+planning,2026-12,forecastStbd,4824.9967762716005,stb/day,calculated from synthetic / assumed
+planning,2026-12,forecastBbl,149574.9000644196,bbl/month,calculated from synthetic / assumed
+planning,2026-12,actualBbl,163124.52867694045,bbl/month,calculated from synthetic / assumed
+planning,2026-12,varianceBbl,13549.628612520843,bbl/month,calculated from synthetic / assumed
+planning,2026-12,variancePct,9.058758258695294,percent,calculated from synthetic / assumed
+planning,2026-12,newDemandStbd,4912.384518467891,stb/day,calculated from synthetic / assumed
+planning,2026-12,demandStbd,9737.38129473949,stb/day,calculated from synthetic / assumed
+planning,2026-12,demandBbl,301858.8201369242,bbl/month,calculated from synthetic / assumed
+planning,2026-12,availableStbd,12125,stb/day,calculated from synthetic / assumed
+planning,2026-12,capacityBbl,375875,bbl/month,calculated from synthetic / assumed
+planning,2026-12,headroomBbl,74016.17986307578,bbl/month,calculated from synthetic / assumed
+planning,2026-12,shortfallBbl,0,bbl/month,calculated from synthetic / assumed
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2000,psia,calculated at 0 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2050,psia,calculated at 250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2100,psia,calculated at 500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2150,psia,calculated at 750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2200,psia,calculated at 1000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2250,psia,calculated at 1250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2300,psia,calculated at 1500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2350,psia,calculated at 1750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2400,psia,calculated at 2000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2450,psia,calculated at 2250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2500,psia,calculated at 2500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2550,psia,calculated at 2750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2600,psia,calculated at 3000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2650,psia,calculated at 3250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2700,psia,calculated at 3500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2750,psia,calculated at 3750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2800,psia,calculated at 4000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2850,psia,calculated at 4250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2900,psia,calculated at 4500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,2950,psia,calculated at 4750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3000,psia,calculated at 5000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3050,psia,calculated at 5250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3100,psia,calculated at 5500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3150,psia,calculated at 5750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3200,psia,calculated at 6000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3250,psia,calculated at 6250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3300,psia,calculated at 6500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3350,psia,calculated at 6750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3400,psia,calculated at 7000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3450,psia,calculated at 7250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3500,psia,calculated at 7500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3550,psia,calculated at 7750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3600,psia,calculated at 8000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3650,psia,calculated at 8250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3700,psia,calculated at 8500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3750,psia,calculated at 8750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3800,psia,calculated at 9000 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3850,psia,calculated at 9250 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3900,psia,calculated at 9500 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,3950,psia,calculated at 9750 stb/day
+pressure_rate,FICTIONAL-INJ-A,bottomholePsia,4000,psia,calculated at 10000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2000,psia,calculated at 0 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2100,psia,calculated at 250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2200,psia,calculated at 500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2300,psia,calculated at 750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2400,psia,calculated at 1000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2500,psia,calculated at 1250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2600,psia,calculated at 1500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2700,psia,calculated at 1750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2800,psia,calculated at 2000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,2900,psia,calculated at 2250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3000,psia,calculated at 2500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3100,psia,calculated at 2750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3200,psia,calculated at 3000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3300,psia,calculated at 3250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3400,psia,calculated at 3500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3500,psia,calculated at 3750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3600,psia,calculated at 4000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3700,psia,calculated at 4250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3800,psia,calculated at 4500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,3900,psia,calculated at 4750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4000,psia,calculated at 5000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4100,psia,calculated at 5250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4200,psia,calculated at 5500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4300,psia,calculated at 5750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4400,psia,calculated at 6000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4500,psia,calculated at 6250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4600,psia,calculated at 6500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4700,psia,calculated at 6750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4800,psia,calculated at 7000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,4900,psia,calculated at 7250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5000,psia,calculated at 7500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5100,psia,calculated at 7750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5200,psia,calculated at 8000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5300,psia,calculated at 8250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5400,psia,calculated at 8500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5500,psia,calculated at 8750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5600,psia,calculated at 9000 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5700,psia,calculated at 9250 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5800,psia,calculated at 9500 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,5900,psia,calculated at 9750 stb/day
+pressure_rate,FICTIONAL-INJ-B,bottomholePsia,6000,psia,calculated at 10000 stb/day
+pvt,Nexus brine,pressurePsia,3000,see field name,calculated
+pvt,Nexus brine,temperatureF,180,see field name,calculated
+pvt,Nexus brine,salinityPpm,50000,see field name,calculated
+pvt,Nexus brine,bwRbPerStb,1.038136015117978,see field name,calculated
+pvt,Nexus brine,densityLbPerFt3,61.77904512,see field name,calculated
+pvt,Nexus brine,viscosityCp,0.3693521947578936,see field name,calculated
+pvt,Nexus brine,compressibilityPerPsi,0.0000028183780797826468,see field name,calculated
+pvt,Nexus brine,source,ESP Nexus local main de631ad2; simplified brine correlations with source clamps; no calibration to a real well,see field name,calculated
+method,formula,bottomholePressure,Pres + rate/J,,calculated definition
+method,formula,pressureCapacity,"max(0, J*(Plimit-Pres))",,calculated definition
+method,formula,availableCapacity,"min(pressureCapacity, operatingCeiling)*availability + explicitly assumed available expansion",,calculated definition
+method,formula,monthlyVolume,calendar-day average rate * actual calendar days,,calculated definition
+method,formula,variance,synthetic actual volume - frozen forecast volume,,calculated definition
+method,formula,percentVariance,100*variance/forecast; null when forecast=0,,calculated definition
+method,assumption,1,Forecast frozen at 2025-12; new-well schedule edits do not change actuals or fitted forecast.,,assumed / limitation
+method,assumption,2,"Injectivity is fixed with pressure and time; no fracture, transient, layered or calibrated well model.",,assumed / limitation
+method,assumption,3,"Assumed pressure limit is bottomhole psia, not a copied surface permit maximum.",,assumed / limitation
+method,assumption,4,Additional expansion is available stock-tank capacity after downtime; no implicit availability multiplier.,,assumed / limitation
+method,assumption,5,Nexus brine density uses temperature/salinity and ignores pressure; FVF/salinity and viscosity use simplified correlations and source clamps.,,assumed / limitation
+method,assumption,6,Public reported liquid injection is not assigned to synthetic producers or fictional injectors.,,assumed / limitation
+public,artifact,manifest,"{""artifact_id"":""rrc-2026-10-09-uic000020838-v1"",""schema_version"":1,""transformation_version"":""rrc-odp-v1.0.0"",""real_history_status"":""verified_bounded_linkage"",""scope"":{""uic_number"":""000020838"",""start"":""2024-01-01"",""inventory_limit"":5,""monthly_limit"":1000,""monthly_returned"":28,""pagination"":""Response below cap; bounded query not statewide extract""},""source_revisions"":{""inventory_rows_updated_at"":1790858146,""monthly_rows_updated_at"":1790862225},""sources"":[{""snapshot_id"":""givw-z9t4:2bb2e506dea36872"",""name"":""candidate-inventory"",""title"":""RRC-UIC well location"",""kind"":""inventory"",""url"":""https://data.texas.gov/resource/givw-z9t4.json?%24where=api_no+like+%27389%25%27+AND+uic_type_injection%3D%271%27+AND+permit_canceled_date+IS+NULL+AND+w3_plugged_date+IS+NULL&%24limit=5&%24order=uic_number"",""retrieved_at"":""2026-10-09T11:11:47.999Z"",""http_status"":200,""last_modified"":""Thu, 01 Oct 2026 12:32:17 GMT"",""etag"":""\""aW5kaWEuMTgxODQ3XzNfMTE1OTZ0bHhFTFRhMTVhV0EwaldOS25pdXB4aUY0---gzip5C7pOmgtVM3EX-iut892RNW_gR4--gzip--gzip\"""",""sha256"":""2bb2e506dea368726dcecfb5ad30f6a84fe3c5da8f3b43b0cf735a214396b45c"",""bytes"":2895,""raw_file"":""sources/candidate-inventory.json""},{""snapshot_id"":""qq2j-f2zm:de475d2906f07f57"",""name"":""candidate-monthly"",""title"":""RRC-UIC H10 Injection Monitoring"",""kind"":""monthly"",""url"":""https://data.texas.gov/resource/qq2j-f2zm.json?%24where=uic_no%3D%27000020838%27+AND+formatted_date+%3E%3D+%272024-01-01T00%3A00%3A00%27&%24limit=1000&%24order=formatted_date%2Cid"",""retrieved_at"":""2026-10-09T11:11:48.192Z"",""http_status"":200,""last_modified"":""Thu, 01 Oct 2026 12:10:42 GMT"",""etag"":""\""anVsaWV0dC4xNjgwOThfMl81N3FTTThrbkxIOWkwa0VlRWRhWVdreXVEeEo3QQ---gzijvn8-JM-osHKiC0NZzajKT8Xekt--gzip--gzip\"""",""sha256"":""de475d2906f07f5759d31627f0855bcaeb4145cb2752893e4dcf0b3b68ee5aed"",""bytes"":6741,""raw_file"":""sources/candidate-monthly.json""},{""snapshot_id"":""inventory-metadata:27f0407d2c0b0bab"",""name"":""inventory-metadata"",""title"":""RRC-UIC well location"",""kind"":""metadata"",""url"":""https://data.texas.gov/api/views/givw-z9t4.json"",""retrieved_at"":""2026-10-09T11:11:47.757Z"",""http_status"":200,""last_modified"":null,""etag"":null,""sha256"":""27f0407d2c0b0bab8df444ddf3643d0062587bf4c9f974720d4aeb0e814b662d"",""bytes"":47527,""raw_file"":""sources/inventory-metadata.json""},{""snapshot_id"":""monthly-metadata:1dabe10ec6cce8d9"",""name"":""monthly-metadata"",""title"":""RRC-UIC H10 Injection Monitoring"",""kind"":""metadata"",""url"":""https://data.texas.gov/api/views/qq2j-f2zm.json"",""retrieved_at"":""2026-10-09T11:11:47.860Z"",""http_status"":200,""last_modified"":null,""etag"":null,""sha256"":""1dabe10ec6cce8d937bfc95cf16c102ceba7cc25070b8100dac88e9ee168634f"",""bytes"":21609,""raw_file"":""sources/monthly-metadata.json""},{""snapshot_id"":""uic-manual.pdf:09f3744d1ae5ea6b"",""name"":""uic-manual.pdf"",""kind"":""documentation"",""url"":""https://www.rrc.texas.gov/media/v3onmigl/uic_manual_uia010_3116.pdf"",""retrieved_at"":""2026-10-09T11:15:01.509Z"",""http_status"":200,""sha256"":""09f3744d1ae5ea6ba98e07e6f32d545c2a04fe3e2959bed60b401bfdff7a492c"",""bytes"":1077385,""raw_file"":""sources/uic-manual.pdf""},{""snapshot_id"":""rrc-resources.html:d8173dcf819e1942"",""name"":""rrc-resources.html"",""kind"":""documentation"",""url"":""https://www.rrc.texas.gov/oil-and-gas/applications-and-permits/injection-storage-permits/resources/"",""retrieved_at"":""2026-10-09T11:15:01.670Z"",""http_status"":200,""sha256"":""d8173dcf819e194260145bc9de7e0e461fb8e9e9b420c4b49274cbfdcfa4d2d1"",""bytes"":48496,""raw_file"":""sources/rrc-resources.html""},{""snapshot_id"":""uic-query-help.html:563b33af66a36b52"",""name"":""uic-query-help.html"",""kind"":""documentation"",""url"":""https://webapps2.rrc.texas.gov/EWA/help/UICGeneralHowTo.html"",""retrieved_at"":""2026-10-09T11:15:01.792Z"",""http_status"":200,""sha256"":""563b33af66a36b52d20a1773ec2004b42d2217ad4404a83b2fbb639520efc16d"",""bytes"":42272,""raw_file"":""sources/uic-query-help.html""}],""documentation"":[{""url"":""https://www.rrc.texas.gov/oil-and-gas/applications-and-permits/injection-storage-permits/resources/"",""purpose"":""Official RRC identifies ODP datasets and row grain""},{""url"":""https://www.rrc.texas.gov/media/v3onmigl/uic_manual_uia010_3116.pdf"",""purpose"":""Official H-10 units and source field definitions""},{""url"":""https://webapps2.rrc.texas.gov/EWA/help/UICGeneralHowTo.html"",""purpose"":""Permit constraints PSI and BBLS/day""}],""files"":{""inventory.csv"":{""sha256"":""ce0129b6c3074840168b561113d07c6d22e5de2daf95412acc3e9f0051634521"",""bytes"":1502},""injection_monthly.csv"":{""sha256"":""1831e77daa33af7bcb49ee62d36d170c40031e2603b1e0015ae20144fe94f3a3"",""bytes"":5513},""quality_report.json"":{""sha256"":""b9377b4b495acf30f5d0d93e6192e862f78243bd77672a94f03e8b5fcbe6d133"",""bytes"":3828},""data_dictionary.json"":{""sha256"":""3777d6d1c46c3fcb94a8e62fc04c59c4bdeb1a43adcfe39b002ba7a71f276ff1"",""bytes"":7359}},""limitations"":[""Only one UIC monthly history acquired; five bounded inventory candidates."",""ODP supplies no annulus pressure or original H-10 document revision ID."",""Source reports are not independently validated measurements."",""Current status, sustainable capacity and BHP are not inferred.""],""normalized_payload_sha256"":""055ba813761d59553d103c6762dbbfee3c70ed62440969e44cc1b7fe916c7183"",""normalized_payload_hash_method"":""SHA256 of UTF-8 JSON.stringify({schemaVersion,artifactId,inventory,injectionMonthly,qualityReport,dataDictionary}), in this key order, excluding manifest to avoid circularity""}",,public provenance
+public,artifact,data_dictionary,"{""schema_version"":1,""row_grain"":{""inventory"":""one retained official source inventory row"",""injection_monthly"":""one retained official source monthly row, including conflicts/revisions""},""missing_value"":""CSV empty cell / JSON null for absent numbers. Zero remains zero. String identifier absence is empty string."",""pressure_basis"":""Reported injection pressure, psi as named by RRC manual pp.40–41 (PDF pp.41–42). No datum conversion, BHP, reservoir pressure, or injectivity claim."",""annulus"":""Not available in ODP dataset qq2j-f2zm; no annulus columns are generated."",""revision_policy"":""Every source row retained; duplicate period or report ID quarantined without selecting a preferred revision. most_recent_record preserved without using it as a revision selector."",""units_source"":{""url"":""https://www.rrc.texas.gov/media/v3onmigl/uic_manual_uia010_3116.pdf"",""pdf_pages"":[18,41,42],""note"":""Official UIC manual defines liquid barrels, gas MCF, monthly average/maximum psi; public UIC query help names permit limits PSI and BBLS/day.""},""fields"":{""source_record_key"":{""units"":""string"",""status"":""calculated"",""definition"":""Snapshot plus 1-based raw inventory ordinal; never shortened API""},""uic_number"":{""units"":""string"",""status"":""public reported"",""definition"":""Original nine-character UIC parent/control ID; preserves leading zeros""},""api_no"":{""units"":""string"",""status"":""public reported"",""definition"":""Original API_NO exactly as source supplies it (eight digits here); never used as join key""},""operator_number"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source operator_number; identifier values preserved as strings""},""district_code"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source district_code; identifier values preserved as strings""},""lease_number"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source lease_number; identifier values preserved as strings""},""lease_name"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source lease_name; identifier values preserved as strings""},""well_no_display"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source well_no_display; identifier values preserved as strings""},""county"":{""units"":""name"",""status"":""calculated"",""definition"":""Reeves from source API county prefix 389; metadata not independently geocoded""},""county_basis"":{""units"":""text"",""status"":""calculated"",""definition"":""Explicit origin of county label""},""injection_type_code"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source injection_type_code; identifier values preserved as strings""},""permit_liquid_pressure_limit_psi"":{""units"":""psi"",""status"":""public reported"",""definition"":""ODP max_liq_inj_pressure; regulatory authorized maximum, not sustainable capacity""},""permit_liquid_volume_limit_bpd"":{""units"":""bbl/day"",""status"":""public reported"",""definition"":""ODP bbl_vol_inj; authorized maximum liquid volume, not sustainable capacity""},""permitted_top_depth_ft"":{""units"":""ft"",""status"":""public reported"",""definition"":""ODP top_inj_zone; permitted injection interval top""},""permitted_bottom_depth_ft"":{""units"":""ft"",""status"":""public reported"",""definition"":""ODP bot_inj_zone; permitted injection interval bottom""},""w14_number"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source w14_number; identifier values preserved as strings""},""w14_date"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source w14_date; identifier values preserved as strings""},""permit_canceled_date"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source permit_canceled_date; identifier values preserved as strings""},""plugged_date"":{""units"":""string"",""status"":""public reported"",""definition"":""Original source plugged_date; identifier values preserved as strings""},""source_snapshot_id"":{""units"":""string"",""status"":""calculated"",""definition"":""Dataset ID plus raw response SHA256 prefix""},""quality_flags"":{""units"":""list"",""status"":""calculated"",""definition"":""Pipe-delimited issues; issues may overlap""},""source_row_key"":{""units"":""string"",""status"":""calculated"",""definition"":""Snapshot plus 1-based raw monthly ordinal; preserves duplicate source IDs""},""parent_key"":{""units"":""string"",""status"":""calculated"",""definition"":""Unique UIC inventory source_record_key if and only if exact string UIC matches one retained parent""},""parent_join_status"":{""units"":""enum"",""status"":""calculated"",""definition"":""matched / unmatched / ambiguous""},""source_report_id"":{""units"":""string"",""status"":""public reported"",""definition"":""Original ODP monthly id, retained without assuming global uniqueness""},""reporting_year"":{""units"":""year"",""status"":""calculated"",""definition"":""Year extracted from source formatted_date""},""reporting_month"":{""units"":""month"",""status"":""calculated"",""definition"":""Month extracted from source formatted_date""},""period_start"":{""units"":""date"",""status"":""calculated"",""definition"":""Calendar month start from formatted_date; not a daily observation""},""injected_liquid_bbl"":{""units"":""bbl/month"",""status"":""public reported"",""definition"":""ODP vol_liq, monthly total liquid volume""},""injected_gas_mcf"":{""units"":""MCF/month"",""status"":""public reported"",""definition"":""ODP vol_gas, monthly total gas volume""},""reported_avg_injection_pressure_psi"":{""units"":""psi"",""status"":""public reported"",""definition"":""ODP inj_press_avg; separate reported average injection pressure""},""reported_max_injection_pressure_psi"":{""units"":""psi"",""status"":""public reported"",""definition"":""ODP inj_press_max; separate reported maximum injection pressure""},""calendar_days"":{""units"":""days"",""status"":""calculated"",""definition"":""Actual Gregorian days in reporting month""},""calculated_calendar_day_avg_bpd"":{""units"":""bbl/day"",""status"":""calculated"",""definition"":""injected_liquid_bbl / calendar_days; not measured daily operating rate or operating-day rate""},""most_recent_record"":{""units"":""source code"",""status"":""public reported"",""definition"":""Original ODP flag; meaning not documented by metadata, no revision-selection inference""}}}",,source definitions and units
+public,artifact,quality_report,"{""inventory"":{""raw"":5,""parsed"":5,""accepted"":5,""quarantined"":0,""excluded"":0},""monthly"":{""raw"":28,""parsed"":28,""accepted"":28,""quarantined"":0,""excluded"":0},""parent_join"":{""matched"":28,""unmatched"":0,""ambiguous"":0},""issue_counts"":{},""dispositions"":[{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:1"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:2"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:3"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:4"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:5"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:6"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:7"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:8"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:9"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:10"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:11"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:12"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:13"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:14"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:15"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:16"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:17"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:18"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:19"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:20"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:21"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:22"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:23"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:24"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:25"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:26"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:27"",""disposition"":""accepted""},{""source_row_key"":""rrc:h10:qq2j-f2zm:de475d2906f07f57:28"",""disposition"":""accepted""}],""annulus_fields"":""not supplied by ODP dataset; not inferred"",""revision_policy"":""Every source row retained; duplicate period or report ID quarantined without selecting a preferred revision. most_recent_record preserved without using it as a revision selector."",""scope"":""Bounded inventory candidates and one UIC monthly history; no statewide coverage or current operating-status assertion.""}",,source dispositions and identity checks
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,source_record_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,uic_number,000020838,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,api_no,38910201,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,operator_number,103834,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,district_code,08,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,lease_number,17459,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,lease_name,"TREES, J. C. ESTATE, ET AL -A-",string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,well_no_display,5D,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,county,Reeves,name,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,county_basis,API county code 389; not independent location verification,text,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,injection_type_code,1,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,permit_liquid_pressure_limit_psi,2600,psi,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,permit_liquid_volume_limit_bpd,14500,bbl/day,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,permitted_top_depth_ft,5200,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,permitted_bottom_depth_ft,6100,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,w14_number,7412,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,w14_date,1967-02-13,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,permit_canceled_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,plugged_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,source_snapshot_id,givw-z9t4:2bb2e506dea36872,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:1,quality_flags,[],list,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,source_record_key,rrc:uic:givw-z9t4:2bb2e506dea36872:2,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,uic_number,000022085,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,api_no,38901171,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,operator_number,101988,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,district_code,08,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,lease_number,20783,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,lease_name,BRINE SALVAGE PLANT,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,well_no_display,7D,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,county,Reeves,name,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,county_basis,API county code 389; not independent location verification,text,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,injection_type_code,1,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,permit_liquid_pressure_limit_psi,2200,psi,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,permit_liquid_volume_limit_bpd,5000,bbl/day,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,permitted_top_depth_ft,5140,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,permitted_bottom_depth_ft,5265,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,w14_number,7319,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,w14_date,2023-02-23,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,permit_canceled_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,plugged_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,source_snapshot_id,givw-z9t4:2bb2e506dea36872,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:2,quality_flags,[],list,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,source_record_key,rrc:uic:givw-z9t4:2bb2e506dea36872:3,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,uic_number,000039655,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,api_no,38930159,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,operator_number,524907,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,district_code,08,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,lease_number,053525,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,lease_name,"KNIGHT, CORNELL -D-",string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,well_no_display,1,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,county,Reeves,name,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,county_basis,API county code 389; not independent location verification,text,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,injection_type_code,1,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,permit_liquid_pressure_limit_psi,1500,psi,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,permit_liquid_volume_limit_bpd,6000,bbl/day,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,permitted_top_depth_ft,8120,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,permitted_bottom_depth_ft,8190,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,w14_number,8057,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,w14_date,1998-03-19,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,permit_canceled_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,plugged_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,source_snapshot_id,givw-z9t4:2bb2e506dea36872,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:3,quality_flags,[],list,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,source_record_key,rrc:uic:givw-z9t4:2bb2e506dea36872:4,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,uic_number,000039709,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,api_no,38901128,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,operator_number,655846,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,district_code,08,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,lease_number,078058,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,lease_name,SHURTLEFF UNIT,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,well_no_display,1,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,county,Reeves,name,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,county_basis,API county code 389; not independent location verification,text,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,injection_type_code,1,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,permit_liquid_pressure_limit_psi,1945,psi,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,permit_liquid_volume_limit_bpd,15000,bbl/day,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,permitted_top_depth_ft,3890,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,permitted_bottom_depth_ft,5150,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,w14_number,892,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,w14_date,2008-02-22,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,permit_canceled_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,plugged_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,source_snapshot_id,givw-z9t4:2bb2e506dea36872,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:4,quality_flags,[],list,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,source_record_key,rrc:uic:givw-z9t4:2bb2e506dea36872:5,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,uic_number,000048561,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,api_no,38931396,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,operator_number,900329,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,district_code,08,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,lease_number,27775,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,lease_name,BAPTIST FOUNDATION,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,well_no_display,1D,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,county,Reeves,name,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,county_basis,API county code 389; not independent location verification,text,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,injection_type_code,1,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,permit_liquid_pressure_limit_psi,2500,psi,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,permit_liquid_volume_limit_bpd,10000,bbl/day,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,permitted_top_depth_ft,5594,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,permitted_bottom_depth_ft,6100,ft,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,w14_number,3898,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,w14_date,2006-01-31,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,permit_canceled_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,plugged_date,,string,public reported
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,source_snapshot_id,givw-z9t4:2bb2e506dea36872,string,calculated
+public_inventory,rrc:uic:givw-z9t4:2bb2e506dea36872:5,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,source_report_id,3775425,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,reporting_month,1,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,period_start,2024-01-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,injected_liquid_bbl,17173,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,calculated_calendar_day_avg_bpd,553.9677419354839,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:1,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,source_report_id,3775426,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,reporting_month,2,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,period_start,2024-02-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,injected_liquid_bbl,17927,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,calendar_days,29,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,calculated_calendar_day_avg_bpd,618.1724137931035,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:2,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,source_report_id,3775427,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,reporting_month,3,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,period_start,2024-03-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,injected_liquid_bbl,17989,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,calculated_calendar_day_avg_bpd,580.2903225806451,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:3,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,source_report_id,3775428,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,reporting_month,4,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,period_start,2024-04-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,injected_liquid_bbl,15119,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,calculated_calendar_day_avg_bpd,503.96666666666664,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:4,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,source_report_id,3775429,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,reporting_month,5,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,period_start,2024-05-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,injected_liquid_bbl,22427,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,calculated_calendar_day_avg_bpd,723.4516129032259,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:5,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,source_report_id,3775430,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,reporting_month,6,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,period_start,2024-06-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,injected_liquid_bbl,23579,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,calculated_calendar_day_avg_bpd,785.9666666666667,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:6,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,source_report_id,3775431,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,reporting_month,7,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,period_start,2024-07-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,injected_liquid_bbl,24010,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,calculated_calendar_day_avg_bpd,774.516129032258,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:7,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,source_report_id,3775432,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,reporting_month,8,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,period_start,2024-08-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,injected_liquid_bbl,15980,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,calculated_calendar_day_avg_bpd,515.483870967742,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:8,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,source_report_id,3775433,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,reporting_month,9,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,period_start,2024-09-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,injected_liquid_bbl,15820,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,calculated_calendar_day_avg_bpd,527.3333333333334,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:9,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,source_report_id,3775434,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,reporting_month,10,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,period_start,2024-10-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,injected_liquid_bbl,16072,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,calculated_calendar_day_avg_bpd,518.4516129032259,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:10,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,source_report_id,3775435,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,reporting_month,11,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,period_start,2024-11-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,injected_liquid_bbl,16108,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,calculated_calendar_day_avg_bpd,536.9333333333333,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:11,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,source_report_id,3775436,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,reporting_year,2024,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,reporting_month,12,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,period_start,2024-12-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,injected_liquid_bbl,19670,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,calculated_calendar_day_avg_bpd,634.516129032258,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:12,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,source_report_id,3775437,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,reporting_month,1,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,period_start,2025-01-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,injected_liquid_bbl,22695,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,calculated_calendar_day_avg_bpd,732.0967741935484,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:13,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,source_report_id,3775438,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,reporting_month,2,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,period_start,2025-02-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,injected_liquid_bbl,19623,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,calendar_days,28,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,calculated_calendar_day_avg_bpd,700.8214285714286,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:14,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,source_report_id,3775439,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,reporting_month,3,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,period_start,2025-03-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,injected_liquid_bbl,20142,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,calculated_calendar_day_avg_bpd,649.741935483871,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:15,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,source_report_id,3775440,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,reporting_month,4,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,period_start,2025-04-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,injected_liquid_bbl,18143,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,calculated_calendar_day_avg_bpd,604.7666666666667,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:16,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,source_report_id,3775441,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,reporting_month,5,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,period_start,2025-05-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,injected_liquid_bbl,20487,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,calculated_calendar_day_avg_bpd,660.8709677419355,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:17,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,source_report_id,3775442,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,reporting_month,6,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,period_start,2025-06-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,injected_liquid_bbl,18728,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,calculated_calendar_day_avg_bpd,624.2666666666667,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:18,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,source_report_id,3775443,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,reporting_month,7,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,period_start,2025-07-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,injected_liquid_bbl,14727,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,calculated_calendar_day_avg_bpd,475.06451612903226,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:19,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,source_report_id,3775444,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,reporting_month,8,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,period_start,2025-08-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,injected_liquid_bbl,13205,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,calculated_calendar_day_avg_bpd,425.96774193548384,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:20,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,source_report_id,3775445,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,reporting_month,9,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,period_start,2025-09-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,injected_liquid_bbl,9283,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,calculated_calendar_day_avg_bpd,309.43333333333334,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:21,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,source_report_id,3775446,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,reporting_month,10,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,period_start,2025-10-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,injected_liquid_bbl,9358,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,calculated_calendar_day_avg_bpd,301.8709677419355,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:22,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,source_report_id,3775447,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,reporting_month,11,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,period_start,2025-11-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,injected_liquid_bbl,9096,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,calculated_calendar_day_avg_bpd,303.2,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:23,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,source_report_id,3775448,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,reporting_year,2025,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,reporting_month,12,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,period_start,2025-12-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,injected_liquid_bbl,8776,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,calculated_calendar_day_avg_bpd,283.0967741935484,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:24,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,source_report_id,3775449,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,reporting_year,2026,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,reporting_month,1,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,period_start,2026-01-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,injected_liquid_bbl,8134,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,calculated_calendar_day_avg_bpd,262.38709677419354,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:25,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,source_report_id,3775450,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,reporting_year,2026,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,reporting_month,2,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,period_start,2026-02-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,injected_liquid_bbl,5087,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,calendar_days,28,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,calculated_calendar_day_avg_bpd,181.67857142857142,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:26,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,source_report_id,3775451,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,reporting_year,2026,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,reporting_month,3,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,period_start,2026-03-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,injected_liquid_bbl,8041,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,calendar_days,31,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,calculated_calendar_day_avg_bpd,259.38709677419354,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,most_recent_record,0,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:27,quality_flags,[],list,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,source_row_key,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,parent_key,rrc:uic:givw-z9t4:2bb2e506dea36872:1,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,parent_join_status,matched,enum,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,uic_number,000020838,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,source_report_id,3775452,string,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,reporting_year,2026,year,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,reporting_month,4,month,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,period_start,2026-04-01,date,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,injected_liquid_bbl,4799,bbl/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,injected_gas_mcf,0,MCF/month,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,reported_avg_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,reported_max_injection_pressure_psi,900,psi,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,calendar_days,30,days,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,calculated_calendar_day_avg_bpd,159.96666666666667,bbl/day,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,most_recent_record,1,source code,public reported
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,source_snapshot_id,qq2j-f2zm:de475d2906f07f57,string,calculated
+public_monthly,rrc:h10:qq2j-f2zm:de475d2906f07f57:28,quality_flags,[],list,calculated

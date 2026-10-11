@@ -1,0 +1,20 @@
+{
+  "package": "pdf-lib",
+  "version": "1.17.1",
+  "license": "MIT",
+  "origin": "Codex bundled workspace dependencies 26.1007.11041",
+  "upstream": "https://github.com/Hopding/pdf-lib",
+  "documentation": "https://pdf-lib.js.org/docs/api/classes/pdfdocument",
+  "files": [
+    {
+      "source": "dist/pdf-lib.esm.min.js",
+      "destination": "pdf-lib-1.17.1.mjs",
+      "sha256": "72c052d97b4d5d9fa6cdbdcb7ad709f03d4ddb1122390cb3afeba4d88651d969"
+    },
+    {
+      "source": "LICENSE.md",
+      "destination": "pdf-lib-LICENSE.md",
+      "sha256": "f2c9fc00fdb66eb99ac156ba52d734af66d8d309f65753ae809ad34ee2883bcb"
+    }
+  ]
+}

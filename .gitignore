@@ -30,3 +30,16 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Analytics assets are assembled from the exact preserved source at dev/build.
+/public/analytics/
+/public/dist/
+/public/data/
+/public/reference/
+/public/exhibits/
+/public/output/
+/public/vendor/
+/public/*.mjs
+/public/*.css
+/public/*.map
+/tmp/

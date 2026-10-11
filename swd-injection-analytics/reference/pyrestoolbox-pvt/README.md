@@ -1,0 +1,11 @@
+# Gas-free water/brine source evidence
+
+`brine.py`, `iapws_if97.py` and `LICENSE` are exact copies from the already installed local pyResToolbox environment, retained with their source notices. `provenance.json` records the exact SHA-256 hashes and source locations. Installed package metadata says **2.5.0**; this is not evidence that the files are an unmodified official release. The historical MCP environment recorded a different version and is not used as the identity of this snapshot.
+
+The browser adaptation is in `src/pyrestoolboxBrine.ts`, with validated application inputs and export metadata in `src/brinePvt.ts`. Adaptations are GPL-3.0-or-later, matching the original brine source notice. Attribution: Mark Burgoyne / [pyResToolbox](https://github.com/mwburgoyne/pyResToolbox). The included GPL text and original source must accompany distribution of this adaptation; these files are retained for review, not installed by the browser.
+
+`oracles.json` contains 45 fresh direct calls to the installed `brine_props(..., ch4_sat=0)` function, captured using the existing absolute interpreter with bytecode writing disabled. Cases cross 60/180/250 °F, 0/5/20 NaCl wt%, and 100/1000/3000/6000/10000 psia. Tests compare Bw, density, viscosity and compressibility at a relative tolerance of 1e-10. Agreement establishes fidelity to the exact source, not field calibration or full-domain physical validation.
+
+Source density tuple values are in g/cm³; browser outputs explicitly convert to kg/m³ and lb/ft³. Source salinity is NaCl wt%, not mg/L TDS. Freshwater standard density uses 15 °C / 0.1013 MPa; the saline standard integral uses 0.1015 MPa. The source viscosity temperature offset of 273 K and compressibility conversion of 145.038 psi/MPa are preserved. Compressibility follows the source Spivey equation and is not the derivative of the IAPWS-adjusted density.
+
+The adaptation is restricted to gas-free NaCl liquid in the application's demonstration bounds. It omits methane solubility, CO₂/mixed-ion brines, phase prediction, fluid calibration, hydraulics and capacity coupling. The inherited Nexus correlation is preserved separately and has an unresolved incorrect Bw pressure trend; none of the new reference evidence validates that legacy implementation.
