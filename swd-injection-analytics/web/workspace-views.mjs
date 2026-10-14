@@ -15,7 +15,7 @@ export function renderCurveLibrary(ctx){
 }
 export function renderSchedules(ctx){
  const root=$('schedule-workspace'),existingControls=ctx.preserveControls?root.querySelector('.schedule-input-panel'):null;if(existingControls){for(const child of [...root.children])if(child!==existingControls&&!child.classList.contains('workspace-title'))child.remove();}else heading(root,'schedule-title','Development schedules','Existing producers retain their frozen forecasts. Distinct scheduled additions contribute separately to total demand.');
- if(ctx.source==='demo'){
+ if(ctx.source==='demo'||ctx.source==='sample'){
   const fixture=ctx.demo?.inputs.planningFixture,panel=existingControls??node('section',undefined,'panel schedule-input-panel');if(!existingControls){panel.append(node('h2','Demonstration schedule controls'));
   const controls=node('div',undefined,'schedule-controls');
   for(const [originalId,label]of [['new-well-start','New producer start month'],['new-well-ramp','Ramp to full rate (months)'],['new-well-availability','Monthly availability (fraction)']]){
@@ -45,6 +45,7 @@ const REPORTS=[
 ];
 export function renderReports(ctx,evidence=false){
  const root=$('reports-workspace');heading(root,'reports-title',evidence?'Evidence & acceptance limits':'Reports & evidence',evidence?'Input readiness, numerical validation and product acceptance are separate.':'Download current result snapshots. Each report retains its own source identity, assumptions and supported formats.');
+ if(!evidence&&ctx.sampleReport)root.append(ctx.sampleReport());
  if(evidence){
   root.append(dataTable(['Evidence','Where retained','Meaning / limit'],[
    ['Customer source rows','Import validation and analysis JSON','File/sheet/header, original values, mapping, units, assertions and SHA-256'],

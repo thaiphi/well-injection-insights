@@ -36,7 +36,7 @@ function sync(){
  context=next;contextKey=key;invalidate('Source inputs changed. Review geometry/fluid assumptions and calculate the revised case.');
  $('disposal-calculate').disabled=!context.ready;$('disposal-illustrative').disabled=!context.ready;
  if(context.ready){
-  const m=context.demand.monthly;$('disposal-source').textContent=`${context.demand.origin==='user'?'Confirmed user profiles':'Selected synthetic demonstration'} · origin: ${context.demand.origin} · content: ${context.demand.content} · ${m[0].month}–${m.at(-1).month} · ${m.length} forecast months · ${context.wells.length} wells. Exact dataset IDs, hashes, original rows and frozen forecasts are retained in the case evidence.`;
+  const m=context.demand.monthly;$('disposal-source').textContent=`${{user:'Confirmed user profiles',sample:'Sample case (TRRC records + labelled synthetic gaps)'}[context.demand.origin]??'Selected synthetic demonstration'} · origin: ${context.demand.origin} · content: ${context.demand.content} · ${m[0].month}–${m.at(-1).month} · ${m.length} forecast months · ${context.wells.length} wells. Exact dataset IDs, hashes, original rows and frozen forecasts are retained in the case evidence.`;
   if(!sameWells)renderWells();
  }else{$('disposal-source').textContent=context.reasons.join(' ');$('disposal-wells').replaceChildren();$('disposal-target').replaceChildren();$('disposal-alt-id').value='';$('disposal-alt-availability').value='';$('disposal-status').textContent='Blocked — '+context.reasons.join(' ');}
 }
