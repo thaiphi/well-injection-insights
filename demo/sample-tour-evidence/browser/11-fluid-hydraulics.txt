@@ -1,0 +1,263 @@
+RootWebArea "SWD Injection Analytics | Data & analysis"
+  link "Skip to analysis workspace"
+    StaticText "Skip to analysis workspace"
+  complementary
+    strong
+      StaticText "SWD"
+    navigation "Analysis navigation"
+      button "Start"
+        StaticText "Start"
+      button "Data & sources"
+        StaticText "Data & sources"
+      button "Production & demand"
+        StaticText "Production & demand"
+      button "Injection & capacity"
+        StaticText "Injection & capacity"
+      button "Fluid & wellbore"
+        StaticText "Fluid & wellbore"
+      button "Reports & evidence"
+        StaticText "Reports & evidence"
+    paragraph
+      StaticText "Reservoir & disposal"
+      StaticText "engineering"
+  banner
+    strong
+      StaticText "SWD Injection Analytics"
+    paragraph
+      StaticText "Reservoir & disposal engineering"
+    StaticText "Educational analysis"
+  status
+    strong
+      StaticText "Planning dataset · separate from this tool"
+    StaticText "swd-sample-case/uic000020838+uic000056484/v1 · TRRC public records for two injectors + synthetic producers and engineering inputs"
+    StaticText "Session only · no saved case"
+    button "Change source"
+      StaticText "Change source"
+  main
+    paragraph
+      StaticText "Fluid & wellbore"
+    navigation "Fluid & wellbore workspaces"
+      button "Brine PVT"
+        StaticText "Brine PVT"
+      button "Hydraulics"
+        StaticText "Hydraulics"
+      button "Profiles"
+        StaticText "Profiles"
+    region "Sample case"
+      paragraph
+        strong
+          StaticText "Sample case — TRRC record + synthetic gaps"
+        StaticText " "
+        StaticText "swd-sample-case/uic000020838+uic000056484/v1 · all 7 loading steps done; every main tool has results."
+      button "Take the guided tour"
+        StaticText "Take the guided tour"
+      button "Clear sample"
+        StaticText "Clear sample"
+      alert
+    region "Wellbore hydraulics"
+      heading "Wellbore hydraulics" [focused]
+        StaticText "Wellbore hydraulics"
+      paragraph
+        StaticText "Calculate injection pressure and inspect brine properties along the well."
+      StaticText "Independent assumed case"
+      paragraph
+        StaticText "Enter well geometry, fluid assumptions and a common bottomhole datum. All defaults are fictional assumptions. A planning dataset or forecast is not required."
+      form
+        heading "Calculation inputs"
+          StaticText "Calculation inputs"
+        button "Reset assumed values"
+          StaticText "Reset assumed values"
+        LabelText
+          StaticText "Case label"
+          textbox "Case label"
+            StaticText "Sample case · UIC 000020838"
+        LabelText
+          StaticText "Wellbore model"
+          combobox "Wellbore model"
+            MenuListPopup
+              option "Depth-dependent brine"
+              option "Uniform reference brine"
+        paragraph
+          StaticText "Local pressure and temperature update brine density, viscosity and volume along the well."
+        group "Operating point"
+          Legend
+            StaticText "Operating point"
+          LabelText
+            StaticText "Selected injection rate"
+            StaticText "STB/day"
+            spinbutton "Selected injection rate STB/day"
+              StaticText "5000"
+          LabelText
+            StaticText "Injectivity J"
+            StaticText "STB/day/psi"
+            spinbutton "Injectivity J STB/day/psi Synthetic: you'd gather"
+              StaticText "5"
+            StaticText "Synthetic: you'd gather"
+        group "Pressure references & constraints"
+          Legend
+            StaticText "Pressure references & constraints"
+          LabelText
+            StaticText "Reservoir pressure"
+            StaticText "psia"
+            spinbutton "Reservoir pressure psia Synthetic: you'd gather"
+              StaticText "2400"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Bottomhole pressure limit"
+            StaticText "psia"
+            spinbutton "Bottomhole pressure limit psia Synthetic: you'd gather"
+              StaticText "3600"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Wellhead pressure limit"
+            StaticText "psia"
+            spinbutton "Wellhead pressure limit psia Derived from TRRC with a stated assumption — assumption: The permit limit is gauge pressure at the surface, and atmospheric pressur"
+              StaticText "2614.7"
+            StaticText "Derived from TRRC with a stated assumption — assumption: The permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi."
+          LabelText
+            StaticText "Operating rate ceiling"
+            StaticText "STB/day"
+            spinbutton "Operating rate ceiling STB/day Synthetic: you'd gather"
+              StaticText "9000"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Common bottomhole datum"
+            textbox "Common bottomhole datum"
+              StaticText "Top of permitted interval, 5200 ft TVD (derived from TRRC; vertical-well assumption); synthetic bottomhole pressures"
+          paragraph
+            StaticText "Reservoir and bottomhole limit share this datum. Wellhead pressure is at 0 ft; TVD relates it to the formation. All pressures are absolute psia, including limit"
+        group "Well geometry"
+          Legend
+            StaticText "Well geometry"
+          LabelText
+            StaticText "True vertical depth"
+            StaticText "ft"
+            spinbutton "True vertical depth ft Derived from TRRC with a stated assumption — assumption: The top of the permitted interval is the datum, and the well is vertical to the "
+              StaticText "5200"
+            StaticText "Derived from TRRC with a stated assumption — assumption: The top of the permitted interval is the datum, and the well is vertical to the datum."
+          LabelText
+            StaticText "Measured depth"
+            StaticText "ft"
+            spinbutton "Measured depth ft Synthetic: you'd gather"
+              StaticText "5200"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Tubing inner diameter"
+            StaticText "in"
+            spinbutton "Tubing inner diameter in Synthetic: you'd gather"
+              StaticText "3.958"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Absolute roughness"
+            StaticText "in"
+            spinbutton "Absolute roughness in Synthetic: you'd gather"
+              StaticText "0.0006"
+            StaticText "Synthetic: you'd gather"
+          paragraph
+            StaticText "TVD controls gravity; measured depth controls friction. Constant tubing diameter and straight deviation are assumed."
+        group "Gas-free NaCl brine"
+          Legend
+            StaticText "Gas-free NaCl brine"
+          LabelText
+            StaticText "Bottomhole / uniform temperature"
+            StaticText "°F"
+            spinbutton "Bottomhole / uniform temperature °F Synthetic: you'd gather"
+              StaticText "150"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "NaCl salinity"
+            StaticText "wt%"
+            spinbutton "NaCl salinity wt% Synthetic: you'd gather"
+              StaticText "8"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Fluid reference pressure"
+            StaticText "psia"
+            spinbutton "Fluid reference pressure psia Synthetic: you'd gather"
+              StaticText "2400"
+            StaticText "Synthetic: you'd gather"
+        group "Depth-dependent settings"
+          Legend
+            StaticText "Depth-dependent settings"
+          LabelText
+            StaticText "Surface temperature"
+            StaticText "°F"
+            spinbutton "Surface temperature °F Synthetic: you'd gather"
+              StaticText "80"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Initial traverse intervals"
+            StaticText "intervals"
+            spinbutton "Initial traverse intervals intervals"
+              StaticText "32"
+          paragraph
+            StaticText "Temperature varies linearly with TVD. The solver refines intervals automatically. Local pressure 100–10,000 psia; temperature 60–250 °F; NaCl 0–20 wt%. NaCl wt%"
+        group
+          DisclosureTriangle "Pressure-curve range"
+            StaticText "Pressure-curve range"
+        button "Calculate hydraulics"
+          StaticText "Calculate hydraulics"
+      status
+        StaticText "Calculated depth-dependent brine · 5,000 STB/day selected · 4 flagged curve points. Downloads match these assumptions."
+      button "JSON"
+        StaticText "JSON"
+      button "CSV"
+        StaticText "CSV"
+      button "SVG"
+        StaticText "SVG"
+      StaticText "Selected point passes the bounded model checks. Engineering screening; acceptance remains open."
+      StaticText "Required wellhead"
+      strong
+        StaticText "1,058.704 "
+        StaticText "psia"
+      StaticText "Required bottomhole"
+      strong
+        StaticText "3,400 "
+        StaticText "psia"
+      StaticText "Gravity gain"
+      strong
+        StaticText "2,369.234 "
+        StaticText "psi"
+      StaticText "Friction loss"
+      strong
+        StaticText "27.938 "
+        StaticText "psi"
+      tabpanel "Hydraulics"
+        image "Required injection pressure; Injection rate (STB/day); Absolute pressure (psia)"
+          StaticText "Required injection pressure"
+          StaticText "0"
+          StaticText "0"
+          StaticText "975"
+          StaticText "1,875"
+          StaticText "1,950"
+          StaticText "3,750"
+          StaticText "2,925"
+          StaticText "5,625"
+          StaticText "3,900"
+          StaticText "7,500"
+          StaticText "Injection rate (STB/day)"
+          StaticText "Absolute pressure (psia)"
+          StaticText "Required bottomhole"
+          StaticText "Required wellhead"
+          StaticText "Bottomhole limit"
+          StaticText "Wellhead limit"
+          StaticText "Flagged wellhead points"
+          StaticText "Selected wellhead point"
+        paragraph
+          StaticText "Dashed lines are declared constraints. Red markers show calculated points outside the checks. Unsupported pressure solves remain gaps; a connecting line does no"
+        group
+          DisclosureTriangle "Pressure-curve values & flags"
+            StaticText "Pressure-curve values & flags"
+        group
+          DisclosureTriangle "Fluid properties at the reference state"
+            StaticText "Fluid properties at the reference state"
+      group
+        DisclosureTriangle "Methods, provenance & limitations"
+          StaticText "Methods, provenance & limitations"
+    group
+      DisclosureTriangle "Acceptance blockers — full acceptance remains open"
+        StaticText "Acceptance blockers — full acceptance remains open"
+  contentinfo
+    strong
+      StaticText "SWD Analytics"
+    StaticText "Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence."

@@ -1,0 +1,98 @@
+[
+  {
+    "gate": "prepare",
+    "command": "node scripts/prepare-swd.mjs",
+    "result": "PASS",
+    "evidence": null
+  },
+  {
+    "gate": "tsc-root",
+    "command": "node node_modules/typescript/bin/tsc --noEmit",
+    "result": "PASS",
+    "evidence": null
+  },
+  {
+    "gate": "tsc-app",
+    "command": "node node_modules/typescript/bin/tsc -p swd-injection-analytics/tsconfig.json --noEmit",
+    "result": "PASS",
+    "evidence": null
+  },
+  {
+    "gate": "vite-build",
+    "command": "node node_modules/vite/bin/vite.js build",
+    "result": "PASS",
+    "evidence": null
+  },
+  {
+    "gate": "analytics",
+    "command": "node scripts/check-analytics.mjs --include-server",
+    "result": "PASS 432/432 tests; 248 comparisons, 0 failures",
+    "evidence": null
+  },
+  {
+    "gate": "root-tests",
+    "command": "node --test tests/portfolio-connection.test.mjs tests/preservation-baseline.test.mjs tests/transfer.test.mjs",
+    "result": "45/46 — expected red: preservation pending owner baseline approval",
+    "evidence": null
+  },
+  {
+    "gate": "browser-1-one-click",
+    "command": "headless Chrome",
+    "result": "PASS 7/7",
+    "evidence": "browser/02-one-click-progress.json"
+  },
+  {
+    "gate": "browser-2-tools",
+    "command": "headless Chrome",
+    "result": "PASS",
+    "evidence": "browser/03..14"
+  },
+  {
+    "gate": "browser-3-labels",
+    "command": "headless Chrome",
+    "result": "PASS",
+    "evidence": "browser/07,14,21"
+  },
+  {
+    "gate": "browser-4-exports",
+    "command": "headless Chrome",
+    "result": "PASS 28/16 rows, one artifact each",
+    "evidence": "browser/10-exports-and-downloads.json"
+  },
+  {
+    "gate": "browser-5-keyboard-tour",
+    "command": "headless Chrome",
+    "result": "PASS",
+    "evidence": "browser/15,16"
+  },
+  {
+    "gate": "browser-6-clear",
+    "command": "headless Chrome",
+    "result": "PASS",
+    "evidence": "browser/23-clear-sample.json"
+  },
+  {
+    "gate": "browser-7-user-after-sample",
+    "command": "headless Chrome",
+    "result": "PASS",
+    "evidence": "browser/11-*"
+  },
+  {
+    "gate": "browser-8-bytes",
+    "command": "headless Chrome",
+    "result": "PASS checklist e430496a…6111; 5 sample files equal",
+    "evidence": "browser/10-exports-and-downloads.json"
+  },
+  {
+    "gate": "browser-9-review-focus",
+    "command": "headless Chrome",
+    "result": "PASS",
+    "evidence": "browser/11,17 + ledger"
+  },
+  {
+    "gate": "browser-mobile",
+    "command": "headless Chrome 390x844",
+    "result": "PASS",
+    "evidence": "browser/20-22"
+  }
+]

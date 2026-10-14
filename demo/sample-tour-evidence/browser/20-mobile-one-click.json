@@ -1,0 +1,15 @@
+{
+ "secs": 8.896,
+ "progress": [
+  "1/7 Verify the sample and both TRRC records — done",
+  "2/7 Select the sample as the planning source — done",
+  "3/7 Load and calculate the pressure-support example — done",
+  "4/7 Calculate the capacity assessment — done",
+  "5/7 Run the default parameter sweep — done",
+  "6/7 Calculate brine PVT — done",
+  "7/7 Calculate hydraulics — done"
+ ],
+ "error": "",
+ "detail": "swd-sample-case/uic000020838+uic000056484/v1 · every main tool has results.",
+ "hash": "#injection/publicTrends"
+}

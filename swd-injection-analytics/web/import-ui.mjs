@@ -284,7 +284,7 @@ async function startSample(){
   // render() bumps its version synchronously and fires demo-updated at both start and end, so poll for the finished exhibit.
   select:async({signal})=>{resetDemoControls(document);const demo=await waitFor(()=>{const d=demoEvidence();if(d)return d;if(!$('app-error').hidden)throw new Error($('app-error').textContent);return null;},{signal,label:'the synthetic sample producers'});sampleSession={...sampleSession,producerFixtureSha256:demo.inputs.planningFixtureSha256};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;switchSource('sample');},
   navigate,session:()=>sampleSession,doc:document});
- try{await runSampleSteps(steps,{signal:run.signal,onProgress});if(sampleRun===run){$('sample-banner-detail').textContent=`${sampleSession.caseId} · every main tool has results.`;navigate('publicTrends');}}
+ try{await runSampleSteps(steps,{signal:run.signal,onProgress});if(sampleRun===run){progress.hidden=true;$('sample-banner-detail').textContent=`${sampleSession.caseId} · all 7 loading steps done; every main tool has results.`;navigate('publicTrends');}}
  catch(error){if(sampleRun!==run)return;if(error?.name==='AbortError')$('sample-banner-detail').textContent='Loading cancelled. Results already calculated stay labelled with the sample identity.';else $('sample-error').textContent=error.message;}
  finally{if(sampleRun===run){sampleRun=null;$('sample-cancel').hidden=true;renderSampleBanner();}}
 }

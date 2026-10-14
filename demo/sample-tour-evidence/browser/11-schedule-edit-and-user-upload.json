@@ -1,0 +1,9 @@
+{
+ "scheduleControl": "schedule-new-well-start",
+ "afterScheduleEdit": "The synthetic producer schedule changed after the sample loaded. Reload the sample case to restore it.",
+ "bannerAfterUser": true,
+ "userComparison": "Confirm user history and injector profiles, then apply a valid training cutoff and analysis period. Changes to a file, worksheet, mapping, units or period invalidate the case.",
+ "uicAnywhere": false,
+ "wellSwitchHidden": true,
+ "active": "User-provided · synthetic (draft) · Awaiting confirmation"
+}

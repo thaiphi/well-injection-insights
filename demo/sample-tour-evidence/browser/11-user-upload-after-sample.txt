@@ -1,0 +1,169 @@
+RootWebArea "SWD Injection Analytics | Data & analysis"
+  link "Skip to analysis workspace"
+    StaticText "Skip to analysis workspace"
+  complementary
+    strong
+      StaticText "SWD"
+    navigation "Analysis navigation"
+      button "Start"
+        StaticText "Start"
+      button "Data & sources"
+        StaticText "Data & sources"
+      button "Production & demand"
+        StaticText "Production & demand"
+      button "Injection & capacity"
+        StaticText "Injection & capacity"
+      button "Fluid & wellbore"
+        StaticText "Fluid & wellbore"
+      button "Reports & evidence"
+        StaticText "Reports & evidence"
+    paragraph
+      StaticText "Reservoir & disposal"
+      StaticText "engineering"
+  banner
+    strong
+      StaticText "SWD Injection Analytics"
+    paragraph
+      StaticText "Reservoir & disposal engineering"
+    StaticText "Educational analysis"
+  status
+    strong
+      StaticText "Active dataset"
+    StaticText "User-provided · synthetic (draft) · Awaiting confirmation"
+    StaticText "Session only · no saved case"
+    button "Change source"
+      StaticText "Change source"
+  main
+    paragraph
+      StaticText "Injection & capacity"
+    navigation "Injection & capacity workspaces"
+      button "Injector history"
+        StaticText "Injector history"
+      button "Injectivity"
+        StaticText "Injectivity"
+      button "Capacity assessment"
+        StaticText "Capacity assessment"
+      button "Scenarios"
+        StaticText "Scenarios"
+      button "Parameter sweeps"
+        StaticText "Parameter sweeps"
+      button "Model scope"
+        StaticText "Model scope"
+    region "Capacity assessment"
+      heading "Capacity assessment" [focused]
+        StaticText "Capacity assessment"
+      paragraph
+        StaticText "Can the selected wells meet forecast water demand under the declared pressure constraints?"
+      paragraph
+        strong
+          StaticText "Engineering screening · full acceptance open."
+        StaticText " Compare constant injectivity with uniform-fluid or depth-dependent brine hydraulics. These maximum envelopes do not predict sustainable capacity, pressure buil"
+      StaticText "1 · Confirm demand"
+      StaticText "2 · Declare fluid & wells"
+      StaticText "3 · Compare constraints"
+      StaticText "4 · Inspect & export"
+      group
+        DisclosureTriangle "Demand source, forecast & coverage"
+          StaticText "Demand source, forecast & coverage"
+      group
+        DisclosureTriangle "Fluid, well geometry & scenario assumptions"
+          StaticText "Fluid, well geometry & scenario assumptions"
+        form
+          heading "2. Fluid assumptions"
+            StaticText "2. Fluid assumptions"
+          LabelText
+            StaticText "Case name"
+            textbox "Case name"
+              StaticText "Sample case · UIC 000020838 + SAND BEND 2D"
+          LabelText
+            StaticText "Reference pressure (psia)"
+            spinbutton "Reference pressure (psia) Synthetic: you'd gather"
+              StaticText "2400"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Uniform / bottomhole temperature (°F)"
+            spinbutton "Uniform / bottomhole temperature (°F) Synthetic: you'd gather"
+              StaticText "150"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "NaCl (wt%)"
+            spinbutton "NaCl (wt%) Synthetic: you'd gather"
+              StaticText "8"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Wellbore model"
+            combobox "Wellbore model"
+              MenuListPopup
+                option "Uniform reference fluid (original screen)"
+                option "Depth-dependent brine pressure & temperature"
+          LabelText
+            StaticText "Surface temperature (°F)"
+            spinbutton "Surface temperature (°F) Synthetic: you'd gather"
+              StaticText "80"
+            StaticText "Synthetic: you'd gather"
+          LabelText
+            StaticText "Initial depth intervals"
+            spinbutton "Initial depth intervals"
+              StaticText "32"
+          paragraph
+            StaticText "User assumptions: this temperature is the common bottomhole endpoint. The reference-pressure property state is retained for comparison; the traverse uses local "
+          paragraph
+            StaticText "Declare surface and bottomhole temperatures. The prescribed temperature profile is linear with vertical depth; straight deviation uses MD/TVD. Local pressure ch"
+          heading "What data do I need?"
+            StaticText "What data do I need?"
+          paragraph
+            strong
+              StaticText "History:"
+            StaticText " confirmed produced-water rates, producer identities and training cutoff; optional schedules for distinct new producers."
+          paragraph
+            strong
+              StaticText "Each well:"
+            StaticText " stock-tank J, reservoir and bottomhole limiting pressures at the same declared datum, operating ceiling and availability. Then enter MD/TVD measured down from "
+          paragraph
+            strong
+              StaticText "Fluid:"
+            StaticText " reference absolute pressure, temperature and NaCl composition. The demonstration supplies illustrative assumptions. User geometry starts blank and must be decl"
+          paragraph
+            StaticText "No permit limit, public monthly pressure or guessed geometry becomes a calibrated engineering input."
+          heading "Well geometry & pressure limits"
+            StaticText "Well geometry & pressure limits"
+          button "Use illustrative geometry"
+            StaticText "Use illustrative geometry"
+          paragraph
+            StaticText "Core J, bottomhole pressures and availability come from the selected scenario/profile below. Geometry and surface limits are separate case assumptions. The orig"
+          heading "3. Compare one well"
+            StaticText "3. Compare one well"
+          paragraph
+            StaticText "Hold demand and all other wells fixed. This is a sensitivity, with no recommendation or predicted treatment response."
+          LabelText
+            StaticText "Compared well"
+            combobox "Compared well"
+              MenuListPopup
+          LabelText
+            StaticText "J multiplier"
+            spinbutton "J multiplier"
+              StaticText "1"
+          LabelText
+            StaticText "Compared tubing ID (in)"
+            spinbutton "Compared tubing ID (in)"
+          LabelText
+            StaticText "Compared availability (fraction)"
+            spinbutton "Compared availability (fraction)"
+          button "Calculate & compare case"
+            StaticText "Calculate & compare case"
+          alert
+      status
+        StaticText "Blocked — Confirm user history and injector profiles, then apply a valid training cutoff and analysis period. Changes to a file, worksheet, mapping, units or pe"
+      button "Download case JSON"
+        StaticText "Download case JSON"
+      button "Download case CSV"
+        StaticText "Download case CSV"
+      button "Download case chart SVG"
+        StaticText "Download case chart SVG"
+    group
+      DisclosureTriangle "Acceptance blockers — full acceptance remains open"
+        StaticText "Acceptance blockers — full acceptance remains open"
+  contentinfo
+    strong
+      StaticText "SWD Analytics"
+    StaticText "Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence."

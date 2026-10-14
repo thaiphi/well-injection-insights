@@ -1,0 +1,28 @@
+{
+ "well0": {
+  "rows": 28,
+  "dataset": "rrc-2026-10-09-uic000020838-v1",
+  "artifactInEvidence": "rrc-2026-10-09-uic000020838-v1",
+  "pinPackage": null,
+  "otherWellMentioned": true
+ },
+ "well1": {
+  "rows": 16,
+  "dataset": "rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627",
+  "artifactInEvidence": "rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627",
+  "pinPackage": "377721ac93c47313a9f5b58df2f581c9133cf9920ef74e390fef88392dbf6b9d",
+  "otherWellMentioned": true
+ },
+ "checklist": {
+  "name": "swd-sample-gather-checklist.csv",
+  "bytes": 10230,
+  "sha256": "e430496a55b78a44bb23844a11f177a6aeb91f2492f1cb298f2d023ce2426111"
+ },
+ "samples": {
+  "seed417-history.csv": "4ab5b0e115c5c25d37e414cbff3677464fcad3ab02f96d6e03635d913c0d7764",
+  "seed417-history.xlsx": "2a4cb53ee44142fef57d3ffe6d7e0e695ac0e54fb6dbc179b1b4c79b86d07925",
+  "assumed-injectors.csv": "44996c0f7b91ae838b8bb0b5479e8e4adeee6b111a9cb8403628eaa4ad229fcc",
+  "invalid-history.csv": "bfb8137d3d8813870800bd5419271630598689f6d51aea780358c3cb4d24a349",
+  "README.md": "55d5c4cadc1cf737ce2a7449bb58600875bf2f6e7a0e7d4c8d828d0ddf4d6121"
+ }
+}

@@ -1,0 +1,122 @@
+RootWebArea "SWD Injection Analytics | Data & analysis"
+  link "Skip to analysis workspace"
+    StaticText "Skip to analysis workspace"
+  complementary
+    strong
+      StaticText "SWD"
+    navigation "Analysis navigation"
+      button "Start"
+        StaticText "Start"
+      button "Data & sources"
+        StaticText "Data & sources"
+      button "Production & demand"
+        StaticText "Production & demand"
+      button "Injection & capacity"
+        StaticText "Injection & capacity"
+      button "Fluid & wellbore"
+        StaticText "Fluid & wellbore"
+      button "Reports & evidence"
+        StaticText "Reports & evidence"
+    paragraph
+      StaticText "Reservoir & disposal"
+      StaticText "engineering"
+  banner
+    strong
+      StaticText "SWD Injection Analytics"
+    paragraph
+      StaticText "Reservoir & disposal engineering"
+    StaticText "Educational analysis"
+  status
+    strong
+      StaticText "Active dataset"
+    StaticText "None selected"
+    StaticText "Session only · no saved case"
+    button "Change source"
+      StaticText "Change source"
+  main
+    paragraph
+      StaticText "Start"
+    navigation "Start workspaces"
+      button "Assessment"
+        StaticText "Assessment"
+      button "Original workbook"
+        StaticText "Original workbook"
+      button "Worked pressure / skin study"
+        StaticText "Worked pressure / skin study"
+    region "Start an assessment"
+      heading "Start an assessment" [focused]
+        StaticText "Start an assessment"
+      paragraph
+        StaticText "Compare incoming produced water with modelled injection capacity, with the evidence behind every result."
+      heading "Will planned water demand fit within injection capacity?"
+        StaticText "Will planned water demand fit within injection capacity?"
+      paragraph
+        StaticText "Build a traceable assessment from confirmed histories, forecasts, well assumptions and pressure constraints. Inspect the limiting inputs before interpreting a s"
+      button "Start guided assessment"
+        StaticText "Start guided assessment"
+      button "Try it with sample data"
+        StaticText "Try it with sample data"
+      button "Take the guided tour"
+        StaticText "Take the guided tour"
+      paragraph
+        StaticText "The sample uses real TRRC records for two injection wells; every other input is labelled synthetic."
+      paragraph
+        StaticText "Work stays in this browser session. Refreshing does not restore imported files, assumptions or results."
+      strong
+        StaticText "1"
+      StaticText "Confirm inputs"
+      StaticText "Choose sources, map units and resolve validation."
+      strong
+        StaticText "2"
+      StaticText "Inspect demand and constraints"
+      StaticText "Retain frozen forecasts, schedules and declared well assumptions."
+      strong
+        StaticText "3"
+      StaticText "Compare and explain"
+      StaticText "Review shortfalls, unsupported points and downloadable evidence."
+      region "Go directly to an engineering tool"
+        heading "Go directly to an engineering tool"
+          StaticText "Go directly to an engineering tool"
+        paragraph
+          StaticText "Individual tools remain available without completing an unrelated assessment."
+        button "Well histories Inspect accepted observations, missing values and source rows."
+          strong
+            StaticText "Well histories"
+          StaticText "Inspect accepted observations, missing values and source rows."
+        button "Fit & reconcile forecasts Local exponential fitting with a declared training cutoff and independent holdout."
+          strong
+            StaticText "Fit & reconcile forecasts"
+          StaticText "Local exponential fitting with a declared training cutoff and independent holdout."
+        button "Injectivity Declared J, bottomhole pressures and operating constraints."
+          strong
+            StaticText "Injectivity"
+          StaticText "Declared J, bottomhole pressures and operating constraints."
+        button "Fluid & wellbore Independent brine PVT and gas-free injection hydraulics."
+          strong
+            StaticText "Fluid & wellbore"
+          StaticText "Independent brine PVT and gas-free injection hydraulics."
+      article
+        heading "Original engineering workbook"
+          StaticText "Original engineering workbook"
+        paragraph
+          StaticText "Explore seeded producer histories, frozen forecasts, ramp and availability, constant-J pressure curves, and dated capacity expansion."
+        button "Open synthetic workbook"
+          StaticText "Open synthetic workbook"
+        paragraph
+          StaticText "Separate demonstration · JSON, CSV, SVG and PDF. Selecting it explicitly changes the active planning source to the synthetic demo."
+      article
+        heading "Worked pressure / skin study"
+          StaticText "Worked pressure / skin study"
+        paragraph
+          StaticText "Inspect the cited Jin et al. parameters, equations and assumed skin comparison using its own independent fixture."
+        button "Open worked study"
+          StaticText "Open worked study"
+        paragraph
+          StaticText "Steady radial example · reported psi and reservoir-volume rate · no transient simulation or field calibration."
+    group
+      DisclosureTriangle "Acceptance blockers — full acceptance remains open"
+        StaticText "Acceptance blockers — full acceptance remains open"
+  contentinfo
+    strong
+      StaticText "SWD Analytics"
+    StaticText "Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence."

@@ -1,0 +1,969 @@
+RootWebArea "SWD Injection Analytics | Data & analysis"
+  link "Skip to analysis workspace"
+    StaticText "Skip to analysis workspace"
+  complementary
+    navigation "Analysis navigation"
+      button "Start"
+        StaticText "Start"
+      button "Data & sources"
+        StaticText "Data & sources"
+      button "Production & demand"
+        StaticText "Production & demand"
+      button "Injection & capacity"
+        StaticText "Injection & capacity"
+      button "Fluid & wellbore"
+        StaticText "Fluid & wellbore"
+      button "Reports & evidence"
+        StaticText "Reports & evidence"
+  banner
+    strong
+      StaticText "SWD Injection Analytics"
+    paragraph
+      StaticText "Reservoir & disposal engineering"
+  status
+    strong
+      StaticText "Active dataset"
+    StaticText "rrc-2026-10-09-uic000020838-v1 · public reported"
+    StaticText "Session only · no saved case"
+    button "Change source"
+      StaticText "Change source"
+  main
+    paragraph
+      StaticText "Data & sources"
+    navigation "Data & sources workspaces"
+      button "Sources & import"
+        StaticText "Sources & import"
+      button "Readiness"
+        StaticText "Readiness"
+      button "Source lineage"
+        StaticText "Source lineage"
+    region "Sample case"
+      paragraph
+        strong
+          StaticText "Sample case — TRRC record + synthetic gaps"
+        StaticText " "
+        StaticText "swd-sample-case/uic000020838+uic000056484/v1 · every main tool has results."
+      button "Take the guided tour"
+        StaticText "Take the guided tour"
+      button "Clear sample"
+        StaticText "Clear sample"
+      status
+        StaticText "1. "
+        StaticText "1/7 Verify the sample and both TRRC records — done"
+        StaticText "2. "
+        StaticText "2/7 Select the sample as the planning source — done"
+        StaticText "3. "
+        StaticText "3/7 Load and calculate the pressure-support example — done"
+        StaticText "4. "
+        StaticText "4/7 Calculate the capacity assessment — done"
+        StaticText "5. "
+        StaticText "5/7 Run the default parameter sweep — done"
+        StaticText "6. "
+        StaticText "6/7 Calculate brine PVT — done"
+        StaticText "7. "
+        StaticText "7/7 Calculate hydraulics — done"
+      alert
+    region "Data sources & analysis readiness"
+      heading "Data sources & analysis readiness" [focused]
+        StaticText "Data sources & analysis readiness"
+      paragraph
+        StaticText "Bring together public records, your files, or a synthetic demonstration to set up an analysis."
+      button "Try it with sample data"
+        StaticText "Try it with sample data"
+      paragraph
+        StaticText "Loads two real TRRC injection wells with every gap filled by labelled synthetic inputs, then calculates every main tool."
+      article
+        heading "Synthetic demo"
+          StaticText "Synthetic demo"
+        StaticText "Generated · sandbox only"
+        paragraph
+          StaticText "Explore producer histories, forecasts and fictional constant-injectivity scenarios."
+        button "Load demo dataset"
+          StaticText "Load demo dataset"
+      article
+        heading "RRC Explorer"
+          StaticText "RRC Explorer"
+        StaticText "Public reported observations"
+        paragraph
+          StaticText "Inspect the pinned export: 28 monthly reports, January 2024–April 2026."
+        button "Select pinned Explorer export"
+          StaticText "Select pinned Explorer export"
+        button "View supported RRC fields"
+          StaticText "View supported RRC fields"
+      article
+        heading "User upload"
+          StaticText "User upload"
+        StaticText "Your file · content declared separately"
+        paragraph
+          StaticText "Import producer history, schedules or injector inputs. CSV / XLSX stays in this browser."
+        button "Choose user dataset"
+          StaticText "Choose user dataset"
+      region "Receive an Explorer dataset"
+        heading "Receive an Explorer dataset"
+          StaticText "Receive an Explorer dataset"
+        paragraph
+          StaticText "In Texas RRC Explorer, choose “Use in Injection Analytics” to open a new assessment with the whole preserved dataset version. Review its wells, reporting covera"
+        paragraph
+          StaticText "Alternatively, download the complete version (.tar) and choose that file below. Portable file import works without a running Explorer server."
+        button "Choose Explorer package (.tar)"
+          StaticText "Choose Explorer package (.tar)"
+        button "Explorer complete version package"
+        button "Cancel package import"
+          StaticText "Cancel package import"
+        status
+          StaticText "Import cancelled. Your current dataset and stored pin are unchanged."
+        button "Confirm & use this exact dataset"
+          StaticText "Confirm & use this exact dataset"
+        button "Download adopted original package"
+          StaticText "Download adopted original package"
+        paragraph
+          StaticText "Session only. Original pins remain unchanged. Customer CSV/XLSX imports and the pinned example remain independent entry paths."
+      region "Import & map columns"
+        heading "Import & map columns"
+          StaticText "Import & map columns"
+        paragraph
+          StaticText "Confirm each profile before using it. Profiles are combined only in your selected user dataset."
+        list "Import progress"
+          listitem
+            StaticText "1"
+            StaticText ". "
+            StaticText "File & sheet"
+          listitem
+            StaticText "2"
+            StaticText ". "
+            StaticText "Preview"
+          listitem
+            StaticText "3"
+            StaticText ". "
+            StaticText "Map & units"
+          listitem
+            StaticText "4"
+            StaticText ". "
+            StaticText "Validate"
+          listitem
+            StaticText "5"
+            StaticText ". "
+            StaticText "Confirm"
+        status
+          StaticText "Sample case selected: TRRC records for UIC 000020838 and SAND BEND 2D, with every gap filled by labelled synthetic inputs."
+        region "Selected dataset sample rows"
+          table "swd-sample-case/uic000020838+uic000056484/v1 · every input with its provenance class"
+            caption
+              StaticText "swd-sample-case/uic000020838+uic000056484/v1 · every input with its provenance class"
+            rowgroup
+              row
+                columnheader "Well"
+                  StaticText "Well"
+                columnheader "Input"
+                  StaticText "Input"
+                columnheader "Value"
+                  StaticText "Value"
+                columnheader "Units"
+                  StaticText "Units"
+                columnheader "Class"
+                  StaticText "Class"
+                columnheader "Assumption"
+                  StaticText "Assumption"
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "UIC number"
+                StaticText "UIC number"
+              cell "000020838"
+                StaticText "000020838"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "API number"
+                StaticText "API number"
+              cell "38910201"
+                StaticText "38910201"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Operator number"
+                StaticText "Operator number"
+              cell "103834"
+                StaticText "103834"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "District"
+                StaticText "District"
+              cell "08"
+                StaticText "08"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Lease name"
+                StaticText "Lease name"
+              cell "TREES, J. C. ESTATE, ET AL -A-"
+                StaticText "TREES, J. C. ESTATE, ET AL -A-"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Well number"
+                StaticText "Well number"
+              cell "5D"
+                StaticText "5D"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "County (from the API prefix)"
+                StaticText "County (from the API prefix)"
+              cell "Reeves"
+                StaticText "Reeves"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Permit maximum injection pressure"
+                StaticText "Permit maximum injection pressure"
+              cell "2,600"
+                StaticText "2,600"
+              cell "psi, as permitted (basis not stated)"
+                StaticText "psi, as permitted (basis not stated)"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Permit maximum injection volume (for comparison; not a model limit)"
+                StaticText "Permit maximum injection volume (for comparison; not a model limit)"
+              cell "14,500"
+                StaticText "14,500"
+              cell "bbl/day"
+                StaticText "bbl/day"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Permitted interval top"
+                StaticText "Permitted interval top"
+              cell "5,200"
+                StaticText "5,200"
+              cell "ft"
+                StaticText "ft"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Permitted interval bottom"
+                StaticText "Permitted interval bottom"
+              cell "6,100"
+                StaticText "6,100"
+              cell "ft"
+                StaticText "ft"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Monthly injected liquid and reported injection pressure"
+                StaticText "Monthly injected liquid and reported injection pressure"
+              cell "28"
+                StaticText "28"
+              cell "months of H-10 reports; bbl and psi (basis unspecified)"
+                StaticText "months of H-10 reports; bbl and psi (basis unspecified)"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Surface pressure limit (absolute)"
+                StaticText "Surface pressure limit (absolute)"
+              cell "2,614.7"
+                StaticText "2,614.7"
+              cell "psia at wellhead"
+                StaticText "psia at wellhead"
+              cell "Derived from TRRC with a stated assumption"
+                StaticText "Derived from TRRC with a stated assumption"
+              cell "The permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi."
+                StaticText "The permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi."
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Formation datum true vertical depth"
+                StaticText "Formation datum true vertical depth"
+              cell "5,200"
+                StaticText "5,200"
+              cell "ft TVD below wellhead"
+                StaticText "ft TVD below wellhead"
+              cell "Derived from TRRC with a stated assumption"
+                StaticText "Derived from TRRC with a stated assumption"
+              cell "The top of the permitted interval is the datum, and the well is vertical to the datum."
+                StaticText "The top of the permitted interval is the datum, and the well is vertical to the datum."
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Reservoir pressure at datum"
+                StaticText "Reservoir pressure at datum"
+              cell "2,400"
+                StaticText "2,400"
+              cell "psia, bottomhole at datum"
+                StaticText "psia, bottomhole at datum"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Bottomhole pressure limit at datum"
+                StaticText "Bottomhole pressure limit at datum"
+              cell "3,600"
+                StaticText "3,600"
+              cell "psia, bottomhole at datum"
+                StaticText "psia, bottomhole at datum"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Injectivity index J"
+                StaticText "Injectivity index J"
+              cell "5"
+                StaticText "5"
+              cell "STB/day/psi"
+                StaticText "STB/day/psi"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Operating rate ceiling"
+                StaticText "Operating rate ceiling"
+              cell "9,000"
+                StaticText "9,000"
+              cell "STB/day"
+                StaticText "STB/day"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Availability"
+                StaticText "Availability"
+              cell "0.9"
+                StaticText "0.9"
+              cell "fraction of calendar time"
+                StaticText "fraction of calendar time"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Measured depth to datum"
+                StaticText "Measured depth to datum"
+              cell "5,200"
+                StaticText "5,200"
+              cell "ft"
+                StaticText "ft"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Tubing inner diameter"
+                StaticText "Tubing inner diameter"
+              cell "3.958"
+                StaticText "3.958"
+              cell "in"
+                StaticText "in"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "UIC 000020838"
+                StaticText "UIC 000020838"
+              cell "Tubing absolute roughness"
+                StaticText "Tubing absolute roughness"
+              cell "0.0006"
+                StaticText "0.0006"
+              cell "in"
+                StaticText "in"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "UIC number"
+                StaticText "UIC number"
+              cell "000056484"
+                StaticText "000056484"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "API number"
+                StaticText "API number"
+              cell "38931500"
+                StaticText "38931500"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Operator number"
+                StaticText "Operator number"
+              cell "462980"
+                StaticText "462980"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "District"
+                StaticText "District"
+              cell "08"
+                StaticText "08"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Lease name"
+                StaticText "Lease name"
+              cell "SAND BEND"
+                StaticText "SAND BEND"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Well number"
+                StaticText "Well number"
+              cell "2D"
+                StaticText "2D"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "County (from the API prefix)"
+                StaticText "County (from the API prefix)"
+              cell "Reeves"
+                StaticText "Reeves"
+              cell
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Permit maximum injection pressure"
+                StaticText "Permit maximum injection pressure"
+              cell "1,500"
+                StaticText "1,500"
+              cell "psi, as permitted (basis not stated)"
+                StaticText "psi, as permitted (basis not stated)"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Permit maximum injection volume (for comparison; not a model limit)"
+                StaticText "Permit maximum injection volume (for comparison; not a model limit)"
+              cell "1,200"
+                StaticText "1,200"
+              cell "bbl/day"
+                StaticText "bbl/day"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Permitted interval top"
+                StaticText "Permitted interval top"
+              cell "3,028"
+                StaticText "3,028"
+              cell "ft"
+                StaticText "ft"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Permitted interval bottom"
+                StaticText "Permitted interval bottom"
+              cell "3,118"
+                StaticText "3,118"
+              cell "ft"
+                StaticText "ft"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Monthly injected liquid and reported injection pressure"
+                StaticText "Monthly injected liquid and reported injection pressure"
+              cell "16"
+                StaticText "16"
+              cell "months of H-10 reports; bbl and psi (basis unspecified)"
+                StaticText "months of H-10 reports; bbl and psi (basis unspecified)"
+              cell "TRRC public record"
+                StaticText "TRRC public record"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Surface pressure limit (absolute)"
+                StaticText "Surface pressure limit (absolute)"
+              cell "1,514.7"
+                StaticText "1,514.7"
+              cell "psia at wellhead"
+                StaticText "psia at wellhead"
+              cell "Derived from TRRC with a stated assumption"
+                StaticText "Derived from TRRC with a stated assumption"
+              cell "The permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi."
+                StaticText "The permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi."
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Formation datum true vertical depth"
+                StaticText "Formation datum true vertical depth"
+              cell "3,028"
+                StaticText "3,028"
+              cell "ft TVD below wellhead"
+                StaticText "ft TVD below wellhead"
+              cell "Derived from TRRC with a stated assumption"
+                StaticText "Derived from TRRC with a stated assumption"
+              cell "The top of the permitted interval is the datum, and the well is vertical to the datum."
+                StaticText "The top of the permitted interval is the datum, and the well is vertical to the datum."
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Reservoir pressure at datum"
+                StaticText "Reservoir pressure at datum"
+              cell "1,400"
+                StaticText "1,400"
+              cell "psia, bottomhole at datum"
+                StaticText "psia, bottomhole at datum"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Bottomhole pressure limit at datum"
+                StaticText "Bottomhole pressure limit at datum"
+              cell "2,100"
+                StaticText "2,100"
+              cell "psia, bottomhole at datum"
+                StaticText "psia, bottomhole at datum"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Injectivity index J"
+                StaticText "Injectivity index J"
+              cell "0.5"
+                StaticText "0.5"
+              cell "STB/day/psi"
+                StaticText "STB/day/psi"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Operating rate ceiling"
+                StaticText "Operating rate ceiling"
+              cell "1,000"
+                StaticText "1,000"
+              cell "STB/day"
+                StaticText "STB/day"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Availability"
+                StaticText "Availability"
+              cell "0.9"
+                StaticText "0.9"
+              cell "fraction of calendar time"
+                StaticText "fraction of calendar time"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Measured depth to datum"
+                StaticText "Measured depth to datum"
+              cell "3,028"
+                StaticText "3,028"
+              cell "ft"
+                StaticText "ft"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Tubing inner diameter"
+                StaticText "Tubing inner diameter"
+              cell "2.441"
+                StaticText "2.441"
+              cell "in"
+                StaticText "in"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "SAND BEND 2D · UIC 000056484"
+                StaticText "SAND BEND 2D · UIC 000056484"
+              cell "Tubing absolute roughness"
+                StaticText "Tubing absolute roughness"
+              cell "0.0006"
+                StaticText "0.0006"
+              cell "in"
+                StaticText "in"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "All wells"
+                StaticText "All wells"
+              cell "Monthly producer water (and oil) volumes"
+                StaticText "Monthly producer water (and oil) volumes"
+              cell "synthetic-water/seed-417/v1"
+                StaticText "synthetic-water/seed-417/v1"
+              cell "STB/day, calendar-day basis"
+                StaticText "STB/day, calendar-day basis"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "All wells"
+                StaticText "All wells"
+              cell "New-producer schedule (start, ramp, availability)"
+                StaticText "New-producer schedule (start, ramp, availability)"
+              cell "Seed-417 demo defaults"
+                StaticText "Seed-417 demo defaults"
+              cell "date; months; fraction"
+                StaticText "date; months; fraction"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "All wells"
+                StaticText "All wells"
+              cell "Brine reference pressure"
+                StaticText "Brine reference pressure"
+              cell "2,400"
+                StaticText "2,400"
+              cell "psia"
+                StaticText "psia"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "All wells"
+                StaticText "All wells"
+              cell "Bottomhole temperature"
+                StaticText "Bottomhole temperature"
+              cell "150"
+                StaticText "150"
+              cell "°F"
+                StaticText "°F"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "All wells"
+                StaticText "All wells"
+              cell "Surface temperature"
+                StaticText "Surface temperature"
+              cell "80"
+                StaticText "80"
+              cell "°F"
+                StaticText "°F"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+            row
+              cell "All wells"
+                StaticText "All wells"
+              cell "Brine salinity (NaCl)"
+                StaticText "Brine salinity (NaCl)"
+              cell "8"
+                StaticText "8"
+              cell "wt%"
+                StaticText "wt%"
+              cell "Synthetic: you'd gather"
+                StaticText "Synthetic: you'd gather"
+              cell
+      heading "What data do I need?"
+        StaticText "What data do I need?"
+      LabelText
+        StaticText "Requirements for analysis"
+      combobox "Requirements for analysis"
+        MenuListPopup
+          option "History review"
+          option "Frozen forecast"
+          option "Forecast reconciliation"
+          option "Grouped producer demand"
+          option "Injection performance"
+          option "Demand & capacity"
+          option "Public injection trends"
+          option "Wellbore hydraulics"
+          option "Additional model sensitivities"
+          option "Transient / calibrated capacity"
+      paragraph
+        StaticText "History review — inputs and evidence boundaries"
+      table
+        rowgroup
+          row
+            columnheader "Input / data type"
+              StaticText "Input / data type"
+            columnheader "Source"
+              StaticText "Source"
+            columnheader "Requirement"
+              StaticText "Requirement"
+        row
+          cell "Producer / group / month"
+            StaticText "Producer / group / month"
+          cell "User supplied"
+            StaticText "User supplied"
+          cell "Unique identities and ordered produced-water history"
+            StaticText "Unique identities and ordered produced-water history"
+        row
+          cell "Water rate or monthly volume"
+            StaticText "Water rate or monthly volume"
+          cell "User supplied"
+            StaticText "User supplied"
+          cell "STB/day, STB/hour or STB; explicit calendar basis"
+            StaticText "STB/day, STB/hour or STB; explicit calendar basis"
+        row
+          cell "Demonstration history"
+            StaticText "Demonstration history"
+          cell "Synthetic demo"
+            StaticText "Synthetic demo"
+          cell "Seed 417; two fictional producers"
+            StaticText "Seed 417; two fictional producers"
+        row
+          cell "H-10 injection history"
+            StaticText "H-10 injection history"
+          cell "RRC Explorer"
+            StaticText "RRC Explorer"
+          cell "Injection observations, not produced-water histories"
+            StaticText "Injection observations, not produced-water histories"
+      paragraph
+        StaticText "Reported monthly pressure has an unspecified basis. It cannot replace bottomhole or reservoir pressure."
+      button "Download input template (CSV)"
+        StaticText "Download input template (CSV)"
+      heading "Analysis readiness"
+        StaticText "Analysis readiness"
+      paragraph
+        StaticText "Input sufficiency is checked for each analysis. Acceptance blockers stay visible."
+      article
+        strong
+          StaticText "History review: Ready"
+        paragraph
+          StaticText "Sample case: synthetic seed-417 producers."
+        button "Inspect inputs & requirements"
+          StaticText "Inspect inputs & requirements"
+      article
+        strong
+          StaticText "Frozen forecast: Ready"
+        paragraph
+          StaticText "Sample case: synthetic seed-417 producers."
+        button "Inspect inputs & requirements"
+          StaticText "Inspect inputs & requirements"
+      article
+        strong
+          StaticText "Forecast reconciliation: Ready"
+        paragraph
+          StaticText "Sample case: synthetic seed-417 producers."
+        button "Inspect inputs & requirements"
+          StaticText "Inspect inputs & requirements"
+      article
+        strong
+          StaticText "Grouped producer demand: Ready"
+        paragraph
+          StaticText "Sample case: synthetic seed-417 producers."
+        button "Inspect inputs & requirements"
+          StaticText "Inspect inputs & requirements"
+      article
+        strong
+          StaticText "Injection performance: Ready"
+        paragraph
+          StaticText "Sample case: TRRC records for two real injectors plus labelled synthetic inputs."
+        button "Inspect inputs & requirements"
+          StaticText "Inspect inputs & requirements"
+      article
+        strong
+          StaticText "Demand & capacity: Ready"
+        paragraph
+          StaticText "Sample case: TRRC records for two real injectors plus labelled synthetic inputs."
+        button "Inspect inputs & requirements"
+          StaticText "Inspect inputs & requirements"
+      article
+        strong
+          StaticText "Public injection trends: Ready"
+        paragraph
+          StaticText "Pinned artifact identity, hash and strict calculation contract verified."
+        button "Inspect inputs & requirements"
+          StaticText "Inspect inputs & requirements"
+      article
+        strong
+          StaticText "Wellbore hydraulics: Not ready"
+        paragraph
+          StaticText "Declare geometry, absolute pressure constraints, NaCl composition and temperatures in Capacity scenarios, then calculate the selected wellbore model. Generic fi"
+        button "Open independent tool"
+          StaticText "Open independent tool"
+      article
+        strong
+          StaticText "Additional model sensitivities: Not ready"
+        paragraph
+          StaticText "Calculate a confirmed disposal case, then declare the well, parameter and range in Capacity scenarios. File confirmation alone does not confirm a sweep or its e"
+        button "Inspect inputs & requirements"
+          StaticText "Inspect inputs & requirements"
+      article
+        strong
+          StaticText "Transient / calibrated capacity: Not ready"
+        paragraph
+          StaticText "SWD-11 / P2: transient/calibrated model and evidence plan remain incomplete."
+        button "Inspect unfinished scope"
+          StaticText "Inspect unfinished scope"
+      LabelText
+        StaticText "Selected analysis"
+        combobox "Selected analysis"
+          MenuListPopup
+            option "History review"
+            option "Frozen forecast"
+            option "Forecast reconciliation"
+            option "Grouped producer demand"
+            option "Injection performance"
+            option "Demand & capacity"
+            option "Public injection trends"
+            option "Wellbore hydraulics"
+            option "Additional model sensitivities"
+            option "Transient / calibrated capacity"
+      button "Run selected analysis"
+        StaticText "Run selected analysis"
+      heading "Source lineage"
+        StaticText "Source lineage"
+      paragraph
+        StaticText "Origin, content classification, units and assumptions travel with each dataset."
+      article
+        heading "Sample case — TRRC record + synthetic gaps"
+          StaticText "Sample case — TRRC record + synthetic gaps"
+        DescriptionList
+          term "dataset"
+            StaticText "dataset"
+          definition
+            StaticText "rrc-2026-10-09-uic000020838-v1"
+          term "origin"
+            StaticText "origin"
+          definition
+            StaticText "sample case · TRRC public record"
+          term "content"
+            StaticText "content"
+          definition
+            StaticText "public reported"
+          term "sha256"
+            StaticText "sha256"
+          definition
+            StaticText "4f243138c833f09a5be6a970e85f76f3f73e95040c69677a10b8c3b2fe03ca5b"
+          term "manifestSha256"
+            StaticText "manifestSha256"
+          definition
+            StaticText "3a523cadca4c7a35d667ccd53629d63e5afc6de382be670cba1d61743baef61f"
+          term "packageSha256"
+            StaticText "packageSha256"
+          definition
+            StaticText "null"
+          term "sampleCaseId"
+            StaticText "sampleCaseId"
+          definition
+            StaticText "swd-sample-case/uic000020838+uic000056484/v1"
+          term "calculationEligibility"
+            StaticText "calculationEligibility"
+          definition
+            StaticText "{"ready":true,"reasons":["Pinned artifact identity, hash and strict calculation contract verified."]}"
+          term "coverage"
+            StaticText "coverage"
+          definition
+            StaticText "2024-01-01 to 2026-04-01"
+          term "units"
+            StaticText "units"
+          definition
+            StaticText "Monthly injected liquid bbl; calculated calendar-day bbl/day; reported psi, basis unspecified"
+          term "assumptions"
+            StaticText "assumptions"
+          definition
+            StaticText "No BHP conversion, injectivity inference, source composition or calibrated capacity"
+      paragraph
+        StaticText "ⓘ Synthetic and public records stay separate. User profiles retain their individual file hashes and content assertions."
+      group
+        DisclosureTriangle "Data storage · Portfolio"
+          StaticText "Data storage · Portfolio"
+    group
+      DisclosureTriangle "Acceptance blockers — full acceptance remains open"
+        StaticText "Acceptance blockers — full acceptance remains open"
+  contentinfo
+    strong
+      StaticText "SWD Analytics"
+    StaticText "Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence."
