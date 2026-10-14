@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {runSampleSteps,waitFor,sampleSteps} from '../web/sample-steps.mjs';
+
+const step=(label,log,fn=async()=>{})=>({label,run:async ctx=>{log.push(label);await fn(ctx);}});
+test('steps run in order and report progress',async()=>{const log=[],progress=[];const done=await runSampleSteps([step('a',log),step('b',log)],{onProgress:p=>progress.push(`${p.index}:${p.status}`)});assert.deepEqual(log,['a','b']);assert.deepEqual(done,['a','b']);assert.deepEqual(progress,['0:running','0:done','1:running','1:done']);});
+test('the first failure stops the run and names the failed step',async()=>{const log=[];await assert.rejects(runSampleSteps([step('a',log),step('b',log,async()=>{throw Error('boom');}),step('c',log)]),e=>{assert.match(e.message,/Step 2 of 3 failed — b: boom/);assert.deepEqual(e.completed,['a']);return true;});assert.deepEqual(log,['a','b']);});
+test('cancelling stops before the next step',async()=>{const log=[],controller=new AbortController();await assert.rejects(runSampleSteps([step('a',log,async()=>controller.abort()),step('b',log)],{signal:controller.signal}),{name:'AbortError'});assert.deepEqual(log,['a']);});
+test('waitFor resolves, times out and aborts',async()=>{let n=0;assert.equal(await waitFor(()=>++n>2&&'ok',{intervalMs:1}),'ok');await assert.rejects(waitFor(()=>false,{timeoutMs:20,intervalMs:5,label:'thing'}),/Timed out waiting for thing/);const c=new AbortController();const p=waitFor(()=>false,{signal:c.signal,intervalMs:5});c.abort();await assert.rejects(p,{name:'AbortError'});});
+test('the one-click sequence follows the spec order',()=>{const labels=sampleSteps({verify:async()=>{},select:async()=>{},navigate:()=>{},session:()=>null,doc:{}}).map(s=>s.label);assert.deepEqual(labels,['Verify the sample and both TRRC records','Select the sample as the planning source','Load and calculate the pressure-support example','Calculate the capacity assessment','Run the default parameter sweep','Calculate brine PVT','Calculate hydraulics']);});

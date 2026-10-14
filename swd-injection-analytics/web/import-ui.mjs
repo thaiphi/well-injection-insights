@@ -14,6 +14,7 @@ import {mountExplorerReceiver} from './explorer-receiver.mjs';
 import {createExplorerHandoff} from './explorer-handoff.mjs';
 import {explorerCalculationGate,explorerRowDisposition} from './explorer-eligibility.mjs';
 import {loadSampleCase,sampleProvenanceRows,sampleReportCard} from './sample-case.mjs';
+import {runSampleSteps,sampleSteps,resetDemoControls,waitFor} from './sample-steps.mjs';
 const $=id=>document.getElementById(id);
 mountLiteratureCase($('literature-workspace'));
 const pressureContext=mountPressureContext($('pressure-support-workspace'));
@@ -274,13 +275,21 @@ $('run-analysis').onclick=()=>navigate($('analysis-select').value);
 $('source-demo').onclick=()=>{explorerHandoff?.cancel('source-changed','Synthetic demonstration selected.');packageReceiver.cancel();switchSource('demo');};$('source-public').onclick=()=>{explorerHandoff?.cancel('source-changed','Pinned example selected.');packageReceiver.cancel();importedPublic=null;switchSource('public');$('analysis-select').value='publicTrends';readiness();};$('source-user').onclick=()=>{explorerHandoff?.cancel('source-changed','Customer importer selected.');packageReceiver.cancel();switchSource('user');};$('change-source').onclick=()=>navigate('data');
 async function startSample(){
  explorerHandoff?.cancel('source-changed','Sample case selected.');packageReceiver.cancel();
- sampleRun?.abort();const run=new AbortController();sampleRun=run;$('sample-error').textContent='';renderSampleBanner();
- try{const session=await loadSampleCase({signal:run.signal,publicEvidence});if(sampleRun!==run)return;sampleSession={...session,producerFixtureSha256:demoEvidence()?.inputs.planningFixtureSha256??null};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;switchSource('sample');}
- catch(error){if(error?.name!=='AbortError'&&sampleRun===run)$('sample-error').textContent=error.message;}
- finally{if(sampleRun===run){sampleRun=null;renderSampleBanner();}}
+ sampleRun?.abort();const run=new AbortController();sampleRun=run;
+ const progress=$('sample-progress'),items=new Map();progress.replaceChildren();progress.hidden=false;$('sample-error').textContent='';$('sample-cancel').hidden=false;$('sample-banner-detail').textContent='Loading…';renderSampleBanner();
+ const onProgress=({index,total,label,status})=>{if(sampleRun!==run)return;let li=items.get(index);if(!li){li=el('li');items.set(index,li);progress.append(li);}li.dataset.status=status;li.textContent=`${index+1}/${total} ${label} — ${{running:'running…',done:'done',failed:'failed'}[status]}`;};
+ const steps=sampleSteps({
+  verify:async({signal})=>{await waitFor(()=>publicEvidence().artifact&&publicEvidence().pin,{signal,label:'the pinned TRRC record for UIC 000020838'});const session=await loadSampleCase({signal,publicEvidence});if(sampleRun!==run)throw new DOMException('Superseded by a newer sample load.','AbortError');sampleSession={...session,producerFixtureSha256:null};},
+  // render() bumps its version synchronously and fires demo-updated at both start and end, so poll for the finished exhibit.
+  select:async({signal})=>{resetDemoControls(document);const demo=await waitFor(()=>{const d=demoEvidence();if(d)return d;if(!$('app-error').hidden)throw new Error($('app-error').textContent);return null;},{signal,label:'the synthetic sample producers'});sampleSession={...sampleSession,producerFixtureSha256:demo.inputs.planningFixtureSha256};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;switchSource('sample');},
+  navigate,session:()=>sampleSession,doc:document});
+ try{await runSampleSteps(steps,{signal:run.signal,onProgress});if(sampleRun===run){$('sample-banner-detail').textContent=`${sampleSession.caseId} · every main tool has results.`;navigate('publicTrends');}}
+ catch(error){if(sampleRun!==run)return;if(error?.name==='AbortError')$('sample-banner-detail').textContent='Loading cancelled. Results already calculated stay labelled with the sample identity.';else $('sample-error').textContent=error.message;}
+ finally{if(sampleRun===run){sampleRun=null;$('sample-cancel').hidden=true;renderSampleBanner();}}
 }
 for(const id of ['sample-load','sample-load-data'])$(id).onclick=()=>{startSample();};
 $('sample-clear').onclick=()=>{sampleRun?.abort();sampleRun=null;switchSource(null);};
+$('sample-cancel').onclick=()=>sampleRun?.abort();
 for(const radio of document.querySelectorAll('input[name="sample-well"]'))radio.onchange=()=>{if(source!=='sample'||!sampleSession)return;sampleWellIndex=Number(radio.value);clearResults();readiness();navigate('publicTrends',{record:false});};
 $('disposal-original').onclick=()=>navigate('legacyCapacity');
 $('open-original').onclick=()=>{switchSource('demo');navigate('legacyCapacity');};
