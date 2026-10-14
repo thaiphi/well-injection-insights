@@ -102,7 +102,7 @@ function navigate(next,{record=true,focus=true}={}){
  view=next;
  $('result-message').textContent='';$('result-context').textContent='';
  if(focus&&!['readiness','lineage'].includes(next))queueMicrotask(()=>{window.scrollTo({top:0,left:0});const heading=[...$('main').querySelectorAll('h1')].find(h=>h.getClientRects().length);if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}});
- $('main').dataset.view=next;
+ $('main').dataset.view=next;$('sample-well-switch').hidden=!(source==='sample'&&next==='publicTrends');
  if(focus)$('analysis-workspace').querySelector('.history-filters')?.remove();
  $('active-dataset-label').textContent=['pvt','literature','hydraulics','profiles','pressureSupport'].includes(next)?'Planning dataset · separate from this tool':'Active dataset';
  for(const id of ['start','curve','schedule','scope','reports','hydraulics','data','pvt','literature','disposal','analysis','pressure-support'])$(`${id}-workspace`).hidden=true;
@@ -275,12 +275,13 @@ $('source-demo').onclick=()=>{explorerHandoff?.cancel('source-changed','Syntheti
 async function startSample(){
  explorerHandoff?.cancel('source-changed','Sample case selected.');packageReceiver.cancel();
  sampleRun?.abort();const run=new AbortController();sampleRun=run;$('sample-error').textContent='';renderSampleBanner();
- try{const session=await loadSampleCase({signal:run.signal,publicEvidence});if(sampleRun!==run)return;sampleSession={...session,producerFixtureSha256:demoEvidence()?.inputs.planningFixtureSha256??null};sampleWellIndex=0;switchSource('sample');}
+ try{const session=await loadSampleCase({signal:run.signal,publicEvidence});if(sampleRun!==run)return;sampleSession={...session,producerFixtureSha256:demoEvidence()?.inputs.planningFixtureSha256??null};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;switchSource('sample');}
  catch(error){if(error?.name!=='AbortError'&&sampleRun===run)$('sample-error').textContent=error.message;}
  finally{if(sampleRun===run){sampleRun=null;renderSampleBanner();}}
 }
 for(const id of ['sample-load','sample-load-data'])$(id).onclick=()=>{startSample();};
 $('sample-clear').onclick=()=>{sampleRun?.abort();sampleRun=null;switchSource(null);};
+for(const radio of document.querySelectorAll('input[name="sample-well"]'))radio.onchange=()=>{if(source!=='sample'||!sampleSession)return;sampleWellIndex=Number(radio.value);clearResults();readiness();navigate('publicTrends',{record:false});};
 $('disposal-original').onclick=()=>navigate('legacyCapacity');
 $('open-original').onclick=()=>{switchSource('demo');navigate('legacyCapacity');};
 $('start-guided').onclick=()=>{guided=true;navigate('data');};
