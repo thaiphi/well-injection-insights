@@ -15,6 +15,7 @@ import {createExplorerHandoff} from './explorer-handoff.mjs';
 import {explorerCalculationGate,explorerRowDisposition} from './explorer-eligibility.mjs';
 import {loadSampleCase,sampleProvenanceRows,sampleReportCard} from './sample-case.mjs';
 import {runSampleSteps,sampleSteps,resetDemoControls,waitFor} from './sample-steps.mjs';
+import {mountSampleTour} from './sample-tour.mjs';
 const $=id=>document.getElementById(id);
 mountLiteratureCase($('literature-workspace'));
 const pressureContext=mountPressureContext($('pressure-support-workspace'));
@@ -290,6 +291,8 @@ async function startSample(){
 for(const id of ['sample-load','sample-load-data'])$(id).onclick=()=>{startSample();};
 $('sample-clear').onclick=()=>{sampleRun?.abort();sampleRun=null;switchSource(null);};
 $('sample-cancel').onclick=()=>sampleRun?.abort();
+sampleTour=mountSampleTour({navigate,ensureSample:async()=>{if(!(source==='sample'&&sampleSession))await startSample();if(!(source==='sample'&&sampleSession))throw new Error($('sample-error').textContent||'The sample case did not load, so the tour cannot start.');}});
+for(const id of ['sample-tour-start','sample-tour-start-home'])$(id).onclick=()=>sampleTour.start().catch(error=>{$('sample-error').textContent=error.message;renderSampleBanner();$('sample-banner').hidden=false;});
 for(const radio of document.querySelectorAll('input[name="sample-well"]'))radio.onchange=()=>{if(source!=='sample'||!sampleSession)return;sampleWellIndex=Number(radio.value);clearResults();readiness();navigate('publicTrends',{record:false});};
 $('disposal-original').onclick=()=>navigate('legacyCapacity');
 $('open-original').onclick=()=>{switchSource('demo');navigate('legacyCapacity');};

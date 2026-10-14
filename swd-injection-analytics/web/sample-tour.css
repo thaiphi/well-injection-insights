@@ -1,0 +1,26 @@
+/* Sample case banner, provenance labels, well switch and the non-modal tour panel. */
+.sample-banner{margin:0 0 1rem;padding:.75rem 1rem;border:1px solid #bb7830;border-radius:8px;background:#fff8ef;display:grid;gap:.5rem}
+.sample-banner p{margin:0}
+.sample-progress{margin:0;padding-left:1.25rem;font-size:.9rem}
+.sample-progress li[data-status="failed"]{color:#a12a1f;font-weight:600}
+.sample-actions{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.75rem}
+.sample-actions .session-note{flex-basis:100%;margin:0}
+.sample-source{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin:0 0 1rem}
+.sample-source p{margin:0;max-width:48ch}
+.sample-class{display:block;margin-top:.15rem;font-size:.78rem;color:#5b4a2f}
+.sample-class[data-class="trrc-public-record"]{color:#0f5296}
+.sample-class[data-class="derived-with-assumption"]{color:#7a4a00}
+.sample-class[data-class="edited"]{color:#a12a1f}
+.sample-well-switch{display:flex;flex-wrap:wrap;gap:1rem;margin:.5rem 0 1rem;border:1px solid #c9d2dc;border-radius:6px;padding:.5rem .75rem}
+.sample-well-switch label{display:flex;gap:.35rem;align-items:center}
+.sample-tour{position:fixed;right:1rem;bottom:1rem;z-index:40;width:min(26rem,calc(100vw - 2rem));max-height:calc(100vh - 2rem);overflow:auto;padding:1rem;border-radius:10px;border:1px solid #c9d2dc;background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.18)}
+.sample-tour h2{margin:.25rem 0 .5rem;font-size:1.1rem}
+.sample-tour h2:focus{outline:2px solid #1262b5;outline-offset:2px}
+.sample-tour-count{margin:0;font-size:.85rem;color:#4d5b6a}
+.sample-tour-box{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:.75rem 0;padding:.75rem;border-radius:8px;background:#f3f6f9}
+.sample-tour-box h3{margin:0 0 .25rem;font-size:.9rem}
+.sample-tour-box ul{margin:0;padding-left:1.1rem;font-size:.88rem}
+.sample-tour-actions{display:flex;gap:.5rem;justify-content:flex-end}
+.sample-tour-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.tour-highlight{outline:3px solid #bb7830;outline-offset:4px;border-radius:6px}
+@media (max-width:700px){.sample-tour{left:0;right:0;bottom:0;width:auto;max-height:60vh;border-radius:12px 12px 0 0}.sample-tour-box{grid-template-columns:1fr}}
