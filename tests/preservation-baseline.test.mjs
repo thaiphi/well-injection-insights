@@ -9,13 +9,19 @@ const owningRoot=resolve('.'),sha=b=>createHash('sha256').update(b).digest('hex'
 const ui=['web/navigation.mjs','web/index.html','web/import-ui.mjs','web/workspace-views.mjs'];
 const added=['src/pressureSupport.ts','src/pressureSupportChart.ts','src/pressureSupportExport.ts','data/pressure-support/example.json','data/pressure-support/pin.json','scripts/create-pressure-support-example.mjs','web/pressure-support.mjs','web/pressure-support-chart.mjs','web/pressure-support.css','tests/pressure-support.test.mjs','tests/pressure-support-state.test.mjs','tests/pressure-support-export.test.mjs'];
 const rootFiles=['scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs','tests/transfer.test.mjs','.gitattributes'];
+const stUi=['web/index.html','web/import-ui.mjs','web/workspace-views.mjs','web/disposal-context.mjs','web/disposal-case.mjs'];
+const stAdded=['src/sampleCase.ts','scripts/create-sample-case.mjs','data/sample-case/sample-case.json','data/sample-case/pin.json','data/sample-case/public-uic000056484.tar','data/samples/README.md','data/samples/seed417-history.csv','data/samples/seed417-history.xlsx','data/samples/assumed-injectors.csv','data/samples/invalid-history.csv','web/sample-case.mjs','web/sample-steps.mjs','web/sample-tour.mjs','web/sample-tour.css','web/tour-steps.mjs','tests/sample-case.test.mjs','tests/sample-steps.test.mjs','tests/sample-tour.test.mjs'];
+const stRoot=['scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'];
+const ST_ARCHIVE='migration/baselines/sample-tour-before/swd-injection-analytics/';
+const ST_DOCS=[['docs/superpowers/specs/2026-10-14-sample-case-guided-tour-design.md','approvedSpecSha256'],['docs/superpowers/plans/2026-10-14-sample-case-guided-tour.md','approvedPlanSha256']];
+const docSha=b=>sha(Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'),'utf8'));
 async function write(root,p,b){await mkdir(dirname(join(root,p)),{recursive:true});await writeFile(join(root,p),b);}
 async function fixture(reviewed=true){
  assert.ok(checker?.verifyPreservation,'Preservation checker is not implemented');
  await mkdir(join(owningRoot,'tmp'),{recursive:true});const root=await mkdtemp(join(owningRoot,'tmp/pressure-preservation-test-'));
  const mb=await readFile(join(owningRoot,'migration/source-manifest.json'));const manifest=JSON.parse(mb);
  await write(root,'migration/source-manifest.json',mb);
- for(const e of manifest.files)await write(root,join('swd-injection-analytics',e.path),await readFile(join(owningRoot,ui.includes(e.path)?'migration/baselines/pressure-support-before/swd-injection-analytics':'swd-injection-analytics',e.path)));
+ for(const e of manifest.files)await write(root,join('swd-injection-analytics',e.path),await readFile(join(owningRoot,ui.includes(e.path)?'migration/baselines/pressure-support-before/swd-injection-analytics':stUi.includes(e.path)?ST_ARCHIVE.slice(0,-1):'swd-injection-analytics',e.path)));
  if(!reviewed)return {root,manifest};
  const baseline={version:'swd-pressure-preservation/1',status:'accepted',parentManifestSha256:sha(mb),originalCount:182,approvedDesignSha256:'',approvedPlanSha256:'',changes:[],newFiles:[],rootFiles:[]};
  for(const [p,key] of [['demo/PRESSURE-SUPPORT-DESIGN.md','approvedDesignSha256'],['docs/superpowers/plans/2026-10-12-pressure-support-context.md','approvedPlanSha256']]){const b=await readFile(join(owningRoot,p));await write(root,p,b);baseline[key]=sha(b);}
@@ -25,6 +31,17 @@ async function fixture(reviewed=true){
  await write(root,'migration/pressure-support-baseline.json',JSON.stringify(baseline));return {root,baseline,manifest};
 }
 async function persist(f){await write(f.root,'migration/pressure-support-baseline.json',JSON.stringify(f.baseline));}
+async function sampleTourFixture(){
+ const f=await fixture();
+ const st={version:'swd-sample-tour-preservation/1',status:'accepted',parentBaselineSha256:'',approvedSpecSha256:'',approvedPlanSha256:'',changes:[],newFiles:[],rootFiles:[]};
+ for(const [p,key] of ST_DOCS){const b=await readFile(join(owningRoot,p));await write(f.root,p,b);st[key]=docSha(b);}
+ for(const p of stUi){const b=await readFile(join(f.root,'swd-injection-analytics',p)),archive=ST_ARCHIVE+p;await write(f.root,archive,b);const next=Buffer.concat([b,Buffer.from('\n// sample-tour test delta\n')]);await write(f.root,'swd-injection-analytics/'+p,next);st.changes.push({path:p,beforeSha256:sha(b),beforeBytes:b.length,afterSha256:sha(next),afterBytes:next.length,archive});}
+ for(const p of stAdded){const b=Buffer.from('Sample-tour fixture: '+p);await write(f.root,'swd-injection-analytics/'+p,b);st.newFiles.push({path:p,bytes:b.length,sha256:sha(b)});}
+ for(const p of stRoot){const b=await readFile(join(owningRoot,p));st.rootFiles.push({path:p,bytes:b.length,sha256:sha(b)});}
+ st.parentBaselineSha256=sha(await readFile(join(f.root,'migration/pressure-support-baseline.json')));
+ await write(f.root,'migration/sample-tour-baseline.json',JSON.stringify(st));return {...f,st};
+}
+async function persistSt(f){await write(f.root,'migration/sample-tour-baseline.json',JSON.stringify(f.st));}
 test('original transfer without an evolution baseline checks every preserved file',async()=>{const f=await fixture(false);const result=await checker.verifyPreservation(f.root);assert.equal(result.checked,182);assert.deepEqual(result.violations,[]);});
 test('reviewed four-file delta preserves all originals through exact before archives',async()=>{const f=await fixture();const result=await checker.verifyPreservation(f.root);assert.equal(result.checked,182);assert.deepEqual(result.violations,[]);});
 const cases=[
@@ -54,3 +71,18 @@ test('symlink or junction paths do not bring external bytes into evidence',async
 
 
 
+test('accepted sample-tour delta chains on the accepted pressure-support state',async()=>{const f=await sampleTourFixture();const result=await checker.verifyPreservation(f.root);assert.equal(result.checked,182);assert.deepEqual(result.violations,[]);});
+test('approved sample-tour documents verify with LF or CRLF line endings',async()=>{const f=await sampleTourFixture();for(const [p] of ST_DOCS){const text=(await readFile(join(f.root,p),'utf8')).replace(/\r\n/g,'\n');await write(f.root,p,Buffer.from(text));const r1=await checker.verifyPreservation(f.root);assert.deepEqual(r1.violations,[],'LF '+p);await write(f.root,p,Buffer.from(text.replace(/\n/g,'\r\n')));const r2=await checker.verifyPreservation(f.root);assert.deepEqual(r2.violations,[],'CRLF '+p);}});
+const stCases=[
+ ['pending sample-tour baseline never passes',async f=>{f.st.status='pending-review';await persistSt(f);},/Sample-tour baseline is pending/],
+ ['sample-tour before state must equal the pressure-support after state',async f=>{const ps=f.baseline.changes.find(c=>c.path==='web/index.html');const c=f.st.changes.find(x=>x.path==='web/index.html');c.beforeSha256=ps.beforeSha256;await persistSt(f);},/prior accepted state.*web\/index\.html/],
+ ['editing the parent baseline breaks the chain',async f=>{f.baseline.acceptedBy='edited';await persist(f);},/parent baseline SHA/],
+ ['unlisted sample-tour product files are rejected',async f=>write(f.root,'swd-injection-analytics/data/sample-case/extra.json','{}'),/data\/sample-case\/extra\.json/],
+ ['a later edit after the sample-tour after hash is rejected',async f=>write(f.root,'swd-injection-analytics/web/disposal-context.mjs','later edit'),/web\/disposal-context\.mjs/],
+ ['sample-tour archives cannot be replaced',async f=>write(f.root,ST_ARCHIVE+'web/disposal-case.mjs','wrong original'),/Sample-tour archive/],
+ ['extra files in the sample-tour archive are rejected',async f=>write(f.root,'migration/baselines/sample-tour-before/unlisted.txt','x'),/Unlisted sample-tour archive/],
+ ['root checker pins move to the sample-tour baseline and stay enforced',async f=>{f.st.rootFiles[0].sha256='0'.repeat(64);await persistSt(f);},/scripts\/verify-preservation\.mjs/],
+ ['approved sample-tour plan bytes must still match',async f=>write(f.root,ST_DOCS[1][0],'changed plan'),/Approved document hash mismatch/],
+ ['sample-tour allowlist cannot be extended',async f=>{f.st.newFiles.push({path:'src/planning.ts',bytes:0,sha256:'0'.repeat(64)});await persistSt(f);},/allowlist|unapproved/i],
+];
+for(const [name,change,want]of stCases)test(name,async()=>{const f=await sampleTourFixture();await change(f);const result=await checker.verifyPreservation(f.root);assert.ok(result.violations.some(x=>want.test(x)),JSON.stringify(result.violations));});
