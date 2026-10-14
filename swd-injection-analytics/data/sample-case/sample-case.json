@@ -1,0 +1,733 @@
+{
+  "version": "swd-sample-case/1",
+  "caseId": "swd-sample-case/uic000020838+uic000056484/v1",
+  "name": "Sample case — TRRC record + synthetic gaps",
+  "producers": {
+    "fixtureId": "synthetic-water/seed-417/v1",
+    "class": "synthetic"
+  },
+  "wells": [
+    {
+      "id": "UIC-000020838",
+      "label": "UIC 000020838",
+      "trrc": {
+        "origin": "pinned-explorer",
+        "artifactId": "rrc-2026-10-09-uic000020838-v1",
+        "manifestSha256": "3a523cadca4c7a35d667ccd53629d63e5afc6de382be670cba1d61743baef61f",
+        "normalizedSha256": "4f243138c833f09a5be6a970e85f76f3f73e95040c69677a10b8c3b2fe03ca5b",
+        "firstMonth": "2024-01",
+        "lastMonth": "2026-04"
+      },
+      "inputs": [
+        {
+          "key": "uicNumber",
+          "label": "UIC number",
+          "value": "000020838",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "uic_number",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "apiNo",
+          "label": "API number",
+          "value": "38910201",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "api_no",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "operatorNumber",
+          "label": "Operator number",
+          "value": "103834",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "operator_number",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "districtCode",
+          "label": "District",
+          "value": "08",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "district_code",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "leaseName",
+          "label": "Lease name",
+          "value": "TREES, J. C. ESTATE, ET AL -A-",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "lease_name",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "wellNoDisplay",
+          "label": "Well number",
+          "value": "5D",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "well_no_display",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "county",
+          "label": "County (from the API prefix)",
+          "value": "Reeves",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "county",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "permitPressurePsi",
+          "label": "Permit maximum injection pressure",
+          "value": 2600,
+          "unit": "psi, as permitted (basis not stated)",
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "permit_liquid_pressure_limit_psi",
+          "tools": [
+            "publicTrends",
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "permitVolumeBpd",
+          "label": "Permit maximum injection volume (for comparison; not a model limit)",
+          "value": 14500,
+          "unit": "bbl/day",
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "permit_liquid_volume_limit_bpd",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "permittedTopFt",
+          "label": "Permitted interval top",
+          "value": 5200,
+          "unit": "ft",
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "permitted_top_depth_ft",
+          "tools": [
+            "publicTrends",
+            "comparison",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "permittedBottomFt",
+          "label": "Permitted interval bottom",
+          "value": 6100,
+          "unit": "ft",
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "permitted_bottom_depth_ft",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "monthlyRows",
+          "label": "Monthly injected liquid and reported injection pressure",
+          "value": 28,
+          "unit": "months of H-10 reports; bbl and psi (basis unspecified)",
+          "class": "trrc-public-record",
+          "source": "TRRC H-10 monthly reports qq2j-f2zm (rrc-2026-10-09-uic000020838-v1)",
+          "trrcField": "injectionMonthly.length",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "surfaceLimitPsia",
+          "label": "Surface pressure limit (absolute)",
+          "value": 2614.7,
+          "unit": "psia at wellhead",
+          "class": "derived-with-assumption",
+          "source": "Derived from the TRRC permit maximum injection pressure",
+          "derivedFrom": [
+            "permitPressurePsi"
+          ],
+          "assumption": "The permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi.",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "datumTvdFt",
+          "label": "Formation datum true vertical depth",
+          "value": 5200,
+          "unit": "ft TVD below wellhead",
+          "class": "derived-with-assumption",
+          "source": "Derived from the TRRC permitted interval top",
+          "derivedFrom": [
+            "permittedTopFt"
+          ],
+          "assumption": "The top of the permitted interval is the datum, and the well is vertical to the datum.",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "reservoirPsia",
+          "label": "Reservoir pressure at datum",
+          "value": 2400,
+          "unit": "psia, bottomhole at datum",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "limitPsia",
+          "label": "Bottomhole pressure limit at datum",
+          "value": 3600,
+          "unit": "psia, bottomhole at datum",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "injectivityStbdPerPsi",
+          "label": "Injectivity index J",
+          "value": 5,
+          "unit": "STB/day/psi",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "operatingCeilingStbd",
+          "label": "Operating rate ceiling",
+          "value": 9000,
+          "unit": "STB/day",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "availability",
+          "label": "Availability",
+          "value": 0.9,
+          "unit": "fraction of calendar time",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity"
+          ]
+        },
+        {
+          "key": "measuredDepthFt",
+          "label": "Measured depth to datum",
+          "value": 5200,
+          "unit": "ft",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "innerDiameterInches",
+          "label": "Tubing inner diameter",
+          "value": 3.958,
+          "unit": "in",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "roughnessInches",
+          "label": "Tubing absolute roughness",
+          "value": 0.0006,
+          "unit": "in",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "hydraulics"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "UIC-000056484",
+      "label": "SAND BEND 2D · UIC 000056484",
+      "trrc": {
+        "origin": "explorer-package",
+        "artifactId": "rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627",
+        "manifestSha256": "a271c7b2cd060078d604715d4f9ce2bdfc41495511da3d7bee894ca009bc33f0",
+        "normalizedSha256": "6bfb9e04fbe755555d832f2c1c44ccbc0c37456f522303130ffd0dd46e10d9c0",
+        "firstMonth": "2024-01",
+        "lastMonth": "2025-04",
+        "package": {
+          "path": "public-uic000056484.tar",
+          "sha256": "377721ac93c47313a9f5b58df2f581c9133cf9920ef74e390fef88392dbf6b9d",
+          "bytes": 1377280
+        }
+      },
+      "inputs": [
+        {
+          "key": "uicNumber",
+          "label": "UIC number",
+          "value": "000056484",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "uic_number",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "apiNo",
+          "label": "API number",
+          "value": "38931500",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "api_no",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "operatorNumber",
+          "label": "Operator number",
+          "value": "462980",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "operator_number",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "districtCode",
+          "label": "District",
+          "value": "08",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "district_code",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "leaseName",
+          "label": "Lease name",
+          "value": "SAND BEND",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "lease_name",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "wellNoDisplay",
+          "label": "Well number",
+          "value": "2D",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "well_no_display",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "county",
+          "label": "County (from the API prefix)",
+          "value": "Reeves",
+          "unit": null,
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "county",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "permitPressurePsi",
+          "label": "Permit maximum injection pressure",
+          "value": 1500,
+          "unit": "psi, as permitted (basis not stated)",
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "permit_liquid_pressure_limit_psi",
+          "tools": [
+            "publicTrends",
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "permitVolumeBpd",
+          "label": "Permit maximum injection volume (for comparison; not a model limit)",
+          "value": 1200,
+          "unit": "bbl/day",
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "permit_liquid_volume_limit_bpd",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "permittedTopFt",
+          "label": "Permitted interval top",
+          "value": 3028,
+          "unit": "ft",
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "permitted_top_depth_ft",
+          "tools": [
+            "publicTrends",
+            "comparison",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "permittedBottomFt",
+          "label": "Permitted interval bottom",
+          "value": 3118,
+          "unit": "ft",
+          "class": "trrc-public-record",
+          "source": "TRRC UIC inventory givw-z9t4 (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "permitted_bottom_depth_ft",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "monthlyRows",
+          "label": "Monthly injected liquid and reported injection pressure",
+          "value": 16,
+          "unit": "months of H-10 reports; bbl and psi (basis unspecified)",
+          "class": "trrc-public-record",
+          "source": "TRRC H-10 monthly reports qq2j-f2zm (rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627)",
+          "trrcField": "injectionMonthly.length",
+          "tools": [
+            "publicTrends"
+          ]
+        },
+        {
+          "key": "surfaceLimitPsia",
+          "label": "Surface pressure limit (absolute)",
+          "value": 1514.7,
+          "unit": "psia at wellhead",
+          "class": "derived-with-assumption",
+          "source": "Derived from the TRRC permit maximum injection pressure",
+          "derivedFrom": [
+            "permitPressurePsi"
+          ],
+          "assumption": "The permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi.",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "datumTvdFt",
+          "label": "Formation datum true vertical depth",
+          "value": 3028,
+          "unit": "ft TVD below wellhead",
+          "class": "derived-with-assumption",
+          "source": "Derived from the TRRC permitted interval top",
+          "derivedFrom": [
+            "permittedTopFt"
+          ],
+          "assumption": "The top of the permitted interval is the datum, and the well is vertical to the datum.",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "reservoirPsia",
+          "label": "Reservoir pressure at datum",
+          "value": 1400,
+          "unit": "psia, bottomhole at datum",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "limitPsia",
+          "label": "Bottomhole pressure limit at datum",
+          "value": 2100,
+          "unit": "psia, bottomhole at datum",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "injectivityStbdPerPsi",
+          "label": "Injectivity index J",
+          "value": 0.5,
+          "unit": "STB/day/psi",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "operatingCeilingStbd",
+          "label": "Operating rate ceiling",
+          "value": 1000,
+          "unit": "STB/day",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "availability",
+          "label": "Availability",
+          "value": 0.9,
+          "unit": "fraction of calendar time",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity"
+          ]
+        },
+        {
+          "key": "measuredDepthFt",
+          "label": "Measured depth to datum",
+          "value": 3028,
+          "unit": "ft",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "innerDiameterInches",
+          "label": "Tubing inner diameter",
+          "value": 2.441,
+          "unit": "in",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "sensitivity",
+            "hydraulics"
+          ]
+        },
+        {
+          "key": "roughnessInches",
+          "label": "Tubing absolute roughness",
+          "value": 0.0006,
+          "unit": "in",
+          "class": "synthetic",
+          "source": "Synthetic sample value — you gather",
+          "tools": [
+            "comparison",
+            "hydraulics"
+          ]
+        }
+      ]
+    }
+  ],
+  "shared": [
+    {
+      "key": "producerHistories",
+      "label": "Monthly producer water (and oil) volumes",
+      "value": "synthetic-water/seed-417/v1",
+      "unit": "STB/day, calendar-day basis",
+      "class": "synthetic",
+      "source": "Synthetic seed-417 producers — you gather",
+      "tools": [
+        "history",
+        "forecast",
+        "comparison"
+      ]
+    },
+    {
+      "key": "producerSchedules",
+      "label": "New-producer schedule (start, ramp, availability)",
+      "value": "Seed-417 demo defaults",
+      "unit": "date; months; fraction",
+      "class": "synthetic",
+      "source": "Synthetic schedule — you gather",
+      "tools": [
+        "comparison",
+        "sensitivity"
+      ]
+    },
+    {
+      "key": "referencePressurePsia",
+      "label": "Brine reference pressure",
+      "value": 2400,
+      "unit": "psia",
+      "class": "synthetic",
+      "source": "Synthetic sample value — you gather",
+      "tools": [
+        "comparison",
+        "pvt",
+        "hydraulics"
+      ]
+    },
+    {
+      "key": "temperatureF",
+      "label": "Bottomhole temperature",
+      "value": 150,
+      "unit": "°F",
+      "class": "synthetic",
+      "source": "Synthetic sample value — you gather",
+      "tools": [
+        "comparison",
+        "pvt",
+        "hydraulics"
+      ]
+    },
+    {
+      "key": "surfaceTemperatureF",
+      "label": "Surface temperature",
+      "value": 80,
+      "unit": "°F",
+      "class": "synthetic",
+      "source": "Synthetic sample value — you gather",
+      "tools": [
+        "comparison",
+        "hydraulics"
+      ]
+    },
+    {
+      "key": "salinityWtPercent",
+      "label": "Brine salinity (NaCl)",
+      "value": 8,
+      "unit": "wt%",
+      "class": "synthetic",
+      "source": "Synthetic sample value — you gather",
+      "tools": [
+        "comparison",
+        "pvt",
+        "hydraulics"
+      ]
+    }
+  ],
+  "gatherOnly": [
+    {
+      "key": "pressureBasis",
+      "label": "Basis and datum of reported injection pressure",
+      "why": "TRRC reports injection pressure without a stated basis; it is never treated as bottomhole pressure",
+      "tools": [
+        "publicTrends"
+      ]
+    },
+    {
+      "key": "bottomholePressure",
+      "label": "Measured bottomhole pressure and well tests (step-rate, falloff)",
+      "why": "Needed to calibrate J and reservoir pressure",
+      "tools": [
+        "comparison",
+        "sensitivity"
+      ]
+    },
+    {
+      "key": "annulusData",
+      "label": "Annulus pressure records",
+      "why": "Not in the TRRC data the Explorer reads; no annulus values are synthesized",
+      "tools": [
+        "publicTrends"
+      ]
+    },
+    {
+      "key": "fracDates",
+      "label": "Frac and treatment dates",
+      "why": "Used by the pressure-support context view",
+      "tools": [
+        "pressureSupport"
+      ]
+    },
+    {
+      "key": "associations",
+      "label": "Producer–injector associations and distances",
+      "why": "Not built in the Explorer yet (planned, RRC-07)",
+      "tools": [
+        "pressureSupport"
+      ]
+    }
+  ]
+}

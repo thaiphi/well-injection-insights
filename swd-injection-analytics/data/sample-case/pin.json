@@ -1,0 +1,20 @@
+{
+  "file": "sample-case.json",
+  "caseId": "swd-sample-case/uic000020838+uic000056484/v1",
+  "version": "swd-sample-case/1",
+  "sha256": "aab8129f3e1a628137866be361d30e1a3883ee3472c4cc9b9c51f6a8772c4e76",
+  "bytes": 22712,
+  "wells": [
+    {
+      "id": "UIC-000020838",
+      "artifactId": "rrc-2026-10-09-uic000020838-v1",
+      "origin": "pinned-explorer"
+    },
+    {
+      "id": "UIC-000056484",
+      "artifactId": "rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627",
+      "origin": "explorer-package",
+      "packageSha256": "377721ac93c47313a9f5b58df2f581c9133cf9920ef74e390fef88392dbf6b9d"
+    }
+  ]
+}
