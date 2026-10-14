@@ -23,6 +23,8 @@ A pure TypeScript module (`src/sampleCase.ts`) owns validation, provenance class
 2. **Packer depth and coordinates are not shown.** They aren't in the normalized TRRC record the app holds, and the spec only allowed displaying them.
 3. **Injectivity tab.** In sample mode it points to Capacity assessment instead of showing the demo's fictional injectors. The "Original workbook" stays demo-only.
 4. **Producer schedule.** Loading the sample resets the demo producer controls to their page defaults and records the resulting producer fixture SHA-256. If the visitor edits the schedule afterwards, the capacity tools are blocked with "Reload the sample case" until they reload.
+5. **Two more new files than spec section 8 lists:** `web/sample-steps.mjs` (the one-click step runner) and `tests/sample-steps.test.mjs`.
+6. **Approved-document hashes ignore line endings.** The spec and plan are stored with LF in Git but checked out with CRLF on this machine (`core.autocrlf=true`, and `docs/` has no `-text` rule). The new baseline therefore hashes them with CRLF converted to LF, so another checkout cannot break it. The accepted pressure-support baseline hashes its plan's raw on-disk bytes and has this exposure already; this plan does not change it. Adding a `-text` rule now would break that accepted baseline on this machine.
 
 **Preservation gate, read before starting:**
 - `tests/transfer.test.mjs` (root) **will be red on this branch from Task 1 until the owner accepts the new baseline in Task 10**. This is by design; do not weaken it.
@@ -59,7 +61,12 @@ A pure TypeScript module (`src/sampleCase.ts`) owns validation, provenance class
 2. **A customer upload or another source is chosen after the sample.** Expected: the sample's wells, banner, well switch and exports disappear, and no sample value reaches the user path. Pinned by a disposal-context test in Task 4, plus the browser checks in Task 9.
 3. **Well B has 16 months and Well A has 28.** Expected: each well keeps its own coverage, and each export carries exactly one artifact and its pin. Pinned by a loader test in Task 3 (distinct coverage per selection), plus browser checks in Task 9.
 4. **The visitor clicks "Illustrative defaults" or edits a pre-filled field.** Expected: the field's provenance label no longer claims a TRRC or sample value. Pinned by a DOM-free annotation test in Task 3, plus browser checks in Task 9.
-5. **The visitor double-clicks "Try it with sample data", cancels mid-load, or refreshes mid-tour.** Expected: only the latest run applies, cancelled runs stop before the next step, and a refresh clears everything. Pinned by runner abort and supersede tests in Task 6.
+5. **The visitor clicks "Try it with sample data" in the first second, double-clicks it, cancels mid-load, or refreshes mid-tour.** Expected:
+   - A first click waits for the pinned TRRC record instead of failing.
+   - Only the latest run applies, and a cancelled run stops before its next step.
+   - A refresh clears everything.
+
+   Pinned by the runner abort tests and the `verify` step's wait in Task 6, plus browser checks in Task 9.
 
 ---
 
@@ -95,6 +102,7 @@ const stAdded=['src/sampleCase.ts','scripts/create-sample-case.mjs','data/sample
 const stRoot=['scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'];
 const ST_ARCHIVE='migration/baselines/sample-tour-before/swd-injection-analytics/';
 const ST_DOCS=[['docs/superpowers/specs/2026-10-14-sample-case-guided-tour-design.md','approvedSpecSha256'],['docs/superpowers/plans/2026-10-14-sample-case-guided-tour.md','approvedPlanSha256']];
+const docSha=b=>sha(Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'),'utf8'));
 ```
 
 (b) Replace the original-file copy line inside `fixture()`:
@@ -111,7 +119,7 @@ with:
 async function sampleTourFixture(){
  const f=await fixture();
  const st={version:'swd-sample-tour-preservation/1',status:'accepted',parentBaselineSha256:'',approvedSpecSha256:'',approvedPlanSha256:'',changes:[],newFiles:[],rootFiles:[]};
- for(const [p,key] of ST_DOCS){const b=await readFile(join(owningRoot,p));await write(f.root,p,b);st[key]=sha(b);}
+ for(const [p,key] of ST_DOCS){const b=await readFile(join(owningRoot,p));await write(f.root,p,b);st[key]=docSha(b);}
  for(const p of stUi){const b=await readFile(join(f.root,'swd-injection-analytics',p)),archive=ST_ARCHIVE+p;await write(f.root,archive,b);const next=Buffer.concat([b,Buffer.from('\n// sample-tour test delta\n')]);await write(f.root,'swd-injection-analytics/'+p,next);st.changes.push({path:p,beforeSha256:sha(b),beforeBytes:b.length,afterSha256:sha(next),afterBytes:next.length,archive});}
  for(const p of stAdded){const b=Buffer.from('Sample-tour fixture: '+p);await write(f.root,'swd-injection-analytics/'+p,b);st.newFiles.push({path:p,bytes:b.length,sha256:sha(b)});}
  for(const p of stRoot){const b=await readFile(join(owningRoot,p));st.rootFiles.push({path:p,bytes:b.length,sha256:sha(b)});}
@@ -124,6 +132,7 @@ async function persistSt(f){await write(f.root,'migration/sample-tour-baseline.j
 (d) At the end of the file, add:
 ```js
 test('accepted sample-tour delta chains on the accepted pressure-support state',async()=>{const f=await sampleTourFixture();const result=await checker.verifyPreservation(f.root);assert.equal(result.checked,182);assert.deepEqual(result.violations,[]);});
+test('approved sample-tour documents verify with LF or CRLF line endings',async()=>{const f=await sampleTourFixture();for(const [p] of ST_DOCS){const text=(await readFile(join(f.root,p),'utf8')).replace(/\r\n/g,'\n');await write(f.root,p,Buffer.from(text));const r1=await checker.verifyPreservation(f.root);assert.deepEqual(r1.violations,[],'LF '+p);await write(f.root,p,Buffer.from(text.replace(/\n/g,'\r\n')));const r2=await checker.verifyPreservation(f.root);assert.deepEqual(r2.violations,[],'CRLF '+p);}});
 const stCases=[
  ['pending sample-tour baseline never passes',async f=>{f.st.status='pending-review';await persistSt(f);},/Sample-tour baseline is pending/],
  ['sample-tour before state must equal the pressure-support after state',async f=>{const ps=f.baseline.changes.find(c=>c.path==='web/index.html');const c=f.st.changes.find(x=>x.path==='web/index.html');c.beforeSha256=ps.beforeSha256;await persistSt(f);},/prior accepted state.*web\/index\.html/],
@@ -159,6 +168,8 @@ const ST_NEW=['src/sampleCase.ts','scripts/create-sample-case.mjs','data/sample-
 const ST_ROOT=['scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'];
 const ST_ARCHIVE='migration/baselines/sample-tour-before/swd-injection-analytics/';
 const ST_DOCS=[['docs/superpowers/specs/2026-10-14-sample-case-guided-tour-design.md','approvedSpecSha256'],['docs/superpowers/plans/2026-10-14-sample-case-guided-tour.md','approvedPlanSha256']];
+// Approved documents are hashed with CRLF normalized to LF: docs/ has no -text rule, so checkouts may differ by platform.
+const docSha=b=>sha(Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'),'utf8'));
 ```
 
 (b) Replace `baseline=JSON.parse(await bytesAt(root,'migration/pressure-support-baseline.json'))` with `baseline=JSON.parse(await bytesAt(root,PS_BASELINE))`.
@@ -173,7 +184,7 @@ const ST_DOCS=[['docs/superpowers/specs/2026-10-14-sample-case-guided-tour-desig
   if(st.status!=='accepted')violations.push('Sample-tour baseline is pending/not accepted after independent review');
   try{if(!HASH.test(st.parentBaselineSha256??'')||sha(await bytesAt(root,PS_BASELINE))!==st.parentBaselineSha256)violations.push('Sample-tour parent baseline SHA mismatch');}catch(e){violations.push('Sample-tour parent baseline unavailable: '+e.message);}
   stChanges=exactEntries(st.changes,ST_UI,'Sample-tour UI changes',violations);stAdded=exactEntries(st.newFiles,ST_NEW,'Sample-tour new files',violations);stRoot=exactEntries(st.rootFiles,ST_ROOT,'Sample-tour root files',violations);
-  for(const [p,key]of ST_DOCS){try{if(!HASH.test(st[key]??'')||sha(await bytesAt(root,p))!==st[key])violations.push('Approved document hash mismatch: '+p);}catch(e){violations.push('Approved document unavailable: '+p+' '+e.message);}}
+  for(const [p,key]of ST_DOCS){try{if(!HASH.test(st[key]??'')||docSha(await bytesAt(root,p))!==st[key])violations.push('Approved document hash mismatch: '+p);}catch(e){violations.push('Approved document unavailable: '+p+' '+e.message);}}
   const stArchives=new Set(ST_UI.map(p=>ST_ARCHIVE+p));
   for(const p of await listFiles(root,'migration/baselines/sample-tour-before',violations))if(!stArchives.has(p))violations.push('Unlisted sample-tour archive: '+p);
   for(const [p,c]of stChanges){
@@ -202,7 +213,7 @@ The loop body stays unchanged.
 - [ ] **Step 5: Run the tests to verify they pass**
 
 Run (ROOT): `node --test tests/preservation-baseline.test.mjs`
-Expected: all tests PASS (the existing ~22 plus the 11 new ones).
+Expected: all tests PASS (the existing ~22 plus the 12 new ones).
 
 Run (ROOT): `node --test tests/transfer.test.mjs`
 Expected: the first test FAILS, because the root checker's own bytes changed and no sample-tour baseline exists yet. This is the expected red state until Task 10. The other tests PASS.
@@ -1132,7 +1143,11 @@ Expected: all PASS.
 
 - [ ] **Step 5: Use the steps in `startSample` (`web/import-ui.mjs`)**
 
-(a) After the import added in Task 4, add `import {runSampleSteps,sampleSteps,resetDemoControls,waitFor} from './sample-steps.mjs';`.
+(a) After the import added in Task 4, add `import {runSampleSteps,sampleSteps,resetDemoControls,waitFor,waitForEvent} from './sample-steps.mjs';`.
+
+Verified facts this step relies on:
+- `disposal-case.mjs` `sync()` returns early when the capacity context is unchanged (`if(key===contextKey)return;`). Navigating from Capacity assessment to Parameter sweeps, during loading or in the tour, therefore keeps the capacity result and the sweep stays enabled.
+- `app.mjs` `render()` dispatches `demo-updated` from its `finally` block.
 
 (b) Replace the whole `async function startSample(){ ... }` block from Task 4 with:
 ```js
@@ -1142,8 +1157,9 @@ async function startSample(){
  const progress=$('sample-progress'),items=new Map();progress.replaceChildren();progress.hidden=false;$('sample-error').textContent='';$('sample-cancel').hidden=false;$('sample-banner-detail').textContent='Loading…';renderSampleBanner();
  const onProgress=({index,total,label,status})=>{if(sampleRun!==run)return;let li=items.get(index);if(!li){li=el('li');items.set(index,li);progress.append(li);}li.dataset.status=status;li.textContent=`${index+1}/${total} ${label} — ${{running:'running…',done:'done',failed:'failed'}[status]}`;};
  const steps=sampleSteps({
-  verify:async({signal})=>{const session=await loadSampleCase({signal,publicEvidence});if(sampleRun!==run)throw new DOMException('Superseded by a newer sample load.','AbortError');sampleSession={...session,producerFixtureSha256:null};},
-  select:async({signal})=>{resetDemoControls(document);const demo=await waitFor(()=>demoEvidence(),{signal,label:'the synthetic sample producers'});sampleSession={...sampleSession,producerFixtureSha256:demo.inputs.planningFixtureSha256};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;switchSource('sample');},
+  verify:async({signal})=>{await waitFor(()=>publicEvidence().artifact&&publicEvidence().pin,{signal,label:'the pinned TRRC record for UIC 000020838'});const session=await loadSampleCase({signal,publicEvidence});if(sampleRun!==run)throw new DOMException('Superseded by a newer sample load.','AbortError');sampleSession={...session,producerFixtureSha256:null};},
+  // Subscribe before resetting: demo-updated fires from render()'s finally block, so the hash is never a stale exhibit's.
+  select:async({signal})=>{const updated=waitForEvent(document,'demo-updated',{signal});resetDemoControls(document);await updated;const demo=demoEvidence();if(!demo)throw new Error($('app-error').hidden?'The synthetic sample producers could not be prepared.':$('app-error').textContent);sampleSession={...sampleSession,producerFixtureSha256:demo.inputs.planningFixtureSha256};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;switchSource('sample');},
   navigate,session:()=>sampleSession,doc:document});
  try{await runSampleSteps(steps,{signal:run.signal,onProgress});if(sampleRun===run){$('sample-banner-detail').textContent=`${sampleSession.caseId} · every main tool has results.`;navigate('publicTrends');}}
  catch(error){if(sampleRun!==run)return;if(error?.name==='AbortError')$('sample-banner-detail').textContent='Loading cancelled. Results already calculated stay labelled with the sample identity.';else $('sample-error').textContent=error.message;}
@@ -1478,7 +1494,11 @@ Write `demo/sample-tour-evidence/checks.json` with the same results in machine-r
 
 - [ ] **Step 5: Independent read-only review**
 
-Dispatch a fresh reviewer, using the superpowers:requesting-code-review skill, over `git diff a317aa3..HEAD` with this plan and the spec. Fix the confirmed findings in follow-up commits and re-run Step 1.
+Dispatch a fresh reviewer, using the superpowers:requesting-code-review skill, over `git diff a317aa3..HEAD` with this plan and the spec.
+
+First apply this repository's delegation rules: read `handover/context/agent-workflow.md`, and give the reviewer the seven-field brief with the verified absolute Git root, the SWD requirement IDs (or a maintenance N/A), read-only scope and concrete acceptance checks. Respect the two-active-subagent limit.
+
+Fix the confirmed findings in follow-up commits and re-run Step 1.
 
 - [ ] **Step 6: Commit the evidence**
 
@@ -1502,6 +1522,7 @@ Create `ROOT/tmp/record-sample-tour-baseline.mjs` (not committed; `/tmp/` is git
 ```js
 import {readFileSync,writeFileSync} from 'node:fs';import {createHash} from 'node:crypto';
 const sha=b=>createHash('sha256').update(b).digest('hex'),r=p=>readFileSync(p);
+const docSha=b=>sha(Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'),'utf8'));
 const UI=['web/index.html','web/import-ui.mjs','web/workspace-views.mjs','web/disposal-context.mjs','web/disposal-case.mjs'];
 const NEW=['src/sampleCase.ts','scripts/create-sample-case.mjs','data/sample-case/sample-case.json','data/sample-case/pin.json','data/sample-case/public-uic000056484.tar','data/samples/README.md','data/samples/seed417-history.csv','data/samples/seed417-history.xlsx','data/samples/assumed-injectors.csv','data/samples/invalid-history.csv','web/sample-case.mjs','web/sample-steps.mjs','web/sample-tour.mjs','web/sample-tour.css','web/tour-steps.mjs','tests/sample-case.test.mjs','tests/sample-steps.test.mjs','tests/sample-tour.test.mjs'];
 const ROOTF=['scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'],ARCH='migration/baselines/sample-tour-before/swd-injection-analytics/';
@@ -1509,7 +1530,7 @@ const entry=(p,full)=>{const b=r(full);return {path:p,bytes:b.length,sha256:sha(
 const baseline={version:'swd-sample-tour-preservation/1',status:process.argv[2]==='accept'?'accepted':'pending-review',
  ...(process.argv[2]==='accept'?{acceptedAt:new Date().toISOString().slice(0,10),acceptedBy:process.argv[3]??'',acceptanceEvidence:'demo/SAMPLE-TOUR-VERIFICATION.md'}:{}),
  parentBaselineSha256:sha(r('migration/pressure-support-baseline.json')),
- approvedSpecSha256:sha(r('docs/superpowers/specs/2026-10-14-sample-case-guided-tour-design.md')),approvedPlanSha256:sha(r('docs/superpowers/plans/2026-10-14-sample-case-guided-tour.md')),
+ approvedSpecSha256:docSha(r('docs/superpowers/specs/2026-10-14-sample-case-guided-tour-design.md')),approvedPlanSha256:docSha(r('docs/superpowers/plans/2026-10-14-sample-case-guided-tour.md')),
  changes:UI.map(p=>{const before=r(ARCH+p),after=r('swd-injection-analytics/'+p);return {path:p,beforeSha256:sha(before),archive:ARCH+p,afterSha256:sha(after),beforeBytes:before.length,afterBytes:after.length};}),
  newFiles:NEW.map(p=>entry(p,'swd-injection-analytics/'+p)),rootFiles:ROOTF.map(p=>entry(p,p))};
 writeFileSync('migration/sample-tour-baseline.json',JSON.stringify(baseline,null,2)+'\n');console.log(baseline.status);
