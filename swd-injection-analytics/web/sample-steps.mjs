@@ -33,7 +33,14 @@ export function resetDemoControls(doc=document){
  for(const control of form.querySelectorAll('input,select')){if(control.tagName==='SELECT'){const d=[...control.options].find(o=>o.defaultSelected)??control.options[0];if(d)control.value=d.value;}else control.value=control.defaultValue;}
  form.querySelector('input,select')?.dispatchEvent(new Event('input',{bubbles:true}));
 }
-function setValue(input,value){if(!input)throw new Error('A required sample field is missing from the page.');input.value=String(value);input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));}
+const touched=new Set();
+function setValue(input,value){if(!input)throw new Error('A required sample field is missing from the page.');touched.add(input);input.value=String(value);input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));}
+/** Leaving the sample: every field the sample filled returns to its page default and every sample label is removed,
+ * so no sample value or provenance claim reaches another source's case. */
+export function restoreSampleInputs(doc=document){
+ for(const input of touched){if(!input.isConnected)continue;if(input.tagName==='SELECT'){const d=[...input.options].find(o=>o.defaultSelected)??input.options[0];if(d)input.value=d.value;}else input.value=input.defaultValue;input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));}
+ touched.clear();for(const note of doc.querySelectorAll('.sample-class'))note.remove();
+}
 const text=el=>el?.textContent.trim()??'';
 
 export function sampleSteps({verify,select,navigate,session,doc=document}){
@@ -79,6 +86,7 @@ export function sampleSteps({verify,select,navigate,session,doc=document}){
    setValue(at('caseName'),'Sample case · UIC 000020838');setValue(at('datum'),session().injectors[0].datum);
    const map={reservoirPsia:'reservoirPsia',limitPsia:'limitPsia',surfaceLimitPsia:'surfaceLimitPsia',injectivityStbdPerPsi:'injectivityStbdPerPsi',operatingCeilingStbd:'operatingCeilingStbd',tvdFt:'datumTvdFt',measuredDepthFt:'measuredDepthFt',innerDiameterInches:'innerDiameterInches',roughnessInches:'roughnessInches',referencePressurePsia:'referencePressurePsia',temperatureF:'temperatureF',surfaceTemperatureF:'surfaceTemperatureF',salinityWtPercent:'salinityWtPercent'};
    for(const [name,key] of Object.entries(map))fill(at(name),0,key);
+   $('hyd-reset').addEventListener('click',()=>markEdited(form,'Assumed default restored — not the sample value'),{once:true});
    form.requestSubmit();const e=text($('hyd-error'));if(e)throw new Error(e);
   }},
  ];

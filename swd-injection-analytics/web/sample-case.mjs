@@ -66,3 +66,15 @@ export function sampleReportCard(session,doc=document){
  table.append(caption,head,body);const wrap=doc.createElement('div');wrap.className='table-wrap';wrap.append(table);
  card.append(h,p,button,wrap);return card;
 }
+
+/** Producer-side evidence for sample-mode Histories/Forecast/Reconciliation/Demand exports: the demo's synthetic producers only,
+ * without the demo's fictional injectors, capacity rows or injector provenance (the sample's injectors live in Capacity assessment). */
+export function sampleProducerEvidence(demo,session){
+ if(!demo||!session)return null;
+ const keep=['planningFixture','planningFixtureSha256','dateRange','forecastEvidence','fixtureId','forecastId','cutoff','trainingMonths','forecastModels','newProducerTypeCurve','nexusSourceCommit'];
+ return {sampleCaseId:session.caseId,sampleSha256:session.sha256,origin:'sample case',content:'synthetic seed-417 producer histories + assumed schedules',
+  modelVersions:demo.modelVersions,demoExhibitSha256:demo.contentSha256,
+  inputs:Object.fromEntries(keep.filter(k=>k in demo.inputs).map(k=>[k,structuredClone(demo.inputs[k])])),
+  outputs:{planningDetails:structuredClone(demo.outputs.planningDetails)},
+  provenance:{producedWater:demo.provenance?.producedWater??'synthetic seeded histories',injectors:'not part of this export; the sample injectors (two real TRRC wells with labelled synthetic inputs) are in Capacity assessment'}};
+}

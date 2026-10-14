@@ -13,8 +13,8 @@ import {renderCurveLibrary,renderSchedules,renderReports,renderScope,dataTable} 
 import {mountExplorerReceiver} from './explorer-receiver.mjs';
 import {createExplorerHandoff} from './explorer-handoff.mjs';
 import {explorerCalculationGate,explorerRowDisposition} from './explorer-eligibility.mjs';
-import {loadSampleCase,sampleProvenanceRows,sampleReportCard} from './sample-case.mjs';
-import {runSampleSteps,sampleSteps,resetDemoControls,waitFor} from './sample-steps.mjs';
+import {loadSampleCase,sampleProvenanceRows,sampleReportCard,sampleProducerEvidence} from './sample-case.mjs';
+import {runSampleSteps,sampleSteps,resetDemoControls,waitFor,restoreSampleInputs} from './sample-steps.mjs';
 import {mountSampleTour} from './sample-tour.mjs';
 const $=id=>document.getElementById(id);
 mountLiteratureCase($('literature-workspace'));
@@ -89,7 +89,7 @@ function updateIdentity(){
  if(source==='user'&&!records.length)lineage.append(el('p','No confirmed profiles. File origin will remain user even when its content is synthetic.'));
 }
 export function capacityWorkspaceContext(){return disposalContext({source,demo:source==='demo'||source==='sample'?demoEvidence():null,imported:source==='user'?state.result:null,sample:source==='sample'?sampleSession:null});}
-function renderSampleBanner(){$('sample-banner').hidden=!(source==='sample'||sampleRun);if(source!=='sample'&&!sampleRun){$('sample-progress').hidden=true;$('sample-banner-detail').textContent='';}}
+function renderSampleBanner(){const failed=!!$('sample-error').textContent.trim();$('sample-banner').hidden=!(source==='sample'||sampleRun||failed);if(source!=='sample'&&!sampleRun&&!failed){$('sample-progress').hidden=true;$('sample-banner-detail').textContent='';}}
 function readiness(){
  const all=gates();$('import-readiness').replaceChildren();
  for(const key of Object.keys(names)){const g=all[key];const card=el('article',undefined,'readiness-card '+(g.ready?'ready':g.reasons.some(r=>r.includes('Acceptance blocker'))?'blocked':''));card.append(el('strong',`${names[key]}: ${g.ready?'Ready':'Not ready'}`),el('p',g.reasons.join(' ')));const remedy=el('button',key==='wellbore'?'Open independent tool':key==='transient'?'Inspect unfinished scope':'Inspect inputs & requirements');remedy.onclick=()=>{if(key==='wellbore'||key==='transient')navigate(key);else{$('requirements-analysis').value=key;requirementsView();navigate('data');$('requirements-analysis').focus();}};card.append(remedy);$('import-readiness').append(card);}
@@ -97,7 +97,7 @@ function readiness(){
 }
 function clearResults(){shown=null;$('import-results').replaceChildren();for(const id of ['import-download','import-csv','import-svg'])$(id).disabled=true;}
 function invalidate(profile=$('import-profile').value){calculationError=null;state.invalidate(profile);draft=null;$('import-confirm').disabled=true;$('validation-summary').replaceChildren();$('import-preview').replaceChildren();$('validation-pages').replaceChildren();clearResults();$('result-message').textContent='Inputs changed. Review validation and confirm the revised profile before running dependent results.';readiness();}
-function switchSource(next){calculationError=null;if(next!=='sample'){sampleSession=null;sampleWellIndex=0;sampleTour?.exit();}loadVersion++;source=next;state.result=null;clearResults();document.dispatchEvent(new CustomEvent('workspace-source',{detail:next}));$('import-editor').hidden=next!=='user';$('import-status').textContent={user:'Choose a file, inspect original rows, then map fields and original units.',demo:'Synthetic demo selected. Choose an analysis below; all engineering inputs remain fictional.',public:'Pinned Explorer export selected. Public injection trends use source-reported observations only.',sample:'Sample case selected: TRRC records for UIC 000020838 and SAND BEND 2D, with every gap filled by labelled synthetic inputs.'}[next]??'No planning source selected.';renderSampleBanner();if(next==='user'&&Object.keys(state.inputs).length)try{calculate();}catch(error){$('import-status').textContent+=` ${error.message}`;}readiness();navigate('data');}
+function switchSource(next){calculationError=null;if(next!=='sample'){if(sampleRun){sampleRun.abort();sampleRun=null;$('sample-cancel').hidden=true;}sampleSession=null;sampleWellIndex=0;sampleTour?.exit();restoreSampleInputs(document);$('sample-error').textContent='';}loadVersion++;source=next;state.result=null;clearResults();document.dispatchEvent(new CustomEvent('workspace-source',{detail:next}));$('import-editor').hidden=next!=='user';$('import-status').textContent={user:'Choose a file, inspect original rows, then map fields and original units.',demo:'Synthetic demo selected. Choose an analysis below; all engineering inputs remain fictional.',public:'Pinned Explorer export selected. Public injection trends use source-reported observations only.',sample:'Sample case selected: TRRC records for UIC 000020838 and SAND BEND 2D, with every gap filled by labelled synthetic inputs.'}[next]??'No planning source selected.';renderSampleBanner();if(next==='user'&&Object.keys(state.inputs).length)try{calculate();}catch(error){$('import-status').textContent+=` ${error.message}`;}readiness();navigate('data');}
 function navigate(next,{record=true,focus=true}={}){
  next=next==='wellbore'?'hydraulics':next==='exhibit'?'reports':next;
  if(!['reports','evidence'].includes(next))clearResults();
@@ -138,14 +138,14 @@ function navigate(next,{record=true,focus=true}={}){
  if(source==='demo'||source==='sample'&&['history','forecast','reconciliation','groupedPlanning'].includes(next)){
   if(next==='capacity'){$('analysis-workspace').hidden=false;$('period-controls').hidden=true;renderDemoInjectivity();return;}
   if(next==='history'||next==='forecast'){
-   $('analysis-workspace').hidden=false;$('period-controls').hidden=true;const demo=demoEvidence();if(!demo){$('result-message').textContent='Demo inputs are invalid or still calculating. Correct the original workbook controls.';return;}
+   $('analysis-workspace').hidden=false;$('period-controls').hidden=true;const demo=source==='sample'?sampleProducerEvidence(demoEvidence(),sampleSession):demoEvidence();if(!demo){$('result-message').textContent='Demo inputs are invalid or still calculating. Correct the original workbook controls.';return;}
    if(next==='history')renderHistory(demo.inputs.planningFixture.actuals.map(r=>({...r,groupId:demo.inputs.planningFixture.producers.find(p=>p.id===r.producerId)?.groupId})),demo);
    else{presentFit(demo.inputs.planningFixture.actuals,demo.outputs.planningDetails.monthly,demo.inputs.cutoff,demo);fitSummary(demo.inputs.forecastModels,demo.inputs.cutoff,demo.inputs.forecastId);}
    return;
   }
   if(next==='reconciliation'||next==='groupedPlanning'){
    $('analysis-workspace').hidden=false;$('period-controls').hidden=true;$('result-message').textContent='Calculated from the selected synthetic planning fixture; fictional producer identities and assumptions retained.';
-   const demo=demoEvidence();
+   const demo=source==='sample'?sampleProducerEvidence(demoEvidence(),sampleSession):demoEvidence();
    if(!demo){$('result-message').textContent='Demo exhibit is still preparing or unavailable.';return;}
    const details=demo.outputs.planningDetails;
    if(next==='reconciliation')present(names.reconciliation,['Month','Forecast (bbl)','Synthetic actual (bbl)','Actual − forecast (bbl)','Running variance (bbl)','Variance (%)'],details.monthly.map(r=>[r.month,r.forecastBbl,r.actualBbl,r.varianceBbl,r.cumulativeVarianceBbl,r.variancePct]),[{index:1,color:'#1262b5',name:'Frozen forecast'},{index:2,color:'#1596a3',name:'Synthetic actual'}],'Monthly volume (bbl)',demo);
@@ -282,7 +282,7 @@ async function startSample(){
  const steps=sampleSteps({
   verify:async({signal})=>{await waitFor(()=>publicEvidence().artifact&&publicEvidence().pin,{signal,label:'the pinned TRRC record for UIC 000020838'});const session=await loadSampleCase({signal,publicEvidence});if(sampleRun!==run)throw new DOMException('Superseded by a newer sample load.','AbortError');sampleSession={...session,producerFixtureSha256:null};},
   // render() bumps its version synchronously and fires demo-updated at both start and end, so poll for the finished exhibit.
-  select:async({signal})=>{resetDemoControls(document);const demo=await waitFor(()=>{const d=demoEvidence();if(d)return d;if(!$('app-error').hidden)throw new Error($('app-error').textContent);return null;},{signal,label:'the synthetic sample producers'});sampleSession={...sampleSession,producerFixtureSha256:demo.inputs.planningFixtureSha256};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;switchSource('sample');},
+  select:async({signal})=>{resetDemoControls(document);const demo=await waitFor(()=>{const d=demoEvidence();if(d)return d;if(!$('app-error').hidden)throw new Error($('app-error').textContent);return null;},{signal,label:'the synthetic sample producers'});sampleSession={...sampleSession,producerFixtureSha256:demo.inputs.planningFixtureSha256};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;if(sampleRun!==run||signal?.aborted)throw new DOMException('Sample loading cancelled.','AbortError');switchSource('sample');},
   navigate,session:()=>sampleSession,doc:document});
  try{await runSampleSteps(steps,{signal:run.signal,onProgress});if(sampleRun===run){progress.hidden=true;$('sample-banner-detail').textContent=`${sampleSession.caseId} · all 7 loading steps done; every main tool has results.`;navigate('publicTrends');}}
  catch(error){if(sampleRun!==run)return;if(error?.name==='AbortError')$('sample-banner-detail').textContent='Loading cancelled. Results already calculated stay labelled with the sample identity.';else $('sample-error').textContent=error.message;}
@@ -293,7 +293,7 @@ $('sample-clear').onclick=()=>{sampleRun?.abort();sampleRun=null;switchSource(nu
 $('sample-cancel').onclick=()=>sampleRun?.abort();
 sampleTour=mountSampleTour({navigate,ensureSample:async()=>{if(!(source==='sample'&&sampleSession))await startSample();if(!(source==='sample'&&sampleSession))throw new Error($('sample-error').textContent||'The sample case did not load, so the tour cannot start.');}});
 for(const id of ['sample-tour-start','sample-tour-start-home'])$(id).onclick=()=>sampleTour.start().catch(error=>{$('sample-error').textContent=error.message;renderSampleBanner();$('sample-banner').hidden=false;});
-for(const radio of document.querySelectorAll('input[name="sample-well"]'))radio.onchange=()=>{if(source!=='sample'||!sampleSession)return;sampleWellIndex=Number(radio.value);clearResults();readiness();navigate('publicTrends',{record:false});};
+for(const radio of document.querySelectorAll('input[name="sample-well"]'))radio.onchange=()=>{if(source!=='sample'||!sampleSession)return;sampleWellIndex=Number(radio.value);clearResults();readiness();navigate('publicTrends',{record:false,focus:false});radio.focus({preventScroll:true});};
 $('disposal-original').onclick=()=>navigate('legacyCapacity');
 $('open-original').onclick=()=>{switchSource('demo');navigate('legacyCapacity');};
 $('start-guided').onclick=()=>{guided=true;navigate('data');};
