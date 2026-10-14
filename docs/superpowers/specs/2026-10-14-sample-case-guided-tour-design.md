@@ -1,6 +1,6 @@
 # Sample case and guided tour — design
 
-Date: October 14, 2026. Status: **draft for owner review**. No code exists yet.
+Date: October 14, 2026. Status: **draft for owner review; owner answered the three open questions (section 11)**. No code exists yet.
 
 ## 1. Purpose
 
@@ -17,7 +17,7 @@ Success means a first-time visitor:
 ## 2. Scope
 
 In scope:
-- **A pinned sample case** built around one real TRRC injection well, with every gap filled by labelled synthetic inputs.
+- **A pinned sample case** built around two real TRRC injection wells, with every gap filled by labelled synthetic inputs.
 - **One-click load** of that case, which also runs the existing calculations so every tool shows results.
 - **A guided tour** of seven stops. Each stop has a "From TRRC / You'd gather" panel. The tour ends with a downloadable gather checklist.
 - **Downloadable sample files** for the CSV/XLSX import flow.
@@ -31,26 +31,30 @@ Not in scope:
 
 ## 3. What TRRC provides today
 
-The TRRC Explorer confirmed this on October 14, 2026, with source citations retained in its answer. The Explorer reads only two official open-data sets: UIC inventory `givw-z9t4` and monthly H-10 reports `qq2j-f2zm`. The app already holds a verified pinned export of these, artifact `rrc-2026-10-09-uic000020838-v1`. It is the Explorer's default and is real official data.
+The TRRC Explorer confirmed this on October 14, 2026, with source citations retained in its answer. The Explorer reads only two official open-data sets: UIC inventory `givw-z9t4` and monthly H-10 reports `qq2j-f2zm`. The sample uses two verified TRRC records that already exist in this repository. Both are real official data:
+- **Well A, UIC 000020838.** Artifact `rrc-2026-10-09-uic000020838-v1`, the app's pinned Explorer default (`data/explorer/`, `data/explorer-pin.json`).
+- **Well B, SAND BEND 2D, UIC 000056484.** Artifact `rrc-2026-10-10-uic000056484-df804201-eb4a-4aa5-8ef2-c550c6a70627`. It exists today only as the verified Explorer package test fixture `tests/fixtures/explorer-packages/public-uic000056484.tar` (package SHA-256 `377721ac…6b9d`, 1,377,280 bytes, recorded in `provenance.json`). The sample serves a byte-exact copy, checked against that SHA-256 and then opened with the existing `verifyExplorerPackage`.
 
-| Input | Source for the sample | Class shown to the visitor |
-|---|---|---|
-| Injection-well identity: UIC 000020838, API, operator, lease, county (from the API prefix) | Pinned TRRC artifact | **TRRC public record** |
-| Permit maximum injection pressure, 2,600 psi | Pinned TRRC artifact | **TRRC public record** |
-| Permit maximum injection volume, 14,500 bbl/day | Pinned TRRC artifact | **TRRC public record** (shown for comparison, not used as a model limit) |
-| Permitted injection interval, 5,200–6,100 ft | Pinned TRRC artifact | **TRRC public record** |
-| Monthly injected liquid (bbl) and reported average/maximum injection pressure (psi, no stated basis), Jan 2024–Apr 2026, 28 months | Pinned TRRC artifact | **TRRC public record**; the calendar-day average rate is labelled **calculated** |
-| Packer depth (5,605 ft) and NAD83 coordinates | Raw fields in the artifact with no dictionary entry or checks | **Raw TRRC field, not verified**; displayed only, never used in a calculation |
-| Producer oil and water volumes, producer schedules | Not in TRRC data | **Synthetic: you'd gather** (seed-417 producers) |
-| Reservoir pressure, injectivity (J), bottomhole pressure, well tests | Not in TRRC data | **Synthetic: you'd gather** |
-| Tubing ID, roughness, measured depth | Not in TRRC data | **Synthetic: you'd gather** |
-| Brine salinity and temperatures | Not in TRRC data | **Synthetic: you'd gather** |
-| Frac and treatment dates | Not in TRRC data | **Synthetic: you'd gather** |
-| Nearby-well associations and distances | Not built in the Explorer (planned, RRC-07) | **Synthetic: you'd gather** |
+| Input | Well A (UIC 000020838) | Well B (SAND BEND 2D, UIC 000056484) | Class shown to the visitor |
+|---|---|---|---|
+| Identity: UIC, API, operator, lease, county (from the API prefix) | Pinned artifact | Package; Reeves County, District 08 | **TRRC public record** |
+| Permit maximum injection pressure | 2,600 psi | 1,500 psi | **TRRC public record** |
+| Permit maximum injection volume | 14,500 bbl/day | 1,200 bbl/day | **TRRC public record** (shown for comparison, not used as a model limit) |
+| Permitted injection interval | 5,200–6,100 ft | 3,028–3,118 ft | **TRRC public record** |
+| Monthly injected liquid (bbl) and reported average/maximum injection pressure (psi, no stated basis) | Jan 2024–Apr 2026, 28 months | Jan 2024–Apr 2025, 16 months | **TRRC public record**; the calendar-day average rate is labelled **calculated** |
+| Packer depth and NAD83 coordinates, where present | Raw fields (packer 5,605 ft) | Raw fields, if present | **Raw TRRC field, not verified**; displayed only, never used in a calculation |
+| Producer oil and water volumes, producer schedules | Not in TRRC data | Not in TRRC data | **Synthetic: you'd gather** (seed-417 producers) |
+| Reservoir pressure, injectivity (J), bottomhole pressure, well tests | Not in TRRC data | Not in TRRC data | **Synthetic: you'd gather** |
+| Tubing ID, roughness, measured depth | Not in TRRC data | Not in TRRC data | **Synthetic: you'd gather** |
+| Brine salinity and temperatures | Not in TRRC data | Not in TRRC data | **Synthetic: you'd gather** |
+| Frac and treatment dates | Not in TRRC data | Not in TRRC data | **Synthetic: you'd gather** |
+| Nearby-well associations and distances | Not built in the Explorer (planned, RRC-07) | Same | **Synthetic: you'd gather** |
 
-Two inputs are **derived from TRRC with a stated assumption**. They carry that class label and name the assumption next to the value:
-- **Surface pressure limit (absolute) = 2,600 psi + 14.7.** Assumption: the permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi.
-- **Formation datum true vertical depth (TVD) = 5,200 ft.** Assumption: the top of the permitted interval is the datum, and the well is vertical to the datum.
+Two inputs per well are **derived from TRRC with a stated assumption**. They carry that class label and name the assumption next to the value:
+- **Surface pressure limit (absolute) = permit pressure + 14.7 psi**: 2,614.7 psia for Well A and 1,514.7 psia for Well B. Assumption: the permit limit is gauge pressure at the surface, and atmospheric pressure is 14.7 psi.
+- **Formation datum true vertical depth (TVD) = top of the permitted interval**: 5,200 ft for Well A and 3,028 ft for Well B. Assumption: the top of the permitted interval is the datum, and the well is vertical to the datum.
+
+The two wells differ greatly in size: Well B reported about 14–15 bbl/day against a 1,200 bbl/day permit. The sample keeps those real numbers and doesn't scale them. The tour uses the contrast to show that capacity depends on inputs the visitor gathers, not on the permit alone.
 
 The TRRC agent's rules are binding:
 - Identifiers stay original strings, with leading zeros.
@@ -65,22 +69,27 @@ The TRRC agent's rules are binding:
 
 ### 4.1 Identity and pinning
 
-The case is a new pinned file, `swd-injection-analytics/data/sample-case/sample-case.json`, with a `pin.json` recording its SHA-256 and byte count. It uses the same verify-before-decode pattern as the pressure-support example. The case identity is `swd-sample-case/uic000020838/v1`.
+The case is a new pinned file, `swd-injection-analytics/data/sample-case/sample-case.json`, with a `pin.json` recording its SHA-256 and byte count. It uses the same verify-before-decode pattern as the pressure-support example. The case identity is `swd-sample-case/uic000020838+uic000056484/v1`.
+
+Well B's package is copied byte-exact to `data/sample-case/public-uic000056484.tar`. The original test fixture stays where it is, unchanged.
 
 The file records:
-- **TRRC part:** the TRRC artifact ID, its manifest SHA-256 and the exact field values it uses. These are re-checked against the existing pinned Explorer files at load; on any mismatch, loading is refused.
+- **TRRC part, per well:** the TRRC artifact ID, its manifest SHA-256 and the exact field values it uses. At load these are re-checked against the pinned Explorer files (Well A) and the verified package (Well B); on any mismatch, loading is refused.
 - **Synthetic part:** the seed-417 generator identity and every synthetic and derived input, each with its class and assumption text.
 
 A generator script makes it reproducible, `scripts/create-sample-case.mjs`, which follows the pattern of `create-pressure-support-example.mjs`.
 
 ### 4.2 Wells
 
-- **Injector 1** is the real TRRC well, displayed by UIC `000020838`.
+- **Injector 1** is Well A, displayed by UIC `000020838`.
+- **Injector 2** is Well B, displayed as SAND BEND 2D, UIC `000056484`. It replaces the fictional seed-417 injector.
+- For both injectors:
   - From TRRC: identity, permit limits and interval, plus the two derived inputs above.
   - Synthetic: J, reservoir pressure, availability, tubing and fluid.
-  - Its real 28-month history appears in Injector history.
-- **Injector 2** is the existing fictional seed-417 injector, entirely synthetic.
+  - Their real monthly histories appear in Injector history.
 - **Producers and schedules** are the existing seed-417 synthetic producers and scheduled new producer.
+
+No fictional injector remains in the sample.
 
 ### 4.3 Calculations
 
@@ -106,7 +115,7 @@ Synthetic values never fill gaps in customer data. A persistent banner shows "Sa
 ## 5. One-click load
 
 A primary button on Start, **Try it with sample data**, plus the same action on the Data page, does this:
-1. Fetch the sample file and verify it against its pin and the pinned TRRC files.
+1. Fetch the sample file and verify it against its pin, Well A's pinned Explorer files and Well B's package.
 2. Select it as the planning source.
 3. Load and calculate the pressure-support example.
 4. Calculate the disposal case, then a default parameter sweep (existing defaults: 0.5×–1.5× of base, 5 points).
@@ -126,7 +135,7 @@ The tour is a **small custom in-app step panel**: one new browser module and its
 
 ### 6.2 Behaviour
 
-- **Start.** It starts from **Take the guided tour**, offered after the sample loads and also on Start. The tour loads the sample first if it isn't already loaded.
+- **Start.** It starts only when the visitor clicks **Take the guided tour** (owner decision); it never starts automatically. The button is offered after the sample loads and also on Start. The tour loads the sample first if it isn't already loaded.
 - **Panel.** The panel is bottom-right on desktop and a bottom sheet on narrow screens. It shows:
   - "Step n of 7";
   - a heading;
@@ -141,7 +150,7 @@ The tour is a **small custom in-app step panel**: one new browser module and its
 
 | # | Tool (route) | What the visitor sees | From TRRC | You'd gather |
 |---|---|---|---|---|
-| 1 | Injector history (`#injection/publicTrends`) | The real 28 months of injected volume and reported pressure for UIC 000020838, against its permit limits | Identity, permit pressure and volume, interval, monthly volumes, reported pressures | Pressure basis/datum, bottomhole pressure, annulus data |
+| 1 | Injector history (`#injection/publicTrends`) | Real injected volume and reported pressure for both wells against their permit limits: 28 months for UIC 000020838 and 16 months for SAND BEND 2D, with a well switch | Identity, permit pressure and volume, interval, monthly volumes, reported pressures | Pressure basis/datum, bottomhole pressure, annulus data |
 | 2 | Histories (`#production/history`) | Produced-water histories for the sample producers | None: TRRC has no producer data in our source | Monthly producer water (and oil) by well, with units and calendar basis |
 | 3 | Fit & forecast (`#production/forecast`) | Frozen forecast with training cutoff and holdout | None | Enough history: at least 3 positive months per producer |
 | 4 | Capacity assessment (`#injection/comparison`) | Demand against capacity, and shortfall months | Permit surface limit and datum, derived with the stated assumptions | Reservoir pressure, J, tubing, availability, schedules |
@@ -159,6 +168,10 @@ This is a downloadable CSV, plus the same content as a printable on-page list. I
 
 It is generated from the sample file itself, so the checklist always matches the case.
 
+### 6.5 Injector history with two wells
+
+Injector history currently shows one TRRC record at a time. While the sample is active, a small **Well** switch (UIC 000020838 / SAND BEND 2D) appears above the chart. Each choice renders through the existing single-record view and its export path, so each export still carries exactly one artifact and its pin. The two wells are never merged into one series. Outside the sample, the page behaves exactly as it does today.
+
 ## 7. Sample import files
 
 The real fixtures from `tests/fixtures/import/` are copied, byte-exact, to `swd-injection-analytics/data/samples/`, which the app already serves:
@@ -172,6 +185,7 @@ A `samples/README` gives the column mapping. The Import panel gets **Download a 
 
 New:
 - `data/sample-case/sample-case.json` and `data/sample-case/pin.json`
+- `data/sample-case/public-uic000056484.tar`: a byte-exact copy of the existing test fixture
 - `scripts/create-sample-case.mjs`
 - `src/sampleCase.ts`: verification, provenance classes and the checklist builder; pure and tested
 - `web/sample-tour.mjs` and `web/sample-tour.css`
@@ -181,7 +195,7 @@ New:
 
 Existing files touched, kept small:
 - `web/index.html`: buttons and a stylesheet link
-- `web/import-ui.mjs`: a `sample` source mode in the existing source switch, plus banner and download links
+- `web/import-ui.mjs`: a `sample` source mode in the existing source switch, plus the banner, download links and the sample-only Injector history well switch
 - possibly `web/workspace-views.mjs`: the Reports checklist card
 
 No calculation module (`src/*` engineering code) is modified.
@@ -190,7 +204,9 @@ No calculation module (`src/*` engineering code) is modified.
 
 Unit tests (Node test runner, direct Node paths):
 - The sample file verifies against its pin, and a tampered byte is rejected before decoding.
-- Every TRRC-classed value equals the pinned Explorer artifact, and a mismatch refuses the load.
+- Every TRRC-classed value equals its source: Well A's pinned Explorer artifact and Well B's verified package. A mismatch for either well refuses the load.
+- Well B's served package matches the recorded package SHA-256 and byte count. The original test fixture is unchanged.
+- Each injector's derived surface limit and datum match its own permit values (2,614.7 psia / 5,200 ft and 1,514.7 psia / 3,028 ft).
 - Every input has exactly one class: TRRC public record, calculated, derived-with-assumption, synthetic, or raw not verified.
 - Every derived input names its assumption.
 - No TRRC value is relabelled as bottomhole pressure, and null stays null.
@@ -201,6 +217,7 @@ Unit tests (Node test runner, direct Node paths):
 Browser acceptance (local, desktop 1536×1024 and mobile 390×844, accessibility snapshots saved as evidence):
 - One click gives results in every main tool, and Reports cards are current.
 - The banner and provenance labels are visible.
+- The Injector history well switch shows each well's own history, and each export carries only that well's artifact and pin.
 - The full tour can be done by keyboard only; Exit keeps the sample.
 - Clear sample returns to "None selected".
 - Uploading a customer file exits the sample and never mixes values.
@@ -226,8 +243,8 @@ Work happens on branch `feature/sample-tour`. Because existing UI files change, 
 
 Nothing reaches `main` or Lovable before that point.
 
-## 11. Open questions
+## 11. Owner decisions (October 14, 2026)
 
-1. Is "Try it with sample data" the right label, or do you prefer "Explore with a sample well"?
-2. Should the tour start automatically for first-time visitors, or only on click? The proposal is only on click, because the app has no stored visit state, which matches the session-only rule.
-3. A second real TRRC well (SAND BEND 2D, UIC 000056484, 16 months) could replace the fictional Injector 2 later. Version 1 keeps one real well.
+1. Button label: **"Try it with sample data"**.
+2. Tour start: **only on click**. There is no automatic start and no stored visit state.
+3. Wells: **two real TRRC wells in version 1**. SAND BEND 2D (UIC 000056484) replaces the fictional Injector 2; see sections 3, 4.2 and 6.5.
