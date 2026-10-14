@@ -47,3 +47,30 @@ There are no other violations. All 35 preservation-checker tests pass, including
 - The compared scenario in Capacity assessment equals the base scenario (J factor 1, same tubing and availability), so "Compared effect" is 0 until the visitor changes a comparison input.
 - On mobile, the Data provenance table scrolls sideways inside its own container. That is the app's existing table pattern.
 - Independent review: see the final-review entry in the ledger and the owner summary.
+
+## Independent review (October 14, 2026)
+
+**Reviewer:** Claude Opus, as a read-only general-purpose reviewer, over `a317aa3..1b662c6`. The workflow's named reviewer model is not available in this harness.
+
+**Verdict:** ready to merge with fixes. No Critical findings.
+
+**Fixed, each shown failing in the browser and then passing** (`review-fixes-browser-checks.sh`, F1–F7):
+- Choosing another source during a load now cancels it.
+- Leaving the sample restores every field the sample filled and removes its labels.
+- The hydraulics reset clears TRRC labels.
+- Sample-mode producer exports no longer embed the demo's fictional injectors (also covered by a unit test).
+- A failed first load stays visible and names the failed step.
+- The well switch keeps keyboard focus.
+
+After the fixes:
+- The nested suite passes 433/433, plus 248 oracle comparisons with 0 failures.
+- The preservation-checker tests pass 35/35.
+- The one-click load, per-well exports and tour re-checked clean.
+
+**Deferred minors:**
+- A cancelled reload can leave a "schedule changed" block until the sample is reloaded.
+- Pressing **Try it with sample data** while the tour is open leaves the panel on a stale stop.
+- The mobile tour sheet can cover the end of a page.
+- The capacity export names the surface-limit assumption only through the sample ID.
+- The "Active dataset" bar on Injector history shows the well's record.
+- One extra checker test is missing.
