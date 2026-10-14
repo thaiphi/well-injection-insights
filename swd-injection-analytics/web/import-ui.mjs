@@ -7,6 +7,7 @@ import {publicEvidence,demoEvidence} from './app.mjs';
 import {createImportState,presentationGates,tableCsv,exportEvidence,chartAxis} from './workspace-state.mjs';
 import {disposalContext} from './disposal-context.mjs';
 import {mountLiteratureCase} from './literature-case.mjs';
+import {mountPressureContext} from './pressure-support.mjs';
 import {mountNavigation,viewFromHash} from './navigation.mjs';
 import {renderCurveLibrary,renderSchedules,renderReports,renderScope,dataTable} from './workspace-views.mjs';
 import {mountExplorerReceiver} from './explorer-receiver.mjs';
@@ -14,6 +15,7 @@ import {createExplorerHandoff} from './explorer-handoff.mjs';
 import {explorerCalculationGate,explorerRowDisposition} from './explorer-eligibility.mjs';
 const $=id=>document.getElementById(id);
 mountLiteratureCase($('literature-workspace'));
+const pressureContext=mountPressureContext($('pressure-support-workspace'));
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const option=(select,value,label=value)=>{const o=el('option',label);o.value=value;select.append(o);};
 const fmt=v=>v===null||v===undefined?'Unavailable':typeof v==='number'?v.toLocaleString('en-US',{maximumFractionDigits:2}):String(v);
@@ -95,8 +97,8 @@ function navigate(next,{record=true,focus=true}={}){
  if(focus&&!['readiness','lineage'].includes(next))queueMicrotask(()=>{window.scrollTo({top:0,left:0});const heading=[...$('main').querySelectorAll('h1')].find(h=>h.getClientRects().length);if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}});
  $('main').dataset.view=next;
  if(focus)$('analysis-workspace').querySelector('.history-filters')?.remove();
- $('active-dataset-label').textContent=['pvt','literature','hydraulics','profiles'].includes(next)?'Planning dataset · separate from this tool':'Active dataset';
- for(const id of ['start','curve','schedule','scope','reports','hydraulics','data','pvt','literature','disposal','analysis'])$(`${id}-workspace`).hidden=true;
+ $('active-dataset-label').textContent=['pvt','literature','hydraulics','profiles','pressureSupport'].includes(next)?'Planning dataset · separate from this tool':'Active dataset';
+ for(const id of ['start','curve','schedule','scope','reports','hydraulics','data','pvt','literature','disposal','analysis','pressure-support'])$(`${id}-workspace`).hidden=true;
  $('demo-workbook').hidden=true;$('public-workbook').hidden=true;
  updateNavigation(next,{record});
  $('context-revision').textContent='Session only · no saved case';
@@ -113,7 +115,8 @@ function navigate(next,{record=true,focus=true}={}){
  if(['hydraulics','profiles'].includes(next)){$('hydraulics-workspace').hidden=false;return;}
  if(['scenarios','sensitivity'].includes(next)){$('disposal-workspace').hidden=false;document.dispatchEvent(new Event('disposal-open'));$('disposal-title').textContent=next==='sensitivity'?'Scenarios & parameter sweeps':'Compare operating scenarios';$('disposal-sensitivity').hidden=next!=='sensitivity';$('disposal-input-details').open=next==='scenarios';if(next==='sensitivity')$('disposal-input-details').before($('disposal-sensitivity'));return;}
  if(['readiness','lineage'].includes(next)){$('data-workspace').hidden=false;$(next==='readiness'?'import-readiness':'source-lineage').scrollIntoView({block:'start'});return;}
- $('active-dataset-label').textContent=next==='pvt'||next==='literature'?'Planning dataset · separate from this view':'Active dataset';
+ if(next==='pressureSupport'){$('pressure-support-workspace').hidden=false;pressureContext.open();return;}
+ $('active-dataset-label').textContent=next==='pvt'||next==='literature'||next==='pressureSupport'?'Planning dataset · separate from this view':'Active dataset';
  view=next;document.querySelectorAll('[data-view]').forEach(b=>{if(b.dataset.view===next)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
  $('data-workspace').hidden=next!=='data';$('pvt-workspace').hidden=next!=='pvt';$('literature-workspace').hidden=next!=='literature';$('disposal-workspace').hidden=next!=='comparison';$('analysis-workspace').hidden=true;$('demo-workbook').hidden=true;$('public-workbook').hidden=true;
  if(next==='comparison'){$('disposal-title').textContent='Capacity assessment';$('disposal-sensitivity').hidden=true;document.dispatchEvent(new Event('disposal-open'));return;}

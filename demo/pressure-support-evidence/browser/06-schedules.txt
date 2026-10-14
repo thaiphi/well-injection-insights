@@ -1,0 +1,116 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Active dataset
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Production & demand
+  - navigation "Production & demand workspaces":
+    - button "Histories"
+    - button "Fit & forecast"
+    - button "Reconciliation"
+    - button "Curve library"
+    - button "Schedules"
+    - button "Demand"
+    - button "Pressure-support context"
+  - region "Development schedules":
+    - heading "Development schedules" [active] [level=1]
+    - paragraph: Existing producers retain their frozen forecasts. Distinct scheduled additions contribute separately to total demand.
+    - heading "Demonstration schedule controls" [level=2]
+    - text: New producer start month
+    - combobox "New producer start month":
+      - option "Jan 2026"
+      - option "Feb 2026"
+      - option "Mar 2026"
+      - option "Apr 2026" [selected]
+      - option "May 2026"
+      - option "Jun 2026"
+      - option "Jul 2026"
+      - option "Aug 2026"
+      - option "Sep 2026"
+      - option "Oct 2026"
+      - option "Nov 2026"
+      - option "Dec 2026"
+    - text: Ramp to full rate (months)
+    - spinbutton "Ramp to full rate (months)": "1"
+    - text: Monthly availability (fraction)
+    - spinbutton "Monthly availability (fraction)": "1"
+    - paragraph: These controls update the same original workbook assumptions; the frozen existing-producer forecast and holdout remain unchanged.
+    - region "Declared fictional producer identities and schedules":
+      - table "Declared fictional producer identities and schedules":
+        - caption: Declared fictional producer identities and schedules
+        - rowgroup:
+          - row "Producer Group Cohort Contribution Start Initial rate (STB/day) Decline (fraction/month) Ramp (months)":
+            - columnheader "Producer"
+            - columnheader "Group"
+            - columnheader "Cohort"
+            - columnheader "Contribution"
+            - columnheader "Start"
+            - columnheader "Initial rate (STB/day)"
+            - columnheader "Decline (fraction/month)"
+            - columnheader "Ramp (months)"
+        - rowgroup:
+          - row "FICTIONAL-PROD-01 FICTIONAL-GROUP-A FICTIONAL-EXISTING Frozen existing forecast 2025-01 Fitted snapshot Fitted snapshot Not applicable":
+            - cell "FICTIONAL-PROD-01"
+            - cell "FICTIONAL-GROUP-A"
+            - cell "FICTIONAL-EXISTING"
+            - cell "Frozen existing forecast"
+            - cell "2025-01"
+            - cell "Fitted snapshot"
+            - cell "Fitted snapshot"
+            - cell "Not applicable"
+          - row "FICTIONAL-PROD-02 FICTIONAL-GROUP-B FICTIONAL-EXISTING Frozen existing forecast 2025-01 Fitted snapshot Fitted snapshot Not applicable":
+            - cell "FICTIONAL-PROD-02"
+            - cell "FICTIONAL-GROUP-B"
+            - cell "FICTIONAL-EXISTING"
+            - cell "Frozen existing forecast"
+            - cell "2025-01"
+            - cell "Fitted snapshot"
+            - cell "Fitted snapshot"
+            - cell "Not applicable"
+          - row "FICTIONAL-NEW-01 FICTIONAL-GROUP-A FICTIONAL-DEVELOPMENT Assumed addition 2026-04 6,000 0.025 1":
+            - cell "FICTIONAL-NEW-01"
+            - cell "FICTIONAL-GROUP-A"
+            - cell "FICTIONAL-DEVELOPMENT"
+            - cell "Assumed addition"
+            - cell "2026-04"
+            - cell "6,000"
+            - cell "0.025"
+            - cell "1"
+    - paragraph: Every selected existing forecast and addition must reconcile to the total. Overlapping identities or invalid contributions block complete demand; independent forecasts remain inspectable.
+    - button "Inspect demand contributions"
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

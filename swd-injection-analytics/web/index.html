@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="/hydraulics.css">
   <link rel="stylesheet" href="/redesign.css">
   <link rel="stylesheet" href="/explorer-receiver.css">
+  <link rel="stylesheet" href="/pressure-support.css">
   <script type="module" src="/app.mjs"></script><script type="module" src="/import-ui.mjs"></script><script type="module" src="/brine-pvt.mjs"></script><script type="module" src="/disposal-case.mjs"></script><script type="module" src="/disposal-sensitivity.mjs"></script>
 </head>
 <body>
@@ -129,6 +130,7 @@
       <section id="pvt-results" hidden><div class="panel pvt-result-heading"><h2>Calculated fluid properties</h2><p id="pvt-context"></p><p class="small">Assumed inputs · calculated outputs · pyResToolbox gas-free browser method /1. Chart axes use the displayed property range. Full methods, units, source hashes and limitations accompany each download.</p></div><div id="pvt-charts" class="pvt-charts"></div><details class="panel pvt-table-details" open><summary>Pressure sweep table</summary><div id="pvt-table" class="table-scroll" role="region" tabindex="0" aria-label="PVT numerical results"></div></details></section>
     </section>
     <section id="literature-workspace" hidden aria-label="Published engineering example"></section>
+    <section id="pressure-support-workspace" hidden aria-labelledby="pressure-support-title"></section>
     <details id="acceptance-blockers" class="blockers"><summary>Acceptance blockers — full acceptance remains open</summary><p>Existing-producer demand, spreadsheet errors, finite-result guards and exhibit consistency have focused checks. Failed calculations withhold their affected outputs while independent analyses remain usable. Technical CSV, SVG and PDF verify the exhibit content hash; this establishes consistency, not authorship. Legacy forecasts without raw training history remain explicitly unverified.</p><ul><li>The live brine reference now uses the source-checked PVT method with explicit NaCl mass units. Retained historical Nexus artifacts preserve their original method; its incorrect Bw pressure trend is not corrected or endorsed by the carried tolerance.</li><li>STORED and compressed XLSX payloads have CRC and expanded-size checks before workbook parsing; original upload bytes and hashes are preserved. Native decompression does not prove complete trailing-byte consumption or a hard memory ceiling. Comprehensive decompression/dependency review remains open.</li><li>The cited steady radial example (A6), depth-dependent gas-free brine wellbore (SWD-10) and one-at-a-time capacity sweeps (SWD-12) have bounded calculation and export evidence. They remain engineering screening, not sustainable-capacity or calibrated-response forecasts. Transient/layered/calibrated models (SWD-11), comprehensive parser review and two-app acceptance remain open.</li></ul></details>
 
     <div id="app-error" class="notice error" role="alert" hidden></div>

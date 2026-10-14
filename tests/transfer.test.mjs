@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile, readdir, stat } from "node:fs/promises";
-import { createHash } from "node:crypto";
+import { verifyPreservation } from "../scripts/verify-preservation.mjs";
 import { resolve, join } from "node:path";
 import { staticEntry } from "../scripts/static-entry.mjs";
 import { PORTFOLIO_ENTRY } from "../scripts/portfolio-entry.mjs";
@@ -10,14 +10,10 @@ const root = resolve(".");
 const app = join(root, "swd-injection-analytics");
 const publicRoot = join(root, "public");
 
-test("every transferred original source, fixture, evidence and PDF keeps its exact hash", async () => {
-  const manifest = JSON.parse(await readFile("migration/source-manifest.json", "utf8"));
-  assert.equal(manifest.files.length, 182);
-  for (const entry of manifest.files) {
-    const bytes = await readFile(join(app, entry.path));
-    assert.equal(bytes.length, entry.bytes, entry.path);
-    assert.equal(createHash("sha256").update(bytes).digest("hex"), entry.sha256, entry.path);
-  }
+test("every original source, fixture, evidence and PDF passes immutable or reviewed-delta preservation", async () => {
+  const result = await verifyPreservation(root);
+  assert.equal(result.checked, 182, "all transferred originals remain accounted for");
+  assert.deepEqual(result.violations, [], "pending, altered or unreviewed bytes cannot pass acceptance");
 });
 
 test("static assembly preserves original web assets, compiled model and public evidence bytes", async () => {
@@ -75,3 +71,4 @@ test("home entry retains handoff query and workspace fragment on a full-document
   );
   assert.equal(staticEntry("?x=%2B", "#fluid/pvt"), "/analytics/index.html?x=%2B#fluid/pvt");
 });
+

@@ -41,6 +41,7 @@ const REPORTS=[
  {name:'Independent brine PVT',description:'Bw, density, viscosity and compressibility at declared pressure, temperature and NaCl composition.',view:'pvt',prefix:'pvt',formats:['json','csv','svg']},
  {name:'Worked pressure / skin study',description:'Cited fixture, equations, units and assumed skin comparison. Separate from the active planning dataset.',view:'literature',selector:'[data-literature-download="FORMAT"]',formats:['json','csv','svg']},
  {name:'Standalone hydraulics',description:'Declared independent well/fluid/rate assumptions, hydraulic contributions and supported profiles.',view:'hydraulics',selector:'[data-hyd-export="FORMAT"]',formats:['json','csv','svg']},
+ {name:'Pressure-support context',description:'Synthetic context, separate from capacity; not a pressure-support determination. Producer rates, water cut, selected injection volumes, frac annotations, exact source bytes and row lineage.',view:'pressureSupport',prefix:'pressure-support',formats:['json','csv','svg']},
 ];
 export function renderReports(ctx,evidence=false){
  const root=$('reports-workspace');heading(root,'reports-title',evidence?'Evidence & acceptance limits':'Reports & evidence',evidence?'Input readiness, numerical validation and product acceptance are separate.':'Download current result snapshots. Each report retains its own source identity, assumptions and supported formats.');

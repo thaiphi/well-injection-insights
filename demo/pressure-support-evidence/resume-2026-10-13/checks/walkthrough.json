@@ -1,0 +1,69 @@
+{
+  "recordedAt": "2026-10-14T04:45:00Z",
+  "origin": "http://127.0.0.1:4317",
+  "revision": "c7a1cae76bc11013fdcb0951bfc942d5ed7a80b6 plus uncommitted working tree (194-file snapshot unchanged)",
+  "contextFixtureSha256": "dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab",
+  "servedBytesCheck": "pressure-support.css 84c00e23..., pressure-support.mjs 749f421f..., dist/pressureSupport.js 9fdd55a1..., example.json dfb32bed... equal to working tree",
+  "browser": "Chrome via chrome-devtools MCP, CSS viewport 1536x1024 DPR 1, local origin only",
+  "method": "UI clicks/fills through the accessibility tree. Two exceptions are noted per step: one scripted validate+confirm click during the re-confirmation in priority 3, and test-only page instrumentation in priority 4 (init script delays crypto.subtle.digest and counts createObjectURL/anchor downloads; no source file changed).",
+  "priorities": [
+    {
+      "id": 1,
+      "name": "CSV/XLSX selection, worksheet, mapping, units, validation, quarantine, confirmation and dependent-result invalidation",
+      "status": "PASS",
+      "steps": [
+        "seed417-history.xlsx: worksheets 'Notes' and 'Water data' listed; header row 1; 48 original rows previewed (i02, i03).",
+        "Wrong worksheet 'Notes': 0 data rows, only note text as a column.",
+        "Validation with nothing mapped: 0 accepted / 48 quarantined; reasons 'Map each required field to a distinct existing column', unsupported unit, time basis; Confirm disabled.",
+        "Mapped Producer/Group/Month/Water with STB/day + calendar-month: 48 quarantined 'Declare stock-tank rate or calendar-month volume with compatible time basis'; Confirm disabled.",
+        "STB/day + calendar-day: 48 accepted; 2025-01 3,753.340864740312 STB/d x 31 d = 116,353.567 bbl; 2025-02 3,561.093 x 28 = 99,710.607 bbl.",
+        "Confirmed: header 'User-provided · synthetic · seed417-history.xlsx'; SHA-256 2a4cb53e...07925 equals sha256sum of the fixture; History/Forecast/Reconciliation/Grouped Ready; injector-dependent analyses 'Select distinct injector identities'; public trends require the pinned Explorer artifact (i04).",
+        "invalid-history.csv (5 rows): all quarantined with exact reasons - missing producerId, missing groupId, month 2025-13, water -1 'Expected finite nonnegative value', water 'true' 'no locale or boolean coercion'; Confirm disabled; 'Resolve the listed mapping or row errors before confirming this profile.'",
+        "Selecting a new file for a confirmed profile withdraws that confirmation (pre-existing import-ui.mjs:90/248 behaviour; pressure-support diff to import-ui.mjs only adds navigation).",
+        "Dependent invalidation: after a frozen forecast, changing Content assertion to 'Measured - unverified' gives 'Inputs changed. Review validation and confirm the revised profile before running dependent results.'; Fit & forecast shows no table and all three downloads disabled; the independent pressure-support context result and downloads remain current."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Customer and frozen-forecast results survive pressure-context inspection",
+      "status": "PASS",
+      "steps": [
+        "Frozen forecast on the confirmed XLSX (cutoff 2025-12, horizon 2026-01..2026-12).",
+        "Fingerprint before: table SHA-256 f185f471...e189, identity SHA-256 4b8f25f0...54c5 (p02).",
+        "Pressure-support context: header 'Planning dataset · separate from this tool' with the user XLSX still active; 'user · separate from the active planning dataset; never substituted'; synthetic example loaded and calculated; 2024-02 row 1,000 / 250 / 1,250 / 20% / 87,000 + 58,000 = 145,000.",
+        "Browser Back to #production/forecast: table and identity SHA-256 identical; active dataset unchanged (p04)."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Existing-workspace insufficient-data and zero-availability states",
+      "status": "PASS (scope as listed)",
+      "steps": [
+        "Insufficient data: cutoff 2025-02 with Apply -> 'FICTIONAL-PROD-01: need at least three distinct positive training observations through cutoff' and same for PROD-02; no table, downloads disabled, no NaN/Infinity (e02). Editing the period before Apply clears results and disables downloads.",
+        "No injectors: readiness for Injection performance / Demand & capacity 'Select distinct injector identities'.",
+        "Zero availability (synthetic workbook, injector availability 0%): 12 of 12 shortfall months, unmet 3,127,925 bbl; capacity explicitly 0 bbl Jan-Jul; expansion only from Aug: 2,000 STB/d x 31 = 62,000 bbl; independent check: total demand 3,433,925 - 2,000 x 153 days = 3,127,925 (e05, e06). No NaN/Infinity/undefined.",
+        "Not re-exercised in this pass: disposal-case compared-availability 0 and sensitivity-sweep edge ranges; earlier PVT/hydraulics invalid-input recovery evidence remains from the 2026-10-13 checkpoint."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Browser-timed slow-export interruption and stale programmatic exports",
+      "status": "PASS",
+      "steps": [
+        "Fresh reload: route retained, session cleared ('None selected').",
+        "Positive control: JSON download pressure-support-context-dadb99eaf2281467.json; artifact pressure-support-context/dadb99ea...54352 equals the recorded result hash.",
+        "Recalculated (new result), delay enabled (6 s per digest), clicked SVG download: status 'Preparing sealed context export…'. Producer changed to PS-DEMO-P02 at ~7.1 s while sealing continued (3 delayed digests); all download buttons disabled immediately.",
+        "After 27 s: 'Context changed during export; nothing was downloaded. Calculate again to export the current context.'; createObjectURL count unchanged (1) and no new anchor download (x02).",
+        "Stale programmatic export: with buttons disabled, element.click(), direct onclick() and dispatched click for JSON/CSV/SVG produced no blob or download (x03).",
+        "Recovery: Calculate for P02 then CSV download pressure-support-context-e32b2b9c990e6ef0.csv; 2024-09 'Zero total liquid ... water cut unavailable' (x04)."
+      ]
+    }
+  ],
+  "console": "Two browser 'issue' entries: 'A form field element should have an id or name attribute' (27 and 2). No console errors or warnings observed.",
+  "notRun": [
+    "Hosted Lovable adapter, Portfolio Supabase backend and two-app release",
+    "ESLint (engineering paths excluded by repository configuration; not installed/run)",
+    "Fresh upstream Vitest/Python reference checks",
+    "Mobile re-capture in this pass (prior 390x844 evidence stands)"
+  ]
+}

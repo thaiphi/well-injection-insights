@@ -1,0 +1,142 @@
+{
+  "preparedAt": "2026-10-12T17:25:14.834Z",
+  "purpose": "Educational demo inputs; no measured/calibrated field data",
+  "originOnImport": "user",
+  "contentAssertionsRemainUnverified": true,
+  "files": [
+    {
+      "path": "inputs/seed417-history.csv",
+      "bytes": 2926,
+      "sha256": "4ab5b0e115c5c25d37e414cbff3677464fcad3ab02f96d6e03635d913c0d7764",
+      "classification": "synthetic",
+      "source": "byte-identical copy of preserved swd-injection-analytics/tests/fixtures/import/seed417-history.csv"
+    },
+    {
+      "path": "inputs/seed417-history.xlsx",
+      "bytes": 12654,
+      "sha256": "2a4cb53ee44142fef57d3ffe6d7e0e695ac0e54fb6dbc179b1b4c79b86d07925",
+      "classification": "synthetic",
+      "source": "byte-identical copy of preserved swd-injection-analytics/tests/fixtures/import/seed417-history.xlsx"
+    },
+    {
+      "path": "inputs/assumed-injectors.csv",
+      "bytes": 433,
+      "sha256": "44996c0f7b91ae838b8bb0b5479e8e4adeee6b111a9cb8403628eaa4ad229fcc",
+      "classification": "assumed fictional scenario",
+      "source": "byte-identical copy of preserved swd-injection-analytics/tests/fixtures/import/assumed-injectors.csv"
+    },
+    {
+      "path": "inputs/demo-schedule.csv",
+      "bytes": 98,
+      "sha256": "9ec294ef5c117a0000f50e9cd26dead7df82a636c2264b12071b79a69e1598fe",
+      "classification": "assumed fictional scenario",
+      "source": "new demonstration of the existing validated import contract"
+    },
+    {
+      "path": "inputs/demo-overlap-schedule.csv",
+      "bytes": 112,
+      "sha256": "48a83e54a9f9738ae974f8202274b94d12f32c24c5b8de5f0c28e67e7e5479d0",
+      "classification": "assumed fictional scenario",
+      "source": "new demonstration of the existing validated import contract"
+    },
+    {
+      "path": "inputs/demo-50-stbd-injector.csv",
+      "bytes": 166,
+      "sha256": "d2005c1b146ebf32fd01d30ed2740caf1c9f618ba0b19a2993f6f6b5a401b71c",
+      "classification": "assumed fictional scenario",
+      "source": "new demonstration of the existing validated import contract"
+    },
+    {
+      "path": "inputs/invalid-history.csv",
+      "bytes": 199,
+      "sha256": "bfb8137d3d8813870800bd5419271630598689f6d51aea780358c3cb4d24a349",
+      "classification": "deliberately invalid demonstration",
+      "source": "byte-identical copy of preserved swd-injection-analytics/tests/fixtures/import/invalid-history.csv"
+    },
+    {
+      "path": "inputs/invalid-formulas.xlsx",
+      "bytes": 12648,
+      "sha256": "dbe3de54a6edd84cc373c330b8840d27147e0d6c94eadc5e85be78f7b4178508",
+      "classification": "deliberately invalid demonstration",
+      "source": "byte-identical copy of preserved swd-injection-analytics/tests/fixtures/import/invalid-formulas.xlsx"
+    }
+  ],
+  "mappings": {
+    "history": {
+      "profile": "history",
+      "columns": {
+        "producerId": "Producer",
+        "groupId": "Group",
+        "month": "Month",
+        "water": "Water"
+      },
+      "units": {
+        "water": "STB/day"
+      },
+      "timeBasis": "calendar-day"
+    },
+    "schedule": {
+      "profile": "schedule",
+      "columns": {
+        "producerId": "Producer",
+        "groupId": "Group",
+        "startDate": "Start",
+        "initialRate": "InitialRate",
+        "monthlyDecline": "Decline",
+        "availability": "Availability"
+      },
+      "units": {
+        "initialRate": "STB/day",
+        "monthlyDecline": "fraction/month",
+        "availability": "fraction"
+      }
+    },
+    "injector": {
+      "profile": "injector",
+      "columns": {
+        "id": "id",
+        "injectivity": "j",
+        "reservoirPressure": "pres",
+        "limitPressure": "limit",
+        "reservoirBasis": "rb",
+        "limitBasis": "lb",
+        "reservoirDatum": "rd",
+        "limitDatum": "ld",
+        "operatingCeiling": "ceiling",
+        "availability": "availability"
+      },
+      "units": {
+        "injectivity": "STB/day/psi",
+        "reservoirPressure": "psia",
+        "limitPressure": "psia",
+        "operatingCeiling": "STB/day",
+        "availability": "fraction"
+      }
+    }
+  },
+  "independentlyCheckedAnchors": [
+    {
+      "month": "2026-01",
+      "existingBbl": 180697.63606184363,
+      "additionBbl": 0,
+      "totalBbl": 180697.6360618436,
+      "capacityBbl": 1550,
+      "deficitBbl": 179147.6360618436
+    },
+    {
+      "month": "2026-04",
+      "existingBbl": 166068.81302608334,
+      "additionBbl": 180000,
+      "totalBbl": 346068.8130260831,
+      "capacityBbl": 1500,
+      "deficitBbl": 344568.8130260831
+    }
+  ],
+  "overlap": {
+    "groupedPlanningReady": false,
+    "forecastReady": true,
+    "reasons": [
+      "FICTIONAL-PROD-01: both an existing forecast and a schedule select this producer; overlapping demand is unsupported. Use a distinct new-producer identity or deselect its schedule."
+    ]
+  }
+}

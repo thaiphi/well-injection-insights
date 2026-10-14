@@ -1,0 +1,197 @@
+[
+  {
+    "name": "snapshot-build",
+    "args": [
+      "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights\\node_modules\\typescript\\bin\\tsc",
+      "-p",
+      "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights\\tmp\\pressure-support-execution-2026-10-12\\final-check\\tsconfig.json"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "full-analytics-tests",
+    "args": [
+      "--test",
+      "tests/analysis-isolation.test.mjs",
+      "tests/black-oil-integration.test.mjs",
+      "tests/brine-adapter.test.mjs",
+      "tests/brine-physics-boundary.test.mjs",
+      "tests/brine-pvt.test.mjs",
+      "tests/disposal-case.test.mjs",
+      "tests/disposal-context.test.mjs",
+      "tests/disposal-sensitivity.test.mjs",
+      "tests/engineering.test.mjs",
+      "tests/exhibit-integrity.test.mjs",
+      "tests/exhibit-pdf.test.mjs",
+      "tests/exhibit-svg.test.mjs",
+      "tests/exhibit.test.mjs",
+      "tests/explorer-evidence-eligibility.test.mjs",
+      "tests/explorer-handoff.test.mjs",
+      "tests/explorer-package.test.mjs",
+      "tests/explorer-receiver.test.mjs",
+      "tests/explorer-scope.test.mjs",
+      "tests/explorer-transfer.test.mjs",
+      "tests/export-integrity.test.mjs",
+      "tests/fit-display.test.mjs",
+      "tests/hydraulics-workspace.test.mjs",
+      "tests/import-analysis.test.mjs",
+      "tests/import-demand.test.mjs",
+      "tests/import.test.mjs",
+      "tests/literature-example.test.mjs",
+      "tests/navigation.test.mjs",
+      "tests/numerical-safety.test.mjs",
+      "tests/parser-correctness.test.mjs",
+      "tests/planning-fixture.test.mjs",
+      "tests/planning.test.mjs",
+      "tests/pressure-support-export.test.mjs",
+      "tests/pressure-support-state.test.mjs",
+      "tests/pressure-support.test.mjs",
+      "tests/public-artifact.test.mjs",
+      "tests/readiness.test.mjs",
+      "tests/server.test.mjs",
+      "tests/wellbore-traverse.test.mjs",
+      "tests/workspace.test.mjs",
+      "tests/xlsx-boundary.test.mjs",
+      "tests/xlsx-import.test.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights\\tmp\\pressure-support-execution-2026-10-12\\final-check",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": "rkbook (4.691ms)\n✔ DEFLATE validation cancels streaming output immediately when actual expansion exceeds the budget (356.306ms)\n✔ unsupported native raw-DEFLATE decoding fails explicitly while STORED workbooks still work (8.6165ms)\n✔ native DEFLATE trailing-data observation remains a documented decoder compatibility limit (18.8539ms)\n✔ zero-expanded unused DEFLATE members are validated instead of silently skipped (12.8203ms)\n✔ stream cancellation failures preserve the primary expanded-size rejection (1.2071ms)\n✔ real XLSX bytes and equivalent CSV normalize equally with user synthetic assertion (107.5047ms)\n✔ XLSX formulas never use cached values and malformed files are rejected (44.7264ms)\nℹ tests 390\nℹ suites 0\nℹ pass 390\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 8780.459\n"
+  },
+  {
+    "name": "carried-oracles",
+    "args": [
+      "scripts/check-carried-oracles.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights\\tmp\\pressure-support-execution-2026-10-12\\final-check",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": "4 recorded cases, 28 exact pressure points, 248 comparisons, 0 failures; exclusions preserved.\n"
+  },
+  {
+    "name": "adapter-types",
+    "args": [
+      "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights\\node_modules\\typescript\\bin\\tsc",
+      "--noEmit"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "engineering-types",
+    "args": [
+      "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights\\node_modules\\typescript\\bin\\tsc",
+      "-p",
+      "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights\\swd-injection-analytics\\tsconfig.json",
+      "--noEmit"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "static-assembly",
+    "args": [
+      "scripts/prepare-swd.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "syntax-verify-preservation",
+    "args": [
+      "--check",
+      "scripts/verify-preservation.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "syntax-preservation-baseline.test",
+    "args": [
+      "--check",
+      "tests/preservation-baseline.test.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "syntax-transfer.test",
+    "args": [
+      "--check",
+      "tests/transfer.test.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "syntax-pressure-support",
+    "args": [
+      "--check",
+      "swd-injection-analytics/web/pressure-support.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "syntax-pressure-support-chart",
+    "args": [
+      "--check",
+      "swd-injection-analytics/web/pressure-support-chart.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "syntax-navigation",
+    "args": [
+      "--check",
+      "swd-injection-analytics/web/navigation.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "syntax-import-ui",
+    "args": [
+      "--check",
+      "swd-injection-analytics/web/import-ui.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  },
+  {
+    "name": "syntax-workspace-views",
+    "args": [
+      "--check",
+      "swd-injection-analytics/web/workspace-views.mjs"
+    ],
+    "cwd": "C:\\Users\\thai.phi\\Downloads\\python\\portfolio\\swd-injection-analytics\\tmp\\lovable-transfer\\well-injection-insights",
+    "status": "PASS",
+    "exitCode": 0,
+    "summary": ""
+  }
+]

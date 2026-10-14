@@ -1,0 +1,307 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Active dataset
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Injection & capacity
+  - navigation "Injection & capacity workspaces":
+    - button "Injector history"
+    - button "Injectivity"
+    - button "Capacity assessment"
+    - button "Scenarios"
+    - button "Parameter sweeps"
+    - button "Model scope"
+  - heading "Declared injectivity & pressure constraints" [active] [level=1]
+  - paragraph: "planning/seed-417/v2 | Origin: synthetic; content: synthetic histories + assumed engineering; Monthly bbl; STB/day; bottomhole psia. Seed 417; 2025 training, 2026 holdout; fictional J and pressures; see scenario controls"
+  - status
+  - text: Injector A injectivity
+  - combobox "Injector A injectivity":
+    - option "5 STB/d/psi · base case" [selected]
+    - option "2.5 STB/d/psi · lower case"
+  - text: Injector availability (fraction)
+  - slider "Injector availability (fraction)": "0.9"
+  - region "Declared injectivity & pressure constraints table":
+    - table "Declared injectivity & pressure constraints — planning/seed-417/v2; Monthly bbl; STB/day; bottomhole psia":
+      - caption: Declared injectivity & pressure constraints — planning/seed-417/v2; Monthly bbl; STB/day; bottomhole psia
+      - rowgroup:
+        - row "Injector J (STB/day/psi) Reservoir (psia) Bottomhole limit (psia) Pressure capacity (STB/day) Available (STB/day) Availability":
+          - columnheader "Injector"
+          - columnheader "J (STB/day/psi)"
+          - columnheader "Reservoir (psia)"
+          - columnheader "Bottomhole limit (psia)"
+          - columnheader "Pressure capacity (STB/day)"
+          - columnheader "Available (STB/day)"
+          - columnheader "Availability"
+      - rowgroup:
+        - row "FICTIONAL-INJ-A 5 2,000 3,500 7,500 6,750 0.9":
+          - cell "FICTIONAL-INJ-A"
+          - cell "5"
+          - cell "2,000"
+          - cell "3,500"
+          - cell "7,500"
+          - cell "6,750"
+          - cell "0.9"
+        - row "FICTIONAL-INJ-B 2.5 2,000 3,500 3,750 3,375 0.9":
+          - cell "FICTIONAL-INJ-B"
+          - cell "2.5"
+          - cell "2,000"
+          - cell "3,500"
+          - cell "3,750"
+          - cell "3,375"
+          - cell "0.9"
+  - generic "Dataset identity, units, assumptions and source lineage"
+  - 'region "FICTIONAL-INJ-A; Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day); planning/seed-417/v2"':
+    - 'img "FICTIONAL-INJ-A; Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day); planning/seed-417/v2"':
+      - generic: "0"
+      - generic: 1,000
+      - generic: 2,000
+      - generic: 3,000
+      - generic: 4,000
+      - generic: FICTIONAL-INJ-A
+      - generic: planning/seed-417/v2 | synthetic / synthetic histories + assumed engineering
+      - generic: "Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"
+      - generic: Seed 417; 2025 training, 2026 holdout; fictional J and pressures; see scenario controls
+      - generic: Complete source IDs, hashes, units and assumptions are embedded in SVG metadata.
+      - generic: "0"
+      - generic: "1000"
+      - generic: "2000"
+      - generic: "3000"
+      - generic: "4000"
+      - generic: "5000"
+      - generic: "6000"
+      - generic: "7000"
+      - generic: "8000"
+      - generic: "9000"
+      - generic: "10000"
+      - 'generic "0: 2,000 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "250: 2,050 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "500: 2,100 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "750: 2,150 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1000: 2,200 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1250: 2,250 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1500: 2,300 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1750: 2,350 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2000: 2,400 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2250: 2,450 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2500: 2,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2750: 2,550 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3000: 2,600 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3250: 2,650 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3500: 2,700 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3750: 2,750 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4000: 2,800 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4250: 2,850 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4500: 2,900 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4750: 2,950 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5000: 3,000 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5250: 3,050 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5500: 3,100 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5750: 3,150 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6000: 3,200 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6250: 3,250 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6500: 3,300 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6750: 3,350 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7000: 3,400 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7250: 3,450 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7750: 3,550 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8000: 3,600 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8250: 3,650 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8500: 3,700 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8750: 3,750 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9000: 3,800 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9250: 3,850 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9500: 3,900 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9750: 3,950 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "10000: 4,000 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - generic: Constant-J required BHP
+      - 'generic "0: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "10000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - generic: Declared pressure limit
+  - paragraph: Absolute bottomhole pressures at Formation reference depth; all pressures bottomhole psia. Rates above the pressure limit illustrate excluded operation. Declared J is an assumption, not fitted diagnostic evidence.
+  - 'region "FICTIONAL-INJ-B; Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day); planning/seed-417/v2"':
+    - 'img "FICTIONAL-INJ-B; Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day); planning/seed-417/v2"':
+      - generic: "0"
+      - generic: 1,500
+      - generic: 3,000
+      - generic: 4,500
+      - generic: 6,000
+      - generic: FICTIONAL-INJ-B
+      - generic: planning/seed-417/v2 | synthetic / synthetic histories + assumed engineering
+      - generic: "Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"
+      - generic: Seed 417; 2025 training, 2026 holdout; fictional J and pressures; see scenario controls
+      - generic: Complete source IDs, hashes, units and assumptions are embedded in SVG metadata.
+      - generic: "0"
+      - generic: "1000"
+      - generic: "2000"
+      - generic: "3000"
+      - generic: "4000"
+      - generic: "5000"
+      - generic: "6000"
+      - generic: "7000"
+      - generic: "8000"
+      - generic: "9000"
+      - generic: "10000"
+      - 'generic "0: 2,000 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "250: 2,100 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "500: 2,200 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "750: 2,300 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1000: 2,400 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1250: 2,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1500: 2,600 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1750: 2,700 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2000: 2,800 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2250: 2,900 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2500: 3,000 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2750: 3,100 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3000: 3,200 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3250: 3,300 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3500: 3,400 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4000: 3,600 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4250: 3,700 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4500: 3,800 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4750: 3,900 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5000: 4,000 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5250: 4,100 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5500: 4,200 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5750: 4,300 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6000: 4,400 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6250: 4,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6500: 4,600 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6750: 4,700 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7000: 4,800 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7250: 4,900 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7500: 5,000 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7750: 5,100 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8000: 5,200 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8250: 5,300 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8500: 5,400 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8750: 5,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9000: 5,600 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9250: 5,700 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9500: 5,800 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9750: 5,900 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "10000: 6,000 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - generic: Constant-J required BHP
+      - 'generic "0: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "1750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "2750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "3750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "4750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "5750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "6750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "7750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "8750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9250: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9500: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "9750: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - 'generic "10000: 3,500 Bottomhole psia; horizontal axis: stock-tank injection rate (STB/day)"'
+      - generic: Declared pressure limit
+  - paragraph: Absolute bottomhole pressures at Formation reference depth; all pressures bottomhole psia. Rates above the pressure limit illustrate excluded operation. Declared J is an assumption, not fitted diagnostic evidence.
+  - button "Download analysis & lineage JSON"
+  - button "Download displayed table CSV"
+  - button "Download displayed chart SVG"
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

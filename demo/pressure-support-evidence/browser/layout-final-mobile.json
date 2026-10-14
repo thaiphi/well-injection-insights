@@ -1,0 +1,19 @@
+{
+  "chart": {
+    "client": 349,
+    "scroll": 960,
+    "scrollLeft": 40,
+    "svgWidth": 960
+  },
+  "documentWidth": 375,
+  "textScale": 1,
+  "viewport": {
+    "dpr": 1.0000000298023224,
+    "height": 844,
+    "width": 390
+  },
+  "workspace": {
+    "client": 351,
+    "scroll": 351
+  }
+}

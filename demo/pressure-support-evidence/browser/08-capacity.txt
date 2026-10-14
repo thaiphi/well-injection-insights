@@ -1,0 +1,137 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Active dataset
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Injection & capacity
+  - navigation "Injection & capacity workspaces":
+    - button "Injector history"
+    - button "Injectivity"
+    - button "Capacity assessment"
+    - button "Scenarios"
+    - button "Parameter sweeps"
+    - button "Model scope"
+  - region "Capacity assessment":
+    - heading "Capacity assessment" [active] [level=1]
+    - paragraph: Can the selected wells meet forecast water demand under the declared pressure constraints?
+    - paragraph:
+      - strong: Engineering screening · full acceptance open.
+      - text: Compare constant injectivity with uniform-fluid or depth-dependent brine hydraulics. These maximum envelopes do not predict sustainable capacity, pressure buildup, interference or fracture behavior.
+    - generic "Case workflow":
+      - generic: 1 · Confirm demand
+      - generic: 2 · Declare fluid & wells
+      - generic: 3 · Compare constraints
+      - generic: 4 · Inspect & export
+    - generic "Demand source, forecast & coverage"
+    - generic "Fluid, well geometry & scenario assumptions"
+    - heading "2. Fluid assumptions" [level=2]
+    - text: Case name
+    - textbox "Case name": Disposal screening case
+    - text: Reference pressure (psia)
+    - spinbutton "Reference pressure (psia)": "3000"
+    - text: Uniform / bottomhole temperature (°F)
+    - spinbutton "Uniform / bottomhole temperature (°F)": "180"
+    - text: NaCl (wt%)
+    - spinbutton "NaCl (wt%)": "5"
+    - text: Wellbore model
+    - combobox "Wellbore model":
+      - option "Uniform reference fluid (original screen)" [selected]
+      - option "Depth-dependent brine pressure & temperature"
+    - paragraph: The pyResToolbox brine adaptation supplies Bw, density and viscosity at the reference condition, held uniform throughout the pipe. NaCl mass percent is not TDS mg/L.
+    - complementary:
+      - heading "What data do I need?" [level=2]
+      - paragraph:
+        - strong: "History:"
+        - text: confirmed produced-water rates, producer identities and training cutoff; optional schedules for distinct new producers.
+      - paragraph:
+        - strong: "Each well:"
+        - text: stock-tank J, reservoir and bottomhole limiting pressures at the same declared datum, operating ceiling and availability. Then enter MD/TVD measured down from the wellhead to that datum, tubing ID, roughness and a separate absolute surface limit.
+      - paragraph:
+        - strong: "Fluid:"
+        - text: reference absolute pressure, temperature and NaCl composition. The demonstration supplies illustrative assumptions. User geometry starts blank and must be declared.
+      - paragraph: No permit limit, public monthly pressure or guessed geometry becomes a calibrated engineering input.
+    - heading "Well geometry & pressure limits" [level=2]
+    - button "Use illustrative geometry"
+    - paragraph: Core J, bottomhole pressures and availability come from the selected scenario/profile below. Geometry and surface limits are separate case assumptions. The original workbook's lumped expansion is excluded; only the explicitly listed wells contribute capacity.
+    - group "FICTIONAL-INJ-A":
+      - generic: FICTIONAL-INJ-A
+      - paragraph: "Selected inputs: J 5 STB/day/psi · reservoir 2,000 psia · bottomhole limit 3,500 psia · ceiling 9,000 STB/day · availability 0.9."
+      - paragraph: Bottomhole absolute pressures at Formation reference depth; all pressures bottomhole psia. Enter depths from this wellhead to that exact datum.
+      - text: TVD below wellhead (ft)
+      - spinbutton "FICTIONAL-INJ-A TVD below wellhead (ft)": "3000"
+      - text: Measured depth (ft)
+      - spinbutton "FICTIONAL-INJ-A Measured depth (ft)": "3300"
+      - text: Tubing ID (in)
+      - spinbutton "FICTIONAL-INJ-A Tubing ID (in)": "4.5"
+      - text: Roughness (in)
+      - spinbutton "FICTIONAL-INJ-A Roughness (in)": "0.0006"
+      - text: Surface limit (psia)
+      - spinbutton "FICTIONAL-INJ-A Surface limit (psia)": "1500"
+    - group "FICTIONAL-INJ-B":
+      - generic: FICTIONAL-INJ-B
+      - paragraph: "Selected inputs: J 2.5 STB/day/psi · reservoir 2,000 psia · bottomhole limit 3,500 psia · ceiling 5,000 STB/day · availability 0.9."
+      - paragraph: Bottomhole absolute pressures at Formation reference depth; all pressures bottomhole psia. Enter depths from this wellhead to that exact datum.
+      - text: TVD below wellhead (ft)
+      - spinbutton "FICTIONAL-INJ-B TVD below wellhead (ft)": "3000"
+      - text: Measured depth (ft)
+      - spinbutton "FICTIONAL-INJ-B Measured depth (ft)": "3300"
+      - text: Tubing ID (in)
+      - spinbutton "FICTIONAL-INJ-B Tubing ID (in)": "4.5"
+      - text: Roughness (in)
+      - spinbutton "FICTIONAL-INJ-B Roughness (in)": "0.0006"
+      - text: Surface limit (psia)
+      - spinbutton "FICTIONAL-INJ-B Surface limit (psia)": "1500"
+    - heading "3. Compare one well" [level=2]
+    - paragraph: Hold demand and all other wells fixed. This is a sensitivity, with no recommendation or predicted treatment response.
+    - text: Compared well
+    - combobox "Compared well":
+      - option "FICTIONAL-INJ-A" [selected]
+      - option "FICTIONAL-INJ-B"
+    - text: J multiplier
+    - spinbutton "J multiplier": "1"
+    - text: Compared tubing ID (in)
+    - spinbutton "Compared tubing ID (in)": "4.5"
+    - text: Compared availability (fraction)
+    - spinbutton "Compared availability (fraction)": "0.9"
+    - button "Calculate & compare case"
+    - alert
+    - status: Source inputs changed. Review geometry/fluid assumptions and calculate the revised case.
+    - button "Download case JSON" [disabled]
+    - button "Download case CSV" [disabled]
+    - button "Download case chart SVG" [disabled]
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

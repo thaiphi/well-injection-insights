@@ -1,0 +1,273 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Active dataset
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Production & demand
+  - navigation "Production & demand workspaces":
+    - button "Histories"
+    - button "Fit & forecast"
+    - button "Reconciliation"
+    - button "Curve library"
+    - button "Schedules"
+    - button "Demand"
+    - button "Pressure-support context"
+  - heading "Producer water histories" [active] [level=1]
+  - paragraph: "planning/seed-417/v2 | Origin: synthetic; content: synthetic histories + assumed engineering; Monthly bbl; STB/day; bottomhole psia. Seed 417; 2025 training, 2026 holdout; fictional J and pressures; see scenario controls"
+  - status: Display filters do not change the selected demand portfolio. Missing values are unavailable, not zero; source rows and mappings remain in evidence.
+  - text: Search wells
+  - searchbox "Search producer histories"
+  - text: Producer
+  - combobox "Producer selection":
+    - option "All producers"
+    - option "FICTIONAL-PROD-01" [selected]
+    - option "FICTIONAL-PROD-02"
+  - text: Group
+  - combobox "Group selection":
+    - option "All groups" [selected]
+    - option "FICTIONAL-GROUP-A"
+    - option "FICTIONAL-GROUP-B"
+  - region "Producer water histories; Monthly produced water (bbl); planning/seed-417/v2":
+    - img "Producer water histories; Monthly produced water (bbl); planning/seed-417/v2":
+      - generic: "0"
+      - generic: 29,088.39
+      - generic: 58,176.78
+      - generic: 87,265.18
+      - generic: 116,353.57
+      - generic: Producer water histories
+      - generic: planning/seed-417/v2 | synthetic / synthetic histories + assumed engineering
+      - generic: Monthly produced water (bbl)
+      - generic: Seed 417; 2025 training, 2026 holdout; fictional J and pressures; see scenario controls
+      - generic: Complete source IDs, hashes, units and assumptions are embedded in SVG metadata.
+      - generic: 2025-01
+      - generic: 2025-03
+      - generic: 2025-05
+      - generic: 2025-07
+      - generic: 2025-09
+      - generic: 2025-11
+      - generic: 2026-01
+      - generic: 2026-03
+      - generic: 2026-05
+      - generic: 2026-07
+      - generic: 2026-09
+      - generic: 2026-11
+      - 'generic "2025-01: 116,353.57 Monthly produced water (bbl)"'
+      - 'generic "2025-02: 99,710.61 Monthly produced water (bbl)"'
+      - 'generic "2025-03: 111,939.02 Monthly produced water (bbl)"'
+      - 'generic "2025-04: 103,489.84 Monthly produced water (bbl)"'
+      - 'generic "2025-05: 107,851.78 Monthly produced water (bbl)"'
+      - 'generic "2025-06: 104,190.14 Monthly produced water (bbl)"'
+      - 'generic "2025-07: 101,702.62 Monthly produced water (bbl)"'
+      - 'generic "2025-08: 107,540.47 Monthly produced water (bbl)"'
+      - 'generic "2025-09: 102,012.32 Monthly produced water (bbl)"'
+      - 'generic "2025-10: 102,464.49 Monthly produced water (bbl)"'
+      - 'generic "2025-11: 91,319.47 Monthly produced water (bbl)"'
+      - 'generic "2025-12: 96,468.53 Monthly produced water (bbl)"'
+      - 'generic "2026-01: 108,804.42 Monthly produced water (bbl)"'
+      - 'generic "2026-02: 94,825.46 Monthly produced water (bbl)"'
+      - 'generic "2026-03: 96,443.02 Monthly produced water (bbl)"'
+      - 'generic "2026-04: 99,350.28 Monthly produced water (bbl)"'
+      - 'generic "2026-05: 97,512.81 Monthly produced water (bbl)"'
+      - 'generic "2026-06: 93,721.86 Monthly produced water (bbl)"'
+      - 'generic "2026-07: 98,043.54 Monthly produced water (bbl)"'
+      - 'generic "2026-08: 91,386.06 Monthly produced water (bbl)"'
+      - 'generic "2026-09: 89,939.38 Monthly produced water (bbl)"'
+      - 'generic "2026-10: 86,463.72 Monthly produced water (bbl)"'
+      - 'generic "2026-11: 88,934.56 Monthly produced water (bbl)"'
+      - 'generic "2026-12: 82,793.49 Monthly produced water (bbl)"'
+      - generic: Accepted produced-water history
+  - region "Producer water histories table":
+    - table "Producer water histories — planning/seed-417/v2; Monthly bbl; STB/day; bottomhole psia":
+      - caption: Producer water histories — planning/seed-417/v2; Monthly bbl; STB/day; bottomhole psia
+      - rowgroup:
+        - row "Month Producer Group Calendar rate (STB/day) Monthly volume (bbl)":
+          - columnheader "Month"
+          - columnheader "Producer"
+          - columnheader "Group"
+          - columnheader "Calendar rate (STB/day)"
+          - columnheader "Monthly volume (bbl)"
+      - rowgroup:
+        - row "2025-01 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,753.34 116,353.57":
+          - cell "2025-01"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,753.34"
+          - cell "116,353.57"
+        - row "2025-02 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,561.09 99,710.61":
+          - cell "2025-02"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,561.09"
+          - cell "99,710.61"
+        - row "2025-03 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,610.94 111,939.02":
+          - cell "2025-03"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,610.94"
+          - cell "111,939.02"
+        - row "2025-04 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,449.66 103,489.84":
+          - cell "2025-04"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,449.66"
+          - cell "103,489.84"
+        - row "2025-05 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,479.09 107,851.78":
+          - cell "2025-05"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,479.09"
+          - cell "107,851.78"
+        - row "2025-06 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,473 104,190.14":
+          - cell "2025-06"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,473"
+          - cell "104,190.14"
+        - row "2025-07 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,280.73 101,702.62":
+          - cell "2025-07"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,280.73"
+          - cell "101,702.62"
+        - row "2025-08 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,469.05 107,540.47":
+          - cell "2025-08"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,469.05"
+          - cell "107,540.47"
+        - row "2025-09 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,400.41 102,012.32":
+          - cell "2025-09"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,400.41"
+          - cell "102,012.32"
+        - row "2025-10 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,305.31 102,464.49":
+          - cell "2025-10"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,305.31"
+          - cell "102,464.49"
+        - row "2025-11 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,043.98 91,319.47":
+          - cell "2025-11"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,043.98"
+          - cell "91,319.47"
+        - row "2025-12 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,111.89 96,468.53":
+          - cell "2025-12"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,111.89"
+          - cell "96,468.53"
+        - row "2026-01 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,509.82 108,804.42":
+          - cell "2026-01"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,509.82"
+          - cell "108,804.42"
+        - row "2026-02 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,386.62 94,825.46":
+          - cell "2026-02"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,386.62"
+          - cell "94,825.46"
+        - row "2026-03 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,111.07 96,443.02":
+          - cell "2026-03"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,111.07"
+          - cell "96,443.02"
+        - row "2026-04 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,311.68 99,350.28":
+          - cell "2026-04"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,311.68"
+          - cell "99,350.28"
+        - row "2026-05 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,145.57 97,512.81":
+          - cell "2026-05"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,145.57"
+          - cell "97,512.81"
+        - row "2026-06 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,124.06 93,721.86":
+          - cell "2026-06"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,124.06"
+          - cell "93,721.86"
+        - row "2026-07 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 3,162.69 98,043.54":
+          - cell "2026-07"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "3,162.69"
+          - cell "98,043.54"
+        - row "2026-08 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 2,947.94 91,386.06":
+          - cell "2026-08"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "2,947.94"
+          - cell "91,386.06"
+        - row "2026-09 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 2,997.98 89,939.38":
+          - cell "2026-09"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "2,997.98"
+          - cell "89,939.38"
+        - row "2026-10 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 2,789.15 86,463.72":
+          - cell "2026-10"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "2,789.15"
+          - cell "86,463.72"
+        - row "2026-11 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 2,964.49 88,934.56":
+          - cell "2026-11"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "2,964.49"
+          - cell "88,934.56"
+        - row "2026-12 FICTIONAL-PROD-01 FICTIONAL-GROUP-A 2,670.76 82,793.49":
+          - cell "2026-12"
+          - cell "FICTIONAL-PROD-01"
+          - cell "FICTIONAL-GROUP-A"
+          - cell "2,670.76"
+          - cell "82,793.49"
+  - generic "Dataset identity, units, assumptions and source lineage"
+  - button "Download analysis & lineage JSON"
+  - button "Download displayed table CSV"
+  - button "Download displayed chart SVG"
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

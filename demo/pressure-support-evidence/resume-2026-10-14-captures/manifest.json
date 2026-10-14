@@ -1,0 +1,102 @@
+{
+  "recordedAt": "2026-10-14T04:42:35.422Z",
+  "fixtureSha256": "dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab",
+  "resultSha256": "dadb99eaf2281467f8e06fdba327c28dbd865bb768ead7e56401790c88e54352",
+  "files": [
+    {
+      "path": "browser/r01-notes-sheet.txt",
+      "bytes": 16262,
+      "sha256": "d6a049f794bc7c330507590164158401286350852de39881c827f11d48e456d9"
+    },
+    {
+      "path": "browser/r02-water-sheet.txt",
+      "bytes": 17867,
+      "sha256": "0916d55fa3f9b5d8816ddd8a313a8bf5e82cdbc2b5b3bbf67e0216f478e4bded"
+    },
+    {
+      "path": "browser/r03-unmapped-validated.txt",
+      "bytes": 29760,
+      "sha256": "551dc945fee978087ace3d5e828917d50ac0db2c275666ce2a2dd2a289ced566"
+    },
+    {
+      "path": "browser/r04-incompatible-units-validated.txt",
+      "bytes": 26807,
+      "sha256": "f7ec20607b92b7c006c0ef0c717fcf4ab734ac5f3eb727b9c2829c178e06d56e"
+    },
+    {
+      "path": "browser/r05-valid-validated.txt",
+      "bytes": 28585,
+      "sha256": "e1dac45d6e42fa851cd61d07e8c78147df99454de3a5b9f7e47d00c000d08a42"
+    },
+    {
+      "path": "browser/r06-xlsx-confirmed.txt",
+      "bytes": 13940,
+      "sha256": "c81482b96556907080360f3b4c4559c03b8ee6128f778d49e0727ff5448cf792"
+    },
+    {
+      "path": "browser/r07-forecast-before.txt",
+      "bytes": 11195,
+      "sha256": "6000bdd5303c450549f00a2492d32b0c7c6c3a0e5ad39dde7ce1b10643445b75"
+    },
+    {
+      "path": "browser/r07-forecast-fingerprint-before.json",
+      "bytes": 1744,
+      "sha256": "b91fe7f80bc726a7a63e09ce9f166b4c7886e088603cf99c4ec543246770bc8b"
+    },
+    {
+      "path": "browser/r08-context-open.txt",
+      "bytes": 5827,
+      "sha256": "224510b53aaa586f2662be48d2fc07ecb2618d85643b786707e9261ffcd704e5"
+    },
+    {
+      "path": "browser/r09-context-calculated.txt",
+      "bytes": 17702,
+      "sha256": "6b122cb036a8abe4b50a14c5e46879705e8e5c92d0a95a1a8f7531b21169a84d"
+    },
+    {
+      "path": "browser/r10-forecast-fingerprint-after.json",
+      "bytes": 1744,
+      "sha256": "953087f077cd4664ef1526f23bb525ac31939abe4e9b0477bf3a2c5481841c89"
+    },
+    {
+      "path": "browser/r11-data.txt",
+      "bytes": 15477,
+      "sha256": "f080d2e970104c40d6ce47df0b94248bced7c130fd1ab5d0e5e9a2441d5be5c6"
+    },
+    {
+      "path": "browser/r12-assertion-changed-data.txt",
+      "bytes": 14865,
+      "sha256": "8e14a6916b1fca7aa4571ef3ec0852773acc7c3222ce57d4e251db881182e83f"
+    },
+    {
+      "path": "browser/r13-production-after-invalidation.txt",
+      "bytes": 3554,
+      "sha256": "807e4c8aead98df18093a9456352fab3beb36ea202852e0593b924b5ece5f4df"
+    },
+    {
+      "path": "browser/r14-context-after-invalidation.txt",
+      "bytes": 17805,
+      "sha256": "4803671af7d158fa3b94c299d4e83d6d4cbb41a52bbe92fea3d6f626909fbbdb"
+    },
+    {
+      "path": "browser/r15-data.txt",
+      "bytes": 14908,
+      "sha256": "af7f6d62f02d2e77e048deaf2cb45e625915a23ded0753c51fae3a82cdda5a9f"
+    },
+    {
+      "path": "browser/r16-invalid-csv-validated.txt",
+      "bytes": 19281,
+      "sha256": "f6064f93e7c2adc670d6f31faaee78d50d727207133cfbb88b04c1298f12034f"
+    },
+    {
+      "path": "checks/walkthrough-addendum.json",
+      "bytes": 3381,
+      "sha256": "da12b54913280f67d2eeeb1ffd9cfaafbc44e82c63b8b029f6af4c55e934d814"
+    },
+    {
+      "path": "checks/slow-export-init-script.js",
+      "bytes": 704,
+      "sha256": "0e59a2de465ea894cc436e6f098f54171de6c144c4172c4b4dcf50cbdd1a97fe"
+    }
+  ]
+}

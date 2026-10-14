@@ -1,0 +1,93 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Active dataset
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Injection & capacity
+  - navigation "Injection & capacity workspaces":
+    - button "Injector history"
+    - button "Injectivity"
+    - button "Capacity assessment"
+    - button "Scenarios"
+    - button "Parameter sweeps"
+    - button "Model scope"
+  - region "Scenarios & parameter sweeps":
+    - heading "Scenarios & parameter sweeps" [active] [level=1]
+    - paragraph: Can the selected wells meet forecast water demand under the declared pressure constraints?
+    - paragraph:
+      - strong: Engineering screening · full acceptance open.
+      - text: Compare constant injectivity with uniform-fluid or depth-dependent brine hydraulics. These maximum envelopes do not predict sustainable capacity, pressure buildup, interference or fracture behavior.
+    - generic "Case workflow":
+      - generic: 1 · Confirm demand
+      - generic: 2 · Declare fluid & wells
+      - generic: 3 · Compare constraints
+      - generic: 4 · Inspect & export
+    - generic "Demand source, forecast & coverage"
+    - region "Capacity parameter sensitivity":
+      - heading "Which assumption changes capacity?" [level=3]
+      - paragraph: Vary one input for one well while holding the same frozen demand, fluid model and other wells fixed. This sweep evaluates the base scenario; the one-well comparison above remains separate.
+      - text: Well to sweep
+      - combobox "Well to sweep"
+      - text: Parameter
+      - combobox "Parameter":
+        - option "Injectivity (STB/day/psi)" [selected]
+        - option "Tubing inner diameter (in)"
+        - option "Availability (fraction)"
+      - text: Minimum
+      - spinbutton "Minimum"
+      - text: Maximum
+      - spinbutton "Maximum"
+      - text: Grid points (3–9)
+      - spinbutton "Grid points (3–9)": "5"
+      - paragraph
+      - button "Calculate parameter sweep" [disabled]
+      - alert
+      - status: Disposal inputs changed. Recalculate the disposal case before running a sweep.
+      - button "Download sweep JSON" [disabled]
+      - button "Download sweep CSV" [disabled]
+      - button "Download sweep chart SVG" [disabled]
+    - generic "Fluid, well geometry & scenario assumptions"
+    - option "Uniform reference fluid (original screen)" [selected]
+    - option "Depth-dependent brine pressure & temperature"
+    - option "FICTIONAL-INJ-A" [selected]
+    - option "FICTIONAL-INJ-B"
+    - status: Source inputs changed. Review geometry/fluid assumptions and calculate the revised case.
+    - button "Download case JSON" [disabled]
+    - button "Download case CSV" [disabled]
+    - button "Download case chart SVG" [disabled]
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

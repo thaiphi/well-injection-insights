@@ -1,0 +1,34 @@
+/* Scoped to the pressure-support context workspace only; no global rules. */
+/* One shrinkable column: grid children may not grow the workspace to a wide table's max-content width. */
+#pressure-support-workspace{display:grid;grid-template-columns:minmax(0,1fr);gap:1rem;min-width:0;max-width:100%}
+#pressure-support-workspace[hidden]{display:none}
+#pressure-support-workspace>*,#pressure-support-workspace .ps-results>*,#pressure-support-workspace details{min-width:0;max-width:100%}
+#pressure-support-workspace :is(p,li,dd,caption,legend,summary,label){overflow-wrap:anywhere}
+#pressure-support-workspace .ps-notice{border-left:4px solid #b26a00;background:#fff8e1;padding:.6rem .8rem;margin:0}
+#pressure-support-workspace .ps-identity dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:.25rem 1rem;margin:0}
+#pressure-support-workspace .ps-identity dd{margin:0;overflow-wrap:anywhere}
+#pressure-support-workspace .ps-actions,#pressure-support-workspace .ps-controls{display:flex;flex-wrap:wrap;gap:.75rem;align-items:end}
+#pressure-support-workspace fieldset{border:1px solid #d0d7de;border-radius:6px;padding:.75rem;min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:.75rem}
+#pressure-support-workspace fieldset>button{justify-self:start}
+#pressure-support-workspace label{display:grid;gap:.25rem}
+#pressure-support-workspace .ps-check{display:flex;gap:.4rem;align-items:center}
+#pressure-support-workspace :is(button,select,input,a,[tabindex="0"]):focus-visible{outline:3px solid #1f6feb;outline-offset:2px}
+/* Primary actions keep readable text in every state; the global button:hover/:disabled rules out-rank .primary-action. */
+#pressure-support-workspace .primary-action{background:#0863bd;color:#fff;border:1px solid #0863bd;opacity:1}
+#pressure-support-workspace .primary-action:hover:not(:disabled){background:#064e96;border-color:#064e96;color:#fff}
+#pressure-support-workspace .primary-action:active:not(:disabled){background:#053d75;border-color:#053d75;color:#fff}
+#pressure-support-workspace .primary-action:focus-visible{background:#0863bd;color:#fff;outline:3px solid #1f6feb;outline-offset:2px}
+#pressure-support-workspace .primary-action:disabled{background:#e7ecf2;color:#46546a;border-color:#b8c3d1;opacity:1;cursor:not-allowed}
+/* Wide tables and the chart scroll inside their own labelled regions. */
+#pressure-support-workspace .ps-scroll{overflow:auto;width:100%;max-width:100%;min-width:0;border:1px solid #e1e4e8;border-radius:6px;margin:.5rem 0}
+#pressure-support-workspace .ps-scroll svg{display:block;width:100%;min-width:960px;height:auto}
+#pressure-support-workspace table{border-collapse:collapse;font-size:.85rem;width:max-content;min-width:100%}
+#pressure-support-workspace th,#pressure-support-workspace td{border-bottom:1px solid #eee;padding:.25rem .5rem;text-align:left;white-space:nowrap}
+#pressure-support-workspace caption{text-align:left;font-weight:600;padding:.25rem .5rem}
+#pressure-support-workspace .error{color:#b00020}
+#pressure-support-workspace .warning{color:#7a4f00}
+@media (max-width:480px){
+ #pressure-support-workspace .ps-controls{flex-direction:column;align-items:stretch}
+ #pressure-support-workspace .ps-identity dl{grid-template-columns:minmax(0,1fr)}
+ #pressure-support-workspace .ps-scroll svg{min-width:960px}
+}

@@ -1,0 +1,82 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Active dataset
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Production & demand
+  - navigation "Production & demand workspaces":
+    - button "Histories"
+    - button "Fit & forecast"
+    - button "Reconciliation"
+    - button "Curve library"
+    - button "Schedules"
+    - button "Demand"
+    - button "Pressure-support context"
+  - region "Curve library":
+    - heading "Curve library" [active] [level=1]
+    - paragraph: Inspect current fitted parameters. Maintaining and assigning a reusable curve library is proposed functionality.
+    - paragraph: "Proposed: naming, saving, revising, cloning, comparing and assigning reusable curves. No persistent curve library or saved cases are implemented."
+    - region "Current fitted snapshots — inspection only":
+      - table "Current fitted snapshots — inspection only":
+        - caption: Current fitted snapshots — inspection only
+        - rowgroup:
+          - row "Producer Method Log rate at cutoff Monthly log slope Cutoff Forecast identity":
+            - columnheader "Producer"
+            - columnheader "Method"
+            - columnheader "Log rate at cutoff"
+            - columnheader "Monthly log slope"
+            - columnheader "Cutoff"
+            - columnheader "Forecast identity"
+        - rowgroup:
+          - row "FICTIONAL-PROD-01 Local exponential log-rate fit 8.0519466 -0.014791201 2025-12 forecast/synthetic-water/seed-417/v1/2025-12/exponential-log-fit/1":
+            - cell "FICTIONAL-PROD-01"
+            - cell "Local exponential log-rate fit"
+            - cell "8.0519466"
+            - cell "-0.014791201"
+            - cell "2025-12"
+            - cell "forecast/synthetic-water/seed-417/v1/2025-12/exponential-log-fit/1"
+          - row "FICTIONAL-PROD-02 Local exponential log-rate fit 7.9339132 -0.019969472 2025-12 forecast/synthetic-water/seed-417/v1/2025-12/exponential-log-fit/1":
+            - cell "FICTIONAL-PROD-02"
+            - cell "Local exponential log-rate fit"
+            - cell "7.9339132"
+            - cell "-0.019969472"
+            - cell "2025-12"
+            - cell "forecast/synthetic-water/seed-417/v1/2025-12/exponential-log-fit/1"
+    - paragraph: Group/cohort labels are metadata, not statistical cohort fitting. No lateral-length, peak-rate or well-age normalization is applied.
+    - button "Inspect fit & forecast"
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

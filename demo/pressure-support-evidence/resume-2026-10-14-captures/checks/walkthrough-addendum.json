@@ -1,0 +1,21 @@
+{
+  "recordedAt": "2026-10-14T05:20:00Z",
+  "reason": "Independent plan-acceptance review finding B1: the first pass held import quarantine/validation and dependent-invalidation results only as inline script output. This second pass captures them as accessibility snapshots after each action.",
+  "correction": "walkthrough.json in resume-2026-10-13 states recordedAt 2026-10-14T04:45:00Z; it was actually written at about 04:23Z. Browser captures in that pass ran 04:15-04:22Z, after the 04:12Z gates.",
+  "origin": "http://127.0.0.1:4317/?qa=r2 (fresh document, no instrumentation)",
+  "method": "UI clicks/fills through the accessibility tree only; every state below was captured with take_snapshot after the action.",
+  "captures": {
+    "r01-notes-sheet.txt": "Worksheet 'Notes': 'Original values — first 0 of 0 rows'; '0 original rows detected'.",
+    "r03-unmapped-validated.txt": "After Review validation with nothing mapped: '0 accepted · 48 quarantined · 0 excluded.' with 'Map each required field to a distinct existing column', unsupported unit and time-basis reasons on each row; Confirm disabled.",
+    "r04-incompatible-units-validated.txt": "STB/day + calendar-month after validation: '0 accepted · 48 quarantined' with 'Declare stock-tank rate or calendar-month volume with compatible time basis'; Confirm disabled.",
+    "r05-valid-validated.txt": "STB/day + calendar-day: '48 accepted · 0 quarantined'; normalized volumeBbl 116353.56680694968 (2025-01) and 99710.6071665637 (2025-02).",
+    "r06-xlsx-confirmed.txt": "Confirmed; SHA-256 2a4cb53ee44142fef57d3ffe6d7e0e695ac0e54fb6dbc179b1b4c79b86d07925.",
+    "r07-forecast-fingerprint-before.json / r10-forecast-fingerprint-after.json": "Frozen forecast table and identity SHA-256 identical (f185f471... / 4b8f25f0...), full table text equal, downloads enabled; same values as the first pass.",
+    "r09-context-calculated.txt": "Context calculated while the user XLSX remains the planning dataset: 'Ready for inspection over 24 months'; 2024-02 row 1,000 / 250 / 1,250 / 20 / 87,000 / 58,000 / 145,000; downloads enabled.",
+    "r12-assertion-changed-data.txt": "After changing the confirmed profile's content assertion: header 'measured (draft) · Awaiting confirmation'; status 'Content assertion changed. Review validation and confirm again; acquisition origin remains user.' The import-ui.mjs:90 'Inputs changed…' result message is not visible on this page and is not claimed.",
+    "r13-production-after-invalidation.txt": "Fit & forecast after invalidation: 'Select distinct producer identities', no forecast table, all three downloads disabled.",
+    "r14-context-after-invalidation.txt": "Pressure-support context remains 'Ready for inspection over 24 months' with downloads enabled after the planning input was invalidated.",
+    "r16-invalid-csv-validated.txt": "invalid-history.csv mapped and validated with all rows expanded: '0 accepted · 5 quarantined · 0 excluded.'; 'Explicit nonempty text…' for producer and group, 'Expected YYYY-MM reporting month', 'Expected finite nonnegative value', 'Expected a finite decimal; no locale or boolean coercion'; 'Resolve the listed mapping or row errors before confirming this profile.'; Confirm disabled."
+  },
+  "instrumentation": "slow-export-init-script.js holds the exact test-only init script used for the first pass's x02-x04 captures."
+}

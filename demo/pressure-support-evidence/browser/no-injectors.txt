@@ -1,0 +1,385 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Planning dataset · separate from this tool
+  - generic: None selected
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Production & demand
+  - navigation "Production & demand workspaces":
+    - button "Histories"
+    - button "Fit & forecast"
+    - button "Reconciliation"
+    - button "Curve library"
+    - button "Schedules"
+    - button "Demand"
+    - button "Pressure-support context"
+  - region "Pressure-support context":
+    - heading "Pressure-support context" [level=1]
+    - paragraph: Inspect producer oil/water rates, water cut, selected nearby injection volumes and frac dates on one calendar axis.
+    - paragraph: "Synthetic investigation view only — not a determination of pressure support, causation or interwell connectivity. Separate from the active planning dataset: it never changes confirmed inputs, forecasts, schedules or capacity results."
+    - region "Context dataset":
+      - heading "Context dataset" [level=2]
+      - term: Context dataset
+      - definition: Synthetic pressure-support context example
+      - term: Dataset ID
+      - definition: pressure-support-demo/seed-20261012/v1
+      - term: SHA-256 (verified bytes)
+      - definition: dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab
+      - term: Classification
+      - definition: synthetic
+      - term: Declared coverage
+      - definition: 2024-01 to 2025-12
+      - term: Active planning dataset
+      - definition: none selected · separate from the active planning dataset; never substituted
+    - region "Load synthetic context":
+      - heading "1. Load the pinned example" [level=2]
+      - paragraph: Loads only the local fictional example after its exact bytes match the pinned SHA-256. Nothing loads automatically.
+      - button "Reload synthetic example"
+      - button "Cancel load" [disabled]
+      - status: Verified pinned example loaded. Choose a selection, then Calculate.
+      - alert
+    - form "Context selection":
+      - group "2. Choose producer, injectors and period":
+        - generic: 2. Choose producer, injectors and period
+        - text: Producer
+        - combobox "Producer":
+          - option "PS-DEMO-P01"
+          - option "PS-DEMO-P02" [selected]
+        - text: First month
+        - textbox "First month": 2024-01
+        - text: Last month
+        - textbox "Last month": 2025-12
+        - group "Declared associated injectors (assumed distance)":
+          - generic: Declared associated injectors (assumed distance)
+          - checkbox "PS-DEMO-I01 · 3 mi (assumed)"
+          - text: PS-DEMO-I01 · 3 mi (assumed)
+          - checkbox "PS-DEMO-I02 · 1.5 mi (assumed)"
+          - text: PS-DEMO-I02 · 1.5 mi (assumed)
+        - button "Calculate context" [active]
+    - region "3. Context result":
+      - heading "3. Context result" [level=2]
+      - status:
+        - paragraph: Ready for inspection over 24 months. Context readiness is not engineering or product acceptance.
+        - paragraph: Select an associated injector
+        - paragraph: 24 of 24 months have missing observations or an unavailable aggregate; they are shown as gaps, never as zero.
+      - region "Pressure-support context chart":
+        - img "Pressure-support context for PS-DEMO-P02 Synthetic producer rates (STB/day), selected injection volumes (bbl/month, separate axis), water cut and frac annotations, 2024-01 to 2025-12.":
+          - generic: Pressure-support context · PS-DEMO-P02 · 2024-01 to 2025-12
+          - generic: synthetic · dataset pressure-support-demo/seed-20261012/v1 · sha256 dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab · investigation view, not a pressure-support determination
+          - generic: "0"
+          - generic: "0"
+          - generic: "200"
+          - generic: "0.2"
+          - generic: "400"
+          - generic: "0.4"
+          - generic: "600"
+          - generic: "0.6"
+          - generic: "800"
+          - generic: "0.8"
+          - generic: 1,000
+          - generic: "1"
+          - generic: "0"
+          - generic: "25"
+          - generic: "50"
+          - generic: "75"
+          - generic: "100"
+          - generic: Producer rate (STB/day)
+          - generic: Injection (bbl/month)
+          - generic: Water cut (%)
+          - generic: Water cut (%) = water / (oil + water); gaps are unavailable months
+          - generic: 2024-01
+          - generic: 2024-07
+          - generic: 2025-01
+          - generic: 2025-07
+          - generic: frac PS-DEMO-F02
+          - generic: Oil rate (STB/day, left axis)
+          - generic: Water rate (STB/day, left axis)
+          - generic: Liquid rate (STB/day, left axis)
+          - generic: Water cut (%) (lower panel)
+          - generic: "Dashed vertical lines: dated frac annotations (not a fitted or calibrated response)"
+          - generic: "Frac event PS-DEMO-F02 on 2025-03-09 (synthetic): Synthetic example event PS-DEMO-F02; not a public or customer record — Fictional date for demonstration; no treatment response is implied"
+          - generic: "Missing observations / unavailable values (not interpolated):"
+          - generic: "2024-01: Select an associated injector"
+          - generic: "2024-02: Select an associated injector"
+          - generic: "2024-03: Select an associated injector"
+          - generic: "2024-04: Select an associated injector"
+          - generic: "2024-05: Select an associated injector"
+          - generic: "2024-06: Select an associated injector"
+          - generic: "2024-07: Select an associated injector"
+          - generic: "2024-08: Select an associated injector"
+          - generic: "2024-09: Zero total liquid for PS-DEMO-P02 2024-09; water cut unavailable; Select an associated injector"
+          - generic: "2024-10: Select an associated injector"
+          - generic: "2024-11: Select an associated injector"
+          - generic: "2024-12: Select an associated injector"
+          - generic: "2025-01: Select an associated injector"
+          - generic: "2025-02: Select an associated injector"
+          - generic: "2025-03: Select an associated injector"
+          - generic: "2025-04: Select an associated injector"
+          - generic: "2025-05: Select an associated injector"
+          - generic: "2025-06: Select an associated injector"
+          - generic: "2025-07: Select an associated injector"
+          - generic: "2025-08: Select an associated injector"
+          - generic: "2025-09: Select an associated injector"
+          - generic: "2025-10: Select an associated injector"
+          - generic: "2025-11: Select an associated injector"
+          - generic: "2025-12: Select an associated injector"
+      - region "Monthly context values":
+        - table "Plotted monthly values (rates STB/day; injection bbl/month)":
+          - caption: Plotted monthly values (rates STB/day; injection bbl/month)
+          - rowgroup:
+            - row "Month Oil rate (STB/day) Water rate (STB/day) Liquid rate (STB/day) Water cut (%) Complete selected total (bbl/month) Missing / unavailable":
+              - columnheader "Month"
+              - columnheader "Oil rate (STB/day)"
+              - columnheader "Water rate (STB/day)"
+              - columnheader "Liquid rate (STB/day)"
+              - columnheader "Water cut (%)"
+              - columnheader "Complete selected total (bbl/month)"
+              - columnheader "Missing / unavailable"
+          - rowgroup:
+            - row "2024-01 675.45 246.06 921.52 26.7 Unavailable Select an associated injector":
+              - cell "2024-01"
+              - cell "675.45"
+              - cell "246.06"
+              - cell "921.52"
+              - cell "26.7"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-02 740.69 257.93 998.62 25.83 Unavailable Select an associated injector":
+              - cell "2024-02"
+              - cell "740.69"
+              - cell "257.93"
+              - cell "998.62"
+              - cell "25.83"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-03 677.68 254.23 931.9 27.28 Unavailable Select an associated injector":
+              - cell "2024-03"
+              - cell "677.68"
+              - cell "254.23"
+              - cell "931.9"
+              - cell "27.28"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-04 680.37 255.63 936 27.31 Unavailable Select an associated injector":
+              - cell "2024-04"
+              - cell "680.37"
+              - cell "255.63"
+              - cell "936"
+              - cell "27.31"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-05 630.48 234.23 864.71 27.09 Unavailable Select an associated injector":
+              - cell "2024-05"
+              - cell "630.48"
+              - cell "234.23"
+              - cell "864.71"
+              - cell "27.09"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-06 635.77 253.6 889.37 28.51 Unavailable Select an associated injector":
+              - cell "2024-06"
+              - cell "635.77"
+              - cell "253.6"
+              - cell "889.37"
+              - cell "28.51"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-07 636.71 243.16 879.87 27.64 Unavailable Select an associated injector":
+              - cell "2024-07"
+              - cell "636.71"
+              - cell "243.16"
+              - cell "879.87"
+              - cell "27.64"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-08 608.42 248 856.42 28.96 Unavailable Select an associated injector":
+              - cell "2024-08"
+              - cell "608.42"
+              - cell "248"
+              - cell "856.42"
+              - cell "28.96"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-09 0 0 0 Unavailable Unavailable Zero total liquid for PS-DEMO-P02 2024-09; water cut unavailable; Select an associated injector":
+              - cell "2024-09"
+              - cell "0"
+              - cell "0"
+              - cell "0"
+              - cell "Unavailable"
+              - cell "Unavailable"
+              - cell "Zero total liquid for PS-DEMO-P02 2024-09; water cut unavailable; Select an associated injector"
+            - row "2024-10 604.68 260.87 865.55 30.14 Unavailable Select an associated injector":
+              - cell "2024-10"
+              - cell "604.68"
+              - cell "260.87"
+              - cell "865.55"
+              - cell "30.14"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-11 597.13 244.87 842 29.08 Unavailable Select an associated injector":
+              - cell "2024-11"
+              - cell "597.13"
+              - cell "244.87"
+              - cell "842"
+              - cell "29.08"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2024-12 570.84 252.26 823.1 30.65 Unavailable Select an associated injector":
+              - cell "2024-12"
+              - cell "570.84"
+              - cell "252.26"
+              - cell "823.1"
+              - cell "30.65"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-01 565.9 260.68 826.58 31.54 Unavailable Select an associated injector":
+              - cell "2025-01"
+              - cell "565.9"
+              - cell "260.68"
+              - cell "826.58"
+              - cell "31.54"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-02 596.61 257.61 854.21 30.16 Unavailable Select an associated injector":
+              - cell "2025-02"
+              - cell "596.61"
+              - cell "257.61"
+              - cell "854.21"
+              - cell "30.16"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-03 542.58 253.87 796.45 31.88 Unavailable Select an associated injector":
+              - cell "2025-03"
+              - cell "542.58"
+              - cell "253.87"
+              - cell "796.45"
+              - cell "31.88"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-04 581.23 281.03 862.27 32.59 Unavailable Select an associated injector":
+              - cell "2025-04"
+              - cell "581.23"
+              - cell "281.03"
+              - cell "862.27"
+              - cell "32.59"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-05 519.03 256 775.03 33.03 Unavailable Select an associated injector":
+              - cell "2025-05"
+              - cell "519.03"
+              - cell "256"
+              - cell "775.03"
+              - cell "33.03"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-06 563.27 275.8 839.07 32.87 Unavailable Select an associated injector":
+              - cell "2025-06"
+              - cell "563.27"
+              - cell "275.8"
+              - cell "839.07"
+              - cell "32.87"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-07 516.48 251.55 768.03 32.75 Unavailable Select an associated injector":
+              - cell "2025-07"
+              - cell "516.48"
+              - cell "251.55"
+              - cell "768.03"
+              - cell "32.75"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-08 507.39 263.19 770.58 34.16 Unavailable Select an associated injector":
+              - cell "2025-08"
+              - cell "507.39"
+              - cell "263.19"
+              - cell "770.58"
+              - cell "34.16"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-09 503.47 244.67 748.13 32.7 Unavailable Select an associated injector":
+              - cell "2025-09"
+              - cell "503.47"
+              - cell "244.67"
+              - cell "748.13"
+              - cell "32.7"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-10 474.94 246.03 720.97 34.13 Unavailable Select an associated injector":
+              - cell "2025-10"
+              - cell "474.94"
+              - cell "246.03"
+              - cell "720.97"
+              - cell "34.13"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-11 495.43 272.47 767.9 35.48 Unavailable Select an associated injector":
+              - cell "2025-11"
+              - cell "495.43"
+              - cell "272.47"
+              - cell "767.9"
+              - cell "35.48"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+            - row "2025-12 473.94 249.19 723.13 34.46 Unavailable Select an associated injector":
+              - cell "2025-12"
+              - cell "473.94"
+              - cell "249.19"
+              - cell "723.13"
+              - cell "34.46"
+              - cell "Unavailable"
+              - cell "Select an associated injector"
+      - heading "Frac events (annotations only)" [level=3]
+      - list:
+        - listitem: 2025-03-09 · frac PS-DEMO-F02 · synthetic · plotted · Synthetic example event PS-DEMO-F02; not a public or customer record · Fictional date for demonstration; no treatment response is implied
+      - generic "Selected source rows (original values)"
+      - generic "Method, assumptions & limitations"
+      - button "Download context evidence JSON"
+      - button "Download context table CSV"
+      - button "Download context chart SVG"
+      - status
+    - region "Real-data availability":
+      - heading "Real-data availability" [level=2]
+      - paragraph: "Unavailable for public or customer sources: each input below must pass explicit checks under a separately reviewed contract."
+      - list:
+        - listitem: Matched producer oil/water monthly stock-tank series with a declared calendar basis
+        - listitem: Producer/injector association evidence (identities, distance and units); no GIS inference is made
+        - listitem: Dated frac event inputs with citations and source rows
+        - listitem: A reviewed source composition contract (pressure-support-input/1 accepts synthetic context only)
+      - paragraph: No planning source is selected; the synthetic context example stays separate.
+      - link "Open public injector history":
+        - /url: "#injection/publicTrends"
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

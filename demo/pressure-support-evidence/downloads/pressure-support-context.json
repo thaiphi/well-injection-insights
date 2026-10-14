@@ -1,0 +1,3062 @@
+{
+  "result": {
+    "ready": true,
+    "reasons": [],
+    "monthly": [
+      {
+        "month": "2024-01",
+        "oilRateStbd": 979.1935483870968,
+        "waterRateStbd": 212.25806451612902,
+        "liquidRateStbd": 1191.4516129032259,
+        "waterCutPct": 17.815080546906728,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 92378,
+          "PS-DEMO-I02": 58751
+        },
+        "completeInjectionVolumeBbl": 151129,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-02",
+        "oilRateStbd": 1000,
+        "waterRateStbd": 250,
+        "liquidRateStbd": 1250,
+        "waterCutPct": 20,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 87000,
+          "PS-DEMO-I02": 58000
+        },
+        "completeInjectionVolumeBbl": 145000,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-03",
+        "oilRateStbd": 924.9032258064516,
+        "waterRateStbd": 221.3548387096774,
+        "liquidRateStbd": 1146.258064516129,
+        "waterCutPct": 19.31108234367085,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 89907,
+          "PS-DEMO-I02": 59897
+        },
+        "completeInjectionVolumeBbl": 149804,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-04",
+        "oilRateStbd": 982.5333333333333,
+        "waterRateStbd": 252.83333333333334,
+        "liquidRateStbd": 1235.3666666666666,
+        "waterCutPct": 20.466258330859937,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 87300,
+          "PS-DEMO-I02": 60470
+        },
+        "completeInjectionVolumeBbl": 147770,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-05",
+        "oilRateStbd": 939.516129032258,
+        "waterRateStbd": 236.93548387096774,
+        "liquidRateStbd": 1176.4516129032259,
+        "waterCutPct": 20.13984096517686,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 86284,
+          "PS-DEMO-I02": 58769
+        },
+        "completeInjectionVolumeBbl": 145053,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-06",
+        "oilRateStbd": 927.4666666666667,
+        "waterRateStbd": null,
+        "liquidRateStbd": null,
+        "waterCutPct": null,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 85508,
+          "PS-DEMO-I02": 58621
+        },
+        "completeInjectionVolumeBbl": 144129,
+        "missingReasons": [
+          "Water volume missing for PS-DEMO-P01 2024-06"
+        ]
+      },
+      {
+        "month": "2024-07",
+        "oilRateStbd": 898.7741935483871,
+        "waterRateStbd": 243.09677419354838,
+        "liquidRateStbd": 1141.8709677419354,
+        "waterCutPct": 21.289338380699473,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 91144,
+          "PS-DEMO-I02": 58726
+        },
+        "completeInjectionVolumeBbl": 149870,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-08",
+        "oilRateStbd": 862.0967741935484,
+        "waterRateStbd": 248.67741935483872,
+        "liquidRateStbd": 1110.774193548387,
+        "waterCutPct": 22.38775628739037,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 90116,
+          "PS-DEMO-I02": null
+        },
+        "completeInjectionVolumeBbl": null,
+        "missingReasons": [
+          "Injection volume missing for PS-DEMO-I02 2024-08"
+        ]
+      },
+      {
+        "month": "2024-09",
+        "oilRateStbd": 834.5,
+        "waterRateStbd": 238,
+        "liquidRateStbd": 1072.5,
+        "waterCutPct": 22.19114219114219,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 91790,
+          "PS-DEMO-I02": 61019
+        },
+        "completeInjectionVolumeBbl": 152809,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-10",
+        "oilRateStbd": 835.0967741935484,
+        "waterRateStbd": 261.83870967741933,
+        "liquidRateStbd": 1096.9354838709678,
+        "waterCutPct": 23.87001911483605,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 88810,
+          "PS-DEMO-I02": 59733
+        },
+        "completeInjectionVolumeBbl": 148543,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-11",
+        "oilRateStbd": 813.1,
+        "waterRateStbd": 256.7,
+        "liquidRateStbd": 1069.8,
+        "waterCutPct": 23.99513927836979,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 86317,
+          "PS-DEMO-I02": 59675
+        },
+        "completeInjectionVolumeBbl": 145992,
+        "missingReasons": []
+      },
+      {
+        "month": "2024-12",
+        "oilRateStbd": 759.0322580645161,
+        "waterRateStbd": 253.1290322580645,
+        "liquidRateStbd": 1012.1612903225806,
+        "waterCutPct": 25.008764381553366,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 94133,
+          "PS-DEMO-I02": 60619
+        },
+        "completeInjectionVolumeBbl": 154752,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-01",
+        "oilRateStbd": 783.1935483870968,
+        "waterRateStbd": 279.5483870967742,
+        "liquidRateStbd": 1062.741935483871,
+        "waterCutPct": 26.30444680528153,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 93446,
+          "PS-DEMO-I02": 57695
+        },
+        "completeInjectionVolumeBbl": 151141,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-02",
+        "oilRateStbd": 835.1785714285714,
+        "waterRateStbd": 306.60714285714283,
+        "liquidRateStbd": 1141.7857142857142,
+        "waterCutPct": 26.853299968720673,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 88799,
+          "PS-DEMO-I02": 58538
+        },
+        "completeInjectionVolumeBbl": 147337,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-03",
+        "oilRateStbd": 740.2258064516129,
+        "waterRateStbd": 279.80645161290323,
+        "liquidRateStbd": 1020.0322580645161,
+        "waterCutPct": 27.431137535182316,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 87232,
+          "PS-DEMO-I02": 62276
+        },
+        "completeInjectionVolumeBbl": 149508,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-04",
+        "oilRateStbd": 738.4,
+        "waterRateStbd": 259.8,
+        "liquidRateStbd": 998.2,
+        "waterCutPct": 26.026848326988578,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 85719,
+          "PS-DEMO-I02": 61869
+        },
+        "completeInjectionVolumeBbl": 147588,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-05",
+        "oilRateStbd": 736.0645161290323,
+        "waterRateStbd": 269.5806451612903,
+        "liquidRateStbd": 1005.6451612903226,
+        "waterCutPct": 26.80673616680032,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 86879,
+          "PS-DEMO-I02": 61411
+        },
+        "completeInjectionVolumeBbl": 148290,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-06",
+        "oilRateStbd": 749.8333333333334,
+        "waterRateStbd": 281.56666666666666,
+        "liquidRateStbd": 1031.4,
+        "waterCutPct": 27.299463512377997,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 91320,
+          "PS-DEMO-I02": 60942
+        },
+        "completeInjectionVolumeBbl": 152262,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-07",
+        "oilRateStbd": 687.2903225806451,
+        "waterRateStbd": 278.2903225806452,
+        "liquidRateStbd": 965.5806451612904,
+        "waterCutPct": 28.82103364180002,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 94233,
+          "PS-DEMO-I02": 62825
+        },
+        "completeInjectionVolumeBbl": 157058,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-08",
+        "oilRateStbd": 657.2903225806451,
+        "waterRateStbd": 272.9032258064516,
+        "liquidRateStbd": 930.1935483870968,
+        "waterCutPct": 29.33832709113608,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 92573,
+          "PS-DEMO-I02": 58720
+        },
+        "completeInjectionVolumeBbl": 151293,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-09",
+        "oilRateStbd": 700.1,
+        "waterRateStbd": 306.1666666666667,
+        "liquidRateStbd": 1006.2666666666667,
+        "waterCutPct": 30.42599708493441,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 91150,
+          "PS-DEMO-I02": 62188
+        },
+        "completeInjectionVolumeBbl": 153338,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-10",
+        "oilRateStbd": 666.8387096774194,
+        "waterRateStbd": 272.48387096774195,
+        "liquidRateStbd": 939.3225806451613,
+        "waterCutPct": 29.008551117826848,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 89623,
+          "PS-DEMO-I02": 57066
+        },
+        "completeInjectionVolumeBbl": 146689,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-11",
+        "oilRateStbd": 662,
+        "waterRateStbd": 287.76666666666665,
+        "liquidRateStbd": 949.7666666666667,
+        "waterCutPct": 30.29866984873478,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 86396,
+          "PS-DEMO-I02": 57249
+        },
+        "completeInjectionVolumeBbl": 143645,
+        "missingReasons": []
+      },
+      {
+        "month": "2025-12",
+        "oilRateStbd": 626.9032258064516,
+        "waterRateStbd": 271.06451612903226,
+        "liquidRateStbd": 897.9677419354839,
+        "waterCutPct": 30.186442504580235,
+        "injectorVolumesBbl": {
+          "PS-DEMO-I01": 88564,
+          "PS-DEMO-I02": 59631
+        },
+        "completeInjectionVolumeBbl": 148195,
+        "missingReasons": []
+      }
+    ],
+    "events": [
+      {
+        "rowId": "EV-F01",
+        "sourceId": "PS-DEMO-SYN",
+        "eventId": "PS-DEMO-F01",
+        "producerId": "PS-DEMO-P01",
+        "date": "2024-04-15",
+        "kind": "frac",
+        "citation": "Synthetic example event PS-DEMO-F01; not a public or customer record",
+        "classification": "synthetic",
+        "uncertainty": "Fictional date for demonstration; no treatment response is implied",
+        "withinCoverage": true,
+        "withinSelection": true
+      },
+      {
+        "rowId": "EV-F03",
+        "sourceId": "PS-DEMO-SYN",
+        "eventId": "PS-DEMO-F03",
+        "producerId": "PS-DEMO-P01",
+        "date": "2026-01-10",
+        "kind": "frac",
+        "citation": "Synthetic example event PS-DEMO-F03; not a public or customer record",
+        "classification": "synthetic",
+        "uncertainty": "Fictional date for demonstration; no treatment response is implied",
+        "withinCoverage": false,
+        "withinSelection": false
+      }
+    ],
+    "sourceRows": {
+      "producerMonthly": [
+        {
+          "rowId": "PM-P01-2024-01",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-01",
+          "oilVolumeBbl": 30355,
+          "waterVolumeBbl": 6580,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-02",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-02",
+          "oilVolumeBbl": 29000,
+          "waterVolumeBbl": 7250,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-03",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-03",
+          "oilVolumeBbl": 28672,
+          "waterVolumeBbl": 6862,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-04",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-04",
+          "oilVolumeBbl": 29476,
+          "waterVolumeBbl": 7585,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-05",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-05",
+          "oilVolumeBbl": 29125,
+          "waterVolumeBbl": 7345,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-06",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-06",
+          "oilVolumeBbl": 27824,
+          "waterVolumeBbl": null,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-07",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-07",
+          "oilVolumeBbl": 27862,
+          "waterVolumeBbl": 7536,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-08",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-08",
+          "oilVolumeBbl": 26725,
+          "waterVolumeBbl": 7709,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-09",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-09",
+          "oilVolumeBbl": 25035,
+          "waterVolumeBbl": 7140,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-10",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-10",
+          "oilVolumeBbl": 25888,
+          "waterVolumeBbl": 8117,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-11",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-11",
+          "oilVolumeBbl": 24393,
+          "waterVolumeBbl": 7701,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-12",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-12",
+          "oilVolumeBbl": 23530,
+          "waterVolumeBbl": 7847,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-01",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-01",
+          "oilVolumeBbl": 24279,
+          "waterVolumeBbl": 8666,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-02",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-02",
+          "oilVolumeBbl": 23385,
+          "waterVolumeBbl": 8585,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-03",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-03",
+          "oilVolumeBbl": 22947,
+          "waterVolumeBbl": 8674,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-04",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-04",
+          "oilVolumeBbl": 22152,
+          "waterVolumeBbl": 7794,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-05",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-05",
+          "oilVolumeBbl": 22818,
+          "waterVolumeBbl": 8357,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-06",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-06",
+          "oilVolumeBbl": 22495,
+          "waterVolumeBbl": 8447,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-07",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-07",
+          "oilVolumeBbl": 21306,
+          "waterVolumeBbl": 8627,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-08",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-08",
+          "oilVolumeBbl": 20376,
+          "waterVolumeBbl": 8460,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-09",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-09",
+          "oilVolumeBbl": 21003,
+          "waterVolumeBbl": 9185,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-10",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-10",
+          "oilVolumeBbl": 20672,
+          "waterVolumeBbl": 8447,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-11",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-11",
+          "oilVolumeBbl": 19860,
+          "waterVolumeBbl": 8633,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-12",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-12",
+          "oilVolumeBbl": 19434,
+          "waterVolumeBbl": 8403,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        }
+      ],
+      "injectorMonthly": [
+        {
+          "rowId": "IM-I01-2024-01",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-01",
+          "volumeBbl": 92378,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-02",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-02",
+          "volumeBbl": 87000,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-03",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-03",
+          "volumeBbl": 89907,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-04",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-04",
+          "volumeBbl": 87300,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-05",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-05",
+          "volumeBbl": 86284,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-06",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-06",
+          "volumeBbl": 85508,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-07",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-07",
+          "volumeBbl": 91144,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-08",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-08",
+          "volumeBbl": 90116,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-09",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-09",
+          "volumeBbl": 91790,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-10",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-10",
+          "volumeBbl": 88810,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-11",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-11",
+          "volumeBbl": 86317,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-12",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-12",
+          "volumeBbl": 94133,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-01",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-01",
+          "volumeBbl": 93446,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-02",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-02",
+          "volumeBbl": 88799,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-03",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-03",
+          "volumeBbl": 87232,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-04",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-04",
+          "volumeBbl": 85719,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-05",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-05",
+          "volumeBbl": 86879,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-06",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-06",
+          "volumeBbl": 91320,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-07",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-07",
+          "volumeBbl": 94233,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-08",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-08",
+          "volumeBbl": 92573,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-09",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-09",
+          "volumeBbl": 91150,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-10",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-10",
+          "volumeBbl": 89623,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-11",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-11",
+          "volumeBbl": 86396,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-12",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-12",
+          "volumeBbl": 88564,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-01",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-01",
+          "volumeBbl": 58751,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-02",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-02",
+          "volumeBbl": 58000,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-03",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-03",
+          "volumeBbl": 59897,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-04",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-04",
+          "volumeBbl": 60470,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-05",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-05",
+          "volumeBbl": 58769,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-06",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-06",
+          "volumeBbl": 58621,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-07",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-07",
+          "volumeBbl": 58726,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-08",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-08",
+          "volumeBbl": null,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-09",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-09",
+          "volumeBbl": 61019,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-10",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-10",
+          "volumeBbl": 59733,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-11",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-11",
+          "volumeBbl": 59675,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-12",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-12",
+          "volumeBbl": 60619,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-01",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-01",
+          "volumeBbl": 57695,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-02",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-02",
+          "volumeBbl": 58538,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-03",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-03",
+          "volumeBbl": 62276,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-04",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-04",
+          "volumeBbl": 61869,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-05",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-05",
+          "volumeBbl": 61411,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-06",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-06",
+          "volumeBbl": 60942,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-07",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-07",
+          "volumeBbl": 62825,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-08",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-08",
+          "volumeBbl": 58720,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-09",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-09",
+          "volumeBbl": 62188,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-10",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-10",
+          "volumeBbl": 57066,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-11",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-11",
+          "volumeBbl": 57249,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-12",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-12",
+          "volumeBbl": 59631,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        }
+      ],
+      "associations": [
+        {
+          "rowId": "AS-P01-I01",
+          "sourceId": "PS-DEMO-ASSUMED",
+          "producerId": "PS-DEMO-P01",
+          "injectorId": "PS-DEMO-I01",
+          "distance": 1.5,
+          "distanceUnit": "mi",
+          "origin": "assumed",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "AS-P01-I02",
+          "sourceId": "PS-DEMO-ASSUMED",
+          "producerId": "PS-DEMO-P01",
+          "injectorId": "PS-DEMO-I02",
+          "distance": 3,
+          "distanceUnit": "mi",
+          "origin": "assumed",
+          "classification": "synthetic"
+        }
+      ],
+      "events": [
+        {
+          "rowId": "EV-F01",
+          "sourceId": "PS-DEMO-SYN",
+          "eventId": "PS-DEMO-F01",
+          "producerId": "PS-DEMO-P01",
+          "date": "2024-04-15",
+          "kind": "frac",
+          "citation": "Synthetic example event PS-DEMO-F01; not a public or customer record",
+          "classification": "synthetic",
+          "uncertainty": "Fictional date for demonstration; no treatment response is implied"
+        },
+        {
+          "rowId": "EV-F03",
+          "sourceId": "PS-DEMO-SYN",
+          "eventId": "PS-DEMO-F03",
+          "producerId": "PS-DEMO-P01",
+          "date": "2026-01-10",
+          "kind": "frac",
+          "citation": "Synthetic example event PS-DEMO-F03; not a public or customer record",
+          "classification": "synthetic",
+          "uncertainty": "Fictional date for demonstration; no treatment response is implied"
+        }
+      ]
+    },
+    "method": {
+      "version": "pressure-support-context/1",
+      "formulas": [
+        "rate (STB/day) = monthly stock-tank volume / calendar days in the UTC month",
+        "liquid rate = (oil + water) / calendar days; gas excluded",
+        "water cut (%) = water / (oil + water) x 100; unavailable when either input is missing or total liquid is zero",
+        "complete injection (bbl/month) = sum of selected injector volumes, only when every selected contribution is present"
+      ]
+    },
+    "source": {
+      "datasetId": "pressure-support-demo/seed-20261012/v1",
+      "sha256": "dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab"
+    },
+    "selection": {
+      "producerId": "PS-DEMO-P01",
+      "injectorIds": [
+        "PS-DEMO-I01",
+        "PS-DEMO-I02"
+      ],
+      "firstMonth": "2024-01",
+      "lastMonth": "2025-12"
+    },
+    "classification": "synthetic",
+    "assumptions": [
+      "All observations and events are synthetic; no actual API, UIC or public producer is represented.",
+      "Producer/injector associations and distances are declared assumptions, not GIS proximity or hydraulic connectivity.",
+      "Injection bbl/month and producer STB/day are different quantities on separate scales.",
+      "Frac events are annotations only; they do not change fits, cutoffs, forecasts or capacity.",
+      "This is an investigation view, not a determination of pressure support, causation or interwell connectivity."
+    ]
+  },
+  "resultSha256": "dadb99eaf2281467f8e06fdba327c28dbd865bb768ead7e56401790c88e54352",
+  "evidence": {
+    "artifactVersion": "pressure-support-artifact/1",
+    "artifactId": "pressure-support-context/dadb99eaf2281467f8e06fdba327c28dbd865bb768ead7e56401790c88e54352",
+    "methodVersion": "pressure-support-context/1",
+    "inputVersion": "pressure-support-input/1",
+    "datasetId": "pressure-support-demo/seed-20261012/v1",
+    "classification": "synthetic",
+    "selection": {
+      "producerId": "PS-DEMO-P01",
+      "injectorIds": [
+        "PS-DEMO-I01",
+        "PS-DEMO-I02"
+      ],
+      "firstMonth": "2024-01",
+      "lastMonth": "2025-12"
+    },
+    "coverage": {
+      "firstMonth": "2024-01",
+      "lastMonth": "2025-12"
+    },
+    "source": {
+      "sha256": "dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab",
+      "bytes": 30351,
+      "base64": "ewogICJ2ZXJzaW9uIjogInByZXNzdXJlLXN1cHBvcnQtaW5wdXQvMSIsCiAgImZpeHR1cmVWZXJzaW9uIjogMSwKICAic2VlZCI6IDIwMjYxMDEyLAogICJkYXRhc2V0SWQiOiAicHJlc3N1cmUtc3VwcG9ydC1kZW1vL3NlZWQtMjAyNjEwMTIvdjEiLAogICJuYW1lIjogIlN5bnRoZXRpYyBwcmVzc3VyZS1zdXBwb3J0IGNvbnRleHQgZXhhbXBsZSIsCiAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIsCiAgImNvdmVyYWdlIjogewogICAgImZpcnN0TW9udGgiOiAiMjAyNC0wMSIsCiAgICAibGFzdE1vbnRoIjogIjIwMjUtMTIiCiAgfSwKICAic291cmNlcyI6IFsKICAgIHsKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIsCiAgICAgICJkZXNjcmlwdGlvbiI6ICJGaWN0aW9uYWwgcHJvZHVjZXIsIGluamVjdG9yIGFuZCBmcmFjLWV2ZW50IG9ic2VydmF0aW9ucyBnZW5lcmF0ZWQgZm9yIHRoZSBkZW1vIgogICAgfSwKICAgIHsKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tQVNTVU1FRCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJhc3N1bWVkIiwKICAgICAgImRlc2NyaXB0aW9uIjogIkRlY2xhcmVkIGZpY3Rpb25hbCBwcm9kdWNlci9pbmplY3RvciBhc3NvY2lhdGlvbnMgYW5kIGFzc3VtZWQgZGlzdGFuY2VzOyBub3QgR0lTIG9yIGh5ZHJhdWxpYyBldmlkZW5jZSIKICAgIH0KICBdLAogICJwcm9kdWNlcnMiOiBbCiAgICB7CiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm5hbWUiOiAiRmljdGlvbmFsIHByb2R1Y2VyIFAwMSIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJuYW1lIjogIkZpY3Rpb25hbCBwcm9kdWNlciBQMDIiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfQogIF0sCiAgImluamVjdG9ycyI6IFsKICAgIHsKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibmFtZSI6ICJGaWN0aW9uYWwgaW5qZWN0b3IgSTAxIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm5hbWUiOiAiRmljdGlvbmFsIGluamVjdG9yIEkwMiIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9CiAgXSwKICAicHJvZHVjZXJNb250aGx5IjogWwogICAgewogICAgICAicm93SWQiOiAiUE0tUDAxLTIwMjQtMDEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJtb250aCI6ICIyMDI0LTAxIiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDMwMzU1LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA2NTgwLAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMS0yMDI0LTAyIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAibW9udGgiOiAiMjAyNC0wMiIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAyOTAwMCwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzI1MCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDEtMjAyNC0wMyIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDMiLAogICAgICAib2lsVm9sdW1lQmJsIjogMjg2NzIsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDY4NjIsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAxLTIwMjQtMDQiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJtb250aCI6ICIyMDI0LTA0IiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDI5NDc2LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3NTg1LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMS0yMDI0LTA1IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAibW9udGgiOiAiMjAyNC0wNSIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAyOTEyNSwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzM0NSwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDEtMjAyNC0wNiIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDYiLAogICAgICAib2lsVm9sdW1lQmJsIjogMjc4MjQsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IG51bGwsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAxLTIwMjQtMDciLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJtb250aCI6ICIyMDI0LTA3IiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDI3ODYyLAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3NTM2LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMS0yMDI0LTA4IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAibW9udGgiOiAiMjAyNC0wOCIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAyNjcyNSwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzcwOSwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDEtMjAyNC0wOSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDkiLAogICAgICAib2lsVm9sdW1lQmJsIjogMjUwMzUsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDcxNDAsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAxLTIwMjQtMTAiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJtb250aCI6ICIyMDI0LTEwIiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDI1ODg4LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA4MTE3LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMS0yMDI0LTExIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAibW9udGgiOiAiMjAyNC0xMSIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAyNDM5MywKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzcwMSwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDEtMjAyNC0xMiIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMTIiLAogICAgICAib2lsVm9sdW1lQmJsIjogMjM1MzAsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDc4NDcsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAxLTIwMjUtMDEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJtb250aCI6ICIyMDI1LTAxIiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDI0Mjc5LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA4NjY2LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMS0yMDI1LTAyIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAibW9udGgiOiAiMjAyNS0wMiIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAyMzM4NSwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogODU4NSwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDEtMjAyNS0wMyIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDMiLAogICAgICAib2lsVm9sdW1lQmJsIjogMjI5NDcsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDg2NzQsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAxLTIwMjUtMDQiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJtb250aCI6ICIyMDI1LTA0IiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDIyMTUyLAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3Nzk0LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMS0yMDI1LTA1IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAibW9udGgiOiAiMjAyNS0wNSIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAyMjgxOCwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogODM1NywKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDEtMjAyNS0wNiIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDYiLAogICAgICAib2lsVm9sdW1lQmJsIjogMjI0OTUsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDg0NDcsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAxLTIwMjUtMDciLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJtb250aCI6ICIyMDI1LTA3IiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDIxMzA2LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA4NjI3LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMS0yMDI1LTA4IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAibW9udGgiOiAiMjAyNS0wOCIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAyMDM3NiwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogODQ2MCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDEtMjAyNS0wOSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDkiLAogICAgICAib2lsVm9sdW1lQmJsIjogMjEwMDMsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDkxODUsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAxLTIwMjUtMTAiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJtb250aCI6ICIyMDI1LTEwIiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDIwNjcyLAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA4NDQ3LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMS0yMDI1LTExIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAibW9udGgiOiAiMjAyNS0xMSIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAxOTg2MCwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogODYzMywKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDEtMjAyNS0xMiIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMTIiLAogICAgICAib2lsVm9sdW1lQmJsIjogMTk0MzQsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDg0MDMsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAyLTIwMjQtMDEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTAxIiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDIwOTM5LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3NjI4LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMi0yMDI0LTAyIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDIiLAogICAgICAibW9udGgiOiAiMjAyNC0wMiIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAyMTQ4MCwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzQ4MCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDItMjAyNC0wMyIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDMiLAogICAgICAib2lsVm9sdW1lQmJsIjogMjEwMDgsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDc4ODEsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAyLTIwMjQtMDQiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTA0IiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDIwNDExLAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3NjY5LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMi0yMDI0LTA1IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDIiLAogICAgICAibW9udGgiOiAiMjAyNC0wNSIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAxOTU0NSwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzI2MSwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDItMjAyNC0wNiIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDYiLAogICAgICAib2lsVm9sdW1lQmJsIjogMTkwNzMsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDc2MDgsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAyLTIwMjQtMDciLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTA3IiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDE5NzM4LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3NTM4LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMi0yMDI0LTA4IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDIiLAogICAgICAibW9udGgiOiAiMjAyNC0wOCIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAxODg2MSwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzY4OCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDItMjAyNC0wOSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDkiLAogICAgICAib2lsVm9sdW1lQmJsIjogMCwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogMCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDItMjAyNC0xMCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMTAiLAogICAgICAib2lsVm9sdW1lQmJsIjogMTg3NDUsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDgwODcsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAyLTIwMjQtMTEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTExIiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDE3OTE0LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3MzQ2LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMi0yMDI0LTEyIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDIiLAogICAgICAibW9udGgiOiAiMjAyNC0xMiIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAxNzY5NiwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzgyMCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDItMjAyNS0wMSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDEiLAogICAgICAib2lsVm9sdW1lQmJsIjogMTc1NDMsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDgwODEsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAyLTIwMjUtMDIiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJtb250aCI6ICIyMDI1LTAyIiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDE2NzA1LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3MjEzLAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMi0yMDI1LTAzIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDIiLAogICAgICAibW9udGgiOiAiMjAyNS0wMyIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAxNjgyMCwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzg3MCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDItMjAyNS0wNCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDQiLAogICAgICAib2lsVm9sdW1lQmJsIjogMTc0MzcsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDg0MzEsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAyLTIwMjUtMDUiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJtb250aCI6ICIyMDI1LTA1IiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDE2MDkwLAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA3OTM2LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMi0yMDI1LTA2IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDIiLAogICAgICAibW9udGgiOiAiMjAyNS0wNiIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAxNjg5OCwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogODI3NCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDItMjAyNS0wNyIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDciLAogICAgICAib2lsVm9sdW1lQmJsIjogMTYwMTEsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDc3OTgsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAyLTIwMjUtMDgiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJtb250aCI6ICIyMDI1LTA4IiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDE1NzI5LAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA4MTU5LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMi0yMDI1LTA5IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDIiLAogICAgICAibW9udGgiOiAiMjAyNS0wOSIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAxNTEwNCwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzM0MCwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJQTS1QMDItMjAyNS0xMCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMTAiLAogICAgICAib2lsVm9sdW1lQmJsIjogMTQ3MjMsCiAgICAgICJ3YXRlclZvbHVtZUJibCI6IDc2MjcsCiAgICAgICJ2b2x1bWVVbml0IjogIlNUQiIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiUE0tUDAyLTIwMjUtMTEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJtb250aCI6ICIyMDI1LTExIiwKICAgICAgIm9pbFZvbHVtZUJibCI6IDE0ODYzLAogICAgICAid2F0ZXJWb2x1bWVCYmwiOiA4MTc0LAogICAgICAidm9sdW1lVW5pdCI6ICJTVEIiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIlBNLVAwMi0yMDI1LTEyIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDIiLAogICAgICAibW9udGgiOiAiMjAyNS0xMiIsCiAgICAgICJvaWxWb2x1bWVCYmwiOiAxNDY5MiwKICAgICAgIndhdGVyVm9sdW1lQmJsIjogNzcyNSwKICAgICAgInZvbHVtZVVuaXQiOiAiU1RCIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0KICBdLAogICJpbmplY3Rvck1vbnRobHkiOiBbCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDEtMjAyNC0wMSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDEiLAogICAgICAidm9sdW1lQmJsIjogOTIzNzgsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAxLTIwMjQtMDIiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJtb250aCI6ICIyMDI0LTAyIiwKICAgICAgInZvbHVtZUJibCI6IDg3MDAwLAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMS0yMDI0LTAzIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibW9udGgiOiAiMjAyNC0wMyIsCiAgICAgICJ2b2x1bWVCYmwiOiA4OTkwNywKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDEtMjAyNC0wNCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDQiLAogICAgICAidm9sdW1lQmJsIjogODczMDAsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAxLTIwMjQtMDUiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJtb250aCI6ICIyMDI0LTA1IiwKICAgICAgInZvbHVtZUJibCI6IDg2Mjg0LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMS0yMDI0LTA2IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibW9udGgiOiAiMjAyNC0wNiIsCiAgICAgICJ2b2x1bWVCYmwiOiA4NTUwOCwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDEtMjAyNC0wNyIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDciLAogICAgICAidm9sdW1lQmJsIjogOTExNDQsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAxLTIwMjQtMDgiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJtb250aCI6ICIyMDI0LTA4IiwKICAgICAgInZvbHVtZUJibCI6IDkwMTE2LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMS0yMDI0LTA5IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibW9udGgiOiAiMjAyNC0wOSIsCiAgICAgICJ2b2x1bWVCYmwiOiA5MTc5MCwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDEtMjAyNC0xMCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMTAiLAogICAgICAidm9sdW1lQmJsIjogODg4MTAsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAxLTIwMjQtMTEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJtb250aCI6ICIyMDI0LTExIiwKICAgICAgInZvbHVtZUJibCI6IDg2MzE3LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMS0yMDI0LTEyIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibW9udGgiOiAiMjAyNC0xMiIsCiAgICAgICJ2b2x1bWVCYmwiOiA5NDEzMywKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDEtMjAyNS0wMSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDEiLAogICAgICAidm9sdW1lQmJsIjogOTM0NDYsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAxLTIwMjUtMDIiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJtb250aCI6ICIyMDI1LTAyIiwKICAgICAgInZvbHVtZUJibCI6IDg4Nzk5LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMS0yMDI1LTAzIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibW9udGgiOiAiMjAyNS0wMyIsCiAgICAgICJ2b2x1bWVCYmwiOiA4NzIzMiwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDEtMjAyNS0wNCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDQiLAogICAgICAidm9sdW1lQmJsIjogODU3MTksCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAxLTIwMjUtMDUiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJtb250aCI6ICIyMDI1LTA1IiwKICAgICAgInZvbHVtZUJibCI6IDg2ODc5LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMS0yMDI1LTA2IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibW9udGgiOiAiMjAyNS0wNiIsCiAgICAgICJ2b2x1bWVCYmwiOiA5MTMyMCwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDEtMjAyNS0wNyIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDciLAogICAgICAidm9sdW1lQmJsIjogOTQyMzMsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAxLTIwMjUtMDgiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJtb250aCI6ICIyMDI1LTA4IiwKICAgICAgInZvbHVtZUJibCI6IDkyNTczLAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMS0yMDI1LTA5IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibW9udGgiOiAiMjAyNS0wOSIsCiAgICAgICJ2b2x1bWVCYmwiOiA5MTE1MCwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDEtMjAyNS0xMCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMTAiLAogICAgICAidm9sdW1lQmJsIjogODk2MjMsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAxLTIwMjUtMTEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJtb250aCI6ICIyMDI1LTExIiwKICAgICAgInZvbHVtZUJibCI6IDg2Mzk2LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMS0yMDI1LTEyIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDEiLAogICAgICAibW9udGgiOiAiMjAyNS0xMiIsCiAgICAgICJ2b2x1bWVCYmwiOiA4ODU2NCwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDItMjAyNC0wMSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDEiLAogICAgICAidm9sdW1lQmJsIjogNTg3NTEsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjQtMDIiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTAyIiwKICAgICAgInZvbHVtZUJibCI6IDU4MDAwLAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMi0yMDI0LTAzIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDIiLAogICAgICAibW9udGgiOiAiMjAyNC0wMyIsCiAgICAgICJ2b2x1bWVCYmwiOiA1OTg5NywKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDItMjAyNC0wNCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDQiLAogICAgICAidm9sdW1lQmJsIjogNjA0NzAsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjQtMDUiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTA1IiwKICAgICAgInZvbHVtZUJibCI6IDU4NzY5LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMi0yMDI0LTA2IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDIiLAogICAgICAibW9udGgiOiAiMjAyNC0wNiIsCiAgICAgICJ2b2x1bWVCYmwiOiA1ODYyMSwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDItMjAyNC0wNyIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMDciLAogICAgICAidm9sdW1lQmJsIjogNTg3MjYsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjQtMDgiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTA4IiwKICAgICAgInZvbHVtZUJibCI6IG51bGwsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjQtMDkiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTA5IiwKICAgICAgInZvbHVtZUJibCI6IDYxMDE5LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMi0yMDI0LTEwIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDIiLAogICAgICAibW9udGgiOiAiMjAyNC0xMCIsCiAgICAgICJ2b2x1bWVCYmwiOiA1OTczMywKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDItMjAyNC0xMSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm1vbnRoIjogIjIwMjQtMTEiLAogICAgICAidm9sdW1lQmJsIjogNTk2NzUsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjQtMTIiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI0LTEyIiwKICAgICAgInZvbHVtZUJibCI6IDYwNjE5LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMi0yMDI1LTAxIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDIiLAogICAgICAibW9udGgiOiAiMjAyNS0wMSIsCiAgICAgICJ2b2x1bWVCYmwiOiA1NzY5NSwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDItMjAyNS0wMiIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDIiLAogICAgICAidm9sdW1lQmJsIjogNTg1MzgsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjUtMDMiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI1LTAzIiwKICAgICAgInZvbHVtZUJibCI6IDYyMjc2LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMi0yMDI1LTA0IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDIiLAogICAgICAibW9udGgiOiAiMjAyNS0wNCIsCiAgICAgICJ2b2x1bWVCYmwiOiA2MTg2OSwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDItMjAyNS0wNSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDUiLAogICAgICAidm9sdW1lQmJsIjogNjE0MTEsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjUtMDYiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI1LTA2IiwKICAgICAgInZvbHVtZUJibCI6IDYwOTQyLAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMi0yMDI1LTA3IiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDIiLAogICAgICAibW9udGgiOiAiMjAyNS0wNyIsCiAgICAgICJ2b2x1bWVCYmwiOiA2MjgyNSwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDItMjAyNS0wOCIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMDgiLAogICAgICAidm9sdW1lQmJsIjogNTg3MjAsCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjUtMDkiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI1LTA5IiwKICAgICAgInZvbHVtZUJibCI6IDYyMTg4LAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfSwKICAgIHsKICAgICAgInJvd0lkIjogIklNLUkwMi0yMDI1LTEwIiwKICAgICAgInNvdXJjZUlkIjogIlBTLURFTU8tU1lOIiwKICAgICAgImluamVjdG9ySWQiOiAiUFMtREVNTy1JMDIiLAogICAgICAibW9udGgiOiAiMjAyNS0xMCIsCiAgICAgICJ2b2x1bWVCYmwiOiA1NzA2NiwKICAgICAgInZvbHVtZVVuaXQiOiAiYmJsIiwKICAgICAgImJhc2lzIjogImNhbGVuZGFyLW1vbnRoIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJJTS1JMDItMjAyNS0xMSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLVNZTiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgIm1vbnRoIjogIjIwMjUtMTEiLAogICAgICAidm9sdW1lQmJsIjogNTcyNDksCiAgICAgICJ2b2x1bWVVbml0IjogImJibCIsCiAgICAgICJiYXNpcyI6ICJjYWxlbmRhci1tb250aCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiSU0tSTAyLTIwMjUtMTIiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMiIsCiAgICAgICJtb250aCI6ICIyMDI1LTEyIiwKICAgICAgInZvbHVtZUJibCI6IDU5NjMxLAogICAgICAidm9sdW1lVW5pdCI6ICJiYmwiLAogICAgICAiYmFzaXMiOiAiY2FsZW5kYXItbW9udGgiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIgogICAgfQogIF0sCiAgImFzc29jaWF0aW9ucyI6IFsKICAgIHsKICAgICAgInJvd0lkIjogIkFTLVAwMS1JMDEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1BU1NVTUVEIiwKICAgICAgInByb2R1Y2VySWQiOiAiUFMtREVNTy1QMDEiLAogICAgICAiaW5qZWN0b3JJZCI6ICJQUy1ERU1PLUkwMSIsCiAgICAgICJkaXN0YW5jZSI6IDEuNSwKICAgICAgImRpc3RhbmNlVW5pdCI6ICJtaSIsCiAgICAgICJvcmlnaW4iOiAiYXNzdW1lZCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiQVMtUDAxLUkwMiIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLUFTU1VNRUQiLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMSIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgImRpc3RhbmNlIjogMywKICAgICAgImRpc3RhbmNlVW5pdCI6ICJtaSIsCiAgICAgICJvcmlnaW4iOiAiYXNzdW1lZCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiQVMtUDAyLUkwMSIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLUFTU1VNRUQiLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAxIiwKICAgICAgImRpc3RhbmNlIjogMywKICAgICAgImRpc3RhbmNlVW5pdCI6ICJtaSIsCiAgICAgICJvcmlnaW4iOiAiYXNzdW1lZCIsCiAgICAgICJjbGFzc2lmaWNhdGlvbiI6ICJzeW50aGV0aWMiCiAgICB9LAogICAgewogICAgICAicm93SWQiOiAiQVMtUDAyLUkwMiIsCiAgICAgICJzb3VyY2VJZCI6ICJQUy1ERU1PLUFTU1VNRUQiLAogICAgICAicHJvZHVjZXJJZCI6ICJQUy1ERU1PLVAwMiIsCiAgICAgICJpbmplY3RvcklkIjogIlBTLURFTU8tSTAyIiwKICAgICAgImRpc3RhbmNlIjogMS41LAogICAgICAiZGlzdGFuY2VVbml0IjogIm1pIiwKICAgICAgIm9yaWdpbiI6ICJhc3N1bWVkIiwKICAgICAgImNsYXNzaWZpY2F0aW9uIjogInN5bnRoZXRpYyIKICAgIH0KICBdLAogICJldmVudHMiOiBbCiAgICB7CiAgICAgICJyb3dJZCI6ICJFVi1GMDEiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiZXZlbnRJZCI6ICJQUy1ERU1PLUYwMSIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgImRhdGUiOiAiMjAyNC0wNC0xNSIsCiAgICAgICJraW5kIjogImZyYWMiLAogICAgICAiY2l0YXRpb24iOiAiU3ludGhldGljIGV4YW1wbGUgZXZlbnQgUFMtREVNTy1GMDE7IG5vdCBhIHB1YmxpYyBvciBjdXN0b21lciByZWNvcmQiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIiwKICAgICAgInVuY2VydGFpbnR5IjogIkZpY3Rpb25hbCBkYXRlIGZvciBkZW1vbnN0cmF0aW9uOyBubyB0cmVhdG1lbnQgcmVzcG9uc2UgaXMgaW1wbGllZCIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJFVi1GMDIiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiZXZlbnRJZCI6ICJQUy1ERU1PLUYwMiIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAyIiwKICAgICAgImRhdGUiOiAiMjAyNS0wMy0wOSIsCiAgICAgICJraW5kIjogImZyYWMiLAogICAgICAiY2l0YXRpb24iOiAiU3ludGhldGljIGV4YW1wbGUgZXZlbnQgUFMtREVNTy1GMDI7IG5vdCBhIHB1YmxpYyBvciBjdXN0b21lciByZWNvcmQiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIiwKICAgICAgInVuY2VydGFpbnR5IjogIkZpY3Rpb25hbCBkYXRlIGZvciBkZW1vbnN0cmF0aW9uOyBubyB0cmVhdG1lbnQgcmVzcG9uc2UgaXMgaW1wbGllZCIKICAgIH0sCiAgICB7CiAgICAgICJyb3dJZCI6ICJFVi1GMDMiLAogICAgICAic291cmNlSWQiOiAiUFMtREVNTy1TWU4iLAogICAgICAiZXZlbnRJZCI6ICJQUy1ERU1PLUYwMyIsCiAgICAgICJwcm9kdWNlcklkIjogIlBTLURFTU8tUDAxIiwKICAgICAgImRhdGUiOiAiMjAyNi0wMS0xMCIsCiAgICAgICJraW5kIjogImZyYWMiLAogICAgICAiY2l0YXRpb24iOiAiU3ludGhldGljIGV4YW1wbGUgZXZlbnQgUFMtREVNTy1GMDM7IG5vdCBhIHB1YmxpYyBvciBjdXN0b21lciByZWNvcmQiLAogICAgICAiY2xhc3NpZmljYXRpb24iOiAic3ludGhldGljIiwKICAgICAgInVuY2VydGFpbnR5IjogIkZpY3Rpb25hbCBkYXRlIGZvciBkZW1vbnN0cmF0aW9uOyBubyB0cmVhdG1lbnQgcmVzcG9uc2UgaXMgaW1wbGllZCIKICAgIH0KICBdCn0K",
+      "originalText": "{\n  \"version\": \"pressure-support-input/1\",\n  \"fixtureVersion\": 1,\n  \"seed\": 20261012,\n  \"datasetId\": \"pressure-support-demo/seed-20261012/v1\",\n  \"name\": \"Synthetic pressure-support context example\",\n  \"classification\": \"synthetic\",\n  \"coverage\": {\n    \"firstMonth\": \"2024-01\",\n    \"lastMonth\": \"2025-12\"\n  },\n  \"sources\": [\n    {\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"classification\": \"synthetic\",\n      \"description\": \"Fictional producer, injector and frac-event observations generated for the demo\"\n    },\n    {\n      \"sourceId\": \"PS-DEMO-ASSUMED\",\n      \"classification\": \"assumed\",\n      \"description\": \"Declared fictional producer/injector associations and assumed distances; not GIS or hydraulic evidence\"\n    }\n  ],\n  \"producers\": [\n    {\n      \"producerId\": \"PS-DEMO-P01\",\n      \"name\": \"Fictional producer P01\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"producerId\": \"PS-DEMO-P02\",\n      \"name\": \"Fictional producer P02\",\n      \"classification\": \"synthetic\"\n    }\n  ],\n  \"injectors\": [\n    {\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"name\": \"Fictional injector I01\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"name\": \"Fictional injector I02\",\n      \"classification\": \"synthetic\"\n    }\n  ],\n  \"producerMonthly\": [\n    {\n      \"rowId\": \"PM-P01-2024-01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-01\",\n      \"oilVolumeBbl\": 30355,\n      \"waterVolumeBbl\": 6580,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-02\",\n      \"oilVolumeBbl\": 29000,\n      \"waterVolumeBbl\": 7250,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-03\",\n      \"oilVolumeBbl\": 28672,\n      \"waterVolumeBbl\": 6862,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-04\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-04\",\n      \"oilVolumeBbl\": 29476,\n      \"waterVolumeBbl\": 7585,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-05\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-05\",\n      \"oilVolumeBbl\": 29125,\n      \"waterVolumeBbl\": 7345,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-06\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-06\",\n      \"oilVolumeBbl\": 27824,\n      \"waterVolumeBbl\": null,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-07\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-07\",\n      \"oilVolumeBbl\": 27862,\n      \"waterVolumeBbl\": 7536,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-08\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-08\",\n      \"oilVolumeBbl\": 26725,\n      \"waterVolumeBbl\": 7709,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-09\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-09\",\n      \"oilVolumeBbl\": 25035,\n      \"waterVolumeBbl\": 7140,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-10\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-10\",\n      \"oilVolumeBbl\": 25888,\n      \"waterVolumeBbl\": 8117,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-11\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-11\",\n      \"oilVolumeBbl\": 24393,\n      \"waterVolumeBbl\": 7701,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2024-12\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2024-12\",\n      \"oilVolumeBbl\": 23530,\n      \"waterVolumeBbl\": 7847,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-01\",\n      \"oilVolumeBbl\": 24279,\n      \"waterVolumeBbl\": 8666,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-02\",\n      \"oilVolumeBbl\": 23385,\n      \"waterVolumeBbl\": 8585,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-03\",\n      \"oilVolumeBbl\": 22947,\n      \"waterVolumeBbl\": 8674,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-04\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-04\",\n      \"oilVolumeBbl\": 22152,\n      \"waterVolumeBbl\": 7794,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-05\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-05\",\n      \"oilVolumeBbl\": 22818,\n      \"waterVolumeBbl\": 8357,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-06\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-06\",\n      \"oilVolumeBbl\": 22495,\n      \"waterVolumeBbl\": 8447,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-07\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-07\",\n      \"oilVolumeBbl\": 21306,\n      \"waterVolumeBbl\": 8627,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-08\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-08\",\n      \"oilVolumeBbl\": 20376,\n      \"waterVolumeBbl\": 8460,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-09\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-09\",\n      \"oilVolumeBbl\": 21003,\n      \"waterVolumeBbl\": 9185,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-10\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-10\",\n      \"oilVolumeBbl\": 20672,\n      \"waterVolumeBbl\": 8447,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-11\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-11\",\n      \"oilVolumeBbl\": 19860,\n      \"waterVolumeBbl\": 8633,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P01-2025-12\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"month\": \"2025-12\",\n      \"oilVolumeBbl\": 19434,\n      \"waterVolumeBbl\": 8403,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-01\",\n      \"oilVolumeBbl\": 20939,\n      \"waterVolumeBbl\": 7628,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-02\",\n      \"oilVolumeBbl\": 21480,\n      \"waterVolumeBbl\": 7480,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-03\",\n      \"oilVolumeBbl\": 21008,\n      \"waterVolumeBbl\": 7881,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-04\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-04\",\n      \"oilVolumeBbl\": 20411,\n      \"waterVolumeBbl\": 7669,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-05\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-05\",\n      \"oilVolumeBbl\": 19545,\n      \"waterVolumeBbl\": 7261,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-06\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-06\",\n      \"oilVolumeBbl\": 19073,\n      \"waterVolumeBbl\": 7608,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-07\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-07\",\n      \"oilVolumeBbl\": 19738,\n      \"waterVolumeBbl\": 7538,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-08\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-08\",\n      \"oilVolumeBbl\": 18861,\n      \"waterVolumeBbl\": 7688,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-09\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-09\",\n      \"oilVolumeBbl\": 0,\n      \"waterVolumeBbl\": 0,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-10\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-10\",\n      \"oilVolumeBbl\": 18745,\n      \"waterVolumeBbl\": 8087,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-11\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-11\",\n      \"oilVolumeBbl\": 17914,\n      \"waterVolumeBbl\": 7346,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2024-12\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2024-12\",\n      \"oilVolumeBbl\": 17696,\n      \"waterVolumeBbl\": 7820,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-01\",\n      \"oilVolumeBbl\": 17543,\n      \"waterVolumeBbl\": 8081,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-02\",\n      \"oilVolumeBbl\": 16705,\n      \"waterVolumeBbl\": 7213,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-03\",\n      \"oilVolumeBbl\": 16820,\n      \"waterVolumeBbl\": 7870,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-04\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-04\",\n      \"oilVolumeBbl\": 17437,\n      \"waterVolumeBbl\": 8431,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-05\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-05\",\n      \"oilVolumeBbl\": 16090,\n      \"waterVolumeBbl\": 7936,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-06\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-06\",\n      \"oilVolumeBbl\": 16898,\n      \"waterVolumeBbl\": 8274,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-07\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-07\",\n      \"oilVolumeBbl\": 16011,\n      \"waterVolumeBbl\": 7798,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-08\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-08\",\n      \"oilVolumeBbl\": 15729,\n      \"waterVolumeBbl\": 8159,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-09\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-09\",\n      \"oilVolumeBbl\": 15104,\n      \"waterVolumeBbl\": 7340,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-10\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-10\",\n      \"oilVolumeBbl\": 14723,\n      \"waterVolumeBbl\": 7627,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-11\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-11\",\n      \"oilVolumeBbl\": 14863,\n      \"waterVolumeBbl\": 8174,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"PM-P02-2025-12\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"month\": \"2025-12\",\n      \"oilVolumeBbl\": 14692,\n      \"waterVolumeBbl\": 7725,\n      \"volumeUnit\": \"STB\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    }\n  ],\n  \"injectorMonthly\": [\n    {\n      \"rowId\": \"IM-I01-2024-01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-01\",\n      \"volumeBbl\": 92378,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-02\",\n      \"volumeBbl\": 87000,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-03\",\n      \"volumeBbl\": 89907,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-04\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-04\",\n      \"volumeBbl\": 87300,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-05\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-05\",\n      \"volumeBbl\": 86284,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-06\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-06\",\n      \"volumeBbl\": 85508,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-07\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-07\",\n      \"volumeBbl\": 91144,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-08\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-08\",\n      \"volumeBbl\": 90116,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-09\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-09\",\n      \"volumeBbl\": 91790,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-10\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-10\",\n      \"volumeBbl\": 88810,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-11\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-11\",\n      \"volumeBbl\": 86317,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2024-12\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2024-12\",\n      \"volumeBbl\": 94133,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-01\",\n      \"volumeBbl\": 93446,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-02\",\n      \"volumeBbl\": 88799,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-03\",\n      \"volumeBbl\": 87232,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-04\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-04\",\n      \"volumeBbl\": 85719,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-05\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-05\",\n      \"volumeBbl\": 86879,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-06\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-06\",\n      \"volumeBbl\": 91320,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-07\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-07\",\n      \"volumeBbl\": 94233,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-08\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-08\",\n      \"volumeBbl\": 92573,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-09\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-09\",\n      \"volumeBbl\": 91150,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-10\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-10\",\n      \"volumeBbl\": 89623,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-11\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-11\",\n      \"volumeBbl\": 86396,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I01-2025-12\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"month\": \"2025-12\",\n      \"volumeBbl\": 88564,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-01\",\n      \"volumeBbl\": 58751,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-02\",\n      \"volumeBbl\": 58000,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-03\",\n      \"volumeBbl\": 59897,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-04\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-04\",\n      \"volumeBbl\": 60470,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-05\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-05\",\n      \"volumeBbl\": 58769,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-06\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-06\",\n      \"volumeBbl\": 58621,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-07\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-07\",\n      \"volumeBbl\": 58726,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-08\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-08\",\n      \"volumeBbl\": null,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-09\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-09\",\n      \"volumeBbl\": 61019,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-10\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-10\",\n      \"volumeBbl\": 59733,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-11\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-11\",\n      \"volumeBbl\": 59675,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2024-12\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2024-12\",\n      \"volumeBbl\": 60619,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-01\",\n      \"volumeBbl\": 57695,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-02\",\n      \"volumeBbl\": 58538,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-03\",\n      \"volumeBbl\": 62276,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-04\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-04\",\n      \"volumeBbl\": 61869,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-05\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-05\",\n      \"volumeBbl\": 61411,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-06\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-06\",\n      \"volumeBbl\": 60942,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-07\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-07\",\n      \"volumeBbl\": 62825,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-08\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-08\",\n      \"volumeBbl\": 58720,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-09\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-09\",\n      \"volumeBbl\": 62188,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-10\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-10\",\n      \"volumeBbl\": 57066,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-11\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-11\",\n      \"volumeBbl\": 57249,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"IM-I02-2025-12\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"month\": \"2025-12\",\n      \"volumeBbl\": 59631,\n      \"volumeUnit\": \"bbl\",\n      \"basis\": \"calendar-month\",\n      \"classification\": \"synthetic\"\n    }\n  ],\n  \"associations\": [\n    {\n      \"rowId\": \"AS-P01-I01\",\n      \"sourceId\": \"PS-DEMO-ASSUMED\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"distance\": 1.5,\n      \"distanceUnit\": \"mi\",\n      \"origin\": \"assumed\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"AS-P01-I02\",\n      \"sourceId\": \"PS-DEMO-ASSUMED\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"distance\": 3,\n      \"distanceUnit\": \"mi\",\n      \"origin\": \"assumed\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"AS-P02-I01\",\n      \"sourceId\": \"PS-DEMO-ASSUMED\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"injectorId\": \"PS-DEMO-I01\",\n      \"distance\": 3,\n      \"distanceUnit\": \"mi\",\n      \"origin\": \"assumed\",\n      \"classification\": \"synthetic\"\n    },\n    {\n      \"rowId\": \"AS-P02-I02\",\n      \"sourceId\": \"PS-DEMO-ASSUMED\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"injectorId\": \"PS-DEMO-I02\",\n      \"distance\": 1.5,\n      \"distanceUnit\": \"mi\",\n      \"origin\": \"assumed\",\n      \"classification\": \"synthetic\"\n    }\n  ],\n  \"events\": [\n    {\n      \"rowId\": \"EV-F01\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"eventId\": \"PS-DEMO-F01\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"date\": \"2024-04-15\",\n      \"kind\": \"frac\",\n      \"citation\": \"Synthetic example event PS-DEMO-F01; not a public or customer record\",\n      \"classification\": \"synthetic\",\n      \"uncertainty\": \"Fictional date for demonstration; no treatment response is implied\"\n    },\n    {\n      \"rowId\": \"EV-F02\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"eventId\": \"PS-DEMO-F02\",\n      \"producerId\": \"PS-DEMO-P02\",\n      \"date\": \"2025-03-09\",\n      \"kind\": \"frac\",\n      \"citation\": \"Synthetic example event PS-DEMO-F02; not a public or customer record\",\n      \"classification\": \"synthetic\",\n      \"uncertainty\": \"Fictional date for demonstration; no treatment response is implied\"\n    },\n    {\n      \"rowId\": \"EV-F03\",\n      \"sourceId\": \"PS-DEMO-SYN\",\n      \"eventId\": \"PS-DEMO-F03\",\n      \"producerId\": \"PS-DEMO-P01\",\n      \"date\": \"2026-01-10\",\n      \"kind\": \"frac\",\n      \"citation\": \"Synthetic example event PS-DEMO-F03; not a public or customer record\",\n      \"classification\": \"synthetic\",\n      \"uncertainty\": \"Fictional date for demonstration; no treatment response is implied\"\n    }\n  ]\n}\n"
+    },
+    "pin": {
+      "url": "/data/pressure-support/example.json",
+      "sha256": "dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab",
+      "version": "pressure-support-input/1",
+      "bytes": 30351
+    },
+    "validatedInput": {
+      "version": "pressure-support-input/1",
+      "fixtureVersion": 1,
+      "seed": 20261012,
+      "datasetId": "pressure-support-demo/seed-20261012/v1",
+      "name": "Synthetic pressure-support context example",
+      "classification": "synthetic",
+      "coverage": {
+        "firstMonth": "2024-01",
+        "lastMonth": "2025-12"
+      },
+      "sources": [
+        {
+          "sourceId": "PS-DEMO-SYN",
+          "classification": "synthetic",
+          "description": "Fictional producer, injector and frac-event observations generated for the demo"
+        },
+        {
+          "sourceId": "PS-DEMO-ASSUMED",
+          "classification": "assumed",
+          "description": "Declared fictional producer/injector associations and assumed distances; not GIS or hydraulic evidence"
+        }
+      ],
+      "producers": [
+        {
+          "producerId": "PS-DEMO-P01",
+          "name": "Fictional producer P01",
+          "classification": "synthetic"
+        },
+        {
+          "producerId": "PS-DEMO-P02",
+          "name": "Fictional producer P02",
+          "classification": "synthetic"
+        }
+      ],
+      "injectors": [
+        {
+          "injectorId": "PS-DEMO-I01",
+          "name": "Fictional injector I01",
+          "classification": "synthetic"
+        },
+        {
+          "injectorId": "PS-DEMO-I02",
+          "name": "Fictional injector I02",
+          "classification": "synthetic"
+        }
+      ],
+      "producerMonthly": [
+        {
+          "rowId": "PM-P01-2024-01",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-01",
+          "oilVolumeBbl": 30355,
+          "waterVolumeBbl": 6580,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-02",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-02",
+          "oilVolumeBbl": 29000,
+          "waterVolumeBbl": 7250,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-03",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-03",
+          "oilVolumeBbl": 28672,
+          "waterVolumeBbl": 6862,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-04",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-04",
+          "oilVolumeBbl": 29476,
+          "waterVolumeBbl": 7585,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-05",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-05",
+          "oilVolumeBbl": 29125,
+          "waterVolumeBbl": 7345,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-06",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-06",
+          "oilVolumeBbl": 27824,
+          "waterVolumeBbl": null,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-07",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-07",
+          "oilVolumeBbl": 27862,
+          "waterVolumeBbl": 7536,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-08",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-08",
+          "oilVolumeBbl": 26725,
+          "waterVolumeBbl": 7709,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-09",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-09",
+          "oilVolumeBbl": 25035,
+          "waterVolumeBbl": 7140,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-10",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-10",
+          "oilVolumeBbl": 25888,
+          "waterVolumeBbl": 8117,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-11",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-11",
+          "oilVolumeBbl": 24393,
+          "waterVolumeBbl": 7701,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2024-12",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2024-12",
+          "oilVolumeBbl": 23530,
+          "waterVolumeBbl": 7847,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-01",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-01",
+          "oilVolumeBbl": 24279,
+          "waterVolumeBbl": 8666,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-02",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-02",
+          "oilVolumeBbl": 23385,
+          "waterVolumeBbl": 8585,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-03",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-03",
+          "oilVolumeBbl": 22947,
+          "waterVolumeBbl": 8674,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-04",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-04",
+          "oilVolumeBbl": 22152,
+          "waterVolumeBbl": 7794,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-05",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-05",
+          "oilVolumeBbl": 22818,
+          "waterVolumeBbl": 8357,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-06",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-06",
+          "oilVolumeBbl": 22495,
+          "waterVolumeBbl": 8447,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-07",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-07",
+          "oilVolumeBbl": 21306,
+          "waterVolumeBbl": 8627,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-08",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-08",
+          "oilVolumeBbl": 20376,
+          "waterVolumeBbl": 8460,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-09",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-09",
+          "oilVolumeBbl": 21003,
+          "waterVolumeBbl": 9185,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-10",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-10",
+          "oilVolumeBbl": 20672,
+          "waterVolumeBbl": 8447,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-11",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-11",
+          "oilVolumeBbl": 19860,
+          "waterVolumeBbl": 8633,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P01-2025-12",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P01",
+          "month": "2025-12",
+          "oilVolumeBbl": 19434,
+          "waterVolumeBbl": 8403,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-01",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-01",
+          "oilVolumeBbl": 20939,
+          "waterVolumeBbl": 7628,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-02",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-02",
+          "oilVolumeBbl": 21480,
+          "waterVolumeBbl": 7480,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-03",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-03",
+          "oilVolumeBbl": 21008,
+          "waterVolumeBbl": 7881,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-04",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-04",
+          "oilVolumeBbl": 20411,
+          "waterVolumeBbl": 7669,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-05",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-05",
+          "oilVolumeBbl": 19545,
+          "waterVolumeBbl": 7261,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-06",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-06",
+          "oilVolumeBbl": 19073,
+          "waterVolumeBbl": 7608,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-07",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-07",
+          "oilVolumeBbl": 19738,
+          "waterVolumeBbl": 7538,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-08",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-08",
+          "oilVolumeBbl": 18861,
+          "waterVolumeBbl": 7688,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-09",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-09",
+          "oilVolumeBbl": 0,
+          "waterVolumeBbl": 0,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-10",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-10",
+          "oilVolumeBbl": 18745,
+          "waterVolumeBbl": 8087,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-11",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-11",
+          "oilVolumeBbl": 17914,
+          "waterVolumeBbl": 7346,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2024-12",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2024-12",
+          "oilVolumeBbl": 17696,
+          "waterVolumeBbl": 7820,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-01",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-01",
+          "oilVolumeBbl": 17543,
+          "waterVolumeBbl": 8081,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-02",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-02",
+          "oilVolumeBbl": 16705,
+          "waterVolumeBbl": 7213,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-03",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-03",
+          "oilVolumeBbl": 16820,
+          "waterVolumeBbl": 7870,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-04",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-04",
+          "oilVolumeBbl": 17437,
+          "waterVolumeBbl": 8431,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-05",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-05",
+          "oilVolumeBbl": 16090,
+          "waterVolumeBbl": 7936,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-06",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-06",
+          "oilVolumeBbl": 16898,
+          "waterVolumeBbl": 8274,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-07",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-07",
+          "oilVolumeBbl": 16011,
+          "waterVolumeBbl": 7798,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-08",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-08",
+          "oilVolumeBbl": 15729,
+          "waterVolumeBbl": 8159,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-09",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-09",
+          "oilVolumeBbl": 15104,
+          "waterVolumeBbl": 7340,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-10",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-10",
+          "oilVolumeBbl": 14723,
+          "waterVolumeBbl": 7627,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-11",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-11",
+          "oilVolumeBbl": 14863,
+          "waterVolumeBbl": 8174,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "PM-P02-2025-12",
+          "sourceId": "PS-DEMO-SYN",
+          "producerId": "PS-DEMO-P02",
+          "month": "2025-12",
+          "oilVolumeBbl": 14692,
+          "waterVolumeBbl": 7725,
+          "volumeUnit": "STB",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        }
+      ],
+      "injectorMonthly": [
+        {
+          "rowId": "IM-I01-2024-01",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-01",
+          "volumeBbl": 92378,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-02",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-02",
+          "volumeBbl": 87000,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-03",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-03",
+          "volumeBbl": 89907,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-04",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-04",
+          "volumeBbl": 87300,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-05",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-05",
+          "volumeBbl": 86284,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-06",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-06",
+          "volumeBbl": 85508,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-07",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-07",
+          "volumeBbl": 91144,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-08",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-08",
+          "volumeBbl": 90116,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-09",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-09",
+          "volumeBbl": 91790,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-10",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-10",
+          "volumeBbl": 88810,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-11",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-11",
+          "volumeBbl": 86317,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2024-12",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2024-12",
+          "volumeBbl": 94133,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-01",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-01",
+          "volumeBbl": 93446,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-02",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-02",
+          "volumeBbl": 88799,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-03",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-03",
+          "volumeBbl": 87232,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-04",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-04",
+          "volumeBbl": 85719,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-05",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-05",
+          "volumeBbl": 86879,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-06",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-06",
+          "volumeBbl": 91320,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-07",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-07",
+          "volumeBbl": 94233,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-08",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-08",
+          "volumeBbl": 92573,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-09",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-09",
+          "volumeBbl": 91150,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-10",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-10",
+          "volumeBbl": 89623,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-11",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-11",
+          "volumeBbl": 86396,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I01-2025-12",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I01",
+          "month": "2025-12",
+          "volumeBbl": 88564,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-01",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-01",
+          "volumeBbl": 58751,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-02",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-02",
+          "volumeBbl": 58000,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-03",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-03",
+          "volumeBbl": 59897,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-04",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-04",
+          "volumeBbl": 60470,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-05",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-05",
+          "volumeBbl": 58769,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-06",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-06",
+          "volumeBbl": 58621,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-07",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-07",
+          "volumeBbl": 58726,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-08",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-08",
+          "volumeBbl": null,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-09",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-09",
+          "volumeBbl": 61019,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-10",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-10",
+          "volumeBbl": 59733,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-11",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-11",
+          "volumeBbl": 59675,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2024-12",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2024-12",
+          "volumeBbl": 60619,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-01",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-01",
+          "volumeBbl": 57695,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-02",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-02",
+          "volumeBbl": 58538,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-03",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-03",
+          "volumeBbl": 62276,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-04",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-04",
+          "volumeBbl": 61869,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-05",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-05",
+          "volumeBbl": 61411,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-06",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-06",
+          "volumeBbl": 60942,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-07",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-07",
+          "volumeBbl": 62825,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-08",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-08",
+          "volumeBbl": 58720,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-09",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-09",
+          "volumeBbl": 62188,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-10",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-10",
+          "volumeBbl": 57066,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-11",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-11",
+          "volumeBbl": 57249,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "IM-I02-2025-12",
+          "sourceId": "PS-DEMO-SYN",
+          "injectorId": "PS-DEMO-I02",
+          "month": "2025-12",
+          "volumeBbl": 59631,
+          "volumeUnit": "bbl",
+          "basis": "calendar-month",
+          "classification": "synthetic"
+        }
+      ],
+      "associations": [
+        {
+          "rowId": "AS-P01-I01",
+          "sourceId": "PS-DEMO-ASSUMED",
+          "producerId": "PS-DEMO-P01",
+          "injectorId": "PS-DEMO-I01",
+          "distance": 1.5,
+          "distanceUnit": "mi",
+          "origin": "assumed",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "AS-P01-I02",
+          "sourceId": "PS-DEMO-ASSUMED",
+          "producerId": "PS-DEMO-P01",
+          "injectorId": "PS-DEMO-I02",
+          "distance": 3,
+          "distanceUnit": "mi",
+          "origin": "assumed",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "AS-P02-I01",
+          "sourceId": "PS-DEMO-ASSUMED",
+          "producerId": "PS-DEMO-P02",
+          "injectorId": "PS-DEMO-I01",
+          "distance": 3,
+          "distanceUnit": "mi",
+          "origin": "assumed",
+          "classification": "synthetic"
+        },
+        {
+          "rowId": "AS-P02-I02",
+          "sourceId": "PS-DEMO-ASSUMED",
+          "producerId": "PS-DEMO-P02",
+          "injectorId": "PS-DEMO-I02",
+          "distance": 1.5,
+          "distanceUnit": "mi",
+          "origin": "assumed",
+          "classification": "synthetic"
+        }
+      ],
+      "events": [
+        {
+          "rowId": "EV-F01",
+          "sourceId": "PS-DEMO-SYN",
+          "eventId": "PS-DEMO-F01",
+          "producerId": "PS-DEMO-P01",
+          "date": "2024-04-15",
+          "kind": "frac",
+          "citation": "Synthetic example event PS-DEMO-F01; not a public or customer record",
+          "classification": "synthetic",
+          "uncertainty": "Fictional date for demonstration; no treatment response is implied"
+        },
+        {
+          "rowId": "EV-F02",
+          "sourceId": "PS-DEMO-SYN",
+          "eventId": "PS-DEMO-F02",
+          "producerId": "PS-DEMO-P02",
+          "date": "2025-03-09",
+          "kind": "frac",
+          "citation": "Synthetic example event PS-DEMO-F02; not a public or customer record",
+          "classification": "synthetic",
+          "uncertainty": "Fictional date for demonstration; no treatment response is implied"
+        },
+        {
+          "rowId": "EV-F03",
+          "sourceId": "PS-DEMO-SYN",
+          "eventId": "PS-DEMO-F03",
+          "producerId": "PS-DEMO-P01",
+          "date": "2026-01-10",
+          "kind": "frac",
+          "citation": "Synthetic example event PS-DEMO-F03; not a public or customer record",
+          "classification": "synthetic",
+          "uncertainty": "Fictional date for demonstration; no treatment response is implied"
+        }
+      ]
+    },
+    "issues": [],
+    "rowDispositions": [
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-01",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-02",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-03",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-04",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-05",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-06",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-07",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-08",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-09",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-10",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-11",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2024-12",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-01",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-02",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-03",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-04",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-05",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-06",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-07",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-08",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-09",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-10",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-11",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P01-2025-12",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-01",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-02",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-03",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-04",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-05",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-06",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-07",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-08",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-09",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-10",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-11",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2024-12",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-01",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-02",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-03",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-04",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-05",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-06",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-07",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-08",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-09",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-10",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-11",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "producerMonthly",
+        "rowId": "PM-P02-2025-12",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-01",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-02",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-03",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-04",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-05",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-06",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-07",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-08",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-09",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-10",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-11",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2024-12",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-01",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-02",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-03",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-04",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-05",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-06",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-07",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-08",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-09",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-10",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-11",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I01-2025-12",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-01",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-02",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-03",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-04",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-05",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-06",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-07",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-08",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-09",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-10",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-11",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2024-12",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-01",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-02",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-03",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-04",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-05",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-06",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-07",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-08",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-09",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-10",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-11",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "injectorMonthly",
+        "rowId": "IM-I02-2025-12",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "associations",
+        "rowId": "AS-P01-I01",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "associations",
+        "rowId": "AS-P01-I02",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "associations",
+        "rowId": "AS-P02-I01",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "associations",
+        "rowId": "AS-P02-I02",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "events",
+        "rowId": "EV-F01",
+        "disposition": "used",
+        "issues": []
+      },
+      {
+        "section": "events",
+        "rowId": "EV-F02",
+        "disposition": "not-selected",
+        "issues": []
+      },
+      {
+        "section": "events",
+        "rowId": "EV-F03",
+        "disposition": "used",
+        "issues": []
+      }
+    ],
+    "associations": [
+      {
+        "rowId": "AS-P01-I01",
+        "sourceId": "PS-DEMO-ASSUMED",
+        "producerId": "PS-DEMO-P01",
+        "injectorId": "PS-DEMO-I01",
+        "distance": 1.5,
+        "distanceUnit": "mi",
+        "origin": "assumed",
+        "classification": "synthetic"
+      },
+      {
+        "rowId": "AS-P01-I02",
+        "sourceId": "PS-DEMO-ASSUMED",
+        "producerId": "PS-DEMO-P01",
+        "injectorId": "PS-DEMO-I02",
+        "distance": 3,
+        "distanceUnit": "mi",
+        "origin": "assumed",
+        "classification": "synthetic"
+      }
+    ],
+    "events": [
+      {
+        "rowId": "EV-F01",
+        "sourceId": "PS-DEMO-SYN",
+        "eventId": "PS-DEMO-F01",
+        "producerId": "PS-DEMO-P01",
+        "date": "2024-04-15",
+        "kind": "frac",
+        "citation": "Synthetic example event PS-DEMO-F01; not a public or customer record",
+        "classification": "synthetic",
+        "uncertainty": "Fictional date for demonstration; no treatment response is implied",
+        "withinCoverage": true,
+        "withinSelection": true
+      },
+      {
+        "rowId": "EV-F03",
+        "sourceId": "PS-DEMO-SYN",
+        "eventId": "PS-DEMO-F03",
+        "producerId": "PS-DEMO-P01",
+        "date": "2026-01-10",
+        "kind": "frac",
+        "citation": "Synthetic example event PS-DEMO-F03; not a public or customer record",
+        "classification": "synthetic",
+        "uncertainty": "Fictional date for demonstration; no treatment response is implied",
+        "withinCoverage": false,
+        "withinSelection": false
+      }
+    ],
+    "notices": [],
+    "missingReasons": [
+      {
+        "month": "2024-06",
+        "reasons": [
+          "Water volume missing for PS-DEMO-P01 2024-06"
+        ]
+      },
+      {
+        "month": "2024-08",
+        "reasons": [
+          "Injection volume missing for PS-DEMO-I02 2024-08"
+        ]
+      }
+    ],
+    "units": {
+      "producerRate": "STB/day",
+      "producerVolume": "STB",
+      "injectorVolume": "bbl/month",
+      "waterCut": "%",
+      "distance": "mi",
+      "basis": "calendar-month"
+    },
+    "formulas": [
+      "rate (STB/day) = monthly stock-tank volume / calendar days in the UTC month",
+      "liquid rate = (oil + water) / calendar days; gas excluded",
+      "water cut (%) = water / (oil + water) x 100; unavailable when either input is missing or total liquid is zero",
+      "complete injection (bbl/month) = sum of selected injector volumes, only when every selected contribution is present"
+    ],
+    "assumptions": [
+      "All observations and events are synthetic; no actual API, UIC or public producer is represented.",
+      "Producer/injector associations and distances are declared assumptions, not GIS proximity or hydraulic connectivity.",
+      "Injection bbl/month and producer STB/day are different quantities on separate scales.",
+      "Frac events are annotations only; they do not change fits, cutoffs, forecasts or capacity.",
+      "This is an investigation view, not a determination of pressure support, causation or interwell connectivity."
+    ],
+    "limitations": [
+      "Synthetic context, separate from capacity; not a numerical determination of pressure support, causation or interwell connectivity.",
+      "Associations and distances are declared assumptions; no GIS inference or hydraulic connection is implied.",
+      "Frac events are annotations; they do not change fits, cutoffs, frozen forecasts or capacity results.",
+      "Missing observations stay unavailable; aggregates exist only when every selected contribution is present."
+    ]
+  }
+}

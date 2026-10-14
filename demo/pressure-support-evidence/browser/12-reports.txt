@@ -1,0 +1,121 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Active dataset
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Reports & evidence
+  - navigation "Reports & evidence workspaces":
+    - button "Reports"
+    - button "Evidence & limitations"
+  - region "Reports & evidence":
+    - heading "Reports & evidence" [active] [level=1]
+    - paragraph: Download current result snapshots. Each report retains its own source identity, assumptions and supported formats.
+    - article:
+      - heading "Original engineering workbook" [level=2]
+      - paragraph: Seeded histories, frozen forecast, demand, constant-J curves, dated expansion and public reference evidence.
+      - generic: Current download available
+      - button "Download Original engineering workbook JSON": JSON
+      - button "Download Original engineering workbook CSV": CSV
+      - button "Download Original engineering workbook SVG": SVG
+      - button "Download Original engineering workbook PDF": PDF
+      - button "Open results & inputs"
+    - article:
+      - heading "Selected data analysis" [level=2]
+      - paragraph: The last displayed customer/public analysis, table and retained lineage. Chart format is available only when the selected analysis has a chart.
+      - generic: No current result — calculate or resolve inputs
+      - button "Download Selected data analysis JSON" [disabled]: JSON
+      - button "Download Selected data analysis CSV" [disabled]: CSV
+      - button "Download Selected data analysis SVG" [disabled]: SVG
+      - button "Open results & inputs"
+      - paragraph: Dedicated PDF unavailable. Existing JSON / CSV / SVG remain available when their result is current.
+    - article:
+      - heading "Connected capacity case" [level=2]
+      - paragraph: Base/compared constraints, frozen demand, assumptions, allocations and supported depth profiles.
+      - generic: No current result — calculate or resolve inputs
+      - button "Download Connected capacity case JSON" [disabled]: JSON
+      - button "Download Connected capacity case CSV" [disabled]: CSV
+      - button "Download Connected capacity case SVG" [disabled]: SVG
+      - button "Open results & inputs"
+      - paragraph: Dedicated PDF unavailable. Existing JSON / CSV / SVG remain available when their result is current.
+    - article:
+      - heading "Capacity parameter sweep" [level=2]
+      - paragraph: One well and one parameter at a time, exact baseline, monthly results, unsupported allocations and source-case evidence.
+      - generic: No current result — calculate or resolve inputs
+      - button "Download Capacity parameter sweep JSON" [disabled]: JSON
+      - button "Download Capacity parameter sweep CSV" [disabled]: CSV
+      - button "Download Capacity parameter sweep SVG" [disabled]: SVG
+      - button "Open results & inputs"
+      - paragraph: Dedicated PDF unavailable. Existing JSON / CSV / SVG remain available when their result is current.
+    - article:
+      - heading "Independent brine PVT" [level=2]
+      - paragraph: Bw, density, viscosity and compressibility at declared pressure, temperature and NaCl composition.
+      - generic: No current result — calculate or resolve inputs
+      - button "Download Independent brine PVT JSON" [disabled]: JSON
+      - button "Download Independent brine PVT CSV" [disabled]: CSV
+      - button "Download Independent brine PVT SVG" [disabled]: SVG
+      - button "Open results & inputs"
+      - paragraph: Dedicated PDF unavailable. Existing JSON / CSV / SVG remain available when their result is current.
+    - article:
+      - heading "Worked pressure / skin study" [level=2]
+      - paragraph: Cited fixture, equations, units and assumed skin comparison. Separate from the active planning dataset.
+      - generic: Current download available
+      - button "Download Worked pressure / skin study JSON": JSON
+      - button "Download Worked pressure / skin study CSV": CSV
+      - button "Download Worked pressure / skin study SVG": SVG
+      - button "Open results & inputs"
+      - paragraph: Dedicated PDF unavailable. Existing JSON / CSV / SVG remain available when their result is current.
+    - article:
+      - heading "Standalone hydraulics" [level=2]
+      - paragraph: Declared independent well/fluid/rate assumptions, hydraulic contributions and supported profiles.
+      - generic: No current result — calculate or resolve inputs
+      - button "Download Standalone hydraulics JSON" [disabled]: JSON
+      - button "Download Standalone hydraulics CSV" [disabled]: CSV
+      - button "Download Standalone hydraulics SVG" [disabled]: SVG
+      - button "Open results & inputs"
+      - paragraph: Dedicated PDF unavailable. Existing JSON / CSV / SVG remain available when their result is current.
+    - article:
+      - heading "Pressure-support context" [level=2]
+      - paragraph: Synthetic context, separate from capacity; not a pressure-support determination. Producer rates, water cut, selected injection volumes, frac annotations, exact source bytes and row lineage.
+      - generic: No current result — calculate or resolve inputs
+      - button "Download Pressure-support context JSON" [disabled]: JSON
+      - button "Download Pressure-support context CSV" [disabled]: CSV
+      - button "Download Pressure-support context SVG" [disabled]: SVG
+      - button "Open results & inputs"
+      - paragraph: Dedicated PDF unavailable. Existing JSON / CSV / SVG remain available when their result is current.
+    - paragraph: An input edit clears dependent results and downloads. Independent PVT and the worked study keep their own inputs. No report implies full engineering or product acceptance.
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

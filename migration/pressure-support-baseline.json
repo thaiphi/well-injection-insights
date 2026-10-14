@@ -1,0 +1,130 @@
+{
+  "version": "swd-pressure-preservation/1",
+  "status": "accepted",
+  "acceptedAt": "2026-10-14",
+  "acceptedBy": "Owner (Thai Phi), explicit approval in Claude Code session after independent plan-acceptance PASS",
+  "acceptanceEvidence": "demo/PRESSURE-SUPPORT-VERIFICATION.md (Resumed verification, October 13-14, 2026)",
+  "parentManifestSha256": "8e7ef57c763817a3ab77ea1baf7e2ddf5687d51c753b33e4245f47f580ea237b",
+  "originalCount": 182,
+  "approvedDesignSha256": "2a44d12866cac45a25247f5bddf88c1923741081d67e89d1be3eebf0c64b3438",
+  "approvedPlanSha256": "5fe577ebaa6b3c57995bf17f7229d5387de43f974509d8b4b93d097dc184ea0f",
+  "changes": [
+    {
+      "path": "web/navigation.mjs",
+      "beforeSha256": "0a5c465c708b9a4197758e8835c4d4286a720a7628711b17261694643d8c1b3b",
+      "archive": "migration/baselines/pressure-support-before/swd-injection-analytics/web/navigation.mjs",
+      "afterSha256": "074d46fb0ff9ce55cb67ffc7dcdeb3bc26260a5e38401fcdab46f4e917b42ca5",
+      "beforeBytes": 3190,
+      "afterBytes": 3237
+    },
+    {
+      "path": "web/index.html",
+      "beforeSha256": "fdc69be0e40e4720cd424fb8c4143ded8345ea2cc9d77e8b5667140e9c129b19",
+      "archive": "migration/baselines/pressure-support-before/swd-injection-analytics/web/index.html",
+      "afterSha256": "aa99f3be5824573e71fdf4ad8a35e42dd134392b253e7f6cdd64ead6bab671d6",
+      "beforeBytes": 38558,
+      "afterBytes": 38717
+    },
+    {
+      "path": "web/import-ui.mjs",
+      "beforeSha256": "9125957a4f0e4f3de097df483e3d4a399dcf01f1b5c9ae0940c5405573b32dab",
+      "archive": "migration/baselines/pressure-support-before/swd-injection-analytics/web/import-ui.mjs",
+      "afterSha256": "ddc2b130b8263fd763743fa01087ed10f29f87765aeb2806a77d26b433629304",
+      "beforeBytes": 58490,
+      "afterBytes": 58798
+    },
+    {
+      "path": "web/workspace-views.mjs",
+      "beforeSha256": "c16fb6e9651a93e0bdd82f71b0e7dc41d36ca81a03fe3d5906110ae80250bdea",
+      "archive": "migration/baselines/pressure-support-before/swd-injection-analytics/web/workspace-views.mjs",
+      "afterSha256": "e76acbd63ab7cf4131cc21baeeedd5a5872c922e0171c6113610f715e91d548f",
+      "beforeBytes": 13028,
+      "afterBytes": 13346
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/pressureSupport.ts",
+      "bytes": 22855,
+      "sha256": "6d2c258ab7175159c7b8b57c61bf504385fd6eb411736f463030fed16d0c3038"
+    },
+    {
+      "path": "src/pressureSupportChart.ts",
+      "bytes": 10713,
+      "sha256": "f32653592a9fbec0fb9d283de69cbd26263ca285a6870f40ab9c97266f364ef4"
+    },
+    {
+      "path": "src/pressureSupportExport.ts",
+      "bytes": 10130,
+      "sha256": "773c2fac54316ec8ae51a25f0f3eff89dde139873a7b67a456cc7d7ac8210995"
+    },
+    {
+      "path": "data/pressure-support/example.json",
+      "bytes": 30351,
+      "sha256": "dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab"
+    },
+    {
+      "path": "data/pressure-support/pin.json",
+      "bytes": 776,
+      "sha256": "f92263e8d9397dc236d42e4667ba0b23e542bd35af68a34a80573a41e5a76cc2"
+    },
+    {
+      "path": "scripts/create-pressure-support-example.mjs",
+      "bytes": 5128,
+      "sha256": "a0e93f07c84a40b523ebbc3738ed139a9cd02742dcea684acfd55bffe64bd7a7"
+    },
+    {
+      "path": "web/pressure-support.mjs",
+      "bytes": 21013,
+      "sha256": "749f421fd99544d1a0474b3fde18cedbbb49de31ce1d811e576b8422bedf3aff"
+    },
+    {
+      "path": "web/pressure-support-chart.mjs",
+      "bytes": 601,
+      "sha256": "54fd5ff0b457b52be647bcd27b79a020c889e4e69d08a0fe5f56d80da6d13568"
+    },
+    {
+      "path": "web/pressure-support.css",
+      "bytes": 3310,
+      "sha256": "84c00e23e170e32a44ba275e8ab0a62b833a2a0a0123b6c792e0d45061eb20f4"
+    },
+    {
+      "path": "tests/pressure-support.test.mjs",
+      "bytes": 18390,
+      "sha256": "4bae27b8875dc01b97f809e2a719ee0ba5547694a441b365194cf865eddabb45"
+    },
+    {
+      "path": "tests/pressure-support-state.test.mjs",
+      "bytes": 14821,
+      "sha256": "0ed41ba27300eea553f1c4871611f3d676590e0387eea37c569b2f6b628f6390"
+    },
+    {
+      "path": "tests/pressure-support-export.test.mjs",
+      "bytes": 14547,
+      "sha256": "b2c6b80bbcfcfdb3746e0f98f3df86a7a844053c2751cb350041db88afce46e0"
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "scripts/verify-preservation.mjs",
+      "bytes": 8094,
+      "sha256": "eb36e95fc3a1bbfa26c9f6d4d93bc00f083ef10270a553785fc56bf83200c733"
+    },
+    {
+      "path": "tests/preservation-baseline.test.mjs",
+      "bytes": 8694,
+      "sha256": "6b285fa5ca0437b64351c8e0565586f996a9f58d9e18bc23d8ca6cfd710ccbd1"
+    },
+    {
+      "path": "tests/transfer.test.mjs",
+      "bytes": 3162,
+      "sha256": "274e81abe3078e59ef522e0ade18d06a2ec31499557c5baec33592603bdeb105"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 459,
+      "sha256": "619212803693c6ad4caeb625bb314d8654e5c64fb5d3b3583f1634b7306e82ce"
+    }
+  ],
+  "preparedAt": "2026-10-13T22:27:20.961Z"
+}

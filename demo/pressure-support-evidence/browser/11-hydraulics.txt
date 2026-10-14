@@ -1,0 +1,129 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Planning dataset · separate from this tool
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Fluid & wellbore
+  - navigation "Fluid & wellbore workspaces":
+    - button "Brine PVT"
+    - button "Hydraulics"
+    - button "Profiles"
+  - region "Wellbore hydraulics":
+    - heading "Wellbore hydraulics" [active] [level=1]
+    - paragraph: Calculate injection pressure and inspect brine properties along the well.
+    - generic: Independent assumed case
+    - paragraph: Enter well geometry, fluid assumptions and a common bottomhole datum. All defaults are fictional assumptions. A planning dataset or forecast is not required.
+    - heading "Calculation inputs" [level=2]
+    - button "Reset assumed values"
+    - text: Case label
+    - textbox "Case label": Assumed brine injector
+    - text: Wellbore model
+    - combobox "Wellbore model":
+      - option "Depth-dependent brine" [selected]
+      - option "Uniform reference brine"
+    - paragraph: Local pressure and temperature update brine density, viscosity and volume along the well.
+    - group "Operating point":
+      - generic: Operating point
+      - text: Selected injection rate
+      - generic: STB/day
+      - spinbutton "Selected injection rate STB/day": "5000"
+      - text: Injectivity J
+      - generic: STB/day/psi
+      - spinbutton "Injectivity J STB/day/psi": "5"
+    - group "Pressure references & constraints":
+      - generic: Pressure references & constraints
+      - text: Reservoir pressure
+      - generic: psia
+      - spinbutton "Reservoir pressure psia": "2000"
+      - text: Bottomhole pressure limit
+      - generic: psia
+      - spinbutton "Bottomhole pressure limit psia": "3500"
+      - text: Wellhead pressure limit
+      - generic: psia
+      - spinbutton "Wellhead pressure limit psia": "2000"
+      - text: Operating rate ceiling
+      - generic: STB/day
+      - spinbutton "Operating rate ceiling STB/day": "10000"
+      - text: Common bottomhole datum
+      - textbox "Common bottomhole datum": Formation at declared TVD below wellhead
+      - paragraph: Reservoir and bottomhole limit share this datum. Wellhead pressure is at 0 ft; TVD relates it to the formation. All pressures are absolute psia, including limits.
+    - group "Well geometry":
+      - generic: Well geometry
+      - text: True vertical depth
+      - generic: ft
+      - spinbutton "True vertical depth ft": "3000"
+      - text: Measured depth
+      - generic: ft
+      - spinbutton "Measured depth ft": "3300"
+      - text: Tubing inner diameter
+      - generic: in
+      - spinbutton "Tubing inner diameter in": "4.5"
+      - text: Absolute roughness
+      - generic: in
+      - spinbutton "Absolute roughness in": "0.0006"
+      - paragraph: TVD controls gravity; measured depth controls friction. Constant tubing diameter and straight deviation are assumed.
+    - group "Gas-free NaCl brine":
+      - generic: Gas-free NaCl brine
+      - text: Bottomhole / uniform temperature
+      - generic: °F
+      - spinbutton "Bottomhole / uniform temperature °F": "180"
+      - text: NaCl salinity
+      - generic: wt%
+      - spinbutton "NaCl salinity wt%": "5"
+      - text: Fluid reference pressure
+      - generic: psia
+      - spinbutton "Fluid reference pressure psia": "2000"
+    - group "Depth-dependent settings":
+      - generic: Depth-dependent settings
+      - text: Surface temperature
+      - generic: °F
+      - spinbutton "Surface temperature °F": "80"
+      - text: Initial traverse intervals
+      - generic: intervals
+      - spinbutton "Initial traverse intervals intervals": "32"
+      - paragraph: Temperature varies linearly with TVD. The solver refines intervals automatically. Local pressure 100–10,000 psia; temperature 60–250 °F; NaCl 0–20 wt%. NaCl wt% is not TDS mg/L.
+    - generic "Pressure-curve range"
+    - button "Calculate hydraulics"
+    - status: Ready for an assumed calculation. Review inputs, then calculate.
+    - generic "Local calculation exports":
+      - button "JSON" [disabled]
+      - button "CSV" [disabled]
+      - button "SVG" [disabled]
+    - heading "Your injection-pressure calculation" [level=2]
+    - paragraph: Calculate a selected rate and a pressure curve using the assumptions on the left. Profiles are available with the depth-dependent brine model.
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

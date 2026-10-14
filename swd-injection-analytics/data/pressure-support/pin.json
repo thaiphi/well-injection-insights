@@ -1,0 +1,33 @@
+{
+  "file": "example.json",
+  "datasetId": "pressure-support-demo/seed-20261012/v1",
+  "version": "pressure-support-input/1",
+  "fixtureVersion": 1,
+  "seed": 20261012,
+  "sha256": "dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab",
+  "bytes": 30351,
+  "coverage": {
+    "firstMonth": "2024-01",
+    "lastMonth": "2025-12"
+  },
+  "classifications": {
+    "dataset": "synthetic",
+    "observations": "synthetic",
+    "events": "synthetic",
+    "associationOrigin": "assumed"
+  },
+  "counts": {
+    "producers": 2,
+    "injectors": 2,
+    "producerMonthly": 48,
+    "injectorMonthly": 48,
+    "associations": 4,
+    "events": 3
+  },
+  "units": {
+    "producerVolume": "STB",
+    "injectorVolume": "bbl",
+    "distance": "mi",
+    "basis": "calendar-month"
+  }
+}

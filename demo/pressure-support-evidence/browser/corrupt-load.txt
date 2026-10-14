@@ -1,0 +1,98 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Planning dataset · separate from this tool
+  - generic: None selected
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Production & demand
+  - navigation "Production & demand workspaces":
+    - button "Histories"
+    - button "Fit & forecast"
+    - button "Reconciliation"
+    - button "Curve library"
+    - button "Schedules"
+    - button "Demand"
+    - button "Pressure-support context"
+  - region "Pressure-support context":
+    - heading "Pressure-support context" [level=1]
+    - paragraph: Inspect producer oil/water rates, water cut, selected nearby injection volumes and frac dates on one calendar axis.
+    - paragraph: "Synthetic investigation view only — not a determination of pressure support, causation or interwell connectivity. Separate from the active planning dataset: it never changes confirmed inputs, forecasts, schedules or capacity results."
+    - region "Context dataset":
+      - heading "Context dataset" [level=2]
+      - term: Context dataset
+      - definition: Not loaded
+      - term: Active planning dataset
+      - definition: none selected · separate from the active planning dataset; never substituted
+    - region "Load synthetic context":
+      - heading "1. Load the pinned example" [level=2]
+      - paragraph: Loads only the local fictional example after its exact bytes match the pinned SHA-256. Nothing loads automatically.
+      - button "Retry load"
+      - button "Cancel load" [disabled]
+      - status
+      - alert: "SHA-256 mismatch: expected dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab, received 7ee4b5707b73b2b54305d91ba662ef833d2dcc59d62359dc72ece9a37109c872. The example was not decoded."
+    - form "Context selection":
+      - group "2. Choose producer, injectors and period":
+        - generic: 2. Choose producer, injectors and period
+        - text: Producer
+        - combobox "Producer" [disabled]
+        - text: First month
+        - textbox "First month" [disabled]
+        - text: Last month
+        - textbox "Last month" [disabled]
+        - group "Declared associated injectors (assumed distance)":
+          - generic: Declared associated injectors (assumed distance)
+        - button "Calculate context" [disabled]
+    - region "3. Context result":
+      - heading "3. Context result" [level=2]
+      - status
+      - button "Download context evidence JSON" [disabled]
+      - button "Download context table CSV" [disabled]
+      - button "Download context chart SVG" [disabled]
+      - status
+    - region "Real-data availability":
+      - heading "Real-data availability" [level=2]
+      - paragraph: "Unavailable for public or customer sources: each input below must pass explicit checks under a separately reviewed contract."
+      - list:
+        - listitem: Matched producer oil/water monthly stock-tank series with a declared calendar basis
+        - listitem: Producer/injector association evidence (identities, distance and units); no GIS inference is made
+        - listitem: Dated frac event inputs with citations and source rows
+        - listitem: A reviewed source composition contract (pressure-support-input/1 accepts synthetic context only)
+      - paragraph: No planning source is selected; the synthetic context example stays separate.
+      - link "Open public injector history":
+        - /url: "#injection/publicTrends"
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.
+- alert

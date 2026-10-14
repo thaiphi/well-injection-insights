@@ -1,0 +1,79 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Planning dataset · separate from this view
+  - generic: None selected
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Fluid & wellbore
+  - navigation "Fluid & wellbore workspaces":
+    - button "Brine PVT"
+    - button "Hydraulics"
+    - button "Profiles"
+  - region "Water / brine PVT":
+    - heading "Water / brine PVT" [level=1]
+    - paragraph: Explore pressure-dependent fluid properties using an attributed pyResToolbox browser adaptation.
+    - paragraph:
+      - strong: Independent assumed fluid case.
+      - text: The active dataset above stays selected, but supplies none of these inputs. These sweep results are independent of injection capacity and reported RRC pressures. In Capacity scenarios, choose the depth-dependent brine model to calculate local fluid properties, wellhead pressure and their effect on constrained disposal capacity.
+    - heading "Fluid assumptions" [level=2]
+    - text: Case name
+    - textbox "Case name": Assumed NaCl brine
+    - text: Minimum pressure (psia)
+    - spinbutton "Minimum pressure (psia)": "6000"
+    - text: Maximum pressure (psia)
+    - spinbutton "Maximum pressure (psia)": "5000"
+    - text: Temperature (°F)
+    - spinbutton "Temperature (°F)": "180"
+    - text: NaCl salinity (wt%)
+    - spinbutton "NaCl salinity (wt%)": "5"
+    - text: Pressure points
+    - spinbutton "Pressure points": "21"
+    - paragraph: "Absolute pressure: 100–10,000 psia · 60–250 °F · 0–20 NaCl wt% · 2–101 points. Bounded demonstration limits."
+    - button "Calculate pressure sweep" [active]
+    - alert: Maximum pressure must exceed minimum pressure
+    - complementary:
+      - heading "What data do I need?" [level=2]
+      - paragraph: Supply fluid temperature, absolute pressure range and NaCl mass percent. Without these measurements, the entered values remain assumptions.
+      - paragraph:
+        - strong: "RRC availability:"
+        - text: monthly reported pressure has an unspecified basis. It does not supply these absolute fluid pressures, temperature or NaCl composition.
+      - generic "Method, evidence & limitations"
+    - status: Calculation blocked. Correct the inputs and calculate again.
+    - button "Download PVT JSON" [disabled]
+    - button "Download PVT CSV" [disabled]
+    - button "Download PVT chart sheet SVG" [disabled]
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

@@ -1,0 +1,1186 @@
+- link "Skip to analysis workspace":
+  - /url: "#main"
+- complementary:
+  - generic "SWD Injection Analytics":
+    - strong: SWD
+  - navigation "Analysis navigation":
+    - button "Start":
+      - generic: ⌂
+      - text: Start
+    - button "Data & sources":
+      - generic: ▤
+      - text: Data & sources
+    - button "Production & demand":
+      - generic: ▥
+      - text: Production & demand
+    - button "Injection & capacity":
+      - generic: ◴
+      - text: Injection & capacity
+    - button "Fluid & wellbore":
+      - generic: ♧
+      - text: Fluid & wellbore
+    - button "Reports & evidence":
+      - generic: ▧
+      - text: Reports & evidence
+  - paragraph:
+    - text: Reservoir & disposal
+    - text: engineering
+- banner:
+  - strong: SWD Injection Analytics
+  - paragraph: Reservoir & disposal engineering
+  - generic: Educational analysis
+- status:
+  - strong: Planning dataset · separate from this tool
+  - generic: planning/seed-417/v2 · synthetic histories + assumed engineering
+  - generic: Session only · no saved case
+  - button "Change source"
+- main:
+  - paragraph: Production & demand
+  - navigation "Production & demand workspaces":
+    - button "Histories"
+    - button "Fit & forecast"
+    - button "Reconciliation"
+    - button "Curve library"
+    - button "Schedules"
+    - button "Demand"
+    - button "Pressure-support context"
+  - region "Pressure-support context":
+    - heading "Pressure-support context" [active] [level=1]
+    - paragraph: Inspect producer oil/water rates, water cut, selected nearby injection volumes and frac dates on one calendar axis.
+    - paragraph: "Synthetic investigation view only — not a determination of pressure support, causation or interwell connectivity. Separate from the active planning dataset: it never changes confirmed inputs, forecasts, schedules or capacity results."
+    - region "Context dataset":
+      - heading "Context dataset" [level=2]
+      - term: Context dataset
+      - definition: Synthetic pressure-support context example
+      - term: Dataset ID
+      - definition: pressure-support-demo/seed-20261012/v1
+      - term: SHA-256 (verified bytes)
+      - definition: dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab
+      - term: Classification
+      - definition: synthetic
+      - term: Declared coverage
+      - definition: 2024-01 to 2025-12
+      - term: Active planning dataset
+      - definition: demo · separate from the active planning dataset; never substituted
+    - region "Load synthetic context":
+      - heading "1. Load the pinned example" [level=2]
+      - paragraph: Loads only the local fictional example after its exact bytes match the pinned SHA-256. Nothing loads automatically.
+      - button "Reload synthetic example"
+      - button "Cancel load" [disabled]
+      - status: Verified pinned example loaded. Choose a selection, then Calculate.
+      - alert
+    - form "Context selection":
+      - group "2. Choose producer, injectors and period":
+        - generic: 2. Choose producer, injectors and period
+        - text: Producer
+        - combobox "Producer":
+          - option "PS-DEMO-P01" [selected]
+          - option "PS-DEMO-P02"
+        - text: First month
+        - textbox "First month": 2024-01
+        - text: Last month
+        - textbox "Last month": 2025-12
+        - group "Declared associated injectors (assumed distance)":
+          - generic: Declared associated injectors (assumed distance)
+          - checkbox "PS-DEMO-I01 · 1.5 mi (assumed)" [checked]
+          - text: PS-DEMO-I01 · 1.5 mi (assumed)
+          - checkbox "PS-DEMO-I02 · 3 mi (assumed)" [checked]
+          - text: PS-DEMO-I02 · 3 mi (assumed)
+        - button "Calculate context"
+    - region "3. Context result":
+      - heading "3. Context result" [level=2]
+      - status:
+        - paragraph: Ready for inspection over 24 months. Context readiness is not engineering or product acceptance.
+        - paragraph: 2 of 24 months have missing observations or an unavailable aggregate; they are shown as gaps, never as zero.
+      - region "Pressure-support context chart":
+        - img "Pressure-support context for PS-DEMO-P01 Synthetic producer rates (STB/day), selected injection volumes (bbl/month, separate axis), water cut and frac annotations, 2024-01 to 2025-12.":
+          - generic: Pressure-support context · PS-DEMO-P01 · 2024-01 to 2025-12
+          - generic: synthetic · dataset pressure-support-demo/seed-20261012/v1 · sha256 dfb32bed82341a78f54490754e13d01784b2e9ac670b9218160ea5af0a3b75ab · investigation view, not a pressure-support determination
+          - generic: "0"
+          - generic: "0"
+          - generic: "400"
+          - generic: 40,000
+          - generic: "800"
+          - generic: 80,000
+          - generic: 1,200
+          - generic: 120,000
+          - generic: 1,600
+          - generic: 160,000
+          - generic: 2,000
+          - generic: 200,000
+          - generic: "0"
+          - generic: "25"
+          - generic: "50"
+          - generic: "75"
+          - generic: "100"
+          - generic: Producer rate (STB/day)
+          - generic: Injection (bbl/month)
+          - generic: Water cut (%)
+          - generic: Water cut (%) = water / (oil + water); gaps are unavailable months
+          - generic: 2024-01
+          - generic: 2024-07
+          - generic: 2025-01
+          - generic: 2025-07
+          - generic: frac PS-DEMO-F01
+          - generic: Oil rate (STB/day, left axis)
+          - generic: Water rate (STB/day, left axis)
+          - generic: Liquid rate (STB/day, left axis)
+          - generic: Injection PS-DEMO-I01 (bbl/month, right axis)
+          - generic: Injection PS-DEMO-I02 (bbl/month, right axis)
+          - generic: Complete selected injection total (bbl/month, right axis)
+          - generic: Water cut (%) (lower panel)
+          - generic: "Dashed vertical lines: dated frac annotations (not a fitted or calibrated response)"
+          - generic: "Frac event PS-DEMO-F01 on 2024-04-15 (synthetic): Synthetic example event PS-DEMO-F01; not a public or customer record — Fictional date for demonstration; no treatment response is implied"
+          - generic: "Events outside the selected period (listed, not plotted):"
+          - generic: "PS-DEMO-F03 on 2026-01-10 (outside declared coverage): Synthetic example event PS-DEMO-F03; not a public or customer record"
+          - generic: "Missing observations / unavailable values (not interpolated):"
+          - generic: "2024-06: Water volume missing for PS-DEMO-P01 2024-06"
+          - generic: "2024-08: Injection volume missing for PS-DEMO-I02 2024-08"
+      - region "Monthly context values":
+        - table "Plotted monthly values (rates STB/day; injection bbl/month)":
+          - caption: Plotted monthly values (rates STB/day; injection bbl/month)
+          - rowgroup:
+            - row "Month Oil rate (STB/day) Water rate (STB/day) Liquid rate (STB/day) Water cut (%) PS-DEMO-I01 (bbl/month) PS-DEMO-I02 (bbl/month) Complete selected total (bbl/month) Missing / unavailable":
+              - columnheader "Month"
+              - columnheader "Oil rate (STB/day)"
+              - columnheader "Water rate (STB/day)"
+              - columnheader "Liquid rate (STB/day)"
+              - columnheader "Water cut (%)"
+              - columnheader "PS-DEMO-I01 (bbl/month)"
+              - columnheader "PS-DEMO-I02 (bbl/month)"
+              - columnheader "Complete selected total (bbl/month)"
+              - columnheader "Missing / unavailable"
+          - rowgroup:
+            - row "2024-01 979.19 212.26 1,191.45 17.82 92,378 58,751 151,129 —":
+              - cell "2024-01"
+              - cell "979.19"
+              - cell "212.26"
+              - cell "1,191.45"
+              - cell "17.82"
+              - cell "92,378"
+              - cell "58,751"
+              - cell "151,129"
+              - cell "—"
+            - row "2024-02 1,000 250 1,250 20 87,000 58,000 145,000 —":
+              - cell "2024-02"
+              - cell "1,000"
+              - cell "250"
+              - cell "1,250"
+              - cell "20"
+              - cell "87,000"
+              - cell "58,000"
+              - cell "145,000"
+              - cell "—"
+            - row "2024-03 924.9 221.35 1,146.26 19.31 89,907 59,897 149,804 —":
+              - cell "2024-03"
+              - cell "924.9"
+              - cell "221.35"
+              - cell "1,146.26"
+              - cell "19.31"
+              - cell "89,907"
+              - cell "59,897"
+              - cell "149,804"
+              - cell "—"
+            - row "2024-04 982.53 252.83 1,235.37 20.47 87,300 60,470 147,770 —":
+              - cell "2024-04"
+              - cell "982.53"
+              - cell "252.83"
+              - cell "1,235.37"
+              - cell "20.47"
+              - cell "87,300"
+              - cell "60,470"
+              - cell "147,770"
+              - cell "—"
+            - row "2024-05 939.52 236.94 1,176.45 20.14 86,284 58,769 145,053 —":
+              - cell "2024-05"
+              - cell "939.52"
+              - cell "236.94"
+              - cell "1,176.45"
+              - cell "20.14"
+              - cell "86,284"
+              - cell "58,769"
+              - cell "145,053"
+              - cell "—"
+            - row "2024-06 927.47 Unavailable Unavailable Unavailable 85,508 58,621 144,129 Water volume missing for PS-DEMO-P01 2024-06":
+              - cell "2024-06"
+              - cell "927.47"
+              - cell "Unavailable"
+              - cell "Unavailable"
+              - cell "Unavailable"
+              - cell "85,508"
+              - cell "58,621"
+              - cell "144,129"
+              - cell "Water volume missing for PS-DEMO-P01 2024-06"
+            - row "2024-07 898.77 243.1 1,141.87 21.29 91,144 58,726 149,870 —":
+              - cell "2024-07"
+              - cell "898.77"
+              - cell "243.1"
+              - cell "1,141.87"
+              - cell "21.29"
+              - cell "91,144"
+              - cell "58,726"
+              - cell "149,870"
+              - cell "—"
+            - row "2024-08 862.1 248.68 1,110.77 22.39 90,116 Unavailable Unavailable Injection volume missing for PS-DEMO-I02 2024-08":
+              - cell "2024-08"
+              - cell "862.1"
+              - cell "248.68"
+              - cell "1,110.77"
+              - cell "22.39"
+              - cell "90,116"
+              - cell "Unavailable"
+              - cell "Unavailable"
+              - cell "Injection volume missing for PS-DEMO-I02 2024-08"
+            - row "2024-09 834.5 238 1,072.5 22.19 91,790 61,019 152,809 —":
+              - cell "2024-09"
+              - cell "834.5"
+              - cell "238"
+              - cell "1,072.5"
+              - cell "22.19"
+              - cell "91,790"
+              - cell "61,019"
+              - cell "152,809"
+              - cell "—"
+            - row "2024-10 835.1 261.84 1,096.94 23.87 88,810 59,733 148,543 —":
+              - cell "2024-10"
+              - cell "835.1"
+              - cell "261.84"
+              - cell "1,096.94"
+              - cell "23.87"
+              - cell "88,810"
+              - cell "59,733"
+              - cell "148,543"
+              - cell "—"
+            - row "2024-11 813.1 256.7 1,069.8 24 86,317 59,675 145,992 —":
+              - cell "2024-11"
+              - cell "813.1"
+              - cell "256.7"
+              - cell "1,069.8"
+              - cell "24"
+              - cell "86,317"
+              - cell "59,675"
+              - cell "145,992"
+              - cell "—"
+            - row "2024-12 759.03 253.13 1,012.16 25.01 94,133 60,619 154,752 —":
+              - cell "2024-12"
+              - cell "759.03"
+              - cell "253.13"
+              - cell "1,012.16"
+              - cell "25.01"
+              - cell "94,133"
+              - cell "60,619"
+              - cell "154,752"
+              - cell "—"
+            - row "2025-01 783.19 279.55 1,062.74 26.3 93,446 57,695 151,141 —":
+              - cell "2025-01"
+              - cell "783.19"
+              - cell "279.55"
+              - cell "1,062.74"
+              - cell "26.3"
+              - cell "93,446"
+              - cell "57,695"
+              - cell "151,141"
+              - cell "—"
+            - row "2025-02 835.18 306.61 1,141.79 26.85 88,799 58,538 147,337 —":
+              - cell "2025-02"
+              - cell "835.18"
+              - cell "306.61"
+              - cell "1,141.79"
+              - cell "26.85"
+              - cell "88,799"
+              - cell "58,538"
+              - cell "147,337"
+              - cell "—"
+            - row "2025-03 740.23 279.81 1,020.03 27.43 87,232 62,276 149,508 —":
+              - cell "2025-03"
+              - cell "740.23"
+              - cell "279.81"
+              - cell "1,020.03"
+              - cell "27.43"
+              - cell "87,232"
+              - cell "62,276"
+              - cell "149,508"
+              - cell "—"
+            - row "2025-04 738.4 259.8 998.2 26.03 85,719 61,869 147,588 —":
+              - cell "2025-04"
+              - cell "738.4"
+              - cell "259.8"
+              - cell "998.2"
+              - cell "26.03"
+              - cell "85,719"
+              - cell "61,869"
+              - cell "147,588"
+              - cell "—"
+            - row "2025-05 736.06 269.58 1,005.65 26.81 86,879 61,411 148,290 —":
+              - cell "2025-05"
+              - cell "736.06"
+              - cell "269.58"
+              - cell "1,005.65"
+              - cell "26.81"
+              - cell "86,879"
+              - cell "61,411"
+              - cell "148,290"
+              - cell "—"
+            - row "2025-06 749.83 281.57 1,031.4 27.3 91,320 60,942 152,262 —":
+              - cell "2025-06"
+              - cell "749.83"
+              - cell "281.57"
+              - cell "1,031.4"
+              - cell "27.3"
+              - cell "91,320"
+              - cell "60,942"
+              - cell "152,262"
+              - cell "—"
+            - row "2025-07 687.29 278.29 965.58 28.82 94,233 62,825 157,058 —":
+              - cell "2025-07"
+              - cell "687.29"
+              - cell "278.29"
+              - cell "965.58"
+              - cell "28.82"
+              - cell "94,233"
+              - cell "62,825"
+              - cell "157,058"
+              - cell "—"
+            - row "2025-08 657.29 272.9 930.19 29.34 92,573 58,720 151,293 —":
+              - cell "2025-08"
+              - cell "657.29"
+              - cell "272.9"
+              - cell "930.19"
+              - cell "29.34"
+              - cell "92,573"
+              - cell "58,720"
+              - cell "151,293"
+              - cell "—"
+            - row "2025-09 700.1 306.17 1,006.27 30.43 91,150 62,188 153,338 —":
+              - cell "2025-09"
+              - cell "700.1"
+              - cell "306.17"
+              - cell "1,006.27"
+              - cell "30.43"
+              - cell "91,150"
+              - cell "62,188"
+              - cell "153,338"
+              - cell "—"
+            - row "2025-10 666.84 272.48 939.32 29.01 89,623 57,066 146,689 —":
+              - cell "2025-10"
+              - cell "666.84"
+              - cell "272.48"
+              - cell "939.32"
+              - cell "29.01"
+              - cell "89,623"
+              - cell "57,066"
+              - cell "146,689"
+              - cell "—"
+            - row "2025-11 662 287.77 949.77 30.3 86,396 57,249 143,645 —":
+              - cell "2025-11"
+              - cell "662"
+              - cell "287.77"
+              - cell "949.77"
+              - cell "30.3"
+              - cell "86,396"
+              - cell "57,249"
+              - cell "143,645"
+              - cell "—"
+            - row "2025-12 626.9 271.06 897.97 30.19 88,564 59,631 148,195 —":
+              - cell "2025-12"
+              - cell "626.9"
+              - cell "271.06"
+              - cell "897.97"
+              - cell "30.19"
+              - cell "88,564"
+              - cell "59,631"
+              - cell "148,195"
+              - cell "—"
+      - heading "Frac events (annotations only)" [level=3]
+      - list:
+        - listitem: 2024-04-15 · frac PS-DEMO-F01 · synthetic · plotted · Synthetic example event PS-DEMO-F01; not a public or customer record · Fictional date for demonstration; no treatment response is implied
+        - listitem: 2026-01-10 · frac PS-DEMO-F03 · synthetic · listed only — outside the selected period · outside declared coverage · Synthetic example event PS-DEMO-F03; not a public or customer record · Fictional date for demonstration; no treatment response is implied
+      - generic "Selected source rows (original values)"
+      - region "Producer monthly rows":
+        - table "Producer monthly rows (24)":
+          - caption: Producer monthly rows (24)
+          - rowgroup:
+            - row "rowId sourceId producerId month oilVolumeBbl waterVolumeBbl volumeUnit basis classification":
+              - columnheader "rowId"
+              - columnheader "sourceId"
+              - columnheader "producerId"
+              - columnheader "month"
+              - columnheader "oilVolumeBbl"
+              - columnheader "waterVolumeBbl"
+              - columnheader "volumeUnit"
+              - columnheader "basis"
+              - columnheader "classification"
+          - rowgroup:
+            - row "PM-P01-2024-01 PS-DEMO-SYN PS-DEMO-P01 2024-01 30,355 6,580 STB calendar-month synthetic":
+              - cell "PM-P01-2024-01"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-01"
+              - cell "30,355"
+              - cell "6,580"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-02 PS-DEMO-SYN PS-DEMO-P01 2024-02 29,000 7,250 STB calendar-month synthetic":
+              - cell "PM-P01-2024-02"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-02"
+              - cell "29,000"
+              - cell "7,250"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-03 PS-DEMO-SYN PS-DEMO-P01 2024-03 28,672 6,862 STB calendar-month synthetic":
+              - cell "PM-P01-2024-03"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-03"
+              - cell "28,672"
+              - cell "6,862"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-04 PS-DEMO-SYN PS-DEMO-P01 2024-04 29,476 7,585 STB calendar-month synthetic":
+              - cell "PM-P01-2024-04"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-04"
+              - cell "29,476"
+              - cell "7,585"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-05 PS-DEMO-SYN PS-DEMO-P01 2024-05 29,125 7,345 STB calendar-month synthetic":
+              - cell "PM-P01-2024-05"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-05"
+              - cell "29,125"
+              - cell "7,345"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-06 PS-DEMO-SYN PS-DEMO-P01 2024-06 27,824 Unavailable STB calendar-month synthetic":
+              - cell "PM-P01-2024-06"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-06"
+              - cell "27,824"
+              - cell "Unavailable"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-07 PS-DEMO-SYN PS-DEMO-P01 2024-07 27,862 7,536 STB calendar-month synthetic":
+              - cell "PM-P01-2024-07"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-07"
+              - cell "27,862"
+              - cell "7,536"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-08 PS-DEMO-SYN PS-DEMO-P01 2024-08 26,725 7,709 STB calendar-month synthetic":
+              - cell "PM-P01-2024-08"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-08"
+              - cell "26,725"
+              - cell "7,709"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-09 PS-DEMO-SYN PS-DEMO-P01 2024-09 25,035 7,140 STB calendar-month synthetic":
+              - cell "PM-P01-2024-09"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-09"
+              - cell "25,035"
+              - cell "7,140"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-10 PS-DEMO-SYN PS-DEMO-P01 2024-10 25,888 8,117 STB calendar-month synthetic":
+              - cell "PM-P01-2024-10"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-10"
+              - cell "25,888"
+              - cell "8,117"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-11 PS-DEMO-SYN PS-DEMO-P01 2024-11 24,393 7,701 STB calendar-month synthetic":
+              - cell "PM-P01-2024-11"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-11"
+              - cell "24,393"
+              - cell "7,701"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2024-12 PS-DEMO-SYN PS-DEMO-P01 2024-12 23,530 7,847 STB calendar-month synthetic":
+              - cell "PM-P01-2024-12"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2024-12"
+              - cell "23,530"
+              - cell "7,847"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-01 PS-DEMO-SYN PS-DEMO-P01 2025-01 24,279 8,666 STB calendar-month synthetic":
+              - cell "PM-P01-2025-01"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-01"
+              - cell "24,279"
+              - cell "8,666"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-02 PS-DEMO-SYN PS-DEMO-P01 2025-02 23,385 8,585 STB calendar-month synthetic":
+              - cell "PM-P01-2025-02"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-02"
+              - cell "23,385"
+              - cell "8,585"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-03 PS-DEMO-SYN PS-DEMO-P01 2025-03 22,947 8,674 STB calendar-month synthetic":
+              - cell "PM-P01-2025-03"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-03"
+              - cell "22,947"
+              - cell "8,674"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-04 PS-DEMO-SYN PS-DEMO-P01 2025-04 22,152 7,794 STB calendar-month synthetic":
+              - cell "PM-P01-2025-04"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-04"
+              - cell "22,152"
+              - cell "7,794"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-05 PS-DEMO-SYN PS-DEMO-P01 2025-05 22,818 8,357 STB calendar-month synthetic":
+              - cell "PM-P01-2025-05"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-05"
+              - cell "22,818"
+              - cell "8,357"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-06 PS-DEMO-SYN PS-DEMO-P01 2025-06 22,495 8,447 STB calendar-month synthetic":
+              - cell "PM-P01-2025-06"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-06"
+              - cell "22,495"
+              - cell "8,447"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-07 PS-DEMO-SYN PS-DEMO-P01 2025-07 21,306 8,627 STB calendar-month synthetic":
+              - cell "PM-P01-2025-07"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-07"
+              - cell "21,306"
+              - cell "8,627"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-08 PS-DEMO-SYN PS-DEMO-P01 2025-08 20,376 8,460 STB calendar-month synthetic":
+              - cell "PM-P01-2025-08"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-08"
+              - cell "20,376"
+              - cell "8,460"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-09 PS-DEMO-SYN PS-DEMO-P01 2025-09 21,003 9,185 STB calendar-month synthetic":
+              - cell "PM-P01-2025-09"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-09"
+              - cell "21,003"
+              - cell "9,185"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-10 PS-DEMO-SYN PS-DEMO-P01 2025-10 20,672 8,447 STB calendar-month synthetic":
+              - cell "PM-P01-2025-10"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-10"
+              - cell "20,672"
+              - cell "8,447"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-11 PS-DEMO-SYN PS-DEMO-P01 2025-11 19,860 8,633 STB calendar-month synthetic":
+              - cell "PM-P01-2025-11"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-11"
+              - cell "19,860"
+              - cell "8,633"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "PM-P01-2025-12 PS-DEMO-SYN PS-DEMO-P01 2025-12 19,434 8,403 STB calendar-month synthetic":
+              - cell "PM-P01-2025-12"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-P01"
+              - cell "2025-12"
+              - cell "19,434"
+              - cell "8,403"
+              - cell "STB"
+              - cell "calendar-month"
+              - cell "synthetic"
+      - region "Injector monthly rows":
+        - table "Injector monthly rows (48)":
+          - caption: Injector monthly rows (48)
+          - rowgroup:
+            - row "rowId sourceId injectorId month volumeBbl volumeUnit basis classification":
+              - columnheader "rowId"
+              - columnheader "sourceId"
+              - columnheader "injectorId"
+              - columnheader "month"
+              - columnheader "volumeBbl"
+              - columnheader "volumeUnit"
+              - columnheader "basis"
+              - columnheader "classification"
+          - rowgroup:
+            - row "IM-I01-2024-01 PS-DEMO-SYN PS-DEMO-I01 2024-01 92,378 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-01"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-01"
+              - cell "92,378"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-02 PS-DEMO-SYN PS-DEMO-I01 2024-02 87,000 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-02"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-02"
+              - cell "87,000"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-03 PS-DEMO-SYN PS-DEMO-I01 2024-03 89,907 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-03"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-03"
+              - cell "89,907"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-04 PS-DEMO-SYN PS-DEMO-I01 2024-04 87,300 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-04"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-04"
+              - cell "87,300"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-05 PS-DEMO-SYN PS-DEMO-I01 2024-05 86,284 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-05"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-05"
+              - cell "86,284"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-06 PS-DEMO-SYN PS-DEMO-I01 2024-06 85,508 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-06"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-06"
+              - cell "85,508"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-07 PS-DEMO-SYN PS-DEMO-I01 2024-07 91,144 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-07"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-07"
+              - cell "91,144"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-08 PS-DEMO-SYN PS-DEMO-I01 2024-08 90,116 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-08"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-08"
+              - cell "90,116"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-09 PS-DEMO-SYN PS-DEMO-I01 2024-09 91,790 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-09"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-09"
+              - cell "91,790"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-10 PS-DEMO-SYN PS-DEMO-I01 2024-10 88,810 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-10"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-10"
+              - cell "88,810"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-11 PS-DEMO-SYN PS-DEMO-I01 2024-11 86,317 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-11"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-11"
+              - cell "86,317"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2024-12 PS-DEMO-SYN PS-DEMO-I01 2024-12 94,133 bbl calendar-month synthetic":
+              - cell "IM-I01-2024-12"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2024-12"
+              - cell "94,133"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-01 PS-DEMO-SYN PS-DEMO-I01 2025-01 93,446 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-01"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-01"
+              - cell "93,446"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-02 PS-DEMO-SYN PS-DEMO-I01 2025-02 88,799 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-02"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-02"
+              - cell "88,799"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-03 PS-DEMO-SYN PS-DEMO-I01 2025-03 87,232 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-03"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-03"
+              - cell "87,232"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-04 PS-DEMO-SYN PS-DEMO-I01 2025-04 85,719 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-04"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-04"
+              - cell "85,719"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-05 PS-DEMO-SYN PS-DEMO-I01 2025-05 86,879 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-05"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-05"
+              - cell "86,879"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-06 PS-DEMO-SYN PS-DEMO-I01 2025-06 91,320 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-06"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-06"
+              - cell "91,320"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-07 PS-DEMO-SYN PS-DEMO-I01 2025-07 94,233 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-07"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-07"
+              - cell "94,233"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-08 PS-DEMO-SYN PS-DEMO-I01 2025-08 92,573 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-08"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-08"
+              - cell "92,573"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-09 PS-DEMO-SYN PS-DEMO-I01 2025-09 91,150 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-09"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-09"
+              - cell "91,150"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-10 PS-DEMO-SYN PS-DEMO-I01 2025-10 89,623 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-10"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-10"
+              - cell "89,623"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-11 PS-DEMO-SYN PS-DEMO-I01 2025-11 86,396 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-11"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-11"
+              - cell "86,396"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I01-2025-12 PS-DEMO-SYN PS-DEMO-I01 2025-12 88,564 bbl calendar-month synthetic":
+              - cell "IM-I01-2025-12"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I01"
+              - cell "2025-12"
+              - cell "88,564"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-01 PS-DEMO-SYN PS-DEMO-I02 2024-01 58,751 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-01"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-01"
+              - cell "58,751"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-02 PS-DEMO-SYN PS-DEMO-I02 2024-02 58,000 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-02"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-02"
+              - cell "58,000"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-03 PS-DEMO-SYN PS-DEMO-I02 2024-03 59,897 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-03"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-03"
+              - cell "59,897"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-04 PS-DEMO-SYN PS-DEMO-I02 2024-04 60,470 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-04"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-04"
+              - cell "60,470"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-05 PS-DEMO-SYN PS-DEMO-I02 2024-05 58,769 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-05"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-05"
+              - cell "58,769"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-06 PS-DEMO-SYN PS-DEMO-I02 2024-06 58,621 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-06"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-06"
+              - cell "58,621"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-07 PS-DEMO-SYN PS-DEMO-I02 2024-07 58,726 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-07"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-07"
+              - cell "58,726"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-08 PS-DEMO-SYN PS-DEMO-I02 2024-08 Unavailable bbl calendar-month synthetic":
+              - cell "IM-I02-2024-08"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-08"
+              - cell "Unavailable"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-09 PS-DEMO-SYN PS-DEMO-I02 2024-09 61,019 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-09"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-09"
+              - cell "61,019"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-10 PS-DEMO-SYN PS-DEMO-I02 2024-10 59,733 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-10"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-10"
+              - cell "59,733"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-11 PS-DEMO-SYN PS-DEMO-I02 2024-11 59,675 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-11"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-11"
+              - cell "59,675"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2024-12 PS-DEMO-SYN PS-DEMO-I02 2024-12 60,619 bbl calendar-month synthetic":
+              - cell "IM-I02-2024-12"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2024-12"
+              - cell "60,619"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-01 PS-DEMO-SYN PS-DEMO-I02 2025-01 57,695 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-01"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-01"
+              - cell "57,695"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-02 PS-DEMO-SYN PS-DEMO-I02 2025-02 58,538 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-02"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-02"
+              - cell "58,538"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-03 PS-DEMO-SYN PS-DEMO-I02 2025-03 62,276 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-03"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-03"
+              - cell "62,276"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-04 PS-DEMO-SYN PS-DEMO-I02 2025-04 61,869 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-04"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-04"
+              - cell "61,869"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-05 PS-DEMO-SYN PS-DEMO-I02 2025-05 61,411 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-05"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-05"
+              - cell "61,411"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-06 PS-DEMO-SYN PS-DEMO-I02 2025-06 60,942 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-06"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-06"
+              - cell "60,942"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-07 PS-DEMO-SYN PS-DEMO-I02 2025-07 62,825 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-07"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-07"
+              - cell "62,825"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-08 PS-DEMO-SYN PS-DEMO-I02 2025-08 58,720 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-08"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-08"
+              - cell "58,720"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-09 PS-DEMO-SYN PS-DEMO-I02 2025-09 62,188 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-09"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-09"
+              - cell "62,188"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-10 PS-DEMO-SYN PS-DEMO-I02 2025-10 57,066 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-10"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-10"
+              - cell "57,066"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-11 PS-DEMO-SYN PS-DEMO-I02 2025-11 57,249 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-11"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-11"
+              - cell "57,249"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+            - row "IM-I02-2025-12 PS-DEMO-SYN PS-DEMO-I02 2025-12 59,631 bbl calendar-month synthetic":
+              - cell "IM-I02-2025-12"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-I02"
+              - cell "2025-12"
+              - cell "59,631"
+              - cell "bbl"
+              - cell "calendar-month"
+              - cell "synthetic"
+      - region "Associations":
+        - table "Associations (2)":
+          - caption: Associations (2)
+          - rowgroup:
+            - row "rowId sourceId producerId injectorId distance distanceUnit origin classification":
+              - columnheader "rowId"
+              - columnheader "sourceId"
+              - columnheader "producerId"
+              - columnheader "injectorId"
+              - columnheader "distance"
+              - columnheader "distanceUnit"
+              - columnheader "origin"
+              - columnheader "classification"
+          - rowgroup:
+            - row "AS-P01-I01 PS-DEMO-ASSUMED PS-DEMO-P01 PS-DEMO-I01 1.5 mi assumed synthetic":
+              - cell "AS-P01-I01"
+              - cell "PS-DEMO-ASSUMED"
+              - cell "PS-DEMO-P01"
+              - cell "PS-DEMO-I01"
+              - cell "1.5"
+              - cell "mi"
+              - cell "assumed"
+              - cell "synthetic"
+            - row "AS-P01-I02 PS-DEMO-ASSUMED PS-DEMO-P01 PS-DEMO-I02 3 mi assumed synthetic":
+              - cell "AS-P01-I02"
+              - cell "PS-DEMO-ASSUMED"
+              - cell "PS-DEMO-P01"
+              - cell "PS-DEMO-I02"
+              - cell "3"
+              - cell "mi"
+              - cell "assumed"
+              - cell "synthetic"
+      - region "Events":
+        - table "Events (2)":
+          - caption: Events (2)
+          - rowgroup:
+            - row "rowId sourceId eventId producerId date kind citation uncertainty classification":
+              - columnheader "rowId"
+              - columnheader "sourceId"
+              - columnheader "eventId"
+              - columnheader "producerId"
+              - columnheader "date"
+              - columnheader "kind"
+              - columnheader "citation"
+              - columnheader "uncertainty"
+              - columnheader "classification"
+          - rowgroup:
+            - row "EV-F01 PS-DEMO-SYN PS-DEMO-F01 PS-DEMO-P01 2024-04-15 frac Synthetic example event PS-DEMO-F01; not a public or customer record Fictional date for demonstration; no treatment response is implied synthetic":
+              - cell "EV-F01"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-F01"
+              - cell "PS-DEMO-P01"
+              - cell "2024-04-15"
+              - cell "frac"
+              - cell "Synthetic example event PS-DEMO-F01; not a public or customer record"
+              - cell "Fictional date for demonstration; no treatment response is implied"
+              - cell "synthetic"
+            - row "EV-F03 PS-DEMO-SYN PS-DEMO-F03 PS-DEMO-P01 2026-01-10 frac Synthetic example event PS-DEMO-F03; not a public or customer record Fictional date for demonstration; no treatment response is implied synthetic":
+              - cell "EV-F03"
+              - cell "PS-DEMO-SYN"
+              - cell "PS-DEMO-F03"
+              - cell "PS-DEMO-P01"
+              - cell "2026-01-10"
+              - cell "frac"
+              - cell "Synthetic example event PS-DEMO-F03; not a public or customer record"
+              - cell "Fictional date for demonstration; no treatment response is implied"
+              - cell "synthetic"
+      - generic "Method, assumptions & limitations"
+      - button "Download context evidence JSON"
+      - button "Download context table CSV"
+      - button "Download context chart SVG"
+      - status
+    - region "Real-data availability":
+      - heading "Real-data availability" [level=2]
+      - paragraph: "Unavailable for public or customer sources: each input below must pass explicit checks under a separately reviewed contract."
+      - list:
+        - listitem: Matched producer oil/water monthly stock-tank series with a declared calendar basis
+        - listitem: Producer/injector association evidence (identities, distance and units); no GIS inference is made
+        - listitem: Dated frac event inputs with citations and source rows
+        - listitem: A reviewed source composition contract (pressure-support-input/1 accepts synthetic context only)
+      - paragraph: The synthetic planning demo is a different fixture and is not substituted into this context.
+      - link "Open public injector history":
+        - /url: "#injection/publicTrends"
+  - generic "Acceptance blockers — full acceptance remains open"
+- contentinfo:
+  - strong: SWD Analytics
+  - generic: Educational calculations. Synthetic production, fictional injectors, explicit assumptions, preserved public evidence.

@@ -2,7 +2,7 @@
 export const AREAS = [
  {id:'start',label:'Start',icon:'⌂',tabs:[['start','Assessment'],['legacyCapacity','Original workbook'],['literature','Worked pressure / skin study']]},
  {id:'data',label:'Data & sources',icon:'▤',tabs:[['data','Sources & import'],['readiness','Readiness'],['lineage','Source lineage']]},
- {id:'production',label:'Production & demand',icon:'▥',tabs:[['history','Histories'],['forecast','Fit & forecast'],['reconciliation','Reconciliation'],['curveLibrary','Curve library'],['schedules','Schedules'],['groupedPlanning','Demand']]},
+ {id:'production',label:'Production & demand',icon:'▥',tabs:[['history','Histories'],['forecast','Fit & forecast'],['reconciliation','Reconciliation'],['curveLibrary','Curve library'],['schedules','Schedules'],['groupedPlanning','Demand'],['pressureSupport','Pressure-support context']]},
  {id:'injection',label:'Injection & capacity',icon:'◴',tabs:[['publicTrends','Injector history'],['capacity','Injectivity'],['comparison','Capacity assessment'],['scenarios','Scenarios'],['sensitivity','Parameter sweeps'],['transient','Model scope']]},
  {id:'fluid',label:'Fluid & wellbore',icon:'♧',tabs:[['pvt','Brine PVT'],['hydraulics','Hydraulics'],['profiles','Profiles']]},
  {id:'reports',label:'Reports & evidence',icon:'▧',tabs:[['reports','Reports'],['evidence','Evidence & limitations']]},

@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "json": "PASS",
+  "csv": "PASS",
+  "svg": "PASS",
+  "checks": [
+    "actual JSON/CSV/SVG download parity",
+    "Reports JSON equals the direct context download",
+    "exact original source bytes and hash",
+    "recomputed source-result binding",
+    "result hash",
+    "independent February leap-month arithmetic",
+    "missing measurements remain null",
+    "outside-coverage frac event retained"
+  ],
+  "initialHarnessFailures": [
+    "Regeneration initially used stored pin metadata instead of browser PINNED_EXAMPLE; corrected after independently verifying pin SHA/bytes",
+    "CSV/SVG were initially absent in the in-app browser; resolved using actual Chrome downloads"
+  ],
+  "files": [
+    {
+      "path": "tmp/pressure-support-execution-2026-10-12/browser-resume/downloads/pressure-support-context.json",
+      "bytes": 166118,
+      "sha256": "7dfb0e7b9dce8dc98be0e5d6c20bdf5b2c50785fd7c3beb04405a6e503d0f806"
+    },
+    {
+      "path": "tmp/pressure-support-execution-2026-10-12/browser-resume/downloads/pressure-support-context.csv",
+      "bytes": 28248,
+      "sha256": "ba136bdbc9fcf6be7c4911cc043bbd30a6a149a198fff75df23f8b7070398e91"
+    },
+    {
+      "path": "tmp/pressure-support-execution-2026-10-12/browser-resume/downloads/pressure-support-context.svg",
+      "bytes": 210733,
+      "sha256": "2fad23b463e917c5f9c19f6a5f3b1de191be9acd63afb68bfdaac35587e87779"
+    }
+  ]
+}

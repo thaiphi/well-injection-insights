@@ -3,3 +3,8 @@ swd-injection-analytics/** -text
 # Keep handover source snapshots and design attachments byte-exact across computers.
 handover/context/** -text
 handover/design/** -text
+# Demo inputs and their hash manifest must keep the prepared bytes across computers.
+demo/** -text
+
+# Preserve archived before-state source bytes for reviewed engineering evolution.
+migration/baselines/** -text
