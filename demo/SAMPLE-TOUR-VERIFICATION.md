@@ -24,8 +24,7 @@ There are no other violations. All 35 preservation-checker tests pass, including
 
 ## Browser acceptance
 
-**Tooling deviation.** The Chrome DevTools MCP browser was held by another session, and the Claude in Chrome extension was not connected. The checks therefore ran on a separate headless Chrome 
-(`--headless=new`, isolated profile) driven over the DevTools protocol by a small local script. Accessibility snapshots (`.txt`, from the full accessibility tree) and screenshots (`.jpg`) are in `demo/sample-tour-evidence/browser/`. The app was served by Vite at `http://127.0.0.1:4290/analytics/index.html`.
+**Tooling deviation.** The Chrome DevTools MCP browser was held by another session, and the Claude in Chrome extension was not connected. The checks therefore ran on a separate headless Chrome (`--headless=new`, isolated profile) driven over the DevTools protocol by a small local script. Accessibility snapshots (`.txt`, from the full accessibility tree) and screenshots (`.jpg`) are in `demo/sample-tour-evidence/browser/`. The app was served by Vite at `http://127.0.0.1:4290/analytics/index.html`.
 
 | # | Check | Result | Evidence |
 |---|---|---|---|
