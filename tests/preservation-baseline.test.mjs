@@ -86,3 +86,25 @@ const stCases=[
  ['sample-tour allowlist cannot be extended',async f=>{f.st.newFiles.push({path:'src/planning.ts',bytes:0,sha256:'0'.repeat(64)});await persistSt(f);},/allowlist|unapproved/i],
 ];
 for(const [name,change,want]of stCases)test(name,async()=>{const f=await sampleTourFixture();await change(f);const result=await checker.verifyPreservation(f.root);assert.ok(result.violations.some(x=>want.test(x)),JSON.stringify(result.violations));});
+const eolRoot=['.gitattributes','scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'];
+const eolDelta=async f=>write(f.root,'.gitattributes',Buffer.concat([await readFile(join(owningRoot,'.gitattributes')),Buffer.from('\n# line-ending test delta\n')]));
+async function eolFixture(){
+ const f=await sampleTourFixture();await eolDelta(f);
+ for(const e of f.st.rootFiles)e.sha256='f'.repeat(64);await persistSt(f);
+ const eol={version:'swd-eol-preservation/1',status:'accepted',parentBaselineSha256:sha(await readFile(join(f.root,'migration/sample-tour-baseline.json'))),rootFiles:[]};
+ for(const p of eolRoot){const b=await readFile(join(f.root,p));eol.rootFiles.push({path:p,bytes:b.length,sha256:sha(b)});}
+ await write(f.root,'migration/eol-baseline.json',JSON.stringify(eol));return {...f,eol};
+}
+async function persistEol(f){await write(f.root,'migration/eol-baseline.json',JSON.stringify(f.eol));}
+test('accepted line-ending baseline re-pins .gitattributes over the earlier root pins',async()=>{const f=await eolFixture();const result=await checker.verifyPreservation(f.root);assert.equal(result.checked,182);assert.deepEqual(result.violations,[]);});
+test('without the line-ending baseline a changed .gitattributes stays blocked',async()=>{const f=await sampleTourFixture();await eolDelta(f);const result=await checker.verifyPreservation(f.root);assert.ok(result.violations.some(x=>/\.gitattributes/.test(x)),JSON.stringify(result.violations));});
+const eolCases=[
+ ['pending line-ending baseline never passes',async f=>{f.eol.status='pending-review';await persistEol(f);},/Line-ending baseline is pending/],
+ ['editing the sample-tour baseline breaks the line-ending chain',async f=>{f.st.acceptedBy='edited';await persistSt(f);},/Line-ending parent baseline SHA/],
+ ['a later .gitattributes edit is rejected',async f=>write(f.root,'.gitattributes','later edit'),/\.gitattributes/],
+ ['root checker pins move to the line-ending baseline and stay enforced',async f=>{f.eol.rootFiles[1].sha256='0'.repeat(64);await persistEol(f);},/scripts\/verify-preservation\.mjs/],
+ ['unsupported line-ending baseline versions are rejected',async f=>{f.eol.version='swd-eol-preservation/2';await persistEol(f);},/Unsupported line-ending baseline version/],
+ ['a null sample-tour baseline cannot anchor the line-ending layer',async f=>{const b=Buffer.from('null');await write(f.root,'migration/sample-tour-baseline.json',b);f.eol.parentBaselineSha256=sha(b);await persistEol(f);},/requires the accepted sample-tour baseline/],
+ ['line-ending allowlist cannot be extended',async f=>{f.eol.rootFiles.push({path:'tests/transfer.test.mjs',bytes:0,sha256:'0'.repeat(64)});await persistEol(f);},/allowlist|unapproved/i],
+];
+for(const [name,change,want]of eolCases)test(name,async()=>{const f=await eolFixture();await change(f);const result=await checker.verifyPreservation(f.root);assert.ok(result.violations.some(x=>want.test(x)),JSON.stringify(result.violations));});

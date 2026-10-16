@@ -12,6 +12,7 @@ const ST_NEW=['src/sampleCase.ts','scripts/create-sample-case.mjs','data/sample-
 const ST_ROOT=['scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'];
 const ST_ARCHIVE='migration/baselines/sample-tour-before/swd-injection-analytics/';
 const ST_DOCS=[['docs/superpowers/specs/2026-10-14-sample-case-guided-tour-design.md','approvedSpecSha256'],['docs/superpowers/plans/2026-10-14-sample-case-guided-tour.md','approvedPlanSha256']];
+const EOL_BASELINE='migration/eol-baseline.json',EOL_ROOT=['.gitattributes','scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'];
 const HASH=/^[a-f0-9]{64}$/;
 const sha=b=>createHash('sha256').update(b).digest('hex');
 // Approved documents are hashed with CRLF normalized to LF: docs/ has no -text rule, so checkouts may differ by platform.
@@ -36,7 +37,7 @@ function exactEntries(entries,allowed,label,violations){
  const m=new Map();for(const e of entries){if(!e||!safe(e.path)||!allowed.includes(e.path)){violations.push(label+' unapproved/unsafe allowlist path: '+String(e?.path));continue;}if(m.has(e.path))violations.push(label+' duplicate path: '+e.path);else m.set(e.path,e);}
  if(entries.length!==allowed.length||allowed.some(p=>!m.has(p)))violations.push(label+' must equal the exact '+allowed.length+'-file allowlist');return m;
 }
-/** Verify original transfer bytes, the reviewed pressure-context delta, and the chained sample-tour delta when present. */
+/** Verify original transfer bytes, the reviewed pressure-context delta, and the chained sample-tour and line-ending baselines when present. */
 export async function verifyPreservation(root){
  root=resolve(root);const violations=[];let checked=0,manifestBytes,manifest;
  try{manifestBytes=await bytesAt(root,'migration/source-manifest.json');if(sha(manifestBytes)!==PARENT_SHA)violations.push('Original manifest SHA pin mismatch');manifest=JSON.parse(manifestBytes);}catch(e){return {checked,violations:['Cannot read immutable manifest: '+e.message]};}
@@ -82,11 +83,21 @@ export async function verifyPreservation(root){
    try{const b=await bytesAt(root,ST_ARCHIVE+p);if(!before||b.length!==before.bytes||sha(b)!==before.sha256)violations.push('Sample-tour archive hash/bytes mismatch: '+p);}catch(e){violations.push('Sample-tour archive missing/unsafe: '+p+' '+e.message);}
   }
  }
+ let eol=null,eolRoot=new Map();
+ try{eol=JSON.parse(await bytesAt(root,EOL_BASELINE));}catch(e){if(e.code!=='ENOENT')violations.push('Cannot read line-ending baseline: '+e.message);}
+ if(eol){
+  if(!st)violations.push('Line-ending baseline requires the accepted sample-tour baseline');
+  if(eol.version!=='swd-eol-preservation/1')violations.push('Unsupported line-ending baseline version');
+  if(eol.status!=='accepted')violations.push('Line-ending baseline is pending/not accepted');
+  try{if(!HASH.test(eol.parentBaselineSha256??'')||sha(await bytesAt(root,ST_BASELINE))!==eol.parentBaselineSha256)violations.push('Line-ending parent baseline SHA mismatch');}catch(e){violations.push('Line-ending parent baseline unavailable: '+e.message);}
+  eolRoot=exactEntries(eol.rootFiles,EOL_ROOT,'Line-ending root files',violations);
+ }
  for(const e of manifest.files){
   checked++;try{const b=await bytesAt(root,'swd-injection-analytics/'+e.path),change=stChanges.get(e.path)??changes.get(e.path),expected=change&&HASH.test(change.afterSha256??'')&&Number.isSafeInteger(change.afterBytes)?{sha256:change.afterSha256,bytes:change.afterBytes}:e;if(b.length!==expected.bytes||sha(b)!==expected.sha256)violations.push('Unapproved original file bytes/hash: '+e.path);}catch(err){violations.push('Original file missing/unsafe: '+e.path+' '+err.message);}
  }
- const psRoot=new Map([...rootAdded].filter(([p])=>!(st&&ST_ROOT.includes(p))));
- for(const [prefix,inventory]of [['swd-injection-analytics/',added],['swd-injection-analytics/',stAdded],['',psRoot],['',stRoot]])for(const [p,e]of inventory){
+ const superseded=p=>(st&&ST_ROOT.includes(p))||(eol&&EOL_ROOT.includes(p));
+ const psRoot=new Map([...rootAdded].filter(([p])=>!superseded(p))),stRootLive=new Map([...stRoot].filter(([p])=>!(eol&&EOL_ROOT.includes(p))));
+ for(const [prefix,inventory]of [['swd-injection-analytics/',added],['swd-injection-analytics/',stAdded],['',psRoot],['',stRootLive],['',eolRoot]])for(const [p,e]of inventory){
   if(!HASH.test(e.sha256??'')||!Number.isSafeInteger(e.bytes)||e.bytes<0){violations.push('Invalid reviewed file entry: '+p);continue;}
   try{const b=await bytesAt(root,prefix+p);if(b.length!==e.bytes||sha(b)!==e.sha256)violations.push('Reviewed added file hash/bytes mismatch: '+p);}catch(err){violations.push('Reviewed added file missing/unsafe: '+p+' '+err.message);}
  }

@@ -8,3 +8,5 @@ demo/** -text
 
 # Preserve archived before-state source bytes for reviewed engineering evolution.
 migration/baselines/** -text
+# Root preservation pins hash this file; never convert its line endings.
+.gitattributes -text

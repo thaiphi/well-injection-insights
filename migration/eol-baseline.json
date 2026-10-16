@@ -1,0 +1,26 @@
+{
+  "version": "swd-eol-preservation/1",
+  "status": "accepted",
+  "acceptedAt": "2026-10-16",
+  "acceptedBy": "Owner (Thai Phi), explicit approval 2026-10-15 after independent Opus review",
+  "acceptanceEvidence": "demo/EOL-BASELINE-VERIFICATION.md",
+  "purpose": "Mark the root .gitattributes -text so Windows core.autocrlf checkouts keep the bytes the preservation baselines hash; re-pin the checker files that gained this layer.",
+  "parentBaselineSha256": "02aa746c478d20eb9853924baa9c9816c70c5b17365d8e11254a2ecd84a7f574",
+  "rootFiles": [
+    {
+      "path": ".gitattributes",
+      "bytes": 553,
+      "sha256": "6b08ed416268d32d051135afefb82a946ca5ec180a86021c02754914178bf048"
+    },
+    {
+      "path": "scripts/verify-preservation.mjs",
+      "bytes": 13205,
+      "sha256": "9028874bf10c4749723c9a85f95e3d53ede129755cd02489cbd084d350ef01c6"
+    },
+    {
+      "path": "tests/preservation-baseline.test.mjs",
+      "bytes": 16965,
+      "sha256": "170c7699355b5d88f40c1f2fb6c0f1c53e9880509f5798baa92486c6fce0e978"
+    }
+  ]
+}
