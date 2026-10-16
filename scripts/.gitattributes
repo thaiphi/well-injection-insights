@@ -1,0 +1,2 @@
+# Preservation checks hash these bytes; never convert line endings.
+verify-preservation.mjs -text

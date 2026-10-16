@@ -1,0 +1,2 @@
+# Baseline records are hashed by later baselines; never convert line endings.
+*.json -text
