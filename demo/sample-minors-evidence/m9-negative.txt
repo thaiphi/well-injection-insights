@@ -1,0 +1,8 @@
+# 390px mobile
+{"width":390,"tourHidden":true,"bodyPadBottom":"0px"}
+{"width":390,"tourHidden":false,"bodyPadBottom":"506.4px"}
+{"width":390,"afterExit_tourHidden":true,"bodyPadBottom":"0px"}
+# 1280px desktop
+{"width":1280,"tourHidden":true,"bodyPadBottom":"0px"}
+{"width":1280,"tourHidden":false,"bodyPadBottom":"0px"}
+{"width":1280,"afterExit_tourHidden":true,"bodyPadBottom":"0px"}

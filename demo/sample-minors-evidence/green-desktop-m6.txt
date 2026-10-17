@@ -1,0 +1,1 @@
+{"M6_view":"comparison","M6_workspaceVisible":true,"M6_source":"Sample case (TRRC records + labelled synthetic gaps) · origin: sample · content: synthetic producer histories + assumed schedules · 2026-01–2026-12 · 12 forecas","M6_scheduleChangedBlock":false}

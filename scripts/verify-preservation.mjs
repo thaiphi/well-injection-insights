@@ -13,6 +13,9 @@ const ST_ROOT=['scripts/verify-preservation.mjs','tests/preservation-baseline.te
 const ST_ARCHIVE='migration/baselines/sample-tour-before/swd-injection-analytics/';
 const ST_DOCS=[['docs/superpowers/specs/2026-10-14-sample-case-guided-tour-design.md','approvedSpecSha256'],['docs/superpowers/plans/2026-10-14-sample-case-guided-tour.md','approvedPlanSha256']];
 const EOL_BASELINE='migration/eol-baseline.json',EOL_ROOT=['.gitattributes','scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'];
+const SM_BASELINE='migration/sample-minors-baseline.json',SM_UI=['web/disposal-context.mjs','web/import-ui.mjs','web/sample-tour.css'],SM_NEW=['tests/sample-minors.test.mjs'];
+const SM_ROOT=['scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'],SM_ARCHIVE='migration/baselines/sample-minors-before/swd-injection-analytics/';
+const SM_DOCS=[['docs/superpowers/plans/2026-10-16-sample-tour-minors.md','approvedPlanSha256']];
 const HASH=/^[a-f0-9]{64}$/;
 const sha=b=>createHash('sha256').update(b).digest('hex');
 // Approved documents are hashed with CRLF normalized to LF: docs/ has no -text rule, so checkouts may differ by platform.
@@ -37,7 +40,7 @@ function exactEntries(entries,allowed,label,violations){
  const m=new Map();for(const e of entries){if(!e||!safe(e.path)||!allowed.includes(e.path)){violations.push(label+' unapproved/unsafe allowlist path: '+String(e?.path));continue;}if(m.has(e.path))violations.push(label+' duplicate path: '+e.path);else m.set(e.path,e);}
  if(entries.length!==allowed.length||allowed.some(p=>!m.has(p)))violations.push(label+' must equal the exact '+allowed.length+'-file allowlist');return m;
 }
-/** Verify original transfer bytes, the reviewed pressure-context delta, and the chained sample-tour and line-ending baselines when present. */
+/** Verify original transfer bytes, the reviewed pressure-context delta, and the chained sample-tour, line-ending and sample-minors baselines when present. */
 export async function verifyPreservation(root){
  root=resolve(root);const violations=[];let checked=0,manifestBytes,manifest;
  try{manifestBytes=await bytesAt(root,'migration/source-manifest.json');if(sha(manifestBytes)!==PARENT_SHA)violations.push('Original manifest SHA pin mismatch');manifest=JSON.parse(manifestBytes);}catch(e){return {checked,violations:['Cannot read immutable manifest: '+e.message]};}
@@ -92,16 +95,39 @@ export async function verifyPreservation(root){
   try{if(!HASH.test(eol.parentBaselineSha256??'')||sha(await bytesAt(root,ST_BASELINE))!==eol.parentBaselineSha256)violations.push('Line-ending parent baseline SHA mismatch');}catch(e){violations.push('Line-ending parent baseline unavailable: '+e.message);}
   eolRoot=exactEntries(eol.rootFiles,EOL_ROOT,'Line-ending root files',violations);
  }
- for(const e of manifest.files){
-  checked++;try{const b=await bytesAt(root,'swd-injection-analytics/'+e.path),change=stChanges.get(e.path)??changes.get(e.path),expected=change&&HASH.test(change.afterSha256??'')&&Number.isSafeInteger(change.afterBytes)?{sha256:change.afterSha256,bytes:change.afterBytes}:e;if(b.length!==expected.bytes||sha(b)!==expected.sha256)violations.push('Unapproved original file bytes/hash: '+e.path);}catch(err){violations.push('Original file missing/unsafe: '+e.path+' '+err.message);}
+ let sm=null,smChanges=new Map(),smAdded=new Map(),smRoot=new Map();
+ try{sm=JSON.parse(await bytesAt(root,SM_BASELINE));}catch(e){if(e.code!=='ENOENT')violations.push('Cannot read sample-minors baseline: '+e.message);}
+ if(sm){
+  if(!eol)violations.push('Sample-minors baseline requires the accepted line-ending baseline');
+  if(sm.version!=='swd-sample-minors-preservation/1')violations.push('Unsupported sample-minors baseline version');
+  if(sm.status!=='accepted')violations.push('Sample-minors baseline is pending/not accepted after independent review');
+  try{if(!HASH.test(sm.parentBaselineSha256??'')||sha(await bytesAt(root,EOL_BASELINE))!==sm.parentBaselineSha256)violations.push('Sample-minors parent baseline SHA mismatch');}catch(e){violations.push('Sample-minors parent baseline unavailable: '+e.message);}
+  smChanges=exactEntries(sm.changes,SM_UI,'Sample-minors UI changes',violations);smAdded=exactEntries(sm.newFiles,SM_NEW,'Sample-minors new files',violations);smRoot=exactEntries(sm.rootFiles,SM_ROOT,'Sample-minors root files',violations);
+  for(const [p,key]of SM_DOCS){try{if(!HASH.test(sm[key]??'')||docSha(await bytesAt(root,p))!==sm[key])violations.push('Approved document hash mismatch: '+p);}catch(e){violations.push('Approved document unavailable: '+p+' '+e.message);}}
+  const smArchives=new Set(SM_UI.map(p=>SM_ARCHIVE+p));
+  for(const p of await listFiles(root,'migration/baselines/sample-minors-before',violations))if(!smArchives.has(p))violations.push('Unlisted sample-minors archive: '+p);
+  for(const [p,c]of smChanges){
+   // The prior accepted state is the latest earlier layer's after-state, a sample-tour new-file pin, or the original.
+   const stc=stChanges.get(p),psc=changes.get(p),sta=stAdded.get(p),original=originals.get(p);
+   const before=stc?{sha256:stc.afterSha256,bytes:stc.afterBytes}:psc?{sha256:psc.afterSha256,bytes:psc.afterBytes}:sta?{sha256:sta.sha256,bytes:sta.bytes}:original?{sha256:original.sha256,bytes:original.bytes}:null;
+   if(c.archive!==SM_ARCHIVE+p)violations.push('Unsafe/unapproved sample-minors archive path: '+String(c.archive));
+   if(!before||c.beforeSha256!==before.sha256||c.beforeBytes!==before.bytes)violations.push('Sample-minors before hash/bytes must equal the prior accepted state: '+p);
+   if(!HASH.test(c.afterSha256??'')||!Number.isSafeInteger(c.afterBytes)||c.afterBytes<0)violations.push('Unreviewed sample-minors after hash/bytes: '+p);
+   try{const b=await bytesAt(root,SM_ARCHIVE+p);if(!before||b.length!==before.bytes||sha(b)!==before.sha256)violations.push('Sample-minors archive hash/bytes mismatch: '+p);}catch(e){violations.push('Sample-minors archive missing/unsafe: '+p+' '+e.message);}
+  }
  }
- const superseded=p=>(st&&ST_ROOT.includes(p))||(eol&&EOL_ROOT.includes(p));
- const psRoot=new Map([...rootAdded].filter(([p])=>!superseded(p))),stRootLive=new Map([...stRoot].filter(([p])=>!(eol&&EOL_ROOT.includes(p))));
- for(const [prefix,inventory]of [['swd-injection-analytics/',added],['swd-injection-analytics/',stAdded],['',psRoot],['',stRootLive],['',eolRoot]])for(const [p,e]of inventory){
+ for(const e of manifest.files){
+  checked++;try{const b=await bytesAt(root,'swd-injection-analytics/'+e.path),change=smChanges.get(e.path)??stChanges.get(e.path)??changes.get(e.path),expected=change&&HASH.test(change.afterSha256??'')&&Number.isSafeInteger(change.afterBytes)?{sha256:change.afterSha256,bytes:change.afterBytes}:e;if(b.length!==expected.bytes||sha(b)!==expected.sha256)violations.push('Unapproved original file bytes/hash: '+e.path);}catch(err){violations.push('Original file missing/unsafe: '+e.path+' '+err.message);}
+ }
+ const bySm=p=>sm&&SM_ROOT.includes(p),byEol=p=>(eol&&EOL_ROOT.includes(p))||bySm(p),superseded=p=>(st&&ST_ROOT.includes(p))||byEol(p);
+ const psRoot=new Map([...rootAdded].filter(([p])=>!superseded(p))),stRootLive=new Map([...stRoot].filter(([p])=>!byEol(p))),eolRootLive=new Map([...eolRoot].filter(([p])=>!bySm(p)));
+ // A sample-tour new file re-listed as a sample-minors change is checked against its reviewed after-state instead.
+ const stAddedLive=new Map([...stAdded].filter(([p])=>!smChanges.has(p))),smChangedNew=new Map([...smChanges].filter(([p])=>!originals.has(p)).map(([p,c])=>[p,{sha256:c.afterSha256,bytes:c.afterBytes}]));
+ for(const [prefix,inventory]of [['swd-injection-analytics/',added],['swd-injection-analytics/',stAddedLive],['swd-injection-analytics/',smChangedNew],['swd-injection-analytics/',smAdded],['',psRoot],['',stRootLive],['',eolRootLive],['',smRoot]])for(const [p,e]of inventory){
   if(!HASH.test(e.sha256??'')||!Number.isSafeInteger(e.bytes)||e.bytes<0){violations.push('Invalid reviewed file entry: '+p);continue;}
   try{const b=await bytesAt(root,prefix+p);if(b.length!==e.bytes||sha(b)!==e.sha256)violations.push('Reviewed added file hash/bytes mismatch: '+p);}catch(err){violations.push('Reviewed added file missing/unsafe: '+p+' '+err.message);}
  }
- for(const dir of ['src','data','web','tests','scripts','reference','exhibits'])for(const p of await listFiles(root,'swd-injection-analytics/'+dir,violations)){const appPath=p.slice('swd-injection-analytics/'.length);if(!originals.has(appPath)&&!added.has(appPath)&&!stAdded.has(appPath))violations.push('Unlisted new product path: '+appPath);}
+ for(const dir of ['src','data','web','tests','scripts','reference','exhibits'])for(const p of await listFiles(root,'swd-injection-analytics/'+dir,violations)){const appPath=p.slice('swd-injection-analytics/'.length);if(!originals.has(appPath)&&!added.has(appPath)&&!stAdded.has(appPath)&&!smAdded.has(appPath))violations.push('Unlisted new product path: '+appPath);}
  try{for(const e of await readdir(join(root,'swd-injection-analytics'),{withFileTypes:true})){if(e.isFile()&&!originals.has(e.name))violations.push('New product file outside permitted trees: '+e.name);if(e.isSymbolicLink())violations.push('Symlink/junction at application root: '+e.name);}}catch(e){violations.push('Cannot inspect application root: '+e.message);}
  return {checked,violations};
 }

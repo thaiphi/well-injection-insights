@@ -4,6 +4,8 @@ import {freezeForecast} from '../dist/planning.js';
 import {validateInjector} from '../dist/engineering.js';
 // Optional JS properties become explicit null, so missing evidence is visible in JSON.
 const evidenceSnapshot=value=>JSON.parse(JSON.stringify(value,(_,v)=>v===undefined?null:v));
+// Each sample input derived from TRRC with a stated assumption (surface limit, datum), so exports name it directly.
+const derivedInputs=sample=>sample.sample?.wells?sample.sample.wells.flatMap(w=>w.inputs.filter(i=>i.class==='derived-with-assumption').map(i=>({well:w.label,key:i.key,input:i.label,value:i.value,unit:i.unit,assumption:i.assumption,derivedFrom:i.derivedFrom??[]}))):null;
 /** Read-only boundary. Never substitute demonstration demand into a user/public source. */
 export function disposalContext({source,demo=null,imported=null,sample=null}){
  const blocked=(...reasons)=>({ready:false,reasons,demand:null,wells:[]});
@@ -28,7 +30,7 @@ export function disposalContext({source,demo=null,imported=null,sample=null}){
    const detail=planningDetails(fixture,freezeForecast(fixture.actuals,fixture.cutoff,fixture.actualsId));
    if(JSON.stringify(detail)!==JSON.stringify(demo.outputs.planningDetails))return blocked('Acceptance blocker: sample producer demand does not match its frozen history and schedules. Reload the sample case.');
    sample.injectors.forEach(validateInjector);
-   return {ready:true,reasons:[],demand:{id:`${sample.caseId} · ${fixture.id}`,origin:'sample',content:'synthetic producer histories + assumed schedules',monthly:detail.monthly.map(r=>({month:r.month,demandBbl:r.demandBbl})),evidence:evidenceSnapshot({sampleCaseId:sample.caseId,sampleSha256:sample.sha256,planningFixtureSha256:demo.inputs.planningFixtureSha256,planningFixture:fixture,planningDetails:detail})},wells:structuredClone(sample.injectors)};
+   return {ready:true,reasons:[],demand:{id:`${sample.caseId} · ${fixture.id}`,origin:'sample',content:'synthetic producer histories + assumed schedules',monthly:detail.monthly.map(r=>({month:r.month,demandBbl:r.demandBbl})),evidence:evidenceSnapshot({sampleCaseId:sample.caseId,sampleSha256:sample.sha256,derivedInputs:derivedInputs(sample),derivedInputsNote:'Values as loaded from the sample case. The values used are in inputs.wells; where they differ, the field was changed on the page and these assumptions do not apply.',planningFixtureSha256:demo.inputs.planningFixtureSha256,planningFixture:fixture,planningDetails:detail})},wells:structuredClone(sample.injectors)};
   }catch(error){return blocked(`Sample input check: ${error.message}`);}
  }
  if(source!=='user'||!imported)return blocked('Confirm user history and injector profiles, then apply a valid training cutoff and analysis period. Changes to a file, worksheet, mapping, units or period invalidate the case.');

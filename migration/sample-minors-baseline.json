@@ -1,0 +1,55 @@
+{
+  "version": "swd-sample-minors-preservation/1",
+  "status": "accepted",
+  "acceptedAt": "2026-10-17",
+  "acceptedBy": "Owner (Thai Phi), explicit approval 2026-10-16 after independent Opus review",
+  "acceptanceEvidence": "demo/SAMPLE-MINORS-VERIFICATION.md",
+  "purpose": "Fix the six minors deferred by the sample-tour final review (M6, M8-M12).",
+  "parentBaselineSha256": "0786c51530de0858397ebe4d2dbedd4d5091ecfd8d641d9a46d9894c1dbd5b72",
+  "approvedPlanSha256": "2197db3e16ae33ac47db807b5e984a400c6b95fe431e0a616382789543e10564",
+  "changes": [
+    {
+      "path": "web/disposal-context.mjs",
+      "beforeSha256": "037a4d55384ee3280d82d055dc96dee630244706e1a442818d02b933bd656449",
+      "archive": "migration/baselines/sample-minors-before/swd-injection-analytics/web/disposal-context.mjs",
+      "afterSha256": "491093a7ca4b533e937b892516afa2a11eb9ccbebed710021eda40b9579df09e",
+      "beforeBytes": 4788,
+      "afterBytes": 5398
+    },
+    {
+      "path": "web/import-ui.mjs",
+      "beforeSha256": "bbd5cd5dec6755287738ca0e3a1b25fc91edf7bc4475ab6bbb82478df8869439",
+      "archive": "migration/baselines/sample-minors-before/swd-injection-analytics/web/import-ui.mjs",
+      "afterSha256": "5431defae07c111e251f7e60078bb107f59058b0c054deaabe32269a602f5726",
+      "beforeBytes": 66783,
+      "afterBytes": 67292
+    },
+    {
+      "path": "web/sample-tour.css",
+      "beforeSha256": "4ed54e9d77ecdcdfe65e1a50087b94635e8b4c899b421371babce7fc28141066",
+      "archive": "migration/baselines/sample-minors-before/swd-injection-analytics/web/sample-tour.css",
+      "afterSha256": "ce8ca815e9576526a4f4422d96b76bedc8eec722c0de506d882b8cdd3a46c0cb",
+      "beforeBytes": 2261,
+      "afterBytes": 2391
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "tests/sample-minors.test.mjs",
+      "bytes": 2351,
+      "sha256": "5530250d3c0e8e80fea7f391d430d6fe0574ef3a7dfa8ce70bf205cd93980a4c"
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "scripts/verify-preservation.mjs",
+      "bytes": 16921,
+      "sha256": "8f96d3bd090ea4fbf3a3be0c6561f3c0a10e0d2102c151c70142db43706493c9"
+    },
+    {
+      "path": "tests/preservation-baseline.test.mjs",
+      "bytes": 23722,
+      "sha256": "34cb010c494f357f9e382e03c09cc81486dbf7bf9fcd3a0a2ba53096d518c97c"
+    }
+  ]
+}

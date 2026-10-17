@@ -1,0 +1,10 @@
+WAIT ok document.readyState==='complete'&&document.getElementById('sample-tour-start-hom
+"tour start clicked"
+WAIT ok !document.getElementById('sample-tour').hidden&&/Step 1/.test(document.getElemen
+{"tourAt":"Step 3 of 7","view":"forecast"}
+{"M8_loading":true,"M8_tourPanelVisible":true,"M8_tourCount":"Step 3 of 7","view":"sensitivity"}
+WAIT ok /all 7 loading steps done/.test(document.getElementById('sample-banner-detail').
+{"M11_view":"publicTrends","M11_label":"Active dataset"}
+{"M6_banner":"Loading cancelled. Results already calculated stay labelled with the sample identity.","M6_cancelledAt":["done","running"]}
+{"M6_view":"publicTrends","M6_scheduleChangedBlock":true,"M6_snippet":"nd source, forecast & coverage1. Demand & source evidenceThe synthetic producer schedule changed after the sample loaded. Reload the sample case to restore "}
+Assertion failed: !(handle->flags & UV_HANDLE_CLOSING), file src\win\async.c, line 76

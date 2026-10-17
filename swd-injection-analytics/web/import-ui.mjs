@@ -28,6 +28,8 @@ let importedPublic=null;
 let explorerHandoff=null;
 let sampleSession=null,sampleWellIndex=0,sampleRun=null,sampleTour=null;
 const sampleSelection=()=>source==='sample'&&sampleSession?sampleSession.selections[sampleWellIndex]:null;
+// On Injector history in sample mode the bar shows one well's TRRC record, which is part of the sample, not the planning dataset.
+const activeDatasetLabel=next=>source==='sample'&&next==='publicTrends'?'Sample case · viewing this well’s TRRC record':'Active dataset';
 const selectedPublic=()=>sampleSelection()??importedPublic??publicEvidence();
 const publicCalculationGate=()=>explorerCalculationGate(selectedPublic(),{imported:sampleSelection()?sampleSelection().imported:importedPublic!==null});
 const publicOrigin=p=>p?.transport?.acquisitionOrigin==='explorer_handoff'?'user-initiated Explorer transfer':'user-provided Explorer package';
@@ -106,7 +108,7 @@ function navigate(next,{record=true,focus=true}={}){
  if(focus&&!['readiness','lineage'].includes(next))queueMicrotask(()=>{window.scrollTo({top:0,left:0});const heading=[...$('main').querySelectorAll('h1')].find(h=>h.getClientRects().length);if(heading){heading.tabIndex=-1;heading.focus({preventScroll:true});}});
  $('main').dataset.view=next;$('sample-well-switch').hidden=!(source==='sample'&&next==='publicTrends');
  if(focus)$('analysis-workspace').querySelector('.history-filters')?.remove();
- $('active-dataset-label').textContent=['pvt','literature','hydraulics','profiles','pressureSupport'].includes(next)?'Planning dataset · separate from this tool':'Active dataset';
+ $('active-dataset-label').textContent=['pvt','literature','hydraulics','profiles','pressureSupport'].includes(next)?'Planning dataset · separate from this tool':activeDatasetLabel(next);
  for(const id of ['start','curve','schedule','scope','reports','hydraulics','data','pvt','literature','disposal','analysis','pressure-support'])$(`${id}-workspace`).hidden=true;
  $('demo-workbook').hidden=true;$('public-workbook').hidden=true;
  updateNavigation(next,{record});
@@ -125,7 +127,7 @@ function navigate(next,{record=true,focus=true}={}){
  if(['scenarios','sensitivity'].includes(next)){$('disposal-workspace').hidden=false;document.dispatchEvent(new Event('disposal-open'));$('disposal-title').textContent=next==='sensitivity'?'Scenarios & parameter sweeps':'Compare operating scenarios';$('disposal-sensitivity').hidden=next!=='sensitivity';$('disposal-input-details').open=next==='scenarios';if(next==='sensitivity')$('disposal-input-details').before($('disposal-sensitivity'));return;}
  if(['readiness','lineage'].includes(next)){$('data-workspace').hidden=false;$(next==='readiness'?'import-readiness':'source-lineage').scrollIntoView({block:'start'});return;}
  if(next==='pressureSupport'){$('pressure-support-workspace').hidden=false;pressureContext.open();return;}
- $('active-dataset-label').textContent=next==='pvt'||next==='literature'||next==='pressureSupport'?'Planning dataset · separate from this view':'Active dataset';
+ $('active-dataset-label').textContent=next==='pvt'||next==='literature'||next==='pressureSupport'?'Planning dataset · separate from this view':activeDatasetLabel(next);
  view=next;document.querySelectorAll('[data-view]').forEach(b=>{if(b.dataset.view===next)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');});
  $('data-workspace').hidden=next!=='data';$('pvt-workspace').hidden=next!=='pvt';$('literature-workspace').hidden=next!=='literature';$('disposal-workspace').hidden=next!=='comparison';$('analysis-workspace').hidden=true;$('demo-workbook').hidden=true;$('public-workbook').hidden=true;
  if(next==='comparison'){$('disposal-title').textContent='Capacity assessment';$('disposal-sensitivity').hidden=true;document.dispatchEvent(new Event('disposal-open'));return;}
@@ -279,16 +281,19 @@ async function startSample(){
  sampleRun?.abort();const run=new AbortController();sampleRun=run;
  const progress=$('sample-progress'),items=new Map();progress.replaceChildren();progress.hidden=false;$('sample-error').textContent='';$('sample-cancel').hidden=false;$('sample-banner-detail').textContent='Loading…';renderSampleBanner();
  const onProgress=({index,total,label,status})=>{if(sampleRun!==run)return;let li=items.get(index);if(!li){li=el('li');items.set(index,li);progress.append(li);}li.dataset.status=status;li.textContent=`${index+1}/${total} ${label} — ${{running:'running…',done:'done',failed:'failed'}[status]}`;};
+ // The verified session stays pending until select commits it, so a cancelled reload keeps the loaded session intact.
+ let pending=null;
  const steps=sampleSteps({
-  verify:async({signal})=>{await waitFor(()=>publicEvidence().artifact&&publicEvidence().pin,{signal,label:'the pinned TRRC record for UIC 000020838'});const session=await loadSampleCase({signal,publicEvidence});if(sampleRun!==run)throw new DOMException('Superseded by a newer sample load.','AbortError');sampleSession={...session,producerFixtureSha256:null};},
+  verify:async({signal})=>{await waitFor(()=>publicEvidence().artifact&&publicEvidence().pin,{signal,label:'the pinned TRRC record for UIC 000020838'});const session=await loadSampleCase({signal,publicEvidence});if(sampleRun!==run)throw new DOMException('Superseded by a newer sample load.','AbortError');pending=session;},
   // render() bumps its version synchronously and fires demo-updated at both start and end, so poll for the finished exhibit.
-  select:async({signal})=>{resetDemoControls(document);const demo=await waitFor(()=>{const d=demoEvidence();if(d)return d;if(!$('app-error').hidden)throw new Error($('app-error').textContent);return null;},{signal,label:'the synthetic sample producers'});sampleSession={...sampleSession,producerFixtureSha256:demo.inputs.planningFixtureSha256};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;if(sampleRun!==run||signal?.aborted)throw new DOMException('Sample loading cancelled.','AbortError');switchSource('sample');},
+  select:async({signal})=>{resetDemoControls(document);const demo=await waitFor(()=>{const d=demoEvidence();if(d)return d;if(!$('app-error').hidden)throw new Error($('app-error').textContent);return null;},{signal,label:'the synthetic sample producers'});if(sampleRun!==run||signal?.aborted)throw new DOMException('Sample loading cancelled.','AbortError');sampleSession={...pending,producerFixtureSha256:demo.inputs.planningFixtureSha256};sampleWellIndex=0;document.querySelector('input[name="sample-well"][value="0"]').checked=true;switchSource('sample');},
   navigate,session:()=>sampleSession,doc:document});
  try{await runSampleSteps(steps,{signal:run.signal,onProgress});if(sampleRun===run){progress.hidden=true;$('sample-banner-detail').textContent=`${sampleSession.caseId} · all 7 loading steps done; every main tool has results.`;navigate('publicTrends');}}
  catch(error){if(sampleRun!==run)return;if(error?.name==='AbortError')$('sample-banner-detail').textContent='Loading cancelled. Results already calculated stay labelled with the sample identity.';else $('sample-error').textContent=error.message;}
  finally{if(sampleRun===run){sampleRun=null;$('sample-cancel').hidden=true;renderSampleBanner();}}
 }
-for(const id of ['sample-load','sample-load-data'])$(id).onclick=()=>{startSample();};
+// A direct load closes an open tour first (the sample stays loaded) so the panel never shows a stale stop.
+for(const id of ['sample-load','sample-load-data'])$(id).onclick=()=>{sampleTour?.exit();startSample();};
 $('sample-clear').onclick=()=>{sampleRun?.abort();sampleRun=null;switchSource(null);};
 $('sample-cancel').onclick=()=>sampleRun?.abort();
 sampleTour=mountSampleTour({navigate,ensureSample:async()=>{if(!(source==='sample'&&sampleSession))await startSample();if(!(source==='sample'&&sampleSession))throw new Error($('sample-error').textContent||'The sample case did not load, so the tour cannot start.');}});

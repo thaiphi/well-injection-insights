@@ -108,3 +108,42 @@ const eolCases=[
  ['line-ending allowlist cannot be extended',async f=>{f.eol.rootFiles.push({path:'tests/transfer.test.mjs',bytes:0,sha256:'0'.repeat(64)});await persistEol(f);},/allowlist|unapproved/i],
 ];
 for(const [name,change,want]of eolCases)test(name,async()=>{const f=await eolFixture();await change(f);const result=await checker.verifyPreservation(f.root);assert.ok(result.violations.some(x=>want.test(x)),JSON.stringify(result.violations));});
+test('a sample-tour baseline without the pressure-support baseline is rejected',async()=>{const f=await sampleTourFixture();await mkdir(join(f.root,'tmp'));await rename(join(f.root,'migration/pressure-support-baseline.json'),join(f.root,'tmp/ps.json'));const result=await checker.verifyPreservation(f.root);assert.ok(result.violations.some(x=>/requires the accepted pressure-support baseline/.test(x)),JSON.stringify(result.violations));});
+const smUi=['web/disposal-context.mjs','web/import-ui.mjs','web/sample-tour.css'],smAdded=['tests/sample-minors.test.mjs'],smRoot=['scripts/verify-preservation.mjs','tests/preservation-baseline.test.mjs'];
+const SM_ARCHIVE='migration/baselines/sample-minors-before/swd-injection-analytics/',SM_PLAN='docs/superpowers/plans/2026-10-16-sample-tour-minors.md';
+async function sampleMinorsFixture(){
+ const f=await eolFixture();
+ // Stale eol pins for the re-pinned checker files prove the sample-minors pins supersede them.
+ for(const e of f.eol.rootFiles)if(smRoot.includes(e.path))e.sha256='e'.repeat(64);await persistEol(f);
+ const sm={version:'swd-sample-minors-preservation/1',status:'accepted',parentBaselineSha256:sha(await readFile(join(f.root,'migration/eol-baseline.json'))),approvedPlanSha256:'',changes:[],newFiles:[],rootFiles:[]};
+ const plan=await readFile(join(owningRoot,SM_PLAN));await write(f.root,SM_PLAN,plan);sm.approvedPlanSha256=docSha(plan);
+ for(const p of smUi){const b=await readFile(join(f.root,'swd-injection-analytics',p)),archive=SM_ARCHIVE+p;await write(f.root,archive,b);const next=Buffer.concat([b,Buffer.from('\n/* sample-minors test delta */\n')]);await write(f.root,'swd-injection-analytics/'+p,next);sm.changes.push({path:p,beforeSha256:sha(b),beforeBytes:b.length,afterSha256:sha(next),afterBytes:next.length,archive});}
+ for(const p of smAdded){const b=Buffer.from('Sample-minors fixture: '+p);await write(f.root,'swd-injection-analytics/'+p,b);sm.newFiles.push({path:p,bytes:b.length,sha256:sha(b)});}
+ for(const p of smRoot){const b=await readFile(join(f.root,p));sm.rootFiles.push({path:p,bytes:b.length,sha256:sha(b)});}
+ await write(f.root,'migration/sample-minors-baseline.json',JSON.stringify(sm));return {...f,sm};
+}
+async function persistSm(f){await write(f.root,'migration/sample-minors-baseline.json',JSON.stringify(f.sm));}
+test('accepted sample-minors delta chains on the accepted line-ending state',async()=>{const f=await sampleMinorsFixture();const result=await checker.verifyPreservation(f.root);assert.equal(result.checked,182);assert.deepEqual(result.violations,[]);});
+test('without the sample-minors baseline its changed files stay blocked',async()=>{const f=await sampleMinorsFixture();await mkdir(join(f.root,'tmp'));await rename(join(f.root,'migration/sample-minors-baseline.json'),join(f.root,'tmp/sm.json'));const v=(await checker.verifyPreservation(f.root)).violations.join('\n');for(const re of [/web\/disposal-context\.mjs/,/web\/sample-tour\.css/,/tests\/sample-minors\.test\.mjs/])assert.match(v,re);});
+const smCases=[
+ ['pending sample-minors baseline never passes',async f=>{f.sm.status='pending-review';await persistSm(f);},/Sample-minors baseline is pending/],
+ ['unsupported sample-minors versions are rejected',async f=>{f.sm.version='swd-sample-minors-preservation/2';await persistSm(f);},/Unsupported sample-minors baseline version/],
+ ['editing the line-ending baseline breaks the sample-minors chain',async f=>{f.eol.acceptedBy='edited';await persistEol(f);},/Sample-minors parent baseline SHA/],
+ ['a sample-minors layer without the line-ending layer is rejected',async f=>{await mkdir(join(f.root,'tmp'));await rename(join(f.root,'migration/eol-baseline.json'),join(f.root,'tmp/eol.json'));},/requires the accepted line-ending baseline/],
+ ['a re-listed sample-tour file must start from its sample-tour pin',async f=>{const c=f.sm.changes.find(x=>x.path==='web/sample-tour.css');c.beforeSha256='0'.repeat(64);await persistSm(f);},/prior accepted state.*web\/sample-tour\.css/],
+ ['a UI change must start from the sample-tour after-state',async f=>{const st=f.st.changes.find(x=>x.path==='web/import-ui.mjs');const c=f.sm.changes.find(x=>x.path==='web/import-ui.mjs');c.beforeSha256=st.beforeSha256;await persistSm(f);},/prior accepted state.*web\/import-ui\.mjs/],
+ ['a later edit of a re-listed sample-tour file is rejected',async f=>write(f.root,'swd-injection-analytics/web/sample-tour.css','later edit'),/web\/sample-tour\.css/],
+ ['a later edit of a sample-minors UI change is rejected',async f=>write(f.root,'swd-injection-analytics/web/disposal-context.mjs','later edit'),/web\/disposal-context\.mjs/],
+ ['a deleted sample-minors archive is rejected',async f=>{await mkdir(join(f.root,'tmp'));await rename(join(f.root,SM_ARCHIVE+'web/disposal-context.mjs'),join(f.root,'tmp/dc.mjs'));},/Sample-minors archive missing/],
+ ['accepted status cannot bypass a null sample-minors after hash',async f=>{f.sm.changes[0].afterSha256=null;await persistSm(f);},/Unreviewed sample-minors after hash/],
+ ['a later edit of the sample-minors test file is rejected',async f=>write(f.root,'swd-injection-analytics/tests/sample-minors.test.mjs','later edit'),/tests\/sample-minors\.test\.mjs/],
+ ['a later edit of the preservation test is rejected',async f=>write(f.root,'tests/preservation-baseline.test.mjs','later edit'),/tests\/preservation-baseline\.test\.mjs/],
+ ['sample-minors archives cannot be replaced',async f=>write(f.root,SM_ARCHIVE+'web/import-ui.mjs','wrong before'),/Sample-minors archive/],
+ ['extra files in the sample-minors archive are rejected',async f=>write(f.root,'migration/baselines/sample-minors-before/unlisted.txt','x'),/Unlisted sample-minors archive/],
+ ['approved sample-minors plan bytes must still match',async f=>write(f.root,SM_PLAN,'changed plan'),/Approved document hash mismatch/],
+ ['root checker pins move to the sample-minors baseline and stay enforced',async f=>{f.sm.rootFiles[0].sha256='0'.repeat(64);await persistSm(f);},/scripts\/verify-preservation\.mjs/],
+ ['.gitattributes stays under the line-ending pin',async f=>write(f.root,'.gitattributes','later edit'),/\.gitattributes/],
+ ['sample-minors allowlist cannot be extended',async f=>{f.sm.newFiles.push({path:'src/planning.ts',bytes:0,sha256:'0'.repeat(64)});await persistSm(f);},/allowlist|unapproved/i],
+ ['unlisted product files are still rejected with the sample-minors layer',async f=>write(f.root,'swd-injection-analytics/tests/hidden.test.mjs','x'),/tests\/hidden\.test\.mjs/],
+];
+for(const [name,change,want]of smCases)test(name,async()=>{const f=await sampleMinorsFixture();await change(f);const result=await checker.verifyPreservation(f.root);assert.ok(result.violations.some(x=>want.test(x)),JSON.stringify(result.violations));});
