@@ -8,6 +8,7 @@ import {createImportState,presentationGates,tableCsv,exportEvidence,chartAxis} f
 import {disposalContext} from './disposal-context.mjs';
 import {mountLiteratureCase} from './literature-case.mjs';
 import {mountPressureContext} from './pressure-support.mjs';
+import {mountH10Diagnostics} from './h10-diagnostics.mjs';
 import {mountNavigation,viewFromHash} from './navigation.mjs';
 import {renderCurveLibrary,renderSchedules,renderReports,renderScope,dataTable} from './workspace-views.mjs';
 import {mountExplorerReceiver} from './explorer-receiver.mjs';
@@ -19,6 +20,7 @@ import {mountSampleTour} from './sample-tour.mjs';
 const $=id=>document.getElementById(id);
 mountLiteratureCase($('literature-workspace'));
 const pressureContext=mountPressureContext($('pressure-support-workspace'));
+let h10Panel=null;
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const option=(select,value,label=value)=>{const o=el('option',label);o.value=value;select.append(o);};
 const fmt=v=>v===null||v===undefined?'Unavailable':typeof v==='number'?v.toLocaleString('en-US',{maximumFractionDigits:2}):String(v);
@@ -97,7 +99,7 @@ function readiness(){
  for(const key of Object.keys(names)){const g=all[key];const card=el('article',undefined,'readiness-card '+(g.ready?'ready':g.reasons.some(r=>r.includes('Acceptance blocker'))?'blocked':''));card.append(el('strong',`${names[key]}: ${g.ready?'Ready':'Not ready'}`),el('p',g.reasons.join(' ')));const remedy=el('button',key==='wellbore'?'Open independent tool':key==='transient'?'Inspect unfinished scope':'Inspect inputs & requirements');remedy.onclick=()=>{if(key==='wellbore'||key==='transient')navigate(key);else{$('requirements-analysis').value=key;requirementsView();navigate('data');$('requirements-analysis').focus();}};card.append(remedy);$('import-readiness').append(card);}
  $('run-analysis').disabled=!all[$('analysis-select').value].ready;updateIdentity();document.dispatchEvent(new Event('workspace-inputs'));
 }
-function clearResults(){shown=null;$('import-results').replaceChildren();for(const id of ['import-download','import-csv','import-svg'])$(id).disabled=true;}
+function clearResults(){h10Panel?.dispose();h10Panel=null;shown=null;$('import-results').replaceChildren();for(const id of ['import-download','import-csv','import-svg'])$(id).disabled=true;}
 function invalidate(profile=$('import-profile').value){calculationError=null;state.invalidate(profile);draft=null;$('import-confirm').disabled=true;$('validation-summary').replaceChildren();$('import-preview').replaceChildren();$('validation-pages').replaceChildren();clearResults();$('result-message').textContent='Inputs changed. Review validation and confirm the revised profile before running dependent results.';readiness();}
 function switchSource(next){calculationError=null;if(next!=='sample'){if(sampleRun){sampleRun.abort();sampleRun=null;$('sample-cancel').hidden=true;}sampleSession=null;sampleWellIndex=0;sampleTour?.exit();restoreSampleInputs(document);$('sample-error').textContent='';}loadVersion++;source=next;state.result=null;clearResults();document.dispatchEvent(new CustomEvent('workspace-source',{detail:next}));$('import-editor').hidden=next!=='user';$('import-status').textContent={user:'Choose a file, inspect original rows, then map fields and original units.',demo:'Synthetic demo selected. Choose an analysis below; all engineering inputs remain fictional.',public:'Pinned Explorer export selected. Public injection trends use source-reported observations only.',sample:'Sample case selected: TRRC records for UIC 000020838 and SAND BEND 2D, with every gap filled by labelled synthetic inputs.'}[next]??'No planning source selected.';renderSampleBanner();if(next==='user'&&Object.keys(state.inputs).length)try{calculate();}catch(error){$('import-status').textContent+=` ${error.message}`;}readiness();navigate('data');}
 function navigate(next,{record=true,focus=true}={}){
@@ -231,16 +233,18 @@ function renderUser(key){
   if(engineeringCharts.length){const composite=document.createElementNS('http://www.w3.org/2000/svg','svg');composite.setAttribute('xmlns','http://www.w3.org/2000/svg');composite.setAttribute('viewBox',`0 0 900 ${engineeringCharts.length*390}`);engineeringCharts.forEach((chart,index)=>{const part=chart.cloneNode(true);part.setAttribute('y',String(index*390));part.setAttribute('width','900');part.setAttribute('height','390');composite.append(part);});shown.svg=composite.outerHTML;$('import-svg').disabled=false;}
  }else if(key==='comparison')present(names[key],['Month','Demand (bbl)','Available capacity (bbl)','Deficit (bbl)'],b.monthly.map(r=>[r.month,r.demandBbl,r.availableCapacityBbl,r.shortfallBbl]),[{index:1,color:'#1262b5',name:'Existing forecast + scheduled additions'},{index:2,color:'#1596a3',name:'Assumed available capacity'}],'Monthly volume (bbl)',b);
 }
+function mountH10(){const p=selectedPublic();if(!p?.artifact)return;const box=el('div');box.id='h10-diagnostics';$('import-results').append(box);h10Panel=mountH10Diagnostics(box,{selection:p,gate:publicCalculationGate(),download});}
 function renderPublicResult(){
  clearResults();
  const eligibility=publicCalculationGate();
- if(!eligibility.ready){$('period-controls').hidden=true;$('result-message').textContent=eligibility.reasons.join(' ');$('import-results').append(el('p','Preserved evidence remains available in Data & sources. No public-history calculations or result exports were generated.'));return;}
+ if(!eligibility.ready){$('period-controls').hidden=true;$('result-message').textContent=eligibility.reasons.join(' ');$('import-results').append(el('p','Preserved evidence remains available in Data & sources. No public-history calculations or result exports were generated.'));mountH10();return;}
  const p=selectedPublic();$('period-controls').hidden=true;$('result-message').textContent='Public observations remain separate from producer forecasts and fictional engineering assumptions. Reported monthly pressure has unspecified datum; it is not bottomhole pressure or a fitted injectivity diagnostic.';
  if(!p.artifact){$('result-message').textContent='Pinned public artifact unavailable.';return;}
  const rows=[...p.artifact.injectionMonthly].sort((a,b)=>a.period_start.localeCompare(b.period_start)),headers=['Month','Injected liquid (bbl/month)','Calendar-day rate (bbl/day)','Reported average pressure (psi)','Reported maximum pressure (psi)','Source row ID'],values=rows.map(r=>[r.period_start.slice(0,7),r.injected_liquid_bbl,r.calculated_calendar_day_avg_bpd,r.reported_avg_injection_pressure_psi,r.reported_max_injection_pressure_psi,r.source_row_key]);
  present(names.publicTrends,headers,values,[{index:1,color:'#1262b5',name:'Reported monthly injected volume'}],'Monthly injected volume (bbl)',{artifact:p.artifact,pin:p.pin});
  const volume=$('import-results').querySelector('svg'),rate=draw(headers,values,'Calendar-day injection rate (bbl/day)',[{index:2,color:'#1596a3',name:'Monthly volume / calendar days'}],'Calculated calendar-day rate'),pressure=draw(headers,values,'Reported pressure (psi); basis unspecified',[{index:3,color:'#1262b5',name:'Reported average'},{index:4,color:'#8b5aab',name:'Reported maximum'}],'Reported monthly injection pressure');$('import-results').prepend(chartFrame(rate),chartFrame(pressure));
  const charts=[volume,rate,pressure],composite=document.createElementNS('http://www.w3.org/2000/svg','svg');composite.setAttribute('xmlns','http://www.w3.org/2000/svg');composite.setAttribute('viewBox',`0 0 900 ${charts.length*390}`);charts.forEach((chart,i)=>{const part=chart.cloneNode(true);part.setAttribute('y',String(i*390));part.setAttribute('width','900');part.setAttribute('height','390');composite.append(part);});shown.svg=composite.outerHTML;
+mountH10();
 }
 function mappingControls(){
  invalidate();$('import-mapping').replaceChildren();$('raw-preview').replaceChildren();$('import-validate').disabled=true;if(!parsed)return;
@@ -309,8 +313,8 @@ for(const button of document.querySelectorAll('[data-view]'))button.onclick=()=>
 document.addEventListener('demo-updated',()=>{if(source==='demo'||source==='sample'){const activeId=document.activeElement?.id,mirror=activeId?.startsWith('schedule-')||activeId?.startsWith('injectivity-');clearResults();readiness();if(['history','forecast','reconciliation','groupedPlanning','schedules','curveLibrary','capacity'].includes(view)){navigate(view,{record:false,focus:!mirror});if(mirror)$(activeId)?.focus({preventScroll:true});}}});
 function download(text,name,type){const url=URL.createObjectURL(new Blob([text],{type})),a=el('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 $('import-download').onclick=()=>{if(!shown||(source==='public'||source==='sample'&&view==='publicTrends')&&!publicCalculationGate().ready)return;const bundle=exportEvidence(shown.bundle);download(JSON.stringify({schemaVersion:'workspace-exhibit/1',analysis:shown.title,metadata:shown.metadata,headers:shown.headers,rows:shown.rows,evidence:bundle,acceptance:'Open — see application acceptance blockers'},(_,v)=>typeof v==='number'&&!Number.isFinite(v)?'BLOCKED: non-finite calculation':v,2),'swd-selected-analysis.json','application/json');};
-$('import-csv').onclick=()=>{if(shown&&(source!=='public'||publicCalculationGate().ready))download(tableCsv(shown.metadata,shown.headers,shown.rows),'swd-selected-analysis.csv','text/csv;charset=utf-8');};
-$('import-svg').onclick=()=>{if(shown?.svg&&(source!=='public'||publicCalculationGate().ready))download(shown.svg,'swd-selected-analysis.svg','image/svg+xml');};
+$('import-csv').onclick=()=>{if(shown&&!((source==='public'||source==='sample'&&view==='publicTrends')&&!publicCalculationGate().ready))download(tableCsv(shown.metadata,shown.headers,shown.rows),'swd-selected-analysis.csv','text/csv;charset=utf-8');};
+$('import-svg').onclick=()=>{if(shown?.svg&&!((source==='public'||source==='sample'&&view==='publicTrends')&&!publicCalculationGate().ready))download(shown.svg,'swd-selected-analysis.svg','image/svg+xml');};
 $('input-template').onclick=()=>{const key=$('requirements-analysis').value,profile=['capacity','comparison'].includes(key)?'injector':key==='groupedPlanning'?'schedule':'history';download(tableCsv({},PROFILE_FIELDS[profile],[]),`swd-${profile}-template.csv`,'text/csv');};
 // Keep sweeps directly reachable even before a capacity calculation exists.
 $('disposal-results').after($('disposal-sensitivity'));

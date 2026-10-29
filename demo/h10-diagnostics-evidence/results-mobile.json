@@ -1,0 +1,209 @@
+{
+ "c1_main": {
+  "view": "publicTrends",
+  "title": "Public injection trends"
+ },
+ "c1_panel": {
+  "cov": "Coverage: 2024-01 to 2026-04 · 28 months in span · 28 reported · 0 gap months · 0 flagged · 28 included · 28 comparable.",
+  "status": "",
+  "boxes": 28,
+  "unticked": [],
+  "charts": 2,
+  "xMarkers": 0,
+  "xMarkersAny": 0,
+  "buttons": [
+   "Download diagnostics JSON",
+   "Download diagnostics CSV",
+   "Download diagnostics SVG"
+  ]
+ },
+ "c1_order": {
+  "kids": [
+   "analysis-chart-scroll",
+   "analysis-chart-scroll",
+   "analysis-chart-scroll",
+   "table-scroll",
+   "DETAILS",
+   "h10-diagnostics"
+  ],
+  "panelIsLast": true,
+  "existingSvgsOutsidePanel": 3,
+  "existingDownloadsEnabled": [
+   [
+    "import-download",
+    true
+   ],
+   [
+    "import-csv",
+    true
+   ],
+   [
+    "import-svg",
+    true
+   ]
+  ]
+ },
+ "c1_existingDownloads": [
+  {
+   "name": "swd-selected-analysis.json",
+   "type": "application/json",
+   "chars": 52507
+  },
+  {
+   "name": "swd-selected-analysis.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 3413
+  },
+  {
+   "name": "swd-selected-analysis.svg",
+   "type": "image/svg+xml",
+   "chars": 41918
+  }
+ ],
+ "c1_reviewDefault": {
+  "summary": "Month review (0 flagged by the system; you decide)",
+  "open": true
+ },
+ "c2_before": {
+  "comparable": 28,
+  "xMarkers": 0,
+  "xMarkersAny": 0
+ },
+ "c2_emptyReason": {
+  "status": "A reason (1-200 characters) is required to exclude a month the system did not flag",
+  "stillTicked": true,
+  "active": "Reason for 2024-03"
+ },
+ "c2_excluded": {
+  "comparable": 27,
+  "xMarkers": 1,
+  "xMarkersAny": 0,
+  "status": "2024-03 excluded.",
+  "unticked": [
+   "Include 2024-03"
+  ],
+  "focus": {
+   "tag": "INPUT",
+   "label": "Include 2024-03",
+   "focusKey": "box:2024-03",
+   "checked": false,
+   "hasFocus": true
+  }
+ },
+ "c2_lostClick": {
+  "downloads": [
+   {
+    "name": "h10-diagnostics-000020838-d5c0f13c050c.json",
+    "type": "application/json",
+    "chars": 18032
+   }
+  ],
+  "reasonFocusedBeforeClick": true,
+  "status": "Downloaded h10-diagnostics-000020838-d5c0f13c050c.json.",
+  "reasonValue": "Workover sh (edited)ut-in"
+ },
+ "c2_reticked": {
+  "comparable": 28,
+  "xMarkers": 0,
+  "xMarkersAny": 0,
+  "unticked": [],
+  "status": "2024-03 included."
+ },
+ "c3_downloads": [
+  {
+   "name": "h10-diagnostics-000020838-4b2b48454ba7.json",
+   "type": "application/json",
+   "chars": 18135
+  },
+  {
+   "name": "h10-diagnostics-000020838-4b2b48454ba7.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 6081
+  },
+  {
+   "name": "h10-diagnostics-000020838-4b2b48454ba7.svg",
+   "type": "image/svg+xml",
+   "chars": 30357
+  }
+ ],
+ "c4_wellA": {
+  "cov": "Coverage: 2024-01 to 2026-04 · 28 months in span · 28 reported · 0 gap months · 0 flagged · 28 included · 28 comparable.",
+  "boxes": 28
+ },
+ "c4_wellA_edited": {
+  "cov": "Coverage: 2024-01 to 2026-04 · 28 months in span · 28 reported · 0 gap months · 0 flagged · 27 included · 27 comparable.",
+  "unticked": [
+   "Include 2024-03"
+  ]
+ },
+ "c4_wellB": {
+  "cov": "Coverage: 2024-01 to 2025-04 · 16 months in span · 16 reported · 0 gap months · 0 flagged · 16 included · 16 comparable.",
+  "boxes": 16,
+  "status": "",
+  "unticked": []
+ },
+ "c4_backToA": {
+  "cov": "Coverage: 2024-01 to 2026-04 · 28 months in span · 28 reported · 0 gap months · 0 flagged · 28 included · 28 comparable.",
+  "unticked": [],
+  "status": ""
+ },
+ "c5_stale_sync": {
+  "dl": [],
+  "panel": {
+   "cov": "Coverage: 2024-01 to 2025-04 · 16 months in span · 16 reported · 0 gap months · 0 flagged · 16 included · 16 comparable.",
+   "status": ""
+  }
+ },
+ "c5_stale_microtask": {
+  "dl": [],
+  "panel": {
+   "cov": "Coverage: 2024-01 to 2025-04 · 16 months in span · 16 reported · 0 gap months · 0 flagged · 16 included · 16 comparable.",
+   "status": ""
+  }
+ },
+ "c_histories_public": {
+  "view": "history",
+  "panel": true,
+  "title": "Public injection trends",
+  "msg": "Public observations remain separate from producer forecasts and fictional engineering assumptions. Reported monthly pressure has unspecified datum; it is not bottomhole pressure or a fitted injectivit"
+ },
+ "c6_layout": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "docClientW": 390,
+  "pageHScroll": false,
+  "containers": [
+   {
+    "cls": "table-scroll",
+    "scrollW": 620,
+    "clientW": 306,
+    "overflowX": "auto",
+    "right": 348
+   },
+   {
+    "cls": "analysis-chart-scroll",
+    "scrollW": 650,
+    "clientW": 306,
+    "overflowX": "auto",
+    "right": 348
+   },
+   {
+    "cls": "analysis-chart-scroll",
+    "scrollW": 650,
+    "clientW": 306,
+    "overflowX": "auto",
+    "right": 348
+   }
+  ],
+  "unscrolledOverflowers": [
+   "BUTTON#.",
+   "BUTTON#.",
+   "SPAN#.",
+   "BUTTON#.",
+   "SPAN#.",
+   "BUTTON#.",
+   "SPAN#.",
+   "BUTTON#."
+  ]
+ }
+}

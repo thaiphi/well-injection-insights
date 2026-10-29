@@ -1,0 +1,79 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "h10-diagnostics",
+  "status": "accepted",
+  "acceptedAt": "2026-10-29",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/H10-DIAGNOSTICS-VERIFICATION.md",
+  "purpose": "Phase 1a (PRD ANA-E02): H-10 diagnostics panel with guided month review in Injector history; fixes the sample-case CSV/SVG download gate.",
+  "parentBaselineSha256": "b2d55d0f232d2d310248eb2bdfaf8b45c4d3b3a2af6b2be8e19aa262bd8850a3",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-10-29-h10-diagnostics-design.md",
+      "sha256": "bda405cd51e0f0036e3ab98f29a422ae52348325067daf181a7f91155b79f0aa"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-10-29-h10-diagnostics.md",
+      "sha256": "76c20e503c1714278549ff862b5e52ae33313ae87ce2bd41e1f8147d0ca102eb"
+    }
+  ],
+  "changes": [
+    {
+      "path": "web/import-ui.mjs",
+      "archive": "migration/baselines/h10-diagnostics-before/swd-injection-analytics/web/import-ui.mjs",
+      "beforeSha256": "5431defae07c111e251f7e60078bb107f59058b0c054deaabe32269a602f5726",
+      "beforeBytes": 67292,
+      "afterSha256": "d9094bdf2e86e7802ff061179734fb0eca328f625bb23eaaa9249a441252d366",
+      "afterBytes": 67752
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/h10Diagnostics.ts",
+      "sha256": "e6fbc2c5a42e98ffb84e07e829a9b64a86d556466f6af987ccb39378e046ef54",
+      "bytes": 7928
+    },
+    {
+      "path": "src/h10DiagnosticsChart.ts",
+      "sha256": "795301e258de5cea5712fe0cc5d432af4ec3841d531d71514cb31c4e220e56c4",
+      "bytes": 5902
+    },
+    {
+      "path": "src/h10DiagnosticsExport.ts",
+      "sha256": "134e582c84b9e61304268daa2c1e0d57eb115e187cca45ae1a8cfef893731f80",
+      "bytes": 5257
+    },
+    {
+      "path": "web/h10-diagnostics.mjs",
+      "sha256": "1e58c0683a7eafd93eb524127e954dd0569463bdc34aaf0aab16176bb614186a",
+      "bytes": 7531
+    },
+    {
+      "path": "tests/h10-diagnostics.test.mjs",
+      "sha256": "18bc91f0fdd7a4d7d906d74bdc561aa4b432d3ab59585ce1f5813233c35597ac",
+      "bytes": 6478
+    },
+    {
+      "path": "tests/h10-diagnostics-chart.test.mjs",
+      "sha256": "dc0f79545855a56e9af710580b31ff5b8d05ef59d32c78a31d32862d4e426aec",
+      "bytes": 2691
+    },
+    {
+      "path": "tests/h10-diagnostics-export.test.mjs",
+      "sha256": "3e32dca000741b1e68eb9b4e1ab74423407b8d6ccbef58b63eea46314e3c0ad3",
+      "bytes": 3703
+    },
+    {
+      "path": "tests/h10-diagnostics-session.test.mjs",
+      "sha256": "d3c158b2d4b7175d521d880f2ceab60ac589ad1378f5ee51a443ac0dfa4f9cab",
+      "bytes": 2723
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "23d641aeffbe5d7048eb3cc5c9ab11b6ca50cd976b7c21ef248c866818af7e0f",
+      "bytes": 380
+    }
+  ]
+}

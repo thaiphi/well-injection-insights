@@ -8,6 +8,10 @@
     {
       "name": "governance-scope",
       "baseline": "migration/layers/governance-scope.json"
+    },
+    {
+      "name": "h10-diagnostics",
+      "baseline": "migration/layers/h10-diagnostics.json"
     }
   ]
 }

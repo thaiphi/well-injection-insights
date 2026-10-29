@@ -1,0 +1,14 @@
+{
+  "purpose": "Phase 1a (PRD ANA-E02): H-10 diagnostics panel with guided month review in Injector history; fixes the sample-case CSV/SVG download gate.",
+  "acceptanceEvidence": "demo/H10-DIAGNOSTICS-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-10-29-h10-diagnostics-design.md",
+    "docs/superpowers/plans/2026-10-29-h10-diagnostics.md"
+  ],
+  "changes": ["web/import-ui.mjs"],
+  "newFiles": [
+    "src/h10Diagnostics.ts", "src/h10DiagnosticsChart.ts", "src/h10DiagnosticsExport.ts", "web/h10-diagnostics.mjs",
+    "tests/h10-diagnostics.test.mjs", "tests/h10-diagnostics-chart.test.mjs", "tests/h10-diagnostics-export.test.mjs", "tests/h10-diagnostics-session.test.mjs"
+  ],
+  "rootFiles": ["migration/layers/index.json"]
+}

@@ -1,0 +1,742 @@
+{
+  "schemaVersion": "h10-diagnostics-export/1",
+  "method": "h10-diagnostics/1",
+  "source": {
+    "artifactId": "rrc-2026-10-09-uic000020838-v1",
+    "uic": "000020838",
+    "normalizedSha256": "4f243138c833f09a5be6a970e85f76f3f73e95040c69677a10b8c3b2fe03ca5b",
+    "manifestSha256": "3a523cadca4c7a35d667ccd53629d63e5afc6de382be670cba1d61743baef61f"
+  },
+  "coverage": {
+    "firstMonth": "2024-01",
+    "lastMonth": "2026-04",
+    "spanMonths": 28,
+    "reportedMonths": 28,
+    "gapMonths": [],
+    "flaggedMonths": 0,
+    "includedMonths": 28,
+    "comparableMonths": 28,
+    "medianRateBpd": 532.1333333333333,
+    "lowRateEvaluated": true
+  },
+  "months": [
+    {
+      "month": "2024-01",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:1"
+      ],
+      "injectedBbl": 17173,
+      "calendarDays": 31,
+      "rateBpd": 553.9677419354839,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-02",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:2"
+      ],
+      "injectedBbl": 17927,
+      "calendarDays": 29,
+      "rateBpd": 618.1724137931035,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-03",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:3"
+      ],
+      "injectedBbl": 17989,
+      "calendarDays": 31,
+      "rateBpd": 580.2903225806451,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "user",
+      "contributes": true
+    },
+    {
+      "month": "2024-04",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:4"
+      ],
+      "injectedBbl": 15119,
+      "calendarDays": 30,
+      "rateBpd": 503.96666666666664,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-05",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:5"
+      ],
+      "injectedBbl": 22427,
+      "calendarDays": 31,
+      "rateBpd": 723.4516129032259,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-06",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:6"
+      ],
+      "injectedBbl": 23579,
+      "calendarDays": 30,
+      "rateBpd": 785.9666666666667,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-07",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:7"
+      ],
+      "injectedBbl": 24010,
+      "calendarDays": 31,
+      "rateBpd": 774.516129032258,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-08",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:8"
+      ],
+      "injectedBbl": 15980,
+      "calendarDays": 31,
+      "rateBpd": 515.483870967742,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-09",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:9"
+      ],
+      "injectedBbl": 15820,
+      "calendarDays": 30,
+      "rateBpd": 527.3333333333334,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-10",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:10"
+      ],
+      "injectedBbl": 16072,
+      "calendarDays": 31,
+      "rateBpd": 518.4516129032259,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-11",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:11"
+      ],
+      "injectedBbl": 16108,
+      "calendarDays": 30,
+      "rateBpd": 536.9333333333333,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2024-12",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:12"
+      ],
+      "injectedBbl": 19670,
+      "calendarDays": 31,
+      "rateBpd": 634.516129032258,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-01",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:13"
+      ],
+      "injectedBbl": 22695,
+      "calendarDays": 31,
+      "rateBpd": 732.0967741935484,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-02",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:14"
+      ],
+      "injectedBbl": 19623,
+      "calendarDays": 28,
+      "rateBpd": 700.8214285714286,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-03",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:15"
+      ],
+      "injectedBbl": 20142,
+      "calendarDays": 31,
+      "rateBpd": 649.741935483871,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-04",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:16"
+      ],
+      "injectedBbl": 18143,
+      "calendarDays": 30,
+      "rateBpd": 604.7666666666667,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-05",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:17"
+      ],
+      "injectedBbl": 20487,
+      "calendarDays": 31,
+      "rateBpd": 660.8709677419355,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-06",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:18"
+      ],
+      "injectedBbl": 18728,
+      "calendarDays": 30,
+      "rateBpd": 624.2666666666667,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-07",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:19"
+      ],
+      "injectedBbl": 14727,
+      "calendarDays": 31,
+      "rateBpd": 475.06451612903226,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-08",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:20"
+      ],
+      "injectedBbl": 13205,
+      "calendarDays": 31,
+      "rateBpd": 425.96774193548384,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-09",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:21"
+      ],
+      "injectedBbl": 9283,
+      "calendarDays": 30,
+      "rateBpd": 309.43333333333334,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-10",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:22"
+      ],
+      "injectedBbl": 9358,
+      "calendarDays": 31,
+      "rateBpd": 301.8709677419355,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-11",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:23"
+      ],
+      "injectedBbl": 9096,
+      "calendarDays": 30,
+      "rateBpd": 303.2,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2025-12",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:24"
+      ],
+      "injectedBbl": 8776,
+      "calendarDays": 31,
+      "rateBpd": 283.0967741935484,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2026-01",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:25"
+      ],
+      "injectedBbl": 8134,
+      "calendarDays": 31,
+      "rateBpd": 262.38709677419354,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2026-02",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:26"
+      ],
+      "injectedBbl": 5087,
+      "calendarDays": 28,
+      "rateBpd": 181.67857142857142,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2026-03",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:27"
+      ],
+      "injectedBbl": 8041,
+      "calendarDays": 31,
+      "rateBpd": 259.38709677419354,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "month": "2026-04",
+      "status": "reported",
+      "sourceRowKeys": [
+        "rrc:h10:qq2j-f2zm:de475d2906f07f57:28"
+      ],
+      "injectedBbl": 4799,
+      "calendarDays": 30,
+      "rateBpd": 159.96666666666667,
+      "avgPsi": 900,
+      "maxPsi": 900,
+      "flags": [],
+      "flagReasons": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    }
+  ],
+  "screening": [
+    {
+      "month": "2024-01",
+      "rateBpd": 553.9677419354839,
+      "avgPsi": 900,
+      "ratio": 1.624643335468468
+    },
+    {
+      "month": "2024-02",
+      "rateBpd": 618.1724137931035,
+      "avgPsi": 900,
+      "ratio": 1.4559045015897807
+    },
+    {
+      "month": "2024-03",
+      "rateBpd": 580.2903225806451,
+      "avgPsi": 900,
+      "ratio": 1.55094780143421
+    },
+    {
+      "month": "2024-04",
+      "rateBpd": 503.96666666666664,
+      "avgPsi": 900,
+      "ratio": 1.7858323963225082
+    },
+    {
+      "month": "2024-05",
+      "rateBpd": 723.4516129032259,
+      "avgPsi": 900,
+      "ratio": 1.2440362063584072
+    },
+    {
+      "month": "2024-06",
+      "rateBpd": 785.9666666666667,
+      "avgPsi": 900,
+      "ratio": 1.1450867297171212
+    },
+    {
+      "month": "2024-07",
+      "rateBpd": 774.516129032258,
+      "avgPsi": 900,
+      "ratio": 1.1620158267388587
+    },
+    {
+      "month": "2024-08",
+      "rateBpd": 515.483870967742,
+      "avgPsi": 900,
+      "ratio": 1.7459324155193992
+    },
+    {
+      "month": "2024-09",
+      "rateBpd": 527.3333333333334,
+      "avgPsi": 900,
+      "ratio": 1.7067003792667508
+    },
+    {
+      "month": "2024-10",
+      "rateBpd": 518.4516129032259,
+      "avgPsi": 900,
+      "ratio": 1.7359382777501242
+    },
+    {
+      "month": "2024-11",
+      "rateBpd": 536.9333333333333,
+      "avgPsi": 900,
+      "ratio": 1.676185746213062
+    },
+    {
+      "month": "2024-12",
+      "rateBpd": 634.516129032258,
+      "avgPsi": 900,
+      "ratio": 1.418403660396543
+    },
+    {
+      "month": "2025-01",
+      "rateBpd": 732.0967741935484,
+      "avgPsi": 900,
+      "ratio": 1.2293456708526107
+    },
+    {
+      "month": "2025-02",
+      "rateBpd": 700.8214285714286,
+      "avgPsi": 900,
+      "ratio": 1.2842073077511085
+    },
+    {
+      "month": "2025-03",
+      "rateBpd": 649.741935483871,
+      "avgPsi": 900,
+      "ratio": 1.3851653261840928
+    },
+    {
+      "month": "2025-04",
+      "rateBpd": 604.7666666666667,
+      "avgPsi": 900,
+      "ratio": 1.4881772584467838
+    },
+    {
+      "month": "2025-05",
+      "rateBpd": 660.8709677419355,
+      "avgPsi": 900,
+      "ratio": 1.3618392151120222
+    },
+    {
+      "month": "2025-06",
+      "rateBpd": 624.2666666666667,
+      "avgPsi": 900,
+      "ratio": 1.4416915847928236
+    },
+    {
+      "month": "2025-07",
+      "rateBpd": 475.06451612903226,
+      "avgPsi": 900,
+      "ratio": 1.8944795273986554
+    },
+    {
+      "month": "2025-08",
+      "rateBpd": 425.96774193548384,
+      "avgPsi": 900,
+      "ratio": 2.1128360469519123
+    },
+    {
+      "month": "2025-09",
+      "rateBpd": 309.43333333333334,
+      "avgPsi": 900,
+      "ratio": 2.9085424970375957
+    },
+    {
+      "month": "2025-10",
+      "rateBpd": 301.8709677419355,
+      "avgPsi": 900,
+      "ratio": 2.9814062833938877
+    },
+    {
+      "month": "2025-11",
+      "rateBpd": 303.2,
+      "avgPsi": 900,
+      "ratio": 2.9683377308707124
+    },
+    {
+      "month": "2025-12",
+      "rateBpd": 283.0967741935484,
+      "avgPsi": 900,
+      "ratio": 3.1791248860528714
+    },
+    {
+      "month": "2026-01",
+      "rateBpd": 262.38709677419354,
+      "avgPsi": 900,
+      "ratio": 3.4300467174821736
+    },
+    {
+      "month": "2026-02",
+      "rateBpd": 181.67857142857142,
+      "avgPsi": 900,
+      "ratio": 4.953803813642619
+    },
+    {
+      "month": "2026-03",
+      "rateBpd": 259.38709677419354,
+      "avgPsi": 900,
+      "ratio": 3.46971769680388
+    },
+    {
+      "month": "2026-04",
+      "rateBpd": 159.96666666666667,
+      "avgPsi": 900,
+      "ratio": 5.626172119191498
+    }
+  ],
+  "formulas": [
+    "calendar-day rate (bbl/day) = injected liquid (bbl/month) / calendar days in the month, as carried in the verified artifact",
+    "screening ratio (psi per bbl/day) = reported average injection pressure (psi) / calendar-day rate (bbl/day)",
+    "low-rate threshold = 0.25 x median positive calendar-day rate of single-report months"
+  ],
+  "limitations": [
+    "Surface-reported pressure (basis as reported), not bottomhole pressure",
+    "Screening indicator only; not an injectivity index (J)",
+    "Monthly calendar-day averages are not observed daily or stabilized test rates.",
+    "Missing reports are gaps, never zero; nothing is interpolated.",
+    "Month decisions are the user's screening choices, recorded with reasons; they are not data corrections.",
+    "No reservoir pressure, injectivity index, damage, integrity or capacity is inferred."
+  ],
+  "checklist": [
+    {
+      "cause": "Reservoir pressure buildup",
+      "evidence": "Repeated bottomhole or static pressure tests at the same depth and datum"
+    },
+    {
+      "cause": "Near-wellbore damage or skin",
+      "evidence": "Pressure transient or step-rate tests; treatment history"
+    },
+    {
+      "cause": "Fluid viscosity or density change",
+      "evidence": "Water analyses and temperature over time"
+    },
+    {
+      "cause": "Tubing friction or geometry",
+      "evidence": "Completion records, tubing size and rate-dependent surface pressure"
+    },
+    {
+      "cause": "Mechanical restriction",
+      "evidence": "Workover, scale or fill records; tubing inspection"
+    },
+    {
+      "cause": "Reporting quality",
+      "evidence": "Original filings, revisions and the month review above"
+    },
+    {
+      "cause": "Competing nearby injection",
+      "evidence": "H-10 histories of nearby wells (selected explicitly) and their timing"
+    }
+  ],
+  "contentSha256": "4b2b48454ba7abf9d1567bfdb06021c3ac07c12d1e380ee7ae5a8da101d11eda"
+}
