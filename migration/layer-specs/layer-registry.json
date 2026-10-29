@@ -1,0 +1,8 @@
+{
+  "purpose": "One-time data-driven layer registry (owner decision D2): later layers are JSON records chained after the sample-minors baseline, with no further checker change.",
+  "acceptanceEvidence": "demo/LAYER-REGISTRY-VERIFICATION.md",
+  "approvedDocs": ["docs/superpowers/plans/2026-10-28-gate-layer-registry.md"],
+  "changes": [],
+  "newFiles": [],
+  "rootFiles": ["scripts/verify-preservation.mjs", "scripts/record-layer.mjs", "tests/layer-registry.test.mjs", "migration/layers/index.json"]
+}

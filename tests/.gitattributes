@@ -1,3 +1,4 @@
 # Preservation checks hash these bytes; never convert line endings.
 preservation-baseline.test.mjs -text
 transfer.test.mjs -text
+layer-registry.test.mjs -text

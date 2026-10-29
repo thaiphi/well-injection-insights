@@ -1,0 +1,9 @@
+{
+  "version": "swd-preservation-layer-index/1",
+  "layers": [
+    {
+      "name": "layer-registry",
+      "baseline": "migration/layers/layer-registry.json"
+    }
+  ]
+}
