@@ -29,7 +29,7 @@ Date: 2026-10-28. Branch `feature/phase-a-governance`. Plan: `docs/superpowers/p
 | `node --test tests/transfer.test.mjs` with the pending layer | 2/3 pass; the live-root test fails with that same single pending violation (expected until acceptance). |
 | Product suite, run inside `swd-injection-analytics/`: `node --test tests/*.test.mjs` | 435/435 pass. |
 | `node scripts/check-carried-oracles.mjs` | 248 comparisons, 0 failures. |
-| Fresh Windows clone (`core.autocrlf=true`) | Not yet run; needs a commit. |
+| Fresh Windows clone (`core.autocrlf=true`, commit d8cad5d) | 182 checked, 0 violations; registry + preservation tests 109/109. Clone deleted. |
 
 ## Review
 
