@@ -1,0 +1,56 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "governance-scope",
+  "status": "accepted",
+  "acceptedAt": "2026-10-29",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/GOVERNANCE-SCOPE-VERIFICATION.md",
+  "purpose": "Phase A governance: amend the scope line and the product-spec purpose for the Project 2 expansion (owner decisions D1, D3, D5, D14, D18, D19), and re-pin the two root gate tests whose fixtures now follow the registry chain.",
+  "parentBaselineSha256": "a47d9566434206f5fd14ba68e3bc594c92e3eac98919d98b1420a465585aef82",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/plans/2026-10-28-governance-scope-amendment.md",
+      "sha256": "ec7be69db08d8362aedb5681e1c432a3572d56d040bc3218267cdb51bf003fcd"
+    },
+    {
+      "path": "docs/project-2-decisions-2026-10-20.md",
+      "sha256": "ecf07a1a3c7ce65ed072f08d4c54ad51a6968df63746774d736fefce6e97553a"
+    }
+  ],
+  "changes": [
+    {
+      "path": "AGENTS.md",
+      "archive": "migration/baselines/governance-scope-before/swd-injection-analytics/AGENTS.md",
+      "beforeSha256": "173e639f027a065cf58cb7095ec173a50d57c14d8f23741a4f5aff230ec0d7ca",
+      "beforeBytes": 2060,
+      "afterSha256": "ec0a7136d8ff036a03b162db658ea685ed798cd84b2c81e144a7049c3170d63e",
+      "afterBytes": 2726
+    },
+    {
+      "path": "product-spec.md",
+      "archive": "migration/baselines/governance-scope-before/swd-injection-analytics/product-spec.md",
+      "beforeSha256": "c4a7a3d57aea3cde0aad9e1442cf641ddb49cd69302fd6dcb691453c1f4dfe98",
+      "beforeBytes": 16745,
+      "afterSha256": "760fbffc7b14c5e3800cd46949817a9c7110d0cfad779db4b46d0ccf719b4154",
+      "afterBytes": 17389
+    }
+  ],
+  "newFiles": [],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "bbf966327d8791a65430655afda1709f5dbde3eedb9068215ce20943a3254016",
+      "bytes": 276
+    },
+    {
+      "path": "tests/preservation-baseline.test.mjs",
+      "sha256": "cace7a2f228cb335ffe87042d724f3bf13ebce58690923b07c524808da7a5dae",
+      "bytes": 24336
+    },
+    {
+      "path": "tests/layer-registry.test.mjs",
+      "sha256": "9695c209236d3d991e602485905b1a7fb6e33d2f66e2a612f91c0e38f54b4fa3",
+      "bytes": 16459
+    }
+  ]
+}

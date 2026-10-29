@@ -27,6 +27,7 @@
 3. Archives must hold the pre-edit bytes — `record-layer.mjs <name> archive` runs before any edit and refuses to overwrite.
 4. The decision record is pinned; editing it afterwards must fail the gate — checked in Task 3 Step 3. PRD v1.1 is not pinned by default, because the owner may still issue a v1.2 (decision record, "Still open" #2); if the owner settles v1.2 first, add it to `approvedDocs`. Every pinned document must be committed, or a fresh clone fails with `Approved document unavailable`.
 5. A stray CRLF in either protected file changes its hash — CR count checked in Task 2.
+6. The legacy test fixture must rebuild the pre-chain state for every path class: never changed; changed only by a hand-written layer; changed only by a registry layer; changed by both; a legacy new file changed by a registry layer — see "Ruling" below.
 
 ---
 
@@ -40,7 +41,7 @@
 
 ```json
 {
-  "purpose": "Phase A governance: amend the scope line and the product-spec purpose for the Project 2 expansion (owner decisions D1, D3, D5, D14, D18, D19).",
+  "purpose": "Phase A governance: amend the scope line and the product-spec purpose for the Project 2 expansion (owner decisions D1, D3, D5, D14, D18, D19), and re-pin the two root gate tests whose fixtures now follow the registry chain.",
   "acceptanceEvidence": "demo/GOVERNANCE-SCOPE-VERIFICATION.md",
   "approvedDocs": [
     "docs/superpowers/plans/2026-10-28-governance-scope-amendment.md",
@@ -48,7 +49,7 @@
   ],
   "changes": ["AGENTS.md", "product-spec.md"],
   "newFiles": [],
-  "rootFiles": ["migration/layers/index.json"]
+  "rootFiles": ["migration/layers/index.json", "tests/preservation-baseline.test.mjs", "tests/layer-registry.test.mjs"]
 }
 ```
 
@@ -66,7 +67,7 @@ Current:
 > Build only the agreed SWD Analytics demonstration: Nexus engineering reuse, synthetic produced-water forecasting/reconciliation, fictional injection curves/capacity, public Explorer artifact import and technical exports. No permitting, GIS, private operating fixtures or portfolio implementation.
 
 Proposed:
-> Build only the agreed SWD Analytics demonstration: Nexus engineering reuse, synthetic produced-water forecasting/reconciliation, fictional injection curves/capacity, public Explorer artifact import, technical exports and the Project 2 expansion phases accepted in `../docs/project-2-decisions-2026-10-20.md`. Screening charts on verified TRRC H-10 data are allowed, including panels for several user-selected wells, each from its own single-UIC package; a calibrated injectivity (J) comes only from qualifying test evidence. No permitting, GIS (maps or between-well distances), private operating fixtures or portfolio implementation.
+> Build only the agreed SWD Analytics demonstration: Nexus engineering reuse, synthetic produced-water forecasting/reconciliation, fictional injection curves/capacity, public Explorer artifact import, technical exports and the Project 2 expansion, each phase only after it is accepted under its own reviewed preservation layer (owner decisions: `../docs/project-2-decisions-2026-10-20.md`, which authorize no build by themselves). Screening charts on verified TRRC H-10 data are allowed, including panels for several user-selected wells inside the existing workspaces (no new navigation tabs), each from its own single-UIC package; a calibrated injectivity (J) comes only from qualifying test evidence such as UIC bottomhole-pressure or step-rate test results, never from H-10 monthly reports alone. The Explorer handoff is one-way, Explorer to Analytics. No permitting, GIS (maps or between-well distances), private operating fixtures or portfolio implementation.
 
 - [ ] **Step 2:** Append to `product-spec.md` line 13 (the existing two closing sentences stay; shown for context).
 
@@ -105,3 +106,24 @@ Proposed:
 - [ ] **Step 2:** Fix confirmed findings. A wording change after archiving is fine (archives hold before-bytes); re-run Task 3 Steps 1–2.
 - [ ] **Step 3:** Owner runs `! node scripts/record-layer.mjs governance-scope accept "<owner>"`; then `node scripts/verify-preservation.mjs .` → 0 violations.
 - [ ] **Step 4:** Commit only on explicit owner instruction.
+
+## Ruling (2026-10-29): legacy test fixture re-pinned
+
+**Found while executing Task 3.** After the two protected files were amended, 7 tests in `tests/preservation-baseline.test.mjs` failed with `Unapproved original file bytes/hash: AGENTS.md` / `product-spec.md`. Cause: a registry design gap. The legacy fixture builds originals from the live tree, except for paths in its two hard-coded lists (pressure-support and sample-tour UI), which it takes from their archives. Any registry layer that changes an original outside those lists therefore broke it. This is the first such layer.
+
+**Fix.** `fixture()` now takes each original from: the pressure-support archive for its list, then the sample-tour archive for its list, then the **first** registry layer's before-archive for that path (walking `migration/layers/index.json` in order), and only then the live file. This is the same rule as `preRegistry()` in `tests/layer-registry.test.mjs`. The legacy lists stay first so they keep resolving to original bytes. Result: 66/66 again (RED 7 → GREEN).
+
+**Same gap in `tests/layer-registry.test.mjs`.** Once the legacy test was re-pinned, 7 registry tests failed with `Reviewed added file hash/bytes mismatch: tests/preservation-baseline.test.mjs`. Their fixture copies live root files but rebuilt only the registry's own pins. Fix: the fixture copies every root file a live registry layer pins, and the fixture's first layer re-pins them (`liveRegistryRoots()`). Result: 43/43.
+
+**Consequence.** This layer also re-pins `tests/preservation-baseline.test.mjs` (superseding its sample-minors pin) and `tests/layer-registry.test.mjs` (superseding its layer-registry pin) as root files. The accepted `layer-registry` record is not touched. Its "test file not edited" constraint applied to that layer's identical-outcomes proof, which is accepted and committed.
+
+## Review fix (2026-10-29): AGENTS.md wording tightened before acceptance
+
+The independent review was clean (no Critical or Important findings). Its top Minor was re-graded by effect, because `AGENTS.md` is the scope file every worker reads and any wording fix after acceptance needs a new layer. As first written, "the Project 2 expansion phases accepted in <decision record>" could be read as authorizing building now, and D18 and D19 appeared only in `product-spec.md`. The Task 2 proposed text above is now the tightened line:
+- each phase is in scope only after its own reviewed layer is accepted, and the decisions authorize no build by themselves;
+- panels go in the existing workspaces, with no new navigation tabs (D19);
+- qualifying test evidence is named (UIC bottomhole-pressure or step-rate results, never H-10 monthly reports alone, D5);
+- the handoff is one-way (D18).
+
+The `product-spec.md` text is unchanged.
+

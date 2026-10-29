@@ -1,0 +1,11 @@
+{
+  "purpose": "Phase A governance: amend the scope line and the product-spec purpose for the Project 2 expansion (owner decisions D1, D3, D5, D14, D18, D19), and re-pin the two root gate tests whose fixtures now follow the registry chain.",
+  "acceptanceEvidence": "demo/GOVERNANCE-SCOPE-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/plans/2026-10-28-governance-scope-amendment.md",
+    "docs/project-2-decisions-2026-10-20.md"
+  ],
+  "changes": ["AGENTS.md", "product-spec.md"],
+  "newFiles": [],
+  "rootFiles": ["migration/layers/index.json", "tests/preservation-baseline.test.mjs", "tests/layer-registry.test.mjs"]
+}

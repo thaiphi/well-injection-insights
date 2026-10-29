@@ -4,6 +4,10 @@
     {
       "name": "layer-registry",
       "baseline": "migration/layers/layer-registry.json"
+    },
+    {
+      "name": "governance-scope",
+      "baseline": "migration/layers/governance-scope.json"
     }
   ]
 }

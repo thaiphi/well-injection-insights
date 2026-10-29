@@ -30,6 +30,7 @@ async function legacyFixture(){
  for(const p of LEGACY){const b=JSON.parse(await read(p));for(const e of b.newFiles??[])apps.add(e.path);for(const e of b.rootFiles??[])roots.add(e.path);}
  for(const d of LEGACY_ARCHIVES)await cp(join(owningRoot,'migration/baselines',d),join(root,'migration/baselines',d),{recursive:true});
  for(const p of apps)await write(root,APP+p,await before(p));
+ for(const p of await liveRegistryRoots())if(p!==INDEX)roots.add(p);
  for(const p of roots)await write(root,p,await read(p));
  return {root,layers:[]};
 }
@@ -47,7 +48,9 @@ async function addLayer(f,name,{changes={},newFiles={},rootFiles=[INDEX],docs=[P
  await persist(f,L);return L;
 }
 const persist=(f,L)=>write(f.root,`migration/layers/${L.name}.json`,JSON.stringify(L));
-const registryFixture=async()=>{const f=await legacyFixture();await addLayer(f,'layer-registry',{rootFiles:REGISTRY_ROOT});return f;};
+// Root files the live registry layers re-pinned (e.g. the legacy preservation test); the fixture's first layer re-pins them too.
+async function liveRegistryRoots(){let index=null;try{index=JSON.parse(await read(INDEX));}catch(e){if(e.code!=='ENOENT')throw e;}const out=new Set();for(const {baseline} of index?.layers??[])for(const e of JSON.parse(await read(baseline)).rootFiles??[])out.add(e.path);return [...out];}
+const registryFixture=async()=>{const f=await legacyFixture();await addLayer(f,'layer-registry',{rootFiles:[...new Set([...REGISTRY_ROOT,...await liveRegistryRoots()])]});return f;};
 const run=async f=>(await verifyPreservation(f.root)).violations;
 const clean=async f=>{const r=await verifyPreservation(f.root);assert.equal(r.checked,182);assert.deepEqual(r.violations,[]);};
 const blocked=async(f,re)=>{const v=await run(f);assert.ok(v.some(x=>re.test(x)),JSON.stringify(v));};

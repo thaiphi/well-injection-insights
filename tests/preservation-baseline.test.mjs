@@ -15,13 +15,16 @@ const stRoot=['scripts/verify-preservation.mjs','tests/preservation-baseline.tes
 const ST_ARCHIVE='migration/baselines/sample-tour-before/swd-injection-analytics/';
 const ST_DOCS=[['docs/superpowers/specs/2026-10-14-sample-case-guided-tour-design.md','approvedSpecSha256'],['docs/superpowers/plans/2026-10-14-sample-case-guided-tour.md','approvedPlanSha256']];
 const docSha=b=>sha(Buffer.from(b.toString('utf8').replace(/\r\n/g,'\n'),'utf8'));
+// Pre-chain bytes of a product path a registry layer later changed live in that layer's before-archive (first layer wins).
+async function registryArchives(){const m=new Map();let index=null;try{index=JSON.parse(await readFile(join(owningRoot,'migration/layers/index.json')));}catch(e){if(e.code!=='ENOENT')throw e;}for(const {baseline} of index?.layers??[])for(const c of JSON.parse(await readFile(join(owningRoot,baseline))).changes??[])if(!m.has(c.path))m.set(c.path,c.archive);return m;}
 async function write(root,p,b){await mkdir(dirname(join(root,p)),{recursive:true});await writeFile(join(root,p),b);}
 async function fixture(reviewed=true){
  assert.ok(checker?.verifyPreservation,'Preservation checker is not implemented');
  await mkdir(join(owningRoot,'tmp'),{recursive:true});const root=await mkdtemp(join(owningRoot,'tmp/pressure-preservation-test-'));
  const mb=await readFile(join(owningRoot,'migration/source-manifest.json'));const manifest=JSON.parse(mb);
  await write(root,'migration/source-manifest.json',mb);
- for(const e of manifest.files)await write(root,join('swd-injection-analytics',e.path),await readFile(join(owningRoot,ui.includes(e.path)?'migration/baselines/pressure-support-before/swd-injection-analytics':stUi.includes(e.path)?ST_ARCHIVE.slice(0,-1):'swd-injection-analytics',e.path)));
+ const reg=await registryArchives();
+ for(const e of manifest.files)await write(root,join('swd-injection-analytics',e.path),await readFile(ui.includes(e.path)?join(owningRoot,'migration/baselines/pressure-support-before/swd-injection-analytics',e.path):stUi.includes(e.path)?join(owningRoot,ST_ARCHIVE,e.path):reg.has(e.path)?join(owningRoot,reg.get(e.path)):join(owningRoot,'swd-injection-analytics',e.path)));
  if(!reviewed)return {root,manifest};
  const baseline={version:'swd-pressure-preservation/1',status:'accepted',parentManifestSha256:sha(mb),originalCount:182,approvedDesignSha256:'',approvedPlanSha256:'',changes:[],newFiles:[],rootFiles:[]};
  for(const [p,key] of [['demo/PRESSURE-SUPPORT-DESIGN.md','approvedDesignSha256'],['docs/superpowers/plans/2026-10-12-pressure-support-context.md','approvedPlanSha256']]){const b=await readFile(join(owningRoot,p));await write(root,p,b);baseline[key]=sha(b);}
