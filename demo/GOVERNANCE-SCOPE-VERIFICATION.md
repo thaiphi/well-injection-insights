@@ -61,3 +61,5 @@ Also fixed: the D12 note's line citation and tense (the D8 basis rule is future 
 ## Acceptance
 
 Accepted 2026-10-29 by Thai Phi with the post-review wording: `node scripts/record-layer.mjs governance-scope accept "Thai Phi"` → `accepted`; `node scripts/verify-preservation.mjs .` → 182 checked, 0 violations; root suites (transfer, preservation-baseline, layer-registry) 112/112.
+
+Fresh Windows clone (`core.autocrlf=true`, commit 4a02a89): 182 checked, 0 violations; registry + preservation tests 109/109. Clone deleted.
