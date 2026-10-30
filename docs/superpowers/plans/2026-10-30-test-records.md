@@ -363,13 +363,13 @@ export function testCoverage(state:TestState):TestCoverage {
 - Consumes: Task 1 `bhpSeries`, `buildTestState`, `timelineMarkers`, `LABEL_BHP`, `TestState`; 1a `diagnoseMonthly`.
 - Produces: `testPressureSvg(state):{svg,height}`; `ratioOverTimeSvg(state, markers?: readonly TimelineMarker[])`.
 
-- [ ] **Step 1: Record the current 1a output hash** (before editing `ratioOverTimeSvg`). From `N/`:
+- [ ] **Step 1: Confirm the current 1a output hash** (before editing `ratioOverTimeSvg`). From `N/`:
 
 ```
 node -e "import('./dist/h10Diagnostics.js').then(async d=>{const c=await import('./dist/h10DiagnosticsChart.js');const a=JSON.parse(require('fs').readFileSync('data/explorer/normalized.json','utf8'));console.log(require('crypto').createHash('sha256').update(c.ratioOverTimeSvg(d.diagnoseMonthly(a.injectionMonthly)).svg).digest('hex'))})"
 ```
 
-Paste the printed hash into `PINNED_RATIO_SHA256` in the test below.
+It must print `05d287ffbb38fa6286070516306c759964facd132513d0b44a25fdfa72c0ddce` (computed by Main on 2026-10-30 from the accepted 1a code). If it differs, stop and report: the accepted 1a chart has changed.
 
 - [ ] **Step 2: Write the failing test** `N/tests/test-records-chart.test.mjs`:
 
@@ -380,7 +380,7 @@ import {testPressureSvg} from '../dist/testRecordsChart.js';
 import {diagnoseMonthly} from '../dist/h10Diagnostics.js';
 import {ratioOverTimeSvg} from '../dist/h10DiagnosticsChart.js';
 
-const PINNED_RATIO_SHA256='<paste from Step 1>';
+const PINNED_RATIO_SHA256='05d287ffbb38fa6286070516306c759964facd132513d0b44a25fdfa72c0ddce';
 const artifact=JSON.parse(await readFile('data/explorer/normalized.json','utf8')),h10=diagnoseMonthly(artifact.injectionMonthly);
 const sha=s=>createHash('sha256').update(s).digest('hex');
 const row=(id,date,psia,depth,o={})=>({source_report_id:String(id),tracking_no:'9',test_sequence_no:'1.0',uic_number:'000020838',report_conducted_date:date,report_conducted_date_text:date,bhp_psia:psia,test_depth_ft:depth,quality_flags:[],...o});
