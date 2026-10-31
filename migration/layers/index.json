@@ -12,6 +12,10 @@
     {
       "name": "h10-diagnostics",
       "baseline": "migration/layers/h10-diagnostics.json"
+    },
+    {
+      "name": "test-records",
+      "baseline": "migration/layers/test-records.json"
     }
   ]
 }

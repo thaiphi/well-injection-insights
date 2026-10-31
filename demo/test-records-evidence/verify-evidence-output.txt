@@ -1,0 +1,40 @@
+desktop 1a downloads per stage (sha256 prefix):
+  legacy.json IDENTICAL S0:4eb92e0a3c06 S1:4eb92e0a3c06 S2:4eb92e0a3c06 S3:4eb92e0a3c06 S4:4eb92e0a3c06
+  legacy.csv IDENTICAL S0:feaf52c67e8b S1:feaf52c67e8b S2:feaf52c67e8b S3:feaf52c67e8b S4:feaf52c67e8b
+  legacy.svg IDENTICAL S0:966eb1d59c09 S1:966eb1d59c09 S2:966eb1d59c09 S3:966eb1d59c09 S4:966eb1d59c09
+  h10.json IDENTICAL S0:063335cde812 S1:063335cde812 S2:063335cde812 S3:063335cde812 S4:063335cde812
+  h10.csv IDENTICAL S0:6d2eb73a2399 S1:6d2eb73a2399 S2:6d2eb73a2399 S3:6d2eb73a2399 S4:6d2eb73a2399
+  h10.svg IDENTICAL S0:52432cc18156 S1:52432cc18156 S2:52432cc18156 S3:52432cc18156 S4:52432cc18156
+ marker counts at the stages: c1_markers0=2 c4_markers_none=0 c4_markers_restored=2 c5_markers_after_upload=3
+  S0__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S0__swd-selected-analysis.svg contains test marker element: false
+  S0__test-records-000000417-c0985f70f63f.json verifyTestRecordsSealed = true records 4 method test-records/1
+  S1__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S1__swd-selected-analysis.svg contains test marker element: false
+  S2__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S2__swd-selected-analysis.svg contains test marker element: false
+  S3__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S3__swd-selected-analysis.svg contains test marker element: false
+  S4__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S4__swd-selected-analysis.svg contains test marker element: false
+  S4__test-records-000000417-7d3c3810b873.json verifyTestRecordsSealed = true records 5 method test-records/1
+mobile 1a downloads per stage (sha256 prefix):
+  legacy.json IDENTICAL S0:4eb92e0a3c06 S1:4eb92e0a3c06 S2:4eb92e0a3c06 S3:4eb92e0a3c06 S4:4eb92e0a3c06
+  legacy.csv IDENTICAL S0:feaf52c67e8b S1:feaf52c67e8b S2:feaf52c67e8b S3:feaf52c67e8b S4:feaf52c67e8b
+  legacy.svg IDENTICAL S0:966eb1d59c09 S1:966eb1d59c09 S2:966eb1d59c09 S3:966eb1d59c09 S4:966eb1d59c09
+  h10.json IDENTICAL S0:063335cde812 S1:063335cde812 S2:063335cde812 S3:063335cde812 S4:063335cde812
+  h10.csv IDENTICAL S0:6d2eb73a2399 S1:6d2eb73a2399 S2:6d2eb73a2399 S3:6d2eb73a2399 S4:6d2eb73a2399
+  h10.svg IDENTICAL S0:52432cc18156 S1:52432cc18156 S2:52432cc18156 S3:52432cc18156 S4:52432cc18156
+ marker counts at the stages: c1_markers0=2 c4_markers_none=0 c4_markers_restored=2 c5_markers_after_upload=3
+  S0__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S0__swd-selected-analysis.svg contains test marker element: false
+  S0__test-records-000000417-c0985f70f63f.json verifyTestRecordsSealed = true records 4 method test-records/1
+  S1__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S1__swd-selected-analysis.svg contains test marker element: false
+  S2__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S2__swd-selected-analysis.svg contains test marker element: false
+  S3__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S3__swd-selected-analysis.svg contains test marker element: false
+  S4__h10-diagnostics-000000417-1e9da7fd6c64.svg contains test marker element: false
+  S4__swd-selected-analysis.svg contains test marker element: false
+  S4__test-records-000000417-7d3c3810b873.json verifyTestRecordsSealed = true records 5 method test-records/1

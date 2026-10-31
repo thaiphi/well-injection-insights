@@ -9,6 +9,7 @@ import {disposalContext} from './disposal-context.mjs';
 import {mountLiteratureCase} from './literature-case.mjs';
 import {mountPressureContext} from './pressure-support.mjs';
 import {mountH10Diagnostics} from './h10-diagnostics.mjs';
+import {mountTestRecords} from './test-records.mjs';
 import {mountNavigation,viewFromHash} from './navigation.mjs';
 import {renderCurveLibrary,renderSchedules,renderReports,renderScope,dataTable} from './workspace-views.mjs';
 import {mountExplorerReceiver} from './explorer-receiver.mjs';
@@ -20,7 +21,7 @@ import {mountSampleTour} from './sample-tour.mjs';
 const $=id=>document.getElementById(id);
 mountLiteratureCase($('literature-workspace'));
 const pressureContext=mountPressureContext($('pressure-support-workspace'));
-let h10Panel=null;
+let h10Panel=null,testsPanel=null;
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const option=(select,value,label=value)=>{const o=el('option',label);o.value=value;select.append(o);};
 const fmt=v=>v===null||v===undefined?'Unavailable':typeof v==='number'?v.toLocaleString('en-US',{maximumFractionDigits:2}):String(v);
@@ -99,7 +100,7 @@ function readiness(){
  for(const key of Object.keys(names)){const g=all[key];const card=el('article',undefined,'readiness-card '+(g.ready?'ready':g.reasons.some(r=>r.includes('Acceptance blocker'))?'blocked':''));card.append(el('strong',`${names[key]}: ${g.ready?'Ready':'Not ready'}`),el('p',g.reasons.join(' ')));const remedy=el('button',key==='wellbore'?'Open independent tool':key==='transient'?'Inspect unfinished scope':'Inspect inputs & requirements');remedy.onclick=()=>{if(key==='wellbore'||key==='transient')navigate(key);else{$('requirements-analysis').value=key;requirementsView();navigate('data');$('requirements-analysis').focus();}};card.append(remedy);$('import-readiness').append(card);}
  $('run-analysis').disabled=!all[$('analysis-select').value].ready;updateIdentity();document.dispatchEvent(new Event('workspace-inputs'));
 }
-function clearResults(){h10Panel?.dispose();h10Panel=null;shown=null;$('import-results').replaceChildren();for(const id of ['import-download','import-csv','import-svg'])$(id).disabled=true;}
+function clearResults(){testsPanel?.dispose();testsPanel=null;h10Panel?.dispose();h10Panel=null;shown=null;$('import-results').replaceChildren();for(const id of ['import-download','import-csv','import-svg'])$(id).disabled=true;}
 function invalidate(profile=$('import-profile').value){calculationError=null;state.invalidate(profile);draft=null;$('import-confirm').disabled=true;$('validation-summary').replaceChildren();$('import-preview').replaceChildren();$('validation-pages').replaceChildren();clearResults();$('result-message').textContent='Inputs changed. Review validation and confirm the revised profile before running dependent results.';readiness();}
 function switchSource(next){calculationError=null;if(next!=='sample'){if(sampleRun){sampleRun.abort();sampleRun=null;$('sample-cancel').hidden=true;}sampleSession=null;sampleWellIndex=0;sampleTour?.exit();restoreSampleInputs(document);$('sample-error').textContent='';}loadVersion++;source=next;state.result=null;clearResults();document.dispatchEvent(new CustomEvent('workspace-source',{detail:next}));$('import-editor').hidden=next!=='user';$('import-status').textContent={user:'Choose a file, inspect original rows, then map fields and original units.',demo:'Synthetic demo selected. Choose an analysis below; all engineering inputs remain fictional.',public:'Pinned Explorer export selected. Public injection trends use source-reported observations only.',sample:'Sample case selected: TRRC records for UIC 000020838 and SAND BEND 2D, with every gap filled by labelled synthetic inputs.'}[next]??'No planning source selected.';renderSampleBanner();if(next==='user'&&Object.keys(state.inputs).length)try{calculate();}catch(error){$('import-status').textContent+=` ${error.message}`;}readiness();navigate('data');}
 function navigate(next,{record=true,focus=true}={}){
@@ -233,7 +234,7 @@ function renderUser(key){
   if(engineeringCharts.length){const composite=document.createElementNS('http://www.w3.org/2000/svg','svg');composite.setAttribute('xmlns','http://www.w3.org/2000/svg');composite.setAttribute('viewBox',`0 0 900 ${engineeringCharts.length*390}`);engineeringCharts.forEach((chart,index)=>{const part=chart.cloneNode(true);part.setAttribute('y',String(index*390));part.setAttribute('width','900');part.setAttribute('height','390');composite.append(part);});shown.svg=composite.outerHTML;$('import-svg').disabled=false;}
  }else if(key==='comparison')present(names[key],['Month','Demand (bbl)','Available capacity (bbl)','Deficit (bbl)'],b.monthly.map(r=>[r.month,r.demandBbl,r.availableCapacityBbl,r.shortfallBbl]),[{index:1,color:'#1262b5',name:'Existing forecast + scheduled additions'},{index:2,color:'#1596a3',name:'Assumed available capacity'}],'Monthly volume (bbl)',b);
 }
-function mountH10(){const p=selectedPublic();if(!p?.artifact)return;const box=el('div');box.id='h10-diagnostics';$('import-results').append(box);h10Panel=mountH10Diagnostics(box,{selection:p,gate:publicCalculationGate(),download});}
+function mountH10(){const p=selectedPublic();if(!p?.artifact)return;const gate=publicCalculationGate(),box=el('div');box.id='h10-diagnostics';$('import-results').append(box);h10Panel=mountH10Diagnostics(box,{selection:p,gate,download});const tests=el('div');tests.id='test-records';$('import-results').append(tests);testsPanel=mountTestRecords(tests,{selection:p,gate,download,range:h10Panel.range,onMarkers:markers=>h10Panel?.setMarkers(markers)});}
 function renderPublicResult(){
  clearResults();
  const eligibility=publicCalculationGate();

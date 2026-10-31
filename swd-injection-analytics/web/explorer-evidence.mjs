@@ -1,9 +1,14 @@
 // Browser copies of texas-rrc-explorer src/normalize.mjs and artifact.mjs contracts.
 // Keep this bounded v1/v2 adapter aligned with the producer; no network or filesystem access.
-const rowDisposition=row=>row.quality_flags.some(flag=>/^(parse_failure|invalid|inconsistent|duplicate|unmatched|ambiguous|source_scope)/.test(flag))?'quarantined':'accepted';
+export const rowDisposition=row=>row.quality_flags.some(flag=>/^(parse_failure|invalid|inconsistent|duplicate|unmatched|ambiguous|source_scope)/.test(flag))?'quarantined':'accepted';
+// Explorer isBounded(): query versions 2 and 4 share the bounded H-10 rules. Version 3 is not accepted here.
+export const boundedExplorerScope=scope=>scope?.queryVersion===2||scope?.queryVersion===4;
+export const testReportOrder=Object.freeze({bhp:'report_id,tracking_no,test_sequence_no',srt:'report_id,tracking_no'});
 export function sourceScopeFlags(kind,row,scope){
  const flags=[];
- if(scope.queryVersion===2){
+ if(boundedExplorerScope(scope)){
+  if(kind==='bhp'||kind==='srt'){if(row.uic_no!==scope.monthlyUic)flags.push('source_scope:uic_no');return flags;}
+  if(kind==='casing'||kind==='plugging'||kind==='wellbore_inventory'){if(row?.api_no!==scope.sourceApiId)flags.push('source_scope:api_no');return flags;}
   if(kind==='inventory'){if(row.uic_number!==scope.monthlyUic)flags.push('source_scope:uic_number');}
   else{
    if(row.uic_no!==scope.monthlyUic)flags.push('source_scope:uic_no');
@@ -40,7 +45,7 @@ export function normalizeExplorerRows(inventoryRaw,monthlyRaw,sourceIds,scope=nu
   for(const [name,value] of Object.entries({max_liq_inj_pressure:row.permit_liquid_pressure_limit_psi,bbl_vol_inj:row.permit_liquid_volume_limit_bpd,top_inj_zone:row.permitted_top_depth_ft,bot_inj_zone:row.permitted_bottom_depth_ft}))if(value!==null&&value<0)flags.push(`invalid_negative:${name}`);
   if(row.permitted_top_depth_ft!==null&&row.permitted_bottom_depth_ft!==null&&row.permitted_top_depth_ft>row.permitted_bottom_depth_ft)flags.push('inconsistent:top_exceeds_bottom');
   if(scope)flags.push(...sourceScopeFlags('inventory',r,scope));
-  if(scope?.queryVersion===2&&!str(r.api_no).startsWith('389')){row.county=`API county code ${str(r.api_no).slice(0,3)||'unavailable'}`;row.county_basis='Original source API county prefix; county name not independently verified';}
+  if(boundedExplorerScope(scope)&&!str(r.api_no).startsWith('389')){row.county=`API county code ${str(r.api_no).slice(0,3)||'unavailable'}`;row.county_basis='Original source API county prefix; county name not independently verified';}
   return row;
  });
  const byUic=new Map();for(const r of inventory){const a=byUic.get(r.uic_number)??[];a.push(r);byUic.set(r.uic_number,a);}
@@ -99,46 +104,86 @@ const targets=[
  ['uic-query-help.html','https://webapps2.rrc.texas.gov/EWA/help/UICGeneralHowTo.html','documentation','uic-query-help.html']
 ];
 
+const transformationVersions={2:'rrc-odp-v2.0.0',4:'rrc-odp-v2.2.0'};
+// V4 §1: producer acquisition-target order after the 7 v2 targets.
+function v4Targets(scope){
+ const byUic=order=>new URLSearchParams({'$where':`uic_no='${scope.monthlyUic}'`,'$limit':'1000','$order':order});
+ const byApi=new URLSearchParams({'$where':`api_no='${scope.sourceApiId}'`,'$limit':'1000','$order':'record_sequence,id'});
+ const apiLookup=new URLSearchParams({'$where':`api_no='${scope.sourceApiId}'`,'$limit':'25','$order':'uic_number,api_no'});
+ return [
+  ['bhp-metadata.json','https://data.texas.gov/api/views/qxfy-wcfs.json','metadata','bhp-metadata'],
+  ['srt-metadata.json','https://data.texas.gov/api/views/h54t-xnbi.json','metadata','srt-metadata'],
+  ['candidate-bhp.json',`https://data.texas.gov/resource/qxfy-wcfs.json?${byUic(testReportOrder.bhp)}`,'bhp','candidate-bhp'],
+  ['candidate-srt.json',`https://data.texas.gov/resource/h54t-xnbi.json?${byUic(testReportOrder.srt)}`,'srt','candidate-srt'],
+  ['srt-guidelines.html','https://www.rrc.texas.gov/oil-and-gas/applications-and-permits/injection-storage-permits/oil-and-gas-waste-disposal/injection-disposal-permit-procedures/technical-review/step-rate-test-guidelines/','documentation','srt-guidelines.html'],
+  ['bhp-permian-nto.pdf','https://www.rrc.texas.gov/media/sm5bzzpg/nto-disposal-well-monitoring-reporting-requirements-in-the-permian-basin-12-19-2023.pdf','documentation','bhp-permian-nto.pdf'],
+  ['casing-metadata.json','https://data.texas.gov/api/views/u9m4-xnh6.json','metadata','casing-metadata'],
+  ['plugging-metadata.json','https://data.texas.gov/api/views/wfzn-9fje.json','metadata','plugging-metadata'],
+  ...(scope.sourceApiId===null?[]:[
+   ['wellbore-inventory.json',`https://data.texas.gov/resource/givw-z9t4.json?${apiLookup}`,'wellbore_inventory','wellbore-inventory'],
+   ['candidate-casing.json',`https://data.texas.gov/resource/u9m4-xnh6.json?${byApi}`,'casing','candidate-casing'],
+   ['candidate-plugging.json',`https://data.texas.gov/resource/wfzn-9fje.json?${byApi}`,'plugging','candidate-plugging']]),
+  ['wellbore-wba091.pdf','https://www.rrc.texas.gov/media/cx2i4xrm/wba091_well-bore-database.pdf','documentation','wellbore-wba091.pdf'],
+  ['form-w2.pdf','https://www.rrc.texas.gov/media/sdbph42m/w-2-0114.pdf','documentation','form-w2.pdf'],
+  ['form-w3.pdf','https://www.rrc.texas.gov/media/lw0bmny4/w-3p.pdf','documentation','form-w3.pdf']];
+}
+// V4 §3: producer loadSource order after the selection entry.
+const v4SourceOrder=api=>['candidate-bhp.json','candidate-srt.json','bhp-metadata.json','srt-metadata.json','srt-guidelines.html','bhp-permian-nto.pdf',...(api===null?[]:['wellbore-inventory.json','candidate-casing.json','candidate-plugging.json']),'casing-metadata.json','plugging-metadata.json','wellbore-wba091.pdf','form-w2.pdf','form-w3.pdf'];
+
 /** Checks recorded acquisition evidence, not cryptographic source authenticity.
  * A local archive cannot establish who fetched its bytes or authenticate a
  * self-authored acquisition log. Callers must preserve that distinction. */
 export async function verifyRecordedExplorerEvidence(manifest,{json,read,hash}){
- if(manifest.transformation_version!=='rrc-odp-v2.0.0'||manifest.provenance?.classification!=='public_reported'||manifest.provenance?.basis!=='recorded_official_acquisition_v2'||manifest.testFixture!==false)fail('Package has no supported recorded public acquisition evidence');
+ const version=manifest.scope?.query_version;
+ if(!transformationVersions[version]||manifest.transformation_version!==transformationVersions[version]||manifest.provenance?.classification!=='public_reported'||manifest.provenance?.basis!=='recorded_official_acquisition_v2'||manifest.testFixture!==false)fail('Package has no supported recorded public acquisition evidence');
  const acquisition=json('sources/acquisition.json'),scope=acquisition.scope;
  if(acquisition.schemaVersion!==2||acquisition.mode!=='live_collection'||acquisition.status!=='succeeded'||acquisition.testFixture!==false||!uuidPattern.test(acquisition.runId)||!object(scope))fail('Public acquisition is incomplete or fixture classified');
  const monthIndex=value=>{const m=/^(\d{4})-(0[1-9]|1[0-2])$/.exec(value);if(!m||+m[1]<1900||+m[1]>9998)fail('Invalid acquisition reporting range');return +m[1]*12 + +m[2]-1;};
  if(typeof scope.startMonth!=='string'||typeof scope.endMonth!=='string'||typeof scope.monthlyUic!=='string'||!/^\d{9}$/.test(scope.monthlyUic))fail('Invalid acquisition scope');
  const start=monthIndex(scope.startMonth),end=monthIndex(scope.endMonth),next=end+1;
  if(end<start||end-start>=36)fail('Acquisition reporting range exceeds 36 months');
- const expectedScope={queryVersion:2,monthlyUic:scope.monthlyUic,startMonth:scope.startMonth,endMonth:scope.endMonth,monthlyStart:scope.startMonth+'-01T00:00:00',monthlyEndExclusive:`${String(Math.floor(next/12)).padStart(4,'0')}-${String(next%12+1).padStart(2,'0')}-01T00:00:00`,inventoryLimit:25,monthlyLimit:1000};
- requireSame(scope,expectedScope,'Acquisition scope does not match its bounded query contract');
- const inventoryQuery=new URLSearchParams({'$where':`uic_number='${scope.monthlyUic}'`,'$limit':'25','$order':'uic_number,api_no'});
- const monthlyQuery=new URLSearchParams({'$where':`uic_no='${scope.monthlyUic}' AND formatted_date >= '${scope.monthlyStart}' AND formatted_date < '${scope.monthlyEndExclusive}'`,'$limit':'1000','$order':'formatted_date,id'});
- const actualTargets=targets.map(([name,url,kind,label])=>[name,name==='candidate-inventory.json'?`https://data.texas.gov/resource/givw-z9t4.json?${inventoryQuery}`:name==='candidate-monthly.json'?`https://data.texas.gov/resource/qq2j-f2zm.json?${monthlyQuery}`:url,kind,label]);
- requireSame(acquisition.targets,actualTargets.map(item=>item[1]),'Acquisition targets contradict the official bounded query');
  const rawInventory=json('sources/candidate-inventory.json'),rawMonthly=json('sources/candidate-monthly.json');
  // A successful bounded acquisition may canonically return zero monthly rows.
  // Its acquisition, manifest count, retrieval sidecars and source hashes still
  // reconcile below; exact-one selected inventory and the monthly cap stay strict.
  if(!Array.isArray(rawInventory)||rawInventory.length!==1||!Array.isArray(rawMonthly)||rawMonthly.length>=1000||[...rawInventory,...rawMonthly].some(row=>!object(row)))fail('Source row bounds or exact parent identity invalid');
+ const api=rawInventory[0].api_no,sourceApiId=typeof api==='string'&&/^\d{8}$/.test(api)?api:null;
+ const expectedScope={queryVersion:version,monthlyUic:scope.monthlyUic,startMonth:scope.startMonth,endMonth:scope.endMonth,monthlyStart:scope.startMonth+'-01T00:00:00',monthlyEndExclusive:`${String(Math.floor(next/12)).padStart(4,'0')}-${String(next%12+1).padStart(2,'0')}-01T00:00:00`,inventoryLimit:25,monthlyLimit:1000,
+  ...(version===4?{testReportLimit:1000,sourceApiId,wellboreLimit:1000,wellboreInventoryLimit:25}:{})};
+ requireSame(scope,expectedScope,'Acquisition scope does not match its bounded query contract');
+ const inventoryQuery=new URLSearchParams({'$where':`uic_number='${scope.monthlyUic}'`,'$limit':'25','$order':'uic_number,api_no'});
+ const monthlyQuery=new URLSearchParams({'$where':`uic_no='${scope.monthlyUic}' AND formatted_date >= '${scope.monthlyStart}' AND formatted_date < '${scope.monthlyEndExclusive}'`,'$limit':'1000','$order':'formatted_date,id'});
+ const actualTargets=[...targets.map(([name,url,kind,label])=>[name,name==='candidate-inventory.json'?`https://data.texas.gov/resource/givw-z9t4.json?${inventoryQuery}`:name==='candidate-monthly.json'?`https://data.texas.gov/resource/qq2j-f2zm.json?${monthlyQuery}`:url,kind,label]),...(version===4?v4Targets(scope):[])];
+ requireSame(acquisition.targets,actualTargets.map(item=>item[1]),'Acquisition targets contradict the official bounded query');
+ const rawTests=version===4?{bhp:json('sources/candidate-bhp.json'),srt:json('sources/candidate-srt.json')}:null;
+ if(rawTests&&Object.values(rawTests).some(rows=>!Array.isArray(rows)||rows.length>=1000||rows.some(row=>!object(row))))fail('Test-report row bounds invalid');
  // Producer publication refuses raw rows outside its declared query even when
  // normalization could retain them with quarantine reasons.
- if(rawInventory.some(row=>sourceScopeFlags('inventory',row,scope).length)||rawMonthly.some(row=>sourceScopeFlags('monthly',row,scope).length))fail('Source rows contradict the declared query predicates');
+ if(rawInventory.some(row=>sourceScopeFlags('inventory',row,scope).length)||rawMonthly.some(row=>sourceScopeFlags('monthly',row,scope).length)||(rawTests&&['bhp','srt'].some(kind=>rawTests[kind].some(row=>sourceScopeFlags(kind,row,scope).length))))fail('Source rows contradict the declared query predicates');
+ if(version===4&&sourceApiId!==null){
+  const wellbore=[['wellbore_inventory','wellbore-inventory.json',25],['casing','candidate-casing.json',1000],['plugging','candidate-plugging.json',1000]];
+  for(const [kind,name,limit] of wellbore){const rows=json('sources/'+name);if(!Array.isArray(rows)||rows.length>=limit||rows.some(row=>!object(row)||sourceScopeFlags(kind,row,scope).length))fail('Wellbore rows contradict the exact-API query');}
+ }
  const [year,month]=scope.endMonth.split('-').map(Number);
- requireSame(manifest.scope,{query_version:2,uic_number:scope.monthlyUic,start:scope.startMonth+'-01',end:`${scope.endMonth}-${new Date(Date.UTC(year,month,0)).getUTCDate()}`,inventory_limit:25,inventory_returned:1,monthly_limit:1000,monthly_returned:rawMonthly.length,pagination:'Complete bounded response below cap; no statewide coverage'},'Manifest scope contradicts preserved acquisition');
- const sourceIds={inventory:`givw-z9t4:${(await hash('sources/candidate-inventory.json')).slice(0,16)}`,monthly:`qq2j-f2zm:${(await hash('sources/candidate-monthly.json')).slice(0,16)}`};
+ requireSame(manifest.scope,{query_version:version,uic_number:scope.monthlyUic,start:scope.startMonth+'-01',end:`${scope.endMonth}-${new Date(Date.UTC(year,month,0)).getUTCDate()}`,inventory_limit:25,inventory_returned:1,monthly_limit:1000,monthly_returned:rawMonthly.length,pagination:'Complete bounded response below cap; no statewide coverage',
+  ...(version===4?{test_report_limit:1000,wellbore_limit:1000,wellbore_inventory_limit:25}:{})},'Manifest scope contradicts preserved acquisition');
+ const sid=(id,name)=>hash('sources/'+name).then(h=>`${id}:${h.slice(0,16)}`);
+ const sourceIds={inventory:await sid('givw-z9t4','candidate-inventory.json'),monthly:await sid('qq2j-f2zm','candidate-monthly.json'),
+  ...(version===4?{bhp:await sid('qxfy-wcfs','candidate-bhp.json'),srt:await sid('h54t-xnbi','candidate-srt.json')}:{}),
+  ...(version===4&&sourceApiId!==null?{wellbore_inventory:await sid('givw-z9t4','wellbore-inventory.json'),casing:await sid('u9m4-xnh6','candidate-casing.json'),plugging:await sid('wfzn-9fje','candidate-plugging.json')}:{})};
  async function retrieval(name,url){
   const sidecar=name.replace(/\.[^.]+$/,'')+'.source.json',metadata=json('sources/'+sidecar),body=read('sources/'+name);
   if(metadata.url!==url||metadata.http_status!==200||metadata.testFixture!==false||!Number.isFinite(Date.parse(metadata.retrieved_at))||!hashPattern.test(metadata.sha256)||metadata.sha256!==await hash('sources/'+name)||metadata.bytes!==body.length)fail(`Invalid public retrieval sidecar: ${sidecar}`);
   return metadata;
  }
+ async function sourceEntry(filename){
+  const [name,url,kind,label]=actualTargets.find(item=>item[0]===filename),metadata=await retrieval(name,url);
+  const title=kind==='metadata'?json('sources/'+name).name:kind==='documentation'?undefined:json(`sources/${kind==='wellbore_inventory'?'inventory':kind}-metadata.json`).name;
+  return {snapshot_id:sourceIds[kind]??`${label}:${(await hash('sources/'+name)).slice(0,16)}`,name:label,...(title===undefined?{}:{title}),kind,...Object.fromEntries(Object.entries(metadata).filter(([key])=>['url','retrieved_at','http_status','last_modified','etag','sha256','bytes','testFixture'].includes(key))),sha256:await hash('sources/'+name),bytes:read('sources/'+name).length,raw_file:'sources/'+name};
+ }
  const expectedSources=[];
  // Producer source order differs from acquisition-request order.
- for(const filename of ['candidate-inventory.json','candidate-monthly.json','inventory-metadata.json','monthly-metadata.json','uic-manual.pdf','rrc-resources.html','uic-query-help.html']){
-  const [name,url,kind,label]=actualTargets.find(item=>item[0]===filename),metadata=await retrieval(name,url);
-  const title=kind==='metadata'?json('sources/'+name).name:kind==='documentation'?undefined:json(`sources/${kind}-metadata.json`).name;
-  expectedSources.push({snapshot_id:sourceIds[kind]??`${label}:${(await hash('sources/'+name)).slice(0,16)}`,name:label,...(title===undefined?{}:{title}),kind,...Object.fromEntries(Object.entries(metadata).filter(([key])=>['url','retrieved_at','http_status','last_modified','etag','sha256','bytes','testFixture'].includes(key))),sha256:await hash('sources/'+name),bytes:read('sources/'+name).length,raw_file:'sources/'+name});
- }
+ for(const filename of ['candidate-inventory.json','candidate-monthly.json','inventory-metadata.json','monthly-metadata.json','uic-manual.pdf','rrc-resources.html','uic-query-help.html'])expectedSources.push(await sourceEntry(filename));
  const selection=json('sources/selection.json'),lookup=json('sources/lookup.json');
  if(!object(selection)||!sameExplorerValue(Object.keys(selection).sort(),['lookupId','lookupSha256','ordinal','sourceRecordKey'])||!uuidPattern.test(selection.lookupId)||!Number.isSafeInteger(selection.ordinal)||selection.ordinal<1||selection.sourceRecordKey!==`lookup:${selection.ordinal}`||!hashPattern.test(selection.lookupSha256))fail('Invalid persisted parent selection');
  requireSame(selection,manifest.selection,'Manifest selected identity contradicts preserved lookup');
@@ -156,7 +201,8 @@ export async function verifyRecordedExplorerEvidence(manifest,{json,read,hash}){
  const selected=lookupRows[selection.ordinal-1];
  if(!selected||!/^\d{9}$/.test(selected.uic_number)||lookupRows.filter(row=>row.uic_number===selected.uic_number).length!==1||selection.lookupSha256!==lookup.files['lookup-inventory.json']||rawInventory[0].uic_number!==scope.monthlyUic||identityFields.some(field=>rawInventory[0][field]!==selected[field]))fail('Selected parent is missing, ambiguous or changed');
  expectedSources.push({snapshot_id:'lookup:'+selection.lookupSha256.slice(0,16),name:'lookup-inventory',kind:'selection',...lookupMetadata,raw_file:'sources/lookup-inventory.json'});
+ if(version===4)for(const filename of v4SourceOrder(sourceApiId))expectedSources.push(await sourceEntry(filename));
  requireSame(manifest.sources,expectedSources,'Manifest source evidence contradicts preserved retrieval sidecars');
  requireSame(manifest.source_revisions,{inventory_rows_updated_at:json('sources/inventory-metadata.json').rowsUpdatedAt,monthly_rows_updated_at:json('sources/monthly-metadata.json').rowsUpdatedAt},'Source revision evidence mismatch');
- return {scope,sourceIds,rawInventory,rawMonthly};
+ return {scope,sourceIds,rawInventory,rawMonthly,rawTests,queryVersion:version};
 }

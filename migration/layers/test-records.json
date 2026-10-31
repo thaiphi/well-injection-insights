@@ -1,0 +1,130 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "test-records",
+  "status": "accepted",
+  "acceptedAt": "2026-10-31",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/TEST-RECORDS-VERIFICATION.md",
+  "purpose": "Phase 1b (PRD ANA-E01, ANA-E02 test overlay): BHP and step-rate test records with guided review in Injector history; Explorer query-version-4 package receiver; panel CSV upload; test markers on the 1a timeline.",
+  "parentBaselineSha256": "5f0727c312b32105efa15f850936ff270c5075e8ea44301faac53008d80ae518",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-10-29-test-records-design.md",
+      "sha256": "508e207b131e7c2f141626181a7c1eed85781e8e7c6f80890f352af23705c5fc"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-10-30-test-records.md",
+      "sha256": "1baab1d7fd2d198c2de8fef3b64c1d41b3e3bd78c6c31cb221bcac3fea047326"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-10-30-explorer-v4-contract.md",
+      "sha256": "bc07a0022837af424a08bf093c2b6b1fc8f27b319ff9966487769eed9f9f02d2"
+    }
+  ],
+  "changes": [
+    {
+      "path": "web/explorer-evidence.mjs",
+      "archive": "migration/baselines/test-records-before/swd-injection-analytics/web/explorer-evidence.mjs",
+      "beforeSha256": "08afa743ade72f7de8296c87eab811d2a569b9e317f9986e808746511435bc04",
+      "beforeBytes": 23165,
+      "afterSha256": "6d5ee768849570dce37bc4472c3a000713d9c9c507ad8013b968dc19b4ae5f68",
+      "afterBytes": 28519
+    },
+    {
+      "path": "web/explorer-package.mjs",
+      "archive": "migration/baselines/test-records-before/swd-injection-analytics/web/explorer-package.mjs",
+      "beforeSha256": "7ec019874d2d1ae9ac2a986a073102024e681ac2650d8876a4a3b1194cd6a3d8",
+      "beforeBytes": 16295,
+      "afterSha256": "24215bf6bc8c58a1d3f883311b1ae5e2d3b2217c19d8424d834c8027ace93eea",
+      "afterBytes": 18723
+    },
+    {
+      "path": "web/import-ui.mjs",
+      "archive": "migration/baselines/test-records-before/swd-injection-analytics/web/import-ui.mjs",
+      "beforeSha256": "d9094bdf2e86e7802ff061179734fb0eca328f625bb23eaaa9249a441252d366",
+      "beforeBytes": 67752,
+      "afterSha256": "f97a893aa44b940a09845e50bc5b00902272ab2d76437a56dd6d193cc6579340",
+      "afterBytes": 68077
+    },
+    {
+      "path": "src/h10DiagnosticsChart.ts",
+      "archive": "migration/baselines/test-records-before/swd-injection-analytics/src/h10DiagnosticsChart.ts",
+      "beforeSha256": "795301e258de5cea5712fe0cc5d432af4ec3841d531d71514cb31c4e220e56c4",
+      "beforeBytes": 5902,
+      "afterSha256": "00d58401e5aa143994eb3bd68803147b4056cbda2a26110e8ff415802d448a13",
+      "afterBytes": 6810
+    },
+    {
+      "path": "web/h10-diagnostics.mjs",
+      "archive": "migration/baselines/test-records-before/swd-injection-analytics/web/h10-diagnostics.mjs",
+      "beforeSha256": "1e58c0683a7eafd93eb524127e954dd0569463bdc34aaf0aab16176bb614186a",
+      "beforeBytes": 7531,
+      "afterSha256": "783922b91f2ed917655bd75563570d9328d0d345dc3b6cfef1eea2ff408ca635",
+      "afterBytes": 7781
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/testRecords.ts",
+      "sha256": "bc4d7dcbde461cb652890393abcc1cd106f5ac77e962bf3888004e324dc16bf6",
+      "bytes": 14038
+    },
+    {
+      "path": "src/testRecordsChart.ts",
+      "sha256": "0c6c4fe3b1d687e0039cd863c9f79b9361f4eea218e3312023fb73c290038a3a",
+      "bytes": 3652
+    },
+    {
+      "path": "src/testRecordsExport.ts",
+      "sha256": "45eb793492039b40152bb51183e6dd09839809f539be2a047c03962f29b146a7",
+      "bytes": 6113
+    },
+    {
+      "path": "web/test-records.mjs",
+      "sha256": "a1487ffade1071e036f3f3e223ce256d686bea25a7b9193acffa590d3ac80417",
+      "bytes": 11680
+    },
+    {
+      "path": "web/explorer-tests.mjs",
+      "sha256": "4876e7e60ea2114d8c882b76cc4e82ce0b16cbdeedce095bcb8d8e0f9ec55b66",
+      "bytes": 15229
+    },
+    {
+      "path": "tests/test-records.test.mjs",
+      "sha256": "0dd7e6ab2dc691e4027f9151af7ece8f2856e742a27cc0510e64ca298a964fa7",
+      "bytes": 9953
+    },
+    {
+      "path": "tests/test-records-chart.test.mjs",
+      "sha256": "1e9c80f2d5af92939650564d4bd996ff5e77f1852ad095c13301df3822dd9e75",
+      "bytes": 3531
+    },
+    {
+      "path": "tests/test-records-export.test.mjs",
+      "sha256": "e2e5ca1b24f5dd6edb88f264899e9d7998579ef098440ece7409874a1dd25701",
+      "bytes": 4050
+    },
+    {
+      "path": "tests/test-records-session.test.mjs",
+      "sha256": "0790a3337870d46c741a3089c0f67360ddb42f6be29f68602400f12dd8b8d28e",
+      "bytes": 4733
+    },
+    {
+      "path": "tests/explorer-package-v4.test.mjs",
+      "sha256": "7fef7fd2f8f6c651d7162044f78869b5d0dc8df0ab08ab7195cbe3ecb8d71988",
+      "bytes": 4865
+    },
+    {
+      "path": "tests/helpers/explorer-v4.mjs",
+      "sha256": "84a16f962b7062aec9d97f8c86795b1e7ec3d37c1b663e6f440bfd299d6347b7",
+      "bytes": 13333
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "46225c4e062b683ecd8f2ef24d1dd85561fd63b815396805b90e857eb704095e",
+      "bytes": 478
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import { LABEL_SCREENING, LABEL_SURFACE, screening, type DiagnosticsState } from
 
 /** Pure SVG strings for display and export alike: escaped text only, no script, links or external references; no decimation. */
 export type ChartSvg={svg:string;height:number};
+export type TimelineMarker={kind:'bhp'|'srt';date:string;label:string};
 const W=960,L=78,R=40,PW=W-L-R,PH=260,TOP=58;
 const esc=(v:unknown)=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]!);
 const n=(v:number)=>v.toFixed(2);
@@ -37,7 +38,7 @@ export function pressureRateSvg(state:DiagnosticsState):ChartSvg {
 }
 
 /** Screening ratio over a real time axis; gaps and excluded months break the line and are marked. */
-export function ratioOverTimeSvg(state:DiagnosticsState):ChartSvg {
+export function ratioOverTimeSvg(state:DiagnosticsState,markers:readonly TimelineMarker[]=[]):ChartSvg {
   const title='Reported pressure per unit rate over time (psi per bbl/day)',sc=screening(state);
   if(!sc.enough) return notEnough(title,sc.points.length,sc.needed);
   const first=state.months[0].month,last=state.months[state.months.length-1].month,t0=monthStart(first),t1=nextMonth(last);
@@ -56,6 +57,15 @@ export function ratioOverTimeSvg(state:DiagnosticsState):ChartSvg {
   body+=`<path d="${d}" fill="none" stroke="#1262b5" stroke-width="2"/>`;
   for(const p of sc.points) body+=`<circle cx="${n(x(p.month))}" cy="${n(TOP+PH-PH*p.ratio/yMax)}" r="3" fill="#1262b5"><title>${esc(`${p.month}: ${fmt(p.ratio)} psi per bbl/day`)}</title></circle>`;
   body+=`<text x="${L}" y="${TOP+PH+16}" font-size="11">${esc(first)}</text><text x="${L+PW}" y="${TOP+PH+16}" font-size="11" text-anchor="end">${esc(last)}</text>`;
+  const day=(d:string)=>Date.UTC(Number(d.slice(0,4)),Number(d.slice(5,7))-1,Number(d.slice(8,10)));
+  const shown=markers.filter(m=>{const t=day(m.date);return Number.isFinite(t)&&t>=t0&&t<t1;});
+  for(const m of shown) {
+    const cx=L+PW*(day(m.date)-t0)/(t1-t0),cy=TOP+10;
+    body+=m.kind==='bhp'
+      ?`<path data-test-marker="bhp" d="M${n(cx)} ${n(cy-6)} L${n(cx+6)} ${n(cy+5)} L${n(cx-6)} ${n(cy+5)} Z" fill="#6a1b9a"><title>${esc(m.label)}</title></path>`
+      :`<rect data-test-marker="srt" x="${n(cx-5)}" y="${n(cy-5)}" width="10" height="10" transform="rotate(45 ${n(cx)} ${n(cy)})" fill="#ef6c00"><title>${esc(m.label)}</title></rect>`;
+  }
   const lines=[`Gap months (no report): ${gaps.length?gaps.join(', '):'none'}`,`Excluded months: ${excluded.length?excluded.join(', '):'none'}`,'Lines are not drawn across gaps or excluded months; nothing is interpolated.'];
+  if(shown.length) lines.push(`Test markers (${shown.length}): triangle BHP, diamond SRT, at the actual test date; not joined to any month.`);
   return frame(title,lines,body,PH);
 }

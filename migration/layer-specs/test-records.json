@@ -1,0 +1,16 @@
+{
+  "purpose": "Phase 1b (PRD ANA-E01, ANA-E02 test overlay): BHP and step-rate test records with guided review in Injector history; Explorer query-version-4 package receiver; panel CSV upload; test markers on the 1a timeline.",
+  "acceptanceEvidence": "demo/TEST-RECORDS-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-10-29-test-records-design.md",
+    "docs/superpowers/plans/2026-10-30-test-records.md",
+    "docs/superpowers/plans/2026-10-30-explorer-v4-contract.md"
+  ],
+  "changes": ["web/explorer-evidence.mjs", "web/explorer-package.mjs", "web/import-ui.mjs", "src/h10DiagnosticsChart.ts", "web/h10-diagnostics.mjs"],
+  "newFiles": [
+    "src/testRecords.ts", "src/testRecordsChart.ts", "src/testRecordsExport.ts", "web/test-records.mjs", "web/explorer-tests.mjs",
+    "tests/test-records.test.mjs", "tests/test-records-chart.test.mjs", "tests/test-records-export.test.mjs", "tests/test-records-session.test.mjs",
+    "tests/explorer-package-v4.test.mjs", "tests/helpers/explorer-v4.mjs"
+  ],
+  "rootFiles": ["migration/layers/index.json"]
+}

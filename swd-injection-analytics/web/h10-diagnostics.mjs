@@ -32,7 +32,7 @@ const fmt=v=>v===null||v===undefined?'not reported':Number(Number(v).toPrecision
 export function mountH10Diagnostics(root,{selection,gate,download}){
  const session=createDiagnosticsSession(selection,gate),section=el('section',undefined,'panel');section.setAttribute('aria-labelledby','h10-diagnostics-title');
  root.replaceChildren(section);
- let reviewOpen=null,focusKey=null,message='';
+ let reviewOpen=null,focusKey=null,message='',markers=[],disposed=false;
  function render(){
   const st=session.state,cov=coverage(st),sc=screening(st);section.replaceChildren();
   const h=el('h2','H-10 diagnostics: choose comparable months');h.id='h10-diagnostics-title';section.append(h);
@@ -59,7 +59,7 @@ export function mountH10Diagnostics(root,{selection,gate,download}){
   table.append(body);wrap.append(table);review.append(wrap);section.append(review);
   if(!gate.ready){section.append(el('p','Screening views and exports are blocked. '+gate.reasons.join(' ')));}
   else{
-   for(const chart of [pressureRateSvg(st),ratioOverTimeSvg(st)]){const box=el('div',undefined,'analysis-chart-scroll');box.append(svgNode(chart.svg));section.append(box);}
+   for(const chart of [pressureRateSvg(st),ratioOverTimeSvg(st,markers)]){const box=el('div',undefined,'analysis-chart-scroll');box.append(svgNode(chart.svg));section.append(box);}
    const actions=el('div',undefined,'import-actions');
    for(const [format,label] of [['json','Download diagnostics JSON'],['csv','Download diagnostics CSV'],['svg','Download diagnostics SVG']]){
     const b=el('button',label);b.type='button';
@@ -74,5 +74,6 @@ export function mountH10Diagnostics(root,{selection,gate,download}){
  if(focusKey){const t=section.querySelector(`[data-focus-key="${focusKey}"]`);if(t)t.focus();focusKey=null;}
  }
  render();
- return {dispose(){session.dispose();root.replaceChildren();}};
+ const months=session.state.months;
+ return {dispose(){disposed=true;session.dispose();root.replaceChildren();},setMarkers(next){markers=Array.isArray(next)?[...next]:[];if(!disposed)render();},range:months.length?{first:months[0].month,last:months[months.length-1].month}:null};
 }

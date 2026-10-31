@@ -1,0 +1,831 @@
+{
+ "c1_receiverStatus": "Evidence verification passed. Review the exact version, coverage, row dispositions and calculation eligibility before adopting.",
+ "c1_adoptStatus": {
+  "receiver": "Adopted rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627 for this browser session. Refresh restores the original stored pin; no server files were changed.",
+  "import": "Confirmed preserved evidence rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627. Public history calculations eligible. Origin: user-provided Explorer package; content: recorded public reported. Stored pin unchanged.",
+  "active": "rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627 · user-provided Explorer package · public reported"
+ },
+ "c1_order": {
+  "kids": [
+   "analysis-chart-scroll",
+   "analysis-chart-scroll",
+   "analysis-chart-scroll",
+   "table-scroll",
+   "DETAILS",
+   "h10-diagnostics",
+   "test-records"
+  ],
+  "h10BeforeTests": true,
+  "testsLast": true,
+  "title": "Public injection trends"
+ },
+ "c1_panel": {
+  "title": "Test records: choose comparable tests",
+  "paras": [
+   "Calibrated injectivity (J): not ready. Needs a flowing bottomhole pressure with a same-time rate and a reservoir pressure reference (Phase 1c).",
+   "Records: 3 BHP, 1 step-rate · 4 explorer package, verified · 0 user upload, not verified · 1 flagged · 3 included · reference depth 3310 ft.",
+   "",
+   "Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted.",
+   "Before the reported H-10 range (no timeline marker): BHP 2022-05-16, SRT 2022-05-16.",
+   "2 BHP tests contribute to the chart.",
+   "Step-rate test values as reported (psig). The satisfactory code is shown verbatim; its meaning is undocumented."
+  ],
+  "status": "",
+  "tables": [
+   {
+    "label": "BHP test review",
+    "heads": [
+     "Test date",
+     "Date as published",
+     "BHP (source field named psia)",
+     "Depth (ft)",
+     "Gradient (psi/ft)",
+     "Formation",
+     "Source",
+     "Flags",
+     "Include",
+     "Reason"
+    ],
+    "rows": [
+     [
+      "2022-05-16",
+      "2022-05-16",
+      "1,512",
+      "3,140",
+      "0.68",
+      "SYNTHETIC",
+      "Explorer package, verified",
+      "Tested at a different depth from this well's other tests (reference 3310 ft); not directly comparable.",
+      "",
+      ""
+     ],
+     [
+      "2024-02-12",
+      "2024-02-12",
+      "1,705",
+      "3,310",
+      "0.68",
+      "SYNTHETIC",
+      "Explorer package, verified",
+      "none",
+      "",
+      ""
+     ],
+     [
+      "2024-07-22",
+      "2024-07-22",
+      "1,731",
+      "3,310",
+      "0.68",
+      "SYNTHETIC",
+      "Explorer package, verified",
+      "none",
+      "",
+      ""
+     ]
+    ]
+   },
+   {
+    "label": "Step-rate test review",
+    "heads": [
+     "Test date",
+     "Date as published",
+     "Satisfactory code (meaning undocumented)",
+     "Perforations (ft)",
+     "Rate range (bbl/min)",
+     "ISIP (psig, as reported)",
+     "Frac pressure (psig, as reported)",
+     "FIRC surface pressure (psig, as reported)",
+     "Fracture gradient (psi/ft)",
+     "FIRC rate (bbl/day)",
+     "Comments",
+     "Source",
+     "Flags",
+     "Include",
+     "Reason"
+    ],
+    "rows": [
+     [
+      "2022-05-16",
+      "2022-05-16",
+      "1",
+      "3,305 to 5,120",
+      "0 to 24.1",
+      "not reported",
+      "1,610",
+      "not reported",
+      "0.71",
+      "not reported",
+      "not reported",
+      "Explorer package, verified",
+      "Note: missing:isip_psig Note: missing:frac_inj_rate_capacity_bpd Note: missing:surface_pressure_firc_psig",
+      "Included; dated before the reported H-10 range, so no timeline marker.",
+      ""
+     ]
+    ]
+   }
+  ],
+  "svgCount": 1,
+  "chartPoints": 2,
+  "chartText": [
+   "Reported bottomhole pressure by test date",
+   "Test records as reported; points are separate tests, not a series.",
+   "0",
+   "500",
+   "1,000",
+   "1,500",
+   "2,000",
+   "Reported BHP (source field named psia)",
+   "3310 ft",
+   "3310 ft",
+   "2024-02-12",
+   "2024-07-22",
+   "Points: 2 included comparable tests.",
+   "Reference depth: 3310 ft",
+   "Bottomhole pressure as reported.",
+   "Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted.",
+   "Test type not stated in source.",
+   "Not a reservoir pressure estimate and not an injectivity index (J)."
+  ],
+  "buttons": [
+   "Download test records JSON",
+   "Download test records CSV",
+   "Download test records SVG"
+  ],
+  "boxes": [
+   {
+    "label": "Include BHP 2022-05-16",
+    "checked": false
+   },
+   {
+    "label": "Include BHP 2024-02-12",
+    "checked": true
+   },
+   {
+    "label": "Include BHP 2024-07-22",
+    "checked": true
+   },
+   {
+    "label": "Include SRT 2022-05-16",
+    "checked": true
+   }
+  ],
+  "fileInputs": 1
+ },
+ "c1_origins": [
+  [
+   "2022-05-16",
+   "Explorer package, verified"
+  ],
+  [
+   "2024-02-12",
+   "Explorer package, verified"
+  ],
+  [
+   "2024-07-22",
+   "Explorer package, verified"
+  ],
+  [
+   "2022-05-16",
+   "Explorer package, verified"
+  ]
+ ],
+ "c1_markers0": {
+  "count": 2,
+  "types": [
+   "bhp",
+   "bhp"
+  ],
+  "labels": [
+   "BHP 2024-02-12: 1705 psia as reported (basis unresolved; source field named psia), depth 3310 ft",
+   "BHP 2024-07-22: 1731 psia as reported (basis unresolved; source field named psia), depth 3310 ft"
+  ]
+ },
+ "d_1a_S0_initial": [
+  {
+   "name": "swd-selected-analysis.json",
+   "type": "application/json",
+   "chars": 56960,
+   "sha256": "4eb92e0a3c069944ab416b9c86fc6e66668ea8185f195454e9ab3301fd35bd72"
+  },
+  {
+   "name": "swd-selected-analysis.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 2571,
+   "sha256": "feaf52c67e8b66dcf5ee5a076ee487c9b0e192c5933c545dbcabfff6495c9077"
+  },
+  {
+   "name": "swd-selected-analysis.svg",
+   "type": "image/svg+xml",
+   "chars": 30136,
+   "sha256": "966eb1d59c09245cd518688f2311bf96636a2e8b4f654fdb7baf744a44b2a260"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.json",
+   "type": "application/json",
+   "chars": 11450,
+   "sha256": "063335cde812ff1bc7f6f5abc8b3f8ba6a4f16074ce9892bb5f1d080593c5f94"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 4284,
+   "sha256": "6d2eb73a23998d9637442ab66c0d2da7080ad1f135f2d7aeb04c9736c848c7e0"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.svg",
+   "type": "image/svg+xml",
+   "chars": 20325,
+   "sha256": "52432cc18156027bda2714eadf5b4de50d7f93d15c3856f332cba2546b81235d"
+  }
+ ],
+ "d_tr_S0_initial": [
+  {
+   "name": "test-records-000000417-c0985f70f63f.json",
+   "type": "application/json",
+   "chars": 9496,
+   "sha256": "43c266d540ea30e7b8b90a0b52dc491a31d06c3cf465638861c4b91630a60787"
+  },
+  {
+   "name": "test-records-000000417-c0985f70f63f.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 3446,
+   "sha256": "3e126f491128a7f37ed32ee0fb71b86c8ca51cb116e10d21641140684d660b28"
+  },
+  {
+   "name": "test-records-000000417-c0985f70f63f.svg",
+   "type": "image/svg+xml",
+   "chars": 13425,
+   "sha256": "c1f2619c1f9b512955dc8f25ad7ad9f795bb43c1377d182ed570b98deed070cd"
+  }
+ ],
+ "c2_flags": {
+  "bhpRows": [
+   [
+    "2022-05-16",
+    "2022-05-16",
+    "1,512",
+    "3,140",
+    "0.68",
+    "SYNTHETIC",
+    "Explorer package, verified",
+    "Tested at a different depth from this well's other tests (reference 3310 ft); not directly comparable.",
+    "",
+    ""
+   ],
+   [
+    "2024-02-12",
+    "2024-02-12",
+    "1,705",
+    "3,310",
+    "0.68",
+    "SYNTHETIC",
+    "Explorer package, verified",
+    "none",
+    "",
+    ""
+   ],
+   [
+    "2024-07-22",
+    "2024-07-22",
+    "1,731",
+    "3,310",
+    "0.68",
+    "SYNTHETIC",
+    "Explorer package, verified",
+    "none",
+    "",
+    ""
+   ]
+  ],
+  "srtRows": [
+   [
+    "2022-05-16",
+    "2022-05-16",
+    "1",
+    "3,305 to 5,120",
+    "0 to 24.1",
+    "not reported",
+    "1,610",
+    "not reported",
+    "0.71",
+    "not reported",
+    "not reported",
+    "Explorer package, verified",
+    "Note: missing:isip_psig Note: missing:frac_inj_rate_capacity_bpd Note: missing:surface_pressure_firc_psig",
+    "Included; dated before the reported H-10 range, so no timeline marker.",
+    ""
+   ]
+  ],
+  "chartPoints": 2,
+  "chartText": [
+   "Reported bottomhole pressure by test date",
+   "Test records as reported; points are separate tests, not a series.",
+   "0",
+   "500",
+   "1,000",
+   "1,500",
+   "2,000",
+   "Reported BHP (source field named psia)",
+   "3310 ft",
+   "3310 ft",
+   "2024-02-12",
+   "2024-07-22",
+   "Points: 2 included comparable tests.",
+   "Reference depth: 3310 ft",
+   "Bottomhole pressure as reported.",
+   "Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted.",
+   "Test type not stated in source.",
+   "Not a reservoir pressure estimate and not an injectivity index (J)."
+  ],
+  "paras": [
+   "Calibrated injectivity (J): not ready. Needs a flowing bottomhole pressure with a same-time rate and a reservoir pressure reference (Phase 1c).",
+   "Records: 3 BHP, 1 step-rate · 4 explorer package, verified · 0 user upload, not verified · 1 flagged · 3 included · reference depth 3310 ft.",
+   "Before the reported H-10 range (no timeline marker): BHP 2022-05-16, SRT 2022-05-16.",
+   "2 BHP tests contribute to the chart."
+  ]
+ },
+ "c2_basis_after_table": {
+  "text": "Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted.",
+  "tag": "P",
+  "visible": true
+ },
+ "c2_J_line": {
+  "text": "Calibrated injectivity (J): not ready. Needs a flowing bottomhole pressure with a same-time rate and a reservoir pressure reference (Phase 1c).",
+  "exact": true
+ },
+ "c2_srt_headers": {
+  "heads": [
+   "Test date",
+   "Date as published",
+   "Satisfactory code (meaning undocumented)",
+   "Perforations (ft)",
+   "Rate range (bbl/min)",
+   "ISIP (psig, as reported)",
+   "Frac pressure (psig, as reported)",
+   "FIRC surface pressure (psig, as reported)",
+   "Fracture gradient (psi/ft)",
+   "FIRC rate (bbl/day)",
+   "Comments",
+   "Source",
+   "Flags",
+   "Include",
+   "Reason"
+  ],
+  "row": [
+   "2022-05-16",
+   "2022-05-16",
+   "1",
+   "3,305 to 5,120",
+   "0 to 24.1",
+   "not reported",
+   "1,610",
+   "not reported",
+   "0.71",
+   "not reported",
+   "not reported",
+   "Explorer package, verified",
+   "Note: missing:isip_psig Note: missing:frac_inj_rate_capacity_bpd Note: missing:surface_pressure_firc_psig",
+   "Included; dated before the reported H-10 range, so no timeline marker.",
+   ""
+  ]
+ },
+ "c3_reinclude": {
+  "status": "BHP 2022-05-16 included.",
+  "chartPoints": 3,
+  "focus": {
+   "tag": "INPUT",
+   "label": "Include BHP 2022-05-16",
+   "focusKey": "box:package:bhp:1",
+   "type": "checkbox",
+   "hasFocus": true
+  },
+  "chartLabels": [
+   "3140 ft",
+   "3310 ft",
+   "3310 ft",
+   "Reference depth: 3310 ft"
+  ],
+  "paras": [
+   "3 BHP tests contribute to the chart."
+  ],
+  "notes": [
+   " Included; dated before the reported H-10 range, so no timeline marker."
+  ]
+ },
+ "c3_markers_after_reinclude": {
+  "count": 2,
+  "types": [
+   "bhp",
+   "bhp"
+  ],
+  "labels": [
+   "BHP 2024-02-12: 1705 psia as reported (basis unresolved; source field named psia), depth 3310 ft",
+   "BHP 2024-07-22: 1731 psia as reported (basis unresolved; source field named psia), depth 3310 ft"
+  ]
+ },
+ "d_1a_S1_reincluded_offdepth": [
+  {
+   "name": "swd-selected-analysis.json",
+   "type": "application/json",
+   "chars": 56960,
+   "sha256": "4eb92e0a3c069944ab416b9c86fc6e66668ea8185f195454e9ab3301fd35bd72"
+  },
+  {
+   "name": "swd-selected-analysis.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 2571,
+   "sha256": "feaf52c67e8b66dcf5ee5a076ee487c9b0e192c5933c545dbcabfff6495c9077"
+  },
+  {
+   "name": "swd-selected-analysis.svg",
+   "type": "image/svg+xml",
+   "chars": 30136,
+   "sha256": "966eb1d59c09245cd518688f2311bf96636a2e8b4f654fdb7baf744a44b2a260"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.json",
+   "type": "application/json",
+   "chars": 11450,
+   "sha256": "063335cde812ff1bc7f6f5abc8b3f8ba6a4f16074ce9892bb5f1d080593c5f94"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 4284,
+   "sha256": "6d2eb73a23998d9637442ab66c0d2da7080ad1f135f2d7aeb04c9736c848c7e0"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.svg",
+   "type": "image/svg+xml",
+   "chars": 20325,
+   "sha256": "52432cc18156027bda2714eadf5b4de50d7f93d15c3856f332cba2546b81235d"
+  }
+ ],
+ "c3_srt_excluded": {
+  "status": "SRT 2022-05-16 excluded.",
+  "focus": {
+   "tag": "INPUT",
+   "label": "Include SRT 2022-05-16",
+   "focusKey": "box:package:srt:1",
+   "type": "checkbox",
+   "hasFocus": true
+  }
+ },
+ "c3_note_srt_reinclude": {
+  "status": "SRT 2022-05-16 included.",
+  "focus": {
+   "tag": "INPUT",
+   "label": "Include SRT 2022-05-16",
+   "focusKey": "box:package:srt:1",
+   "type": "checkbox",
+   "hasFocus": true
+  },
+  "notes": [
+   " Included; dated before the reported H-10 range, so no timeline marker."
+  ]
+ },
+ "c4_markers_initial": {
+  "count": 2,
+  "types": [
+   "bhp",
+   "bhp"
+  ],
+  "labels": [
+   "BHP 2024-02-12: 1705 psia as reported (basis unresolved; source field named psia), depth 3310 ft",
+   "BHP 2024-07-22: 1731 psia as reported (basis unresolved; source field named psia), depth 3310 ft"
+  ]
+ },
+ "c4_ratio_note": [
+  "Test markers (2): triangle BHP, diamond SRT, at the actual test date; not joined to any month."
+ ],
+ "c4_markers_none": {
+  "count": 0,
+  "types": [],
+  "labels": []
+ },
+ "c4_panel_two_excluded": {
+  "status": "BHP 2024-07-22 excluded.",
+  "chartPoints": 0,
+  "chartText": [
+   "Not enough comparable tests (1 of 2 needed)"
+  ],
+  "paras": [
+   "Not enough comparable tests (1 of 2 needed)."
+  ]
+ },
+ "d_1a_S2_no_markers": [
+  {
+   "name": "swd-selected-analysis.json",
+   "type": "application/json",
+   "chars": 56960,
+   "sha256": "4eb92e0a3c069944ab416b9c86fc6e66668ea8185f195454e9ab3301fd35bd72"
+  },
+  {
+   "name": "swd-selected-analysis.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 2571,
+   "sha256": "feaf52c67e8b66dcf5ee5a076ee487c9b0e192c5933c545dbcabfff6495c9077"
+  },
+  {
+   "name": "swd-selected-analysis.svg",
+   "type": "image/svg+xml",
+   "chars": 30136,
+   "sha256": "966eb1d59c09245cd518688f2311bf96636a2e8b4f654fdb7baf744a44b2a260"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.json",
+   "type": "application/json",
+   "chars": 11450,
+   "sha256": "063335cde812ff1bc7f6f5abc8b3f8ba6a4f16074ce9892bb5f1d080593c5f94"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 4284,
+   "sha256": "6d2eb73a23998d9637442ab66c0d2da7080ad1f135f2d7aeb04c9736c848c7e0"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.svg",
+   "type": "image/svg+xml",
+   "chars": 20325,
+   "sha256": "52432cc18156027bda2714eadf5b4de50d7f93d15c3856f332cba2546b81235d"
+  }
+ ],
+ "c4_markers_restored": {
+  "count": 2,
+  "types": [
+   "bhp",
+   "bhp"
+  ],
+  "labels": [
+   "BHP 2024-02-12: 1705 psia as reported (basis unresolved; source field named psia), depth 3310 ft",
+   "BHP 2024-07-22: 1731 psia as reported (basis unresolved; source field named psia), depth 3310 ft"
+  ]
+ },
+ "d_1a_S3_markers_restored": [
+  {
+   "name": "swd-selected-analysis.json",
+   "type": "application/json",
+   "chars": 56960,
+   "sha256": "4eb92e0a3c069944ab416b9c86fc6e66668ea8185f195454e9ab3301fd35bd72"
+  },
+  {
+   "name": "swd-selected-analysis.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 2571,
+   "sha256": "feaf52c67e8b66dcf5ee5a076ee487c9b0e192c5933c545dbcabfff6495c9077"
+  },
+  {
+   "name": "swd-selected-analysis.svg",
+   "type": "image/svg+xml",
+   "chars": 30136,
+   "sha256": "966eb1d59c09245cd518688f2311bf96636a2e8b4f654fdb7baf744a44b2a260"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.json",
+   "type": "application/json",
+   "chars": 11450,
+   "sha256": "063335cde812ff1bc7f6f5abc8b3f8ba6a4f16074ce9892bb5f1d080593c5f94"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 4284,
+   "sha256": "6d2eb73a23998d9637442ab66c0d2da7080ad1f135f2d7aeb04c9736c848c7e0"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.svg",
+   "type": "image/svg+xml",
+   "chars": 20325,
+   "sha256": "52432cc18156027bda2714eadf5b4de50d7f93d15c3856f332cba2546b81235d"
+  }
+ ],
+ "c5_upload_ok": {
+  "status": "Added 1 BHP records from upload-valid-bhp-000000417.csv (not verified).",
+  "focus": {
+   "tag": "INPUT",
+   "label": null,
+   "focusKey": "upload",
+   "type": "file",
+   "hasFocus": true
+  },
+  "coverage": "Records: 4 BHP, 1 step-rate · 4 explorer package, verified · 1 user upload, not verified · 1 flagged · 4 included · reference depth 3310 ft.",
+  "chartPoints": 3,
+  "origins": [
+   [
+    "2022-05-16",
+    "2022-05-16",
+    "Explorer package, verified"
+   ],
+   [
+    "2024-02-12",
+    "2024-02-12",
+    "Explorer package, verified"
+   ],
+   [
+    "2024-07-22",
+    "2024-07-22",
+    "Explorer package, verified"
+   ],
+   [
+    "2025-01-10",
+    "2025-01-10",
+    "User upload, not verified"
+   ],
+   [
+    "2022-05-16",
+    "2022-05-16",
+    "Explorer package, verified"
+   ]
+  ]
+ },
+ "c5_markers_after_upload": {
+  "count": 3,
+  "types": [
+   "bhp",
+   "bhp",
+   "bhp"
+  ],
+  "labels": [
+   "BHP 2024-02-12: 1705 psia as reported (basis unresolved; source field named psia), depth 3310 ft",
+   "BHP 2024-07-22: 1731 psia as reported (basis unresolved; source field named psia), depth 3310 ft",
+   "BHP 2025-01-10: 1768 psia as reported (basis unresolved; source field named psia), depth 3310 ft"
+  ]
+ },
+ "d_1a_S4_after_upload": [
+  {
+   "name": "swd-selected-analysis.json",
+   "type": "application/json",
+   "chars": 56960,
+   "sha256": "4eb92e0a3c069944ab416b9c86fc6e66668ea8185f195454e9ab3301fd35bd72"
+  },
+  {
+   "name": "swd-selected-analysis.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 2571,
+   "sha256": "feaf52c67e8b66dcf5ee5a076ee487c9b0e192c5933c545dbcabfff6495c9077"
+  },
+  {
+   "name": "swd-selected-analysis.svg",
+   "type": "image/svg+xml",
+   "chars": 30136,
+   "sha256": "966eb1d59c09245cd518688f2311bf96636a2e8b4f654fdb7baf744a44b2a260"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.json",
+   "type": "application/json",
+   "chars": 11450,
+   "sha256": "063335cde812ff1bc7f6f5abc8b3f8ba6a4f16074ce9892bb5f1d080593c5f94"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 4284,
+   "sha256": "6d2eb73a23998d9637442ab66c0d2da7080ad1f135f2d7aeb04c9736c848c7e0"
+  },
+  {
+   "name": "h10-diagnostics-000000417-1e9da7fd6c64.svg",
+   "type": "image/svg+xml",
+   "chars": 20325,
+   "sha256": "52432cc18156027bda2714eadf5b4de50d7f93d15c3856f332cba2546b81235d"
+  }
+ ],
+ "c5_upload_rejected": {
+  "status": "Row 2: UIC 000000999 is not the selected well 000000417.",
+  "focus": {
+   "tag": "INPUT",
+   "label": null,
+   "focusKey": "upload",
+   "type": "file",
+   "hasFocus": true
+  },
+  "rowsBefore": [
+   4,
+   1
+  ],
+  "rowsAfter": [
+   4,
+   1
+  ],
+  "coverageSame": true,
+  "coverage": "Records: 4 BHP, 1 step-rate · 4 explorer package, verified · 1 user upload, not verified · 1 flagged · 4 included · reference depth 3310 ft.",
+  "chartPointsBefore": 3,
+  "chartPointsAfter": 3,
+  "tablesIdentical": true,
+  "markers": {
+   "count": 3,
+   "types": [
+    "bhp",
+    "bhp",
+    "bhp"
+   ],
+   "labels": [
+    "BHP 2024-02-12: 1705 psia as reported (basis unresolved; source field named psia), depth 3310 ft",
+    "BHP 2024-07-22: 1731 psia as reported (basis unresolved; source field named psia), depth 3310 ft",
+    "BHP 2025-01-10: 1768 psia as reported (basis unresolved; source field named psia), depth 3310 ft"
+   ]
+  }
+ },
+ "d_tr_S4_final": [
+  {
+   "name": "test-records-000000417-7d3c3810b873.json",
+   "type": "application/json",
+   "chars": 11131,
+   "sha256": "6e360aee75f4a6aca989f5967c6dac9cea7a0f8d816160efe1e68badce1ff081"
+  },
+  {
+   "name": "test-records-000000417-7d3c3810b873.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 3807,
+   "sha256": "6e147ba8d2864bae72c5e066d565ea53a2d770c546cf08933294e6404e325107"
+  },
+  {
+   "name": "test-records-000000417-7d3c3810b873.svg",
+   "type": "image/svg+xml",
+   "chars": 15520,
+   "sha256": "57f6c9b64f52dddf4d60ceb4fe3746f31ac1de08fa6c8ddb951b8805288ea1d4"
+  }
+ ],
+ "c8_layout": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "docClientW": 390,
+  "bodyScrollW": 390,
+  "pageHScroll": false,
+  "le390": true,
+  "containers": [
+   {
+    "cls": "table-scroll",
+    "label": "Month review",
+    "scrollW": 620,
+    "clientW": 306,
+    "overflowX": "auto"
+   },
+   {
+    "cls": "analysis-chart-scroll",
+    "label": null,
+    "scrollW": 650,
+    "clientW": 306,
+    "overflowX": "auto"
+   },
+   {
+    "cls": "analysis-chart-scroll",
+    "label": null,
+    "scrollW": 650,
+    "clientW": 306,
+    "overflowX": "auto"
+   },
+   {
+    "cls": "table-scroll",
+    "label": "BHP test review",
+    "scrollW": 813,
+    "clientW": 306,
+    "overflowX": "auto"
+   },
+   {
+    "cls": "table-scroll",
+    "label": "Step-rate test review",
+    "scrollW": 1365,
+    "clientW": 306,
+    "overflowX": "auto"
+   },
+   {
+    "cls": "analysis-chart-scroll",
+    "label": null,
+    "scrollW": 650,
+    "clientW": 306,
+    "overflowX": "auto"
+   }
+  ]
+ },
+ "c7_stale_and_reset": {
+  "downloadsAfterSwitch": [],
+  "panel": {
+   "paras": [
+    "Calibrated injectivity (J): not ready. Needs a flowing bottomhole pressure with a same-time rate and a reservoir pressure reference (Phase 1c).",
+    "Records: 0 BHP, 0 step-rate · 0 explorer package, verified · 0 user upload, not verified · 0 flagged · 0 included · reference depth none.",
+    "",
+    "No test records for this well.",
+    "No BHP tests to chart."
+   ],
+   "status": "",
+   "tables": 0,
+   "buttons": [
+    "Download test records JSON",
+    "Download test records CSV",
+    "Download test records SVG"
+   ],
+   "chartPoints": 0
+  },
+  "markers": {
+   "count": 0,
+   "types": [],
+   "labels": []
+  },
+  "title": "Public injection trends",
+  "active": "rrc-2026-10-09-uic000020838-v1 · public reported"
+ },
+ "console": [],
+ "warnings": 0
+}

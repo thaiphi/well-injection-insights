@@ -1,0 +1,326 @@
+{
+  "schemaVersion": "test-records-export/1",
+  "method": "test-records/1",
+  "source": {
+    "uic": "000000417",
+    "package": {
+      "artifactId": "rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627",
+      "normalizedSha256": "43f4f0b59e95bfa1c39e1a73a2295e0d54ef6eba471ee227c1d51a330425a500",
+      "manifestSha256": "6a5730844cd1283cb78edcd6323438e60426982e2e1ce32ce00bcf771af22036",
+      "files": {
+        "tests.json": "f89ca3323d905987a4298e1f324b1366be48f132a427b49bba16aa9977fb6be5",
+        "tests_bhp.csv": "34bfea8b13eb93a628e2831e372cd4261b4e8f75a8a73c646bea767712e831ed",
+        "tests_srt.csv": "570f2e15e29a6c58b07c0584f56da7b4351e23d0ea7dd35219cbafe68ba0c477",
+        "tests_dictionary.json": "690574e58f75535d546dd14a1ab51c8bf7e480f0b2674e0eb501ef0cfd9699d4"
+      }
+    },
+    "uploads": [
+      {
+        "kind": "bhp",
+        "fileName": "upload-valid-bhp-000000417.csv",
+        "sha256": "d71955632cf2794accb08fb41bc5f89c0084cc74008d655f524a84565511a3b5"
+      }
+    ]
+  },
+  "coverage": {
+    "bhpRecords": 4,
+    "srtRecords": 1,
+    "packageRecords": 4,
+    "uploadRecords": 1,
+    "flagged": 1,
+    "included": 4,
+    "comparableBhp": 3,
+    "referenceDepthFt": 3310,
+    "referenceTie": false,
+    "beforeRange": 2,
+    "afterRange": 0
+  },
+  "referenceDepthFt": 3310,
+  "referenceTie": false,
+  "range": {
+    "first": "2024-01",
+    "last": "2025-04"
+  },
+  "records": [
+    {
+      "key": "package:bhp:1",
+      "kind": "bhp",
+      "origin": "package",
+      "originLabel": "Explorer package, verified",
+      "identity": "bhp|7101|90000417|1.0",
+      "sourceRowKey": "rrc:bhp:qxfy-wcfs:18125c55a5e315fb:1",
+      "date": "2022-05-16",
+      "dateText": "2022-05-16",
+      "rangePosition": "before",
+      "pressures": [
+        {
+          "field": "bhp_psia",
+          "value": 1512,
+          "unit": "psia as named (Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted)"
+        }
+      ],
+      "depthFt": 3140,
+      "values": {
+        "source_row_key": "rrc:bhp:qxfy-wcfs:18125c55a5e315fb:1",
+        "parent_key": "rrc:uic:givw-z9t4:0eebb23b9e880854:1",
+        "parent_join_status": "matched",
+        "uic_number": "000000417",
+        "source_report_id": "7101",
+        "tracking_no": "90000417",
+        "test_sequence_no": "1.0",
+        "report_conducted_date": "2022-05-16",
+        "report_conducted_date_text": "2022-05-16",
+        "report_received_date": "2024-10-15",
+        "report_received_date_text": "2024-10-15",
+        "bhp_psia": 1512,
+        "test_depth_ft": 3140,
+        "gradient_psi_ft": 0.68,
+        "tested_formation": "SYNTHETIC",
+        "source_snapshot_id": "qxfy-wcfs:18125c55a5e315fb",
+        "quality_flags": []
+      },
+      "qualityFlags": [],
+      "flags": [
+        "depth-differs"
+      ],
+      "flagReasons": [
+        "Tested at a different depth from this well's other tests (reference 3310 ft); not directly comparable."
+      ],
+      "notes": [],
+      "include": false,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": false
+    },
+    {
+      "key": "package:bhp:2",
+      "kind": "bhp",
+      "origin": "package",
+      "originLabel": "Explorer package, verified",
+      "identity": "bhp|7102|90000417|1.0",
+      "sourceRowKey": "rrc:bhp:qxfy-wcfs:18125c55a5e315fb:2",
+      "date": "2024-02-12",
+      "dateText": "2024-02-12",
+      "rangePosition": "in",
+      "pressures": [
+        {
+          "field": "bhp_psia",
+          "value": 1705,
+          "unit": "psia as named (Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted)"
+        }
+      ],
+      "depthFt": 3310,
+      "values": {
+        "source_row_key": "rrc:bhp:qxfy-wcfs:18125c55a5e315fb:2",
+        "parent_key": "rrc:uic:givw-z9t4:0eebb23b9e880854:1",
+        "parent_join_status": "matched",
+        "uic_number": "000000417",
+        "source_report_id": "7102",
+        "tracking_no": "90000417",
+        "test_sequence_no": "1.0",
+        "report_conducted_date": "2024-02-12",
+        "report_conducted_date_text": "2024-02-12",
+        "report_received_date": "2024-10-15",
+        "report_received_date_text": "2024-10-15",
+        "bhp_psia": 1705,
+        "test_depth_ft": 3310,
+        "gradient_psi_ft": 0.68,
+        "tested_formation": "SYNTHETIC",
+        "source_snapshot_id": "qxfy-wcfs:18125c55a5e315fb",
+        "quality_flags": []
+      },
+      "qualityFlags": [],
+      "flags": [],
+      "flagReasons": [],
+      "notes": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "key": "package:bhp:3",
+      "kind": "bhp",
+      "origin": "package",
+      "originLabel": "Explorer package, verified",
+      "identity": "bhp|7103|90000417|1.0",
+      "sourceRowKey": "rrc:bhp:qxfy-wcfs:18125c55a5e315fb:3",
+      "date": "2024-07-22",
+      "dateText": "2024-07-22",
+      "rangePosition": "in",
+      "pressures": [
+        {
+          "field": "bhp_psia",
+          "value": 1731,
+          "unit": "psia as named (Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted)"
+        }
+      ],
+      "depthFt": 3310,
+      "values": {
+        "source_row_key": "rrc:bhp:qxfy-wcfs:18125c55a5e315fb:3",
+        "parent_key": "rrc:uic:givw-z9t4:0eebb23b9e880854:1",
+        "parent_join_status": "matched",
+        "uic_number": "000000417",
+        "source_report_id": "7103",
+        "tracking_no": "90000417",
+        "test_sequence_no": "1.0",
+        "report_conducted_date": "2024-07-22",
+        "report_conducted_date_text": "2024-07-22",
+        "report_received_date": "2024-10-15",
+        "report_received_date_text": "2024-10-15",
+        "bhp_psia": 1731,
+        "test_depth_ft": 3310,
+        "gradient_psi_ft": 0.68,
+        "tested_formation": "SYNTHETIC",
+        "source_snapshot_id": "qxfy-wcfs:18125c55a5e315fb",
+        "quality_flags": []
+      },
+      "qualityFlags": [],
+      "flags": [],
+      "flagReasons": [],
+      "notes": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    },
+    {
+      "key": "package:srt:1",
+      "kind": "srt",
+      "origin": "package",
+      "originLabel": "Explorer package, verified",
+      "identity": "srt|7201|90000418",
+      "sourceRowKey": "rrc:srt:h54t-xnbi:1316baff733e3725:1",
+      "date": "2022-05-16",
+      "dateText": "2022-05-16",
+      "rangePosition": "before",
+      "pressures": [
+        {
+          "field": "isip_psig",
+          "value": null,
+          "unit": "psig as reported"
+        },
+        {
+          "field": "formation_frac_press_psig",
+          "value": 1610,
+          "unit": "psig as reported"
+        },
+        {
+          "field": "surface_pressure_firc_psig",
+          "value": null,
+          "unit": "psig as reported"
+        }
+      ],
+      "depthFt": null,
+      "values": {
+        "source_row_key": "rrc:srt:h54t-xnbi:1316baff733e3725:1",
+        "parent_key": "rrc:uic:givw-z9t4:0eebb23b9e880854:1",
+        "parent_join_status": "matched",
+        "uic_number": "000000417",
+        "source_report_id": "7201",
+        "tracking_no": "90000418",
+        "srt_received_date": "2022-06-20",
+        "srt_received_date_text": "2022-06-20",
+        "test_date": "2022-05-16",
+        "test_date_text": "2022-05-16",
+        "satisfactory_test_code": "1",
+        "top_perf_ft": 3305,
+        "bottom_perf_ft": 5120,
+        "formation_tested": "Synthetic",
+        "min_inj_rate_bpm": 0,
+        "max_inj_rate_bpm": 24.1,
+        "isip_psig": null,
+        "formation_frac_press_psig": 1610,
+        "frac_inj_rate_capacity_bpd": null,
+        "surface_pressure_firc_psig": null,
+        "fracture_gradient_psi_ft": 0.71,
+        "comments": "",
+        "source_snapshot_id": "h54t-xnbi:1316baff733e3725",
+        "quality_flags": [
+          "missing:isip_psig",
+          "missing:frac_inj_rate_capacity_bpd",
+          "missing:surface_pressure_firc_psig"
+        ]
+      },
+      "qualityFlags": [
+        "missing:isip_psig",
+        "missing:frac_inj_rate_capacity_bpd",
+        "missing:surface_pressure_firc_psig"
+      ],
+      "flags": [],
+      "flagReasons": [],
+      "notes": [
+        "missing:isip_psig",
+        "missing:frac_inj_rate_capacity_bpd",
+        "missing:surface_pressure_firc_psig"
+      ],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": false
+    },
+    {
+      "key": "upload:bhp:1",
+      "kind": "bhp",
+      "origin": "upload",
+      "originLabel": "User upload, not verified",
+      "identity": "bhp|7104|90000417|1.0",
+      "sourceRowKey": "rrc:bhp:qxfy-wcfs:x:1",
+      "date": "2025-01-10",
+      "dateText": "2025-01-10",
+      "rangePosition": "in",
+      "pressures": [
+        {
+          "field": "bhp_psia",
+          "value": 1768,
+          "unit": "psia as named (Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted)"
+        }
+      ],
+      "depthFt": 3310,
+      "values": {
+        "source_row_key": "rrc:bhp:qxfy-wcfs:x:1",
+        "parent_key": "rrc:uic:p:1",
+        "parent_join_status": "matched",
+        "uic_number": "000000417",
+        "source_report_id": "7104",
+        "tracking_no": "90000417",
+        "test_sequence_no": "1.0",
+        "report_conducted_date": "2025-01-10",
+        "report_conducted_date_text": "2025-01-10",
+        "report_received_date": "2025-02-01",
+        "report_received_date_text": "2025-02-01",
+        "bhp_psia": 1768,
+        "test_depth_ft": 3310,
+        "gradient_psi_ft": 0.68,
+        "tested_formation": "SYNTHETIC",
+        "source_snapshot_id": "qxfy-wcfs:x",
+        "quality_flags": []
+      },
+      "qualityFlags": [],
+      "flags": [],
+      "flagReasons": [],
+      "notes": [],
+      "include": true,
+      "reason": null,
+      "decidedBy": "system",
+      "contributes": true
+    }
+  ],
+  "outOfRange": {
+    "before": [
+      "package:bhp:1",
+      "package:srt:1"
+    ],
+    "after": []
+  },
+  "readiness": "Calibrated injectivity (J): not ready. Needs a flowing bottomhole pressure with a same-time rate and a reservoir pressure reference (Phase 1c).",
+  "limitations": [
+    "Bottomhole pressure as reported. Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted. Test type not stated in source. Not a reservoir pressure estimate and not an injectivity index (J).",
+    "Step-rate test values as reported (psig). The satisfactory code is shown verbatim; its meaning is undocumented.",
+    "Calibrated injectivity (J): not ready. Needs a flowing bottomhole pressure with a same-time rate and a reservoir pressure reference (Phase 1c).",
+    "Test records are one published report row each; they are not pressure series and carry no stabilization data.",
+    "Depth basis (measured or true vertical) is not stated in the source; no depth correction is applied.",
+    "Test markers sit at the actual test date and are never joined to a month's values."
+  ],
+  "contentSha256": "7d3c3810b873b9b54ac422c697a3489accca630408ad64697e0f821e0e8ed8ae"
+}

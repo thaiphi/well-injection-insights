@@ -1,5 +1,6 @@
 import {validatePublicArtifact} from '../dist/publicArtifact.js';
 import {inventoryColumns,monthlyColumns,normalizeExplorerRows,createExplorerDictionary,sameExplorerValue,verifyRecordedExplorerEvidence} from './explorer-evidence.mjs';
+import {normalizeExplorerTests,explorerCsv,testColumns,testReportOrder,TESTS_DICTIONARY_SHA256} from './explorer-tests.mjs';
 
 // The producer emits bounded regular-file USTAR only. No extraction, network,
 // server writes, or execution of archived HTML/PDF/JavaScript takes place here.
@@ -130,7 +131,8 @@ export async function verifyExplorerPackage(input,{signal}={}){
  same(normalized.manifest,manifest,'Normalized manifest identity mismatch');
  const manifestSha256=await hash('manifest.json'),normalizedSha256=await hash('normalized.json');
  const legacy=manifest.artifact_id===trustedLegacy.artifactId&&manifestSha256===trustedLegacy.manifestSha256&&normalizedSha256===trustedLegacy.normalizedSha256;
- const dynamic=manifest.scope?.query_version===2;
+ const queryVersion=manifest.scope?.query_version,dynamic=queryVersion===2||queryVersion===4;
+ if(!legacy&&queryVersion!==undefined&&!dynamic)fail(`Unsupported Explorer query version: ${queryVersion}`);
  if(!legacy&&!dynamic)fail('Public source proof unavailable: unrecognized legacy artifact');
  const expected=new Map();
  const add=(name,entry)=>{
@@ -167,6 +169,19 @@ export async function verifyExplorerPackage(input,{signal}={}){
   if(csv.length!==rows.length)fail(`${name} record count mismatch`);
   for(let i=0;i<csv.length;i++)for(let j=0;j<columns.length;j++)if(csv[i][j]!==csvCell(rows[i][columns[j]]))fail(`${name} normalized value mismatch at ${i+1}:${columns[j]}`);
  }
+ // Query version 4: re-derive Explorer's test sidecars from the hashed raw rows and compare bytes (V4 §6).
+ let tests=null;
+ if(queryVersion===4&&!legacy){
+  for(const name of ['tests.json','tests_bhp.csv','tests_srt.csv','tests_dictionary.json'])if(!Object.hasOwn(manifest.files,name))fail(`Explorer package is missing ${name}`);
+  const testRows=normalizeExplorerTests(evidence.rawTests,evidence.sourceIds,canonical.inventory,evidence.scope);
+  if([...testRows.bhp,...testRows.srt].some(row=>row.quality_flags.some(flag=>flag.startsWith('source_scope:'))))fail('Test-report rows contradict the exact-UIC query');
+  const status=rows=>rows.length?'returned_below_cap':'confirmed_empty';
+  const expectedTests={schemaVersion:1,artifactId:manifest.artifact_id,scope:{query_version:4,uic_number:evidence.scope.monthlyUic,test_report_limit:1000,order:`BHP ${testReportOrder.bhp}; SRT ${testReportOrder.srt}`,bhp_returned:testRows.bhp.length,srt_returned:testRows.srt.length,bhp_status:status(testRows.bhp),srt_status:status(testRows.srt),window:'exact uic_no; not limited to reporting period'},bhp:testRows.bhp,srt:testRows.srt,quality:testRows.quality};
+  if(decode('tests.json')!==JSON.stringify(expectedTests,null,2)+'\n')fail('tests.json contradicts preserved BHP/SRT source rows');
+  for(const kind of ['bhp','srt'])if(decode(`tests_${kind}.csv`)!==explorerCsv(testRows[kind],testColumns[kind]))fail(`tests_${kind}.csv contradicts preserved ${kind.toUpperCase()} source rows`);
+  if(await hash('tests_dictionary.json')!==TESTS_DICTIONARY_SHA256)fail("tests_dictionary.json is not Explorer's public test dictionary");
+  tests={bhp:testRows.bhp,srt:testRows.srt,quality:testRows.quality,sha256:{'tests.json':await hash('tests.json'),'tests_bhp.csv':await hash('tests_bhp.csv'),'tests_srt.csv':await hash('tests_srt.csv'),'tests_dictionary.json':await hash('tests_dictionary.json')}};
+ }
  const payload={schemaVersion:normalized.schemaVersion,artifactId:normalized.artifactId,inventory:normalized.inventory,injectionMonthly:normalized.injectionMonthly,qualityReport:normalized.qualityReport,dataDictionary:normalized.dataDictionary};
  if(manifest.normalized_payload_hash_method!==payloadHashMethod||manifest.normalized_payload_sha256!==await sha256(textEncoder.encode(JSON.stringify(payload))))fail('Normalized payload hash contract mismatch');
  // The unchanged strict validator remains the sole calculation eligibility
@@ -182,6 +197,6 @@ export async function verifyExplorerPackage(input,{signal}={}){
  const pin={artifactId:artifact.artifactId,manifestSha256,normalizedSha256,filesVerified:expected.size,packageSha256:await sha256(bytes)};
  const provenance={acquisitionOrigin:'user_upload',contentKind:'public_reported',basis:legacy?'trusted_legacy_pinned_digests':'recorded_official_acquisition_v2',authentication:legacy?'trusted_pinned_digest':'not_established'};
  const periods=artifact.injectionMonthly.map(row=>row.period_start).sort();
- const preview={artifactId:artifact.artifactId,inventoryCount:artifact.inventory.length,monthlyCount:artifact.injectionMonthly.length,periodStart:periods[0]??null,periodEnd:periods.at(-1)??null,uicNumbers:[...new Set(artifact.injectionMonthly.map(row=>row.uic_number))],filesVerified:expected.size,packageFileCount:files.size,packageBytes:bytes.length,provenance,warnings:[...(legacy?[]:['Recorded acquisition evidence reconciles internally; independent source authenticity is not established.']),'Public monthly reported pressures are not BHP, reservoir pressure or controlled injection tests.','Monthly barrels/calendar days are calculated calendar-day averages, not measured daily operating rates.']};
- return freeze({artifact,pin,preview,calculationEligibility,files:[...files.keys()].sort()});
+ const preview={artifactId:artifact.artifactId,inventoryCount:artifact.inventory.length,monthlyCount:artifact.injectionMonthly.length,periodStart:periods[0]??null,periodEnd:periods.at(-1)??null,uicNumbers:[...new Set(artifact.injectionMonthly.map(row=>row.uic_number))],filesVerified:expected.size,packageFileCount:files.size,packageBytes:bytes.length,provenance,warnings:[...(legacy?[]:['Recorded acquisition evidence reconciles internally; independent source authenticity is not established.']),'Public monthly reported pressures are not BHP, reservoir pressure or controlled injection tests.','Monthly barrels/calendar days are calculated calendar-day averages, not measured daily operating rates.',...(tests?['BHP test values are as published: the source field is named psia but RRC Permian guidance says PSIG (Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted). Test records are report rows, not pressure series.']:[])]};
+ return freeze({artifact,pin,preview,calculationEligibility,files:[...files.keys()].sort(),tests});
 }
