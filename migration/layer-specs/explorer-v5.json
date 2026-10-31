@@ -1,0 +1,10 @@
+{
+  "purpose": "Explorer query-version-5 receiver: v4 checks plus byte-for-byte re-derivation of evidence_relations.json with a pinned copy of Explorer's relations.mjs; relations verified, not displayed.",
+  "acceptanceEvidence": "demo/EXPLORER-V5-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-10-31-explorer-v5-receiver-design.md"
+  ],
+  "changes": ["web/explorer-evidence.mjs", "web/explorer-package.mjs"],
+  "newFiles": ["web/explorer-relations.mjs", "tests/explorer-package-v5.test.mjs", "tests/helpers/explorer-v5.mjs"],
+  "rootFiles": ["migration/layers/index.json"]
+}

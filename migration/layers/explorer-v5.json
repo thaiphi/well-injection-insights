@@ -1,0 +1,58 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "explorer-v5",
+  "status": "accepted",
+  "acceptedAt": "2026-10-31",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/EXPLORER-V5-VERIFICATION.md",
+  "purpose": "Explorer query-version-5 receiver: v4 checks plus byte-for-byte re-derivation of evidence_relations.json with a pinned copy of Explorer's relations.mjs; relations verified, not displayed.",
+  "parentBaselineSha256": "c1ee69db4ba6389e1dee7379a0f5feef26ab068cb0d3858746e96d549a7d430f",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-10-31-explorer-v5-receiver-design.md",
+      "sha256": "beeffe9ed238c637318843c5b11165de9650c2cf786d7f295a2a28a4300432d6"
+    }
+  ],
+  "changes": [
+    {
+      "path": "web/explorer-evidence.mjs",
+      "archive": "migration/baselines/explorer-v5-before/swd-injection-analytics/web/explorer-evidence.mjs",
+      "beforeSha256": "6d5ee768849570dce37bc4472c3a000713d9c9c507ad8013b968dc19b4ae5f68",
+      "beforeBytes": 28519,
+      "afterSha256": "868dc27ea43f4dc1c936f8c5ce28812ee84d89db596a2a9ef9a6d992f9617ba7",
+      "afterBytes": 28753
+    },
+    {
+      "path": "web/explorer-package.mjs",
+      "archive": "migration/baselines/explorer-v5-before/swd-injection-analytics/web/explorer-package.mjs",
+      "beforeSha256": "24215bf6bc8c58a1d3f883311b1ae5e2d3b2217c19d8424d834c8027ace93eea",
+      "beforeBytes": 18723,
+      "afterSha256": "257c336373add61db38912df2a774c7c421e807429ab6707b21cfaf167d87b6f",
+      "afterBytes": 21617
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "web/explorer-relations.mjs",
+      "sha256": "88b43327612adc584119ae430588151bd3a7394ff3919d159d83c3984795a648",
+      "bytes": 8271
+    },
+    {
+      "path": "tests/explorer-package-v5.test.mjs",
+      "sha256": "7174a5c9d1df73754c1019c9db5aea453f29386c1801e5d6b0d5767c4b641300",
+      "bytes": 6606
+    },
+    {
+      "path": "tests/helpers/explorer-v5.mjs",
+      "sha256": "01567ce50e0782807b476933136a0e3ee09a428f8b42499e8f22ee8bc95f5ff2",
+      "bytes": 5400
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "d2a94cb653fcd3afb71725f5bd6b29873f5d00f2fc1742fbb389a9e614a33f72",
+      "bytes": 574
+    }
+  ]
+}

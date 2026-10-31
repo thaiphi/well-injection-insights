@@ -16,6 +16,10 @@
     {
       "name": "test-records",
       "baseline": "migration/layers/test-records.json"
+    },
+    {
+      "name": "explorer-v5",
+      "baseline": "migration/layers/explorer-v5.json"
     }
   ]
 }

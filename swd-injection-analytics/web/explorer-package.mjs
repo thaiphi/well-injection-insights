@@ -1,6 +1,7 @@
 import {validatePublicArtifact} from '../dist/publicArtifact.js';
 import {inventoryColumns,monthlyColumns,normalizeExplorerRows,createExplorerDictionary,sameExplorerValue,verifyRecordedExplorerEvidence} from './explorer-evidence.mjs';
 import {normalizeExplorerTests,explorerCsv,testColumns,testReportOrder,TESTS_DICTIONARY_SHA256} from './explorer-tests.mjs';
+import {buildRelations} from './explorer-relations.mjs';
 
 // The producer emits bounded regular-file USTAR only. No extraction, network,
 // server writes, or execution of archived HTML/PDF/JavaScript takes place here.
@@ -8,6 +9,8 @@ export const EXPLORER_PACKAGE_LIMITS=Object.freeze({fileBytes:10_000_000,totalBy
 const trustedLegacy=Object.freeze({artifactId:'rrc-2026-10-09-uic000020838-v1',manifestSha256:'3a523cadca4c7a35d667ccd53629d63e5afc6de382be670cba1d61743baef61f',normalizedSha256:'4f243138c833f09a5be6a970e85f76f3f73e95040c69677a10b8c3b2fe03ca5b'});
 const textDecoder=new TextDecoder('utf-8',{fatal:true}),textEncoder=new TextEncoder();
 const hashPattern=/^[a-f0-9]{64}$/;
+// Explorer src/artifact.mjs (b67fe5c): the v5 limitation, appended last after the v4 list.
+const relationsLimitation='evidence_relations.json lists typed relations derived at export from this version\'s own records and source files (ADR 004 §3); query version 5 queries exactly the version 4 targets. Relations assert exact string equality of source keys only; matched does not establish one physical wellbore, and no relation states casing, cementing, plugging, compliance or hydraulic communication.';
 const payloadHashMethod='SHA256 of UTF-8 JSON.stringify({schemaVersion,artifactId,inventory,injectionMonthly,qualityReport,dataDictionary}), in this key order, excluding manifest to avoid circularity';
 const fail=message=>{throw Object.assign(Error(message),{code:'EXPLORER_PACKAGE_INVALID'});};
 const object=value=>value!==null&&typeof value==='object'&&!Array.isArray(value);
@@ -131,7 +134,7 @@ export async function verifyExplorerPackage(input,{signal}={}){
  same(normalized.manifest,manifest,'Normalized manifest identity mismatch');
  const manifestSha256=await hash('manifest.json'),normalizedSha256=await hash('normalized.json');
  const legacy=manifest.artifact_id===trustedLegacy.artifactId&&manifestSha256===trustedLegacy.manifestSha256&&normalizedSha256===trustedLegacy.normalizedSha256;
- const queryVersion=manifest.scope?.query_version,dynamic=queryVersion===2||queryVersion===4;
+ const queryVersion=manifest.scope?.query_version,dynamic=queryVersion===2||queryVersion===4||queryVersion===5;
  if(!legacy&&queryVersion!==undefined&&!dynamic)fail(`Unsupported Explorer query version: ${queryVersion}`);
  if(!legacy&&!dynamic)fail('Public source proof unavailable: unrecognized legacy artifact');
  const expected=new Map();
@@ -169,19 +172,34 @@ export async function verifyExplorerPackage(input,{signal}={}){
   if(csv.length!==rows.length)fail(`${name} record count mismatch`);
   for(let i=0;i<csv.length;i++)for(let j=0;j<columns.length;j++)if(csv[i][j]!==csvCell(rows[i][columns[j]]))fail(`${name} normalized value mismatch at ${i+1}:${columns[j]}`);
  }
- // Query version 4: re-derive Explorer's test sidecars from the hashed raw rows and compare bytes (V4 §6).
- let tests=null;
- if(queryVersion===4&&!legacy){
+ // Query versions 4 and 5: re-derive Explorer's test sidecars from the hashed raw rows and compare bytes (V4 §6).
+ let tests=null,testRows=null;
+ if((queryVersion===4||queryVersion===5)&&!legacy){
   for(const name of ['tests.json','tests_bhp.csv','tests_srt.csv','tests_dictionary.json'])if(!Object.hasOwn(manifest.files,name))fail(`Explorer package is missing ${name}`);
-  const testRows=normalizeExplorerTests(evidence.rawTests,evidence.sourceIds,canonical.inventory,evidence.scope);
+  testRows=normalizeExplorerTests(evidence.rawTests,evidence.sourceIds,canonical.inventory,evidence.scope);
   if([...testRows.bhp,...testRows.srt].some(row=>row.quality_flags.some(flag=>flag.startsWith('source_scope:'))))fail('Test-report rows contradict the exact-UIC query');
   const status=rows=>rows.length?'returned_below_cap':'confirmed_empty';
-  const expectedTests={schemaVersion:1,artifactId:manifest.artifact_id,scope:{query_version:4,uic_number:evidence.scope.monthlyUic,test_report_limit:1000,order:`BHP ${testReportOrder.bhp}; SRT ${testReportOrder.srt}`,bhp_returned:testRows.bhp.length,srt_returned:testRows.srt.length,bhp_status:status(testRows.bhp),srt_status:status(testRows.srt),window:'exact uic_no; not limited to reporting period'},bhp:testRows.bhp,srt:testRows.srt,quality:testRows.quality};
+  const expectedTests={schemaVersion:1,artifactId:manifest.artifact_id,scope:{query_version:queryVersion,uic_number:evidence.scope.monthlyUic,test_report_limit:1000,order:`BHP ${testReportOrder.bhp}; SRT ${testReportOrder.srt}`,bhp_returned:testRows.bhp.length,srt_returned:testRows.srt.length,bhp_status:status(testRows.bhp),srt_status:status(testRows.srt),window:'exact uic_no; not limited to reporting period'},bhp:testRows.bhp,srt:testRows.srt,quality:testRows.quality};
   if(decode('tests.json')!==JSON.stringify(expectedTests,null,2)+'\n')fail('tests.json contradicts preserved BHP/SRT source rows');
   for(const kind of ['bhp','srt'])if(decode(`tests_${kind}.csv`)!==explorerCsv(testRows[kind],testColumns[kind]))fail(`tests_${kind}.csv contradicts preserved ${kind.toUpperCase()} source rows`);
   if(await hash('tests_dictionary.json')!==TESTS_DICTIONARY_SHA256)fail("tests_dictionary.json is not Explorer's public test dictionary");
   tests={bhp:testRows.bhp,srt:testRows.srt,quality:testRows.quality,sha256:{'tests.json':await hash('tests.json'),'tests_bhp.csv':await hash('tests_bhp.csv'),'tests_srt.csv':await hash('tests_srt.csv'),'tests_dictionary.json':await hash('tests_dictionary.json')}};
  }
+ // Query version 5: rebuild evidence_relations.json with Explorer's pinned builder and compare bytes.
+ // casing.json/plugging.json are hash-declared, not re-derived; relations inherit that trust level.
+ let relations=null;
+ if(queryVersion===5&&!legacy){
+  if(Object.keys(manifest.files).at(-1)!=='evidence_relations.json')fail('Explorer v5 package must declare evidence_relations.json last');
+  if(manifest.limitations?.at?.(-1)!==relationsLimitation)fail('Explorer v5 manifest last limitation is not the evidence_relations.json limitation');
+  let r;try{
+   const casing=json('casing.json'),plugging=json('plugging.json'),apiId=evidence.scope.sourceApiId;
+   // Not a re-derivation: refuse sidecar identity that contradicts the acquisition (producer sidecar(), wellbore.mjs link).
+   for(const [name,dataset,s] of [['casing.json','casing',casing],['plugging.json','plugging',plugging]])if(!object(s)||s.dataset!==dataset||!object(s.scope)||s.scope.query_version!==queryVersion||s.scope.source_api_id!==apiId||!object(s.link)||s.link.source_api_id!==apiId||s.link.inventory_source_record_key!==canonical.inventory[0]?.source_record_key||!Array.isArray(s.rows)||s.rows.some(row=>!object(row)||row.api_no!==apiId||row.source_api_id!==apiId))fail(`${name} contradicts the acquisition scope`);
+   r=buildRelations({artifactId:manifest.artifact_id,scope:evidence.scope,inventory:normalized.inventory,monthly:normalized.injectionMonthly,testRows:{bhp:testRows.bhp,srt:testRows.srt},wellboreRows:{casing:{link:casing.link,rows:casing.rows},plugging:{link:plugging.link,rows:plugging.rows}},sources:manifest.sources});
+  }catch(error){if(error.code==='EXPLORER_PACKAGE_INVALID')throw error;fail('evidence_relations.json contradicts its re-derivation: '+(error.code==='SOURCE_INVALID'?error.message:'wellbore link or row evidence is malformed'));}
+  if(decode('evidence_relations.json')!==JSON.stringify(r,null,2)+'\n')fail('evidence_relations.json contradicts its re-derivation from package records and sources');
+  relations={count:r.relations.length,sha256:await hash('evidence_relations.json')};
+ }else if(Object.hasOwn(manifest.files,'evidence_relations.json'))fail(`evidence_relations.json is not part of Explorer query version ${queryVersion??'legacy'}`);
  const payload={schemaVersion:normalized.schemaVersion,artifactId:normalized.artifactId,inventory:normalized.inventory,injectionMonthly:normalized.injectionMonthly,qualityReport:normalized.qualityReport,dataDictionary:normalized.dataDictionary};
  if(manifest.normalized_payload_hash_method!==payloadHashMethod||manifest.normalized_payload_sha256!==await sha256(textEncoder.encode(JSON.stringify(payload))))fail('Normalized payload hash contract mismatch');
  // The unchanged strict validator remains the sole calculation eligibility
@@ -198,5 +216,5 @@ export async function verifyExplorerPackage(input,{signal}={}){
  const provenance={acquisitionOrigin:'user_upload',contentKind:'public_reported',basis:legacy?'trusted_legacy_pinned_digests':'recorded_official_acquisition_v2',authentication:legacy?'trusted_pinned_digest':'not_established'};
  const periods=artifact.injectionMonthly.map(row=>row.period_start).sort();
  const preview={artifactId:artifact.artifactId,inventoryCount:artifact.inventory.length,monthlyCount:artifact.injectionMonthly.length,periodStart:periods[0]??null,periodEnd:periods.at(-1)??null,uicNumbers:[...new Set(artifact.injectionMonthly.map(row=>row.uic_number))],filesVerified:expected.size,packageFileCount:files.size,packageBytes:bytes.length,provenance,warnings:[...(legacy?[]:['Recorded acquisition evidence reconciles internally; independent source authenticity is not established.']),'Public monthly reported pressures are not BHP, reservoir pressure or controlled injection tests.','Monthly barrels/calendar days are calculated calendar-day averages, not measured daily operating rates.',...(tests?['BHP test values are as published: the source field is named psia but RRC Permian guidance says PSIG (Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted). Test records are report rows, not pressure series.']:[])]};
- return freeze({artifact,pin,preview,calculationEligibility,files:[...files.keys()].sort(),tests});
+ return freeze({artifact,pin,preview,calculationEligibility,files:[...files.keys()].sort(),tests,relations});
 }
