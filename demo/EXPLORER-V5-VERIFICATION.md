@@ -95,3 +95,16 @@ The edit changed `scope.source_api_id` from 38934609 to 38934608.
 Each page loaded resources only from its own origin. The Analytics server was stopped afterwards.
 
 Not covered: a v5 package where the wellbore was not queried (no real one exists, and making one needs a new acquisition run), hosted transfer and screen-reader checks.
+
+## Query-version-2 and legacy-pin check (2026-11-02)
+
+Explorer's reviewer noted that neither walkthrough had sent a query-version-2 package, and that the legacy pin had last been checked against b48ce03. Analytics served main 9f2ce40 on http://127.0.0.1:4290. That commit contains the same receiver code as 227ebab: `git diff 227ebab 9f2ce40` touches only this record. The Explorer session drove the check.
+
+| Step | Result reported by Explorer |
+|---|---|
+| v2, UIC 000020838 (`7aecd619`), two-window transfer | Validated and adopted. rrc-odp-v2.0.0, 25 verified files. Package `69a93781…`, manifest `7271eb48…` and normalized `50c4acc8…` all match Explorer. |
+| Legacy pin `rrc-2026-10-09-uic000020838-v1` | Validated and adopted. rrc-odp-v1.0.0, 11 files. Package `492ebaa6…` (the same as on 2026-10-30), manifest `3a523cad…`, normalized `4f243138…`. |
+
+Each page loaded resources only from its own origin. The server was stopped afterwards.
+
+This completed Explorer's RRC-17 acceptance set on 227ebab. Explorer merged its sender gate as texas-rail-sync main `0933590` (PR #15). It offers query versions 2, 4 and 5 plus the legacy pin; v3 and unknown versions stay local. Any future v5 byte change becomes query version 6, and Explorer announces it to Analytics first.
