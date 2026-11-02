@@ -77,3 +77,21 @@ No per-test values from real artifacts appear in this record.
 - Only the last (v5) limitation is pinned. The earlier v4 limitations are displayed as provided ("Source limitations"), as they were for v4 before this change.
 - The v5 case where the wellbore was never queried (`sourceApiId` null) has no synthetic test, because the v4 helper requires an 8-digit API. By code reading, which the re-reviewer confirmed, the receiver accepts the producer's not-queried sidecar shape: null source API ids and empty rows.
 - Any v2 or legacy manifest that declares `evidence_relations.json` is refused (stricter than v4-only; the legacy pin is fixed bytes).
+
+## Two-window walkthrough with Explorer (2026-10-31, after merge)
+
+Analytics served main 227ebab locally on http://127.0.0.1:4290. Explorer served its unpushed branch phase6/v5-gate (allow list 2, 4 and 5) on http://127.0.0.1:4391, and the Explorer session drove both windows. Explorer's `src/relations.mjs` on its main is still `88b43327…a648`, matching our pin.
+
+| Step | Result reported by Explorer |
+|---|---|
+| TRIPPET SWD v5 (`…b7628a71…`), two-window transfer | Validated and adopted. rrc-odp-v2.3.0. The package SHA-256 `6bffedb175d236017b881f46bd742d91ece3a389df11c4fcff030340ad36e881` is identical to the TAR Explorer's server returns. Manifest `89586fc1…6308`, normalized `73084284…aeda`. 63 verified files: the 66 package files minus manifest, normalized and version-pins. 16 monthly rows. |
+| Barbaro 23 v4 (`…d04894d1…`), two-window transfer | Validated and adopted. rrc-odp-v2.2.0. Package `d92ae4fd…`, manifest `aada0de5…`, normalized `08614422…`, 62 files: identical to the 2026-10-30 walkthrough. |
+| Tampered v5: one byte changed in `evidence_relations.json`, manifest unchanged, manual import | Refused: "Explorer evidence hash or byte count mismatch: evidence_relations.json. Your current dataset and stored pin are unchanged." |
+| Tampered v5, re-hashed: same edit, with manifest.files, normalized.manifest and both version-pins hashes updated | Refused: "evidence_relations.json contradicts its re-derivation from package records and sources." |
+| Explorer v3 (`a8606089`) | Transfer stays disabled on Explorer's side ("…accepts query versions 2, 4 and 5 and the original pinned version (ADR 005)"). |
+
+The edit changed `scope.source_api_id` from 38934609 to 38934608.
+
+Each page loaded resources only from its own origin. The Analytics server was stopped afterwards.
+
+Not covered: a v5 package where the wellbore was not queried (no real one exists, and making one needs a new acquisition run), hosted transfer and screen-reader checks.
