@@ -1,0 +1,129 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "phase-1c-test-referenced-j",
+  "status": "accepted",
+  "acceptedAt": "2026-11-04",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/TEST-REFERENCED-J-VERIFICATION.md",
+  "purpose": "Phase 1c (PRD ANA-E03 under D5): test-referenced injectivity (J) estimate from reviewed H-10 months and included BHP tests, with sensitivities, a round-trip check, sealed exports and a Hydraulics workspace hand-off; fixes the Test records panel being absent when a well has tests but no H-10 rows.",
+  "parentBaselineSha256": "b9139ce96b64b0aadc10ff4fa2f37a9687cf4138d913050758da05c53510c19e",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-11-03-test-referenced-j-design.md",
+      "sha256": "23998a0269fc27ee64252605888e66741985527c02942b91f97e196317507db4"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-03-test-referenced-j.md",
+      "sha256": "bc1ea2bffc388a3b56a6b5af015a6f29df57536fc2076851244865aacbebb1c0"
+    }
+  ],
+  "changes": [
+    {
+      "path": "src/testRecords.ts",
+      "archive": "migration/baselines/phase-1c-test-referenced-j-before/swd-injection-analytics/src/testRecords.ts",
+      "beforeSha256": "bc4d7dcbde461cb652890393abcc1cd106f5ac77e962bf3888004e324dc16bf6",
+      "beforeBytes": 14038,
+      "afterSha256": "e09cc6f933741f6a6fd1f16a689ea878d33f2aabe326a0afcfd56350cff6f231",
+      "afterBytes": 14135
+    },
+    {
+      "path": "web/h10-diagnostics.mjs",
+      "archive": "migration/baselines/phase-1c-test-referenced-j-before/swd-injection-analytics/web/h10-diagnostics.mjs",
+      "beforeSha256": "783922b91f2ed917655bd75563570d9328d0d345dc3b6cfef1eea2ff408ca635",
+      "beforeBytes": 7781,
+      "afterSha256": "baf9d845670ff0797aafbab2621250977c90259773d9e2452f32330da7a646f5",
+      "afterBytes": 8105
+    },
+    {
+      "path": "web/test-records.mjs",
+      "archive": "migration/baselines/phase-1c-test-referenced-j-before/swd-injection-analytics/web/test-records.mjs",
+      "beforeSha256": "a1487ffade1071e036f3f3e223ce256d686bea25a7b9193acffa590d3ac80417",
+      "beforeBytes": 11680,
+      "afterSha256": "af616fe34cfa36f0700f315fa77bf3fded1d2d8dd37198a138271e2973063655",
+      "afterBytes": 11958
+    },
+    {
+      "path": "web/hydraulics.mjs",
+      "archive": "migration/baselines/phase-1c-test-referenced-j-before/swd-injection-analytics/web/hydraulics.mjs",
+      "beforeSha256": "ca605e7f0ae0c95096b1cb77d766547a77ec8ee1dd9ede880ba1cbbeccbb27b9",
+      "beforeBytes": 34770,
+      "afterSha256": "616c97a7ca934e8144fcb6012ea6e37605757038a6138f552c937a32851a0d0c",
+      "afterBytes": 37880
+    },
+    {
+      "path": "web/import-ui.mjs",
+      "archive": "migration/baselines/phase-1c-test-referenced-j-before/swd-injection-analytics/web/import-ui.mjs",
+      "beforeSha256": "f97a893aa44b940a09845e50bc5b00902272ab2d76437a56dd6d193cc6579340",
+      "beforeBytes": 68077,
+      "afterSha256": "1fc48b7c6ae003598d143c7062d53af747f090fd94d6e1dd2edf314b02b07b12",
+      "afterBytes": 68983
+    },
+    {
+      "path": "tests/test-records-export.test.mjs",
+      "archive": "migration/baselines/phase-1c-test-referenced-j-before/swd-injection-analytics/tests/test-records-export.test.mjs",
+      "beforeSha256": "e2e5ca1b24f5dd6edb88f264899e9d7998579ef098440ece7409874a1dd25701",
+      "beforeBytes": 4050,
+      "afterSha256": "ef3f01db639f552dd4e4aecfef934390e17f36fe8f86026e464679394b8d602e",
+      "afterBytes": 4147
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/injectivityEstimate.ts",
+      "sha256": "8003fb1654ec138c9815699d6e4faf539a4271ce76d06cd1726c86193375a102",
+      "bytes": 19230
+    },
+    {
+      "path": "src/injectivityEstimateChart.ts",
+      "sha256": "b50ef7bdc3cbdab3b700705c24a51c432e2f29f529f1edc4d04d43299816ef18",
+      "bytes": 3646
+    },
+    {
+      "path": "src/injectivityEstimateExport.ts",
+      "sha256": "79d6528f7d9f287f839bf4cea309dc0886f4228b06075a47f2bec1f831908684",
+      "bytes": 4986
+    },
+    {
+      "path": "web/injectivity.mjs",
+      "sha256": "92cf28ed52bc346e6c2776da76df1dd0dcd45a8fd5ead5c6b47f8952b15c6e84",
+      "bytes": 14544
+    },
+    {
+      "path": "tests/injectivity-estimate.test.mjs",
+      "sha256": "933079713c3a060fa05884db18adddcecd5ec2dd3a546be7b4a70a8de4b43c7b",
+      "bytes": 15053
+    },
+    {
+      "path": "tests/injectivity-export.test.mjs",
+      "sha256": "f85a4a5fd37d41ab9c4f9cec81a1f4bec4b6b941bec2934d84ee403e0e54930d",
+      "bytes": 3489
+    },
+    {
+      "path": "tests/injectivity-session.test.mjs",
+      "sha256": "a39f06269185bc120a94e2024a18fe95ab04461232eb3dd7c0cc212e2d40a901",
+      "bytes": 6503
+    },
+    {
+      "path": "tests/panel-hooks.test.mjs",
+      "sha256": "578ef3c962ae873d127b5d209b76a50d7d33bc00c50c1ab52cd210b32a7ba8b3",
+      "bytes": 5544
+    },
+    {
+      "path": "tests/hydraulics-handoff.test.mjs",
+      "sha256": "589b8975ca5284226da71208469abdf894e5c9230685beb6f4511357280f7bbe",
+      "bytes": 9373
+    },
+    {
+      "path": "tests/helpers/injectivity-fixture.mjs",
+      "sha256": "06f942edd4fd3728f99f24c4ba8def801b90aaf8fa730afadf74f84fec702820",
+      "bytes": 2185
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "56e280f9bad1ca66287e14f25f0bfc8c139d6fe1f84035a34392d092261e403c",
+      "bytes": 700
+    }
+  ]
+}

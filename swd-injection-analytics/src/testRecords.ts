@@ -14,7 +14,7 @@ const DATES=new Set(['report_conducted_date','report_received_date','srt_receive
 export const LABEL_BHP_BASIS='Source field named psia; RRC Permian guidance says PSIG; unresolved, not converted';
 export const LABEL_BHP=`Bottomhole pressure as reported. ${LABEL_BHP_BASIS}. Test type not stated in source. Not a reservoir pressure estimate and not an injectivity index (J).`;
 export const LABEL_SRT='Step-rate test values as reported (psig). The satisfactory code is shown verbatim; its meaning is undocumented.';
-export const J_READINESS='Calibrated injectivity (J): not ready. Needs a flowing bottomhole pressure with a same-time rate and a reservoir pressure reference (Phase 1c).';
+export const J_READINESS='Calibrated injectivity (J): not available. A test-referenced estimate is shown in the panel below; a calibrated J needs a measured flowing bottomhole pressure at a known rate, for example from step-rate test analysis, which is out of scope.';
 export const LIMITATIONS=Object.freeze([LABEL_BHP,LABEL_SRT,J_READINESS,
   'Test records are one published report row each; they are not pressure series and carry no stabilization data.',
   'Depth basis (measured or true vertical) is not stated in the source; no depth correction is applied.',

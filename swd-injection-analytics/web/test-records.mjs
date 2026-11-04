@@ -16,7 +16,7 @@ export function createTestRecordsSession({selection,gate,range}){
  const source=()=>({uic,package:selection.tests?{artifactId:String(artifact.artifactId),normalizedSha256:selection.pin?.normalizedSha256??null,manifestSha256:selection.pin?.manifestSha256??null,files:{...selection.tests.sha256}}:null,
   uploads:['bhp','srt'].filter(k=>uploads[k]).map(k=>({kind:k,fileName:uploads[k].fileName,sha256:uploads[k].sha256}))});
  const session={
-  get state(){return state;},get revision(){return revision;},gate,uic,
+  get state(){return state;},get revision(){return revision;},get uploads(){return source().uploads;},gate,uic,
   decide(key,include,reason){state=applyTestDecision(state,key,include,reason);revision++;},
   async upload(fileName,bytes){
    if(!(bytes instanceof Uint8Array))throw new Error('Upload must be file bytes.');
@@ -47,7 +47,7 @@ function svgNode(svg){const doc=new DOMParser().parseFromString(svg,'image/svg+x
 const fmt=v=>v===null||v===undefined||v===''?'not reported':typeof v==='number'?Number(v.toPrecision(6)).toLocaleString('en-US'):String(v);
 
 /** Panel inside Injector history, below the H-10 panel. import-ui disposes it whenever results are cleared. */
-export function mountTestRecords(root,{selection,gate,download,range,onMarkers=()=>{}}){
+export function mountTestRecords(root,{selection,gate,download,range,onMarkers=()=>{},onChange=()=>{}}){
  const session=createTestRecordsSession({selection,gate,range}),section=el('section',undefined,'panel');section.setAttribute('aria-labelledby','test-records-title');
  root.replaceChildren(section);
  let message='',focusKey=null;
@@ -55,10 +55,11 @@ export function mountTestRecords(root,{selection,gate,download,range,onMarkers=(
   const d=st.decisions[r.key],box=el('input'),reason=el('input');
   box.type='checkbox';box.checked=d.include;box.setAttribute('aria-label',`Include ${r.kind.toUpperCase()} ${r.date??r.dateText}`);box.dataset.focusKey='box:'+r.key;
   reason.type='text';reason.maxLength=200;reason.value=d.reason??'';reason.placeholder=r.flags.length?'optional':'required to exclude';reason.setAttribute('aria-label',`Reason for ${r.kind.toUpperCase()} ${r.date??r.dateText}`);reason.dataset.focusKey='reason:'+r.key;
-  box.onchange=()=>{try{session.decide(r.key,box.checked,reason.value);focusKey='box:'+r.key;message=`${r.kind.toUpperCase()} ${r.date??r.dateText} ${box.checked?'included':'excluded'}.`;render();}catch(e){box.checked=!box.checked;status.textContent=e.message;reason.focus();}};
-  reason.onchange=()=>{if(session.state.decisions[r.key].include)return;try{session.decide(r.key,false,reason.value);message=status.textContent=`Reason saved.`;}catch(e){reason.value=session.state.decisions[r.key].reason??'';status.textContent=e.message;}};
+  box.onchange=()=>{try{session.decide(r.key,box.checked,reason.value);onChange();focusKey='box:'+r.key;message=`${r.kind.toUpperCase()} ${r.date??r.dateText} ${box.checked?'included':'excluded'}.`;render();}catch(e){box.checked=!box.checked;status.textContent=e.message;reason.focus();}};
+  reason.onchange=()=>{if(session.state.decisions[r.key].include)return;try{session.decide(r.key,false,reason.value);onChange();message=status.textContent=`Reason saved.`;}catch(e){reason.value=session.state.decisions[r.key].reason??'';status.textContent=e.message;}};
   const inc=el('td');inc.append(box);if(d.include){const pr=r.pressures.some(p=>p.value!==null),point=r.kind==='bhp'&&r.date!==null&&pr&&r.depthFt!==null;
-   if(!point&&!hasMarker(session.state,r))inc.append(el('small',r.kind==='bhp'&&r.date!==null&&pr&&r.depthFt===null?' Included, but no test-pressure chart point (no depth); shown as a timeline marker only if dated inside the H-10 range.':(pr&&r.date!==null&&rangePosition(r.date,session.state.range)==='before'?' Included; dated before the reported H-10 range, so no timeline marker.':pr&&r.date!==null&&rangePosition(r.date,session.state.range)==='after'?' Included; dated after the reported H-10 range, so no timeline marker.':' Included, but contributes to no chart (missing date or pressure).')));
+   if(session.state.range===null&&r.date!==null)inc.append(el('small','No H-10 range; no timeline markers'));
+   else if(!point&&!hasMarker(session.state,r))inc.append(el('small',r.kind==='bhp'&&r.date!==null&&pr&&r.depthFt===null?' Included, but no test-pressure chart point (no depth); shown as a timeline marker only if dated inside the H-10 range.':(pr&&r.date!==null&&rangePosition(r.date,session.state.range)==='before'?' Included; dated before the reported H-10 range, so no timeline marker.':pr&&r.date!==null&&rangePosition(r.date,session.state.range)==='after'?' Included; dated after the reported H-10 range, so no timeline marker.':' Included, but contributes to no chart (missing date or pressure).')));
    else if(r.kind==='bhp'&&r.date!==null&&pr&&r.depthFt===null)inc.append(el('small',' Included, but no test-pressure chart point (no depth); shown as a timeline marker only if dated inside the H-10 range.'));}
   const rs=el('td');rs.append(reason);return [inc,rs];
  }
@@ -78,7 +79,7 @@ export function mountTestRecords(root,{selection,gate,download,range,onMarkers=(
   section.append(el('p',`Records: ${cov.bhpRecords} BHP, ${cov.srtRecords} step-rate · ${cov.packageRecords} ${ORIGIN_LABELS.package.toLowerCase()} · ${cov.uploadRecords} ${ORIGIN_LABELS.upload.toLowerCase()} · ${cov.flagged} flagged · ${cov.included} included · reference depth ${ref}.`));
   const status=el('p',message);status.setAttribute('role','status');section.append(status);
   const up=el('label','Add test records (CSV in Explorer\'s BHP or SRT column layout): ');const input=el('input');input.type='file';input.accept='.csv,text/csv';up.append(input);section.append(up);
-  input.dataset.focusKey='upload';input.onchange=async()=>{const f=input.files?.[0];if(!f)return;try{if(f.size>MAX_UPLOAD_BYTES)throw new Error('The file is larger than 2 MB.');const r=await session.upload(f.name,new Uint8Array(await f.arrayBuffer()));if(!r)return;message=`Added ${r.count} ${r.kind.toUpperCase()} records from ${f.name} (not verified).`;focusKey='upload';render();}catch(e){status.textContent=e.message;input.value='';input.focus();}};
+  input.dataset.focusKey='upload';input.onchange=async()=>{const f=input.files?.[0];if(!f)return;try{if(f.size>MAX_UPLOAD_BYTES)throw new Error('The file is larger than 2 MB.');const r=await session.upload(f.name,new Uint8Array(await f.arrayBuffer()));if(!r)return;onChange();message=`Added ${r.count} ${r.kind.toUpperCase()} records from ${f.name} (not verified).`;focusKey='upload';render();}catch(e){status.textContent=e.message;input.value='';input.focus();}};
   if(!st.records.length)section.append(el('p','No test records for this well.'));
   const bhp=st.records.filter(r=>r.kind==='bhp'),srt=st.records.filter(r=>r.kind==='srt');
   if(bhp.length)section.append(tableOf('BHP test review',['Test date','Date as published','BHP (source field named psia)','Depth (ft)','Gradient (psi/ft)','Formation'],bhp,r=>[r.date,r.dateText,r.bhpPsia,r.depthFt,r.values.gradient_psi_ft??null,r.values.tested_formation??''],st,status));
@@ -104,5 +105,5 @@ export function mountTestRecords(root,{selection,gate,download,range,onMarkers=(
   if(focusKey){const t=section.querySelector(`[data-focus-key="${focusKey}"]`);if(t)t.focus();focusKey=null;}
  }
  render();
- return {dispose(){try{onMarkers([]);}catch{}session.dispose();root.replaceChildren();}};
+ return {get state(){return session.state;},get uploads(){return session.uploads;},dispose(){try{onMarkers([]);}catch{}session.dispose();root.replaceChildren();}};
 }

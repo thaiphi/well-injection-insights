@@ -20,6 +20,10 @@
     {
       "name": "explorer-v5",
       "baseline": "migration/layers/explorer-v5.json"
+    },
+    {
+      "name": "phase-1c-test-referenced-j",
+      "baseline": "migration/layers/phase-1c-test-referenced-j.json"
     }
   ]
 }

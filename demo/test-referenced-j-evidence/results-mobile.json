@@ -1,0 +1,756 @@
+{
+ "c1_import": {
+  "ok": true,
+  "receiver": "Evidence verification passed. Review the exact version, coverage, row dispositions and calculation eligibility before adopting.",
+  "adopt": {
+   "import": "Confirmed preserved evidence rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627. Public history calculations eligible. Origin: user-provided Explorer package; content: recorded public reported. Stored pin unchanged.",
+   "active": "rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627 · user-provided Explorer package · public reported"
+  }
+ },
+ "c1_order": {
+  "kids": [
+   "analysis-chart-scroll",
+   "analysis-chart-scroll",
+   "analysis-chart-scroll",
+   "table-scroll",
+   "DETAILS",
+   "h10-diagnostics",
+   "test-records",
+   "injectivity-estimate"
+  ],
+  "jBelowTests": true,
+  "jLast": true
+ },
+ "c1_panel": {
+  "title": "Test-referenced J (estimate)",
+  "status": "",
+  "statusFirst": true,
+  "paras": [
+   "",
+   "BHP tests: 3 · matched: 3 · unmatched: 0 · not usable: 0 · qualifying: 0",
+   "Confirm the pressure basis to see test-referenced J.",
+   "Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse; declared tubing and fluid assumptions; monthly calendar-day average rate.",
+   "Defaults: innerDiameterInches 3.958, roughnessInches 0.0006, surfaceTemperatureF 70, bottomholeTemperatureF 100, salinityWtPercent 10, segments 32. MD = TVD = test depth (vertical well declared). Tubing sensitivity always runs 3.958, 4.892, 6.276 in.",
+   "containing month (default)",
+   "containing month (default)",
+   "containing month (default)",
+   "Download the J estimate JSON first: opening Hydraulics clears this review, and the hand-off cites the sealed estimate's hash.",
+   "Downloads need a confirmed pressure basis."
+  ],
+  "tables": [
+   {
+    "label": "BHP test matches",
+    "heads": [
+     "Test date",
+     "Depth (ft)",
+     "Matched month",
+     "Move",
+     "Rate (bbl/day)",
+     "Surface (psi)",
+     "Reported BHP (psi, as reported)",
+     "P_res (psia)",
+     "Hydrostatic (psi)",
+     "Friction (psi)",
+     "P_wf (psia)",
+     "Δp (psi)",
+     "J",
+     "J no-friction",
+     "J other basis",
+     "J by tubing",
+     "Status",
+     "Use this J"
+    ],
+    "rows": [
+     [
+      "2024-02-12",
+      "3,310",
+      "2024-02",
+      "containing month (default)previous monthcontaining monthnext month",
+      "14.379",
+      "300",
+      "1,705",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "awaiting-basis: Confirm the pressure basis first.",
+      ""
+     ],
+     [
+      "2024-07-22",
+      "3,310",
+      "2024-07",
+      "containing month (default)previous monthcontaining monthnext month",
+      "13.871",
+      "300",
+      "1,731",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "awaiting-basis: Confirm the pressure basis first.",
+      ""
+     ],
+     [
+      "2024-11-05",
+      "3,310",
+      "2024-11",
+      "containing month (default)previous monthcontaining monthnext month",
+      "14",
+      "300",
+      "1,745",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "awaiting-basis: Confirm the pressure basis first.",
+      ""
+     ]
+    ]
+   }
+  ],
+  "svgCount": 1,
+  "chartPoints": 0,
+  "chartText": [
+   "Test-referenced J (estimate) by test date",
+   "No Test-referenced J (estimate) to chart. Confirm the pressure basis to see test-referenced J.",
+   "Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse;",
+   "declared tubing and fluid assumptions; monthly calendar-day average rate.",
+   "Bars span J under the other basis reading and the tubing sizes 3.958, 4.892 and 6.276 in."
+  ],
+  "buttons": [
+   {
+    "t": "Confirm basis",
+    "disabled": false
+   },
+   {
+    "t": "Download J estimate JSON",
+    "disabled": true
+   },
+   {
+    "t": "Download J estimate CSV",
+    "disabled": true
+   },
+   {
+    "t": "Download J estimate SVG",
+    "disabled": true
+   },
+   {
+    "t": "Use in scenario (Hydraulics)",
+    "disabled": true
+   }
+  ],
+  "radios": [
+   {
+    "v": "psig",
+    "checked": true
+   },
+   {
+    "v": "psia",
+    "checked": false
+   }
+  ],
+  "calibrated": false
+ },
+ "c2_confirmButtonFollowsReason": true,
+ "c2_panel": {
+  "title": "Test-referenced J (estimate)",
+  "status": "Basis confirmed.",
+  "statusFirst": true,
+  "paras": [
+   "Basis confirmed.",
+   "BHP tests: 3 · matched: 3 · unmatched: 0 · not usable: 0 · qualifying: 3",
+   "3 of 3 BHP tests give a test-referenced J (estimate).",
+   "Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse; declared tubing and fluid assumptions; monthly calendar-day average rate.",
+   "Defaults: innerDiameterInches 3.958, roughnessInches 0.0006, surfaceTemperatureF 70, bottomholeTemperatureF 100, salinityWtPercent 10, segments 32. MD = TVD = test depth (vertical well declared). Tubing sensitivity always runs 3.958, 4.892, 6.276 in.",
+   "containing month (default)",
+   "containing month (default)",
+   "containing month (default)",
+   "Chosen: package:bhp:3 (latest qualifying test, default). J range across matched tests: 0.11 to 0.155 STB/day/psi. Trend shown: tests share depth, basis and assumptions.",
+   "Round trip: the scenario reproduces the chosen month within 0.5 psi.",
+   "Download the J estimate JSON first: opening Hydraulics clears this review, and the hand-off cites the sealed estimate's hash."
+  ],
+  "tables": [
+   {
+    "label": "BHP test matches",
+    "heads": [
+     "Test date",
+     "Depth (ft)",
+     "Matched month",
+     "Move",
+     "Rate (bbl/day)",
+     "Surface (psi)",
+     "Reported BHP (psi, as reported)",
+     "P_res (psia)",
+     "Hydrostatic (psi)",
+     "Friction (psi)",
+     "P_wf (psia)",
+     "Δp (psi)",
+     "J",
+     "J no-friction",
+     "J other basis",
+     "J by tubing",
+     "Status",
+     "Use this J"
+    ],
+    "rows": [
+     [
+      "2024-02-12",
+      "3,310",
+      "2024-02",
+      "containing month (default)previous monthcontaining monthnext month",
+      "14.379",
+      "300",
+      "1,705",
+      "1,719.7",
+      "1,535.2",
+      "0.002",
+      "1,849.9",
+      "130.21",
+      "0.11",
+      "0.048",
+      "0.099",
+      "3.958 in: 0.11; 4.892 in: 0.11; 6.276 in: 0.11",
+      "qualifies",
+      ""
+     ],
+     [
+      "2024-07-22",
+      "3,310",
+      "2024-07",
+      "containing month (default)previous monthcontaining monthnext month",
+      "13.871",
+      "300",
+      "1,731",
+      "1,745.7",
+      "1,535.2",
+      "0.001",
+      "1,849.9",
+      "104.21",
+      "0.133",
+      "0.046",
+      "0.117",
+      "3.958 in: 0.133; 4.892 in: 0.133; 6.276 in: 0.133",
+      "qualifies",
+      ""
+     ],
+     [
+      "2024-11-05",
+      "3,310",
+      "2024-11",
+      "containing month (default)previous monthcontaining monthnext month",
+      "14",
+      "300",
+      "1,745",
+      "1,759.7",
+      "1,535.2",
+      "0.001",
+      "1,849.9",
+      "90.208",
+      "0.155",
+      "0.047",
+      "0.133",
+      "3.958 in: 0.155; 4.892 in: 0.155; 6.276 in: 0.155",
+      "qualifies",
+      ""
+     ]
+    ]
+   },
+   {
+    "label": "Round trip",
+    "heads": [
+     "Month",
+     "Rate (bbl/day)",
+     "Observed surface (psia)",
+     "Reproduced (psia)",
+     "Residual (psi)",
+     "Chosen"
+    ],
+    "rows": [
+     [
+      "2024-02",
+      "14.379",
+      "314.7",
+      "317.13",
+      "2.435",
+      "no"
+     ],
+     [
+      "2024-07",
+      "13.871",
+      "314.7",
+      "313.87",
+      "-0.828",
+      "no"
+     ],
+     [
+      "2024-11",
+      "14",
+      "314.7",
+      "314.7",
+      "-0",
+      "yes"
+     ]
+    ]
+   }
+  ],
+  "svgCount": 1,
+  "chartPoints": 3,
+  "chartText": [
+   "Test-referenced J (estimate) by test date",
+   "0",
+   "0.05",
+   "0.1",
+   "0.15",
+   "0.2",
+   "J (STB/day/psi), estimate",
+   "0.11",
+   "0.133",
+   "0.155",
+   "2024-02-12",
+   "2024-11-05",
+   "Points: 3 qualifying tests; the larger point is the chosen J.",
+   "Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse;",
+   "declared tubing and fluid assumptions; monthly calendar-day average rate.",
+   "Bars span J under the other basis reading and the tubing sizes 3.958, 4.892 and 6.276 in."
+  ],
+  "buttons": [
+   {
+    "t": "Change basis",
+    "disabled": false
+   },
+   {
+    "t": "Download J estimate JSON",
+    "disabled": false
+   },
+   {
+    "t": "Download J estimate CSV",
+    "disabled": false
+   },
+   {
+    "t": "Download J estimate SVG",
+    "disabled": false
+   },
+   {
+    "t": "Use in scenario (Hydraulics)",
+    "disabled": false
+   }
+  ],
+  "radios": [
+   {
+    "v": "psig",
+    "checked": true
+   },
+   {
+    "v": "psia",
+    "checked": false
+   }
+  ],
+  "calibrated": false
+ },
+ "c2_summary": {
+  "counts": "BHP tests: 3 · matched: 3 · unmatched: 0 · not usable: 0 · qualifying: 3",
+  "status": "Basis confirmed.",
+  "statusCol": [
+   "qualifies",
+   "qualifies",
+   "qualifies"
+  ],
+  "roundTrip": "Round trip: the scenario reproduces the chosen month within 0.5 psi.",
+  "rtRows": 3,
+  "chartPoints": 3,
+  "paras": [
+   "Basis confirmed.",
+   "Chosen: package:bhp:3 (latest qualifying test, default). J range across matched tests: 0.11 to 0.155 STB/day/psi. Trend shown: tests share depth, basis and assumptions.",
+   "Round trip: the scenario reproduces the chosen month within 0.5 psi."
+  ]
+ },
+ "c2_chartClip": {
+  "vbW": 960,
+  "vbH": 446,
+  "svgClientW": 650,
+  "containerClientW": 306,
+  "containerScrollW": 650,
+  "textCount": 16,
+  "clippedTexts": [
+   {
+    "t": "J (STB/day/psi), estimate",
+    "left": -50,
+    "right": 81,
+    "y": 175
+   }
+  ],
+  "topTexts": [
+   {
+    "t": "Test-referenced J (estimate) by test date",
+    "left": 77,
+    "right": 368,
+    "y": 8
+   },
+   {
+    "t": "0.2",
+    "left": 56,
+    "right": 70,
+    "y": 50
+   }
+  ]
+ },
+ "c2_layout": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "docClientW": 390,
+  "bodyScrollW": 390,
+  "pageHScroll": false,
+  "containers": [
+   {
+    "cls": "table-scroll",
+    "label": "BHP test matches",
+    "scrollW": 1380,
+    "clientW": 306
+   },
+   {
+    "cls": "analysis-chart-scroll",
+    "label": null,
+    "scrollW": 650,
+    "clientW": 306
+   },
+   {
+    "cls": "table-scroll",
+    "label": "Round trip",
+    "scrollW": 620,
+    "clientW": 306
+   }
+  ]
+ },
+ "c3_summary": {
+  "counts": "BHP tests: 3 · matched: 2 · unmatched: 1 · not usable: 0 · qualifying: 2",
+  "status": "Recalculated after a review change.",
+  "statusCol": [
+   "qualifies",
+   "unmatched: The matched month is excluded in the H-10 review.",
+   "qualifies"
+  ],
+  "roundTrip": "Round trip: the scenario reproduces the chosen month within 0.5 psi.",
+  "rtRows": 2,
+  "chartPoints": 2,
+  "paras": [
+   "Chosen: package:bhp:3 (latest qualifying test, default). J range across matched tests: 0.11 to 0.155 STB/day/psi. Trend shown: tests share depth, basis and assumptions.",
+   "Round trip: the scenario reproduces the chosen month within 0.5 psi."
+  ]
+ },
+ "c3_match_rows": [
+  [
+   "2024-02-12",
+   "2024-02",
+   "qualifies"
+  ],
+  [
+   "2024-07-22",
+   "2024-07",
+   "unmatched: The matched month is excluded in the H-10 review."
+  ],
+  [
+   "2024-11-05",
+   "2024-11",
+   "qualifies"
+  ]
+ ],
+ "c3_restored": {
+  "counts": "BHP tests: 3 · matched: 3 · unmatched: 0 · not usable: 0 · qualifying: 3",
+  "status": "Recalculated after a review change.",
+  "statusCol": [
+   "qualifies",
+   "qualifies",
+   "qualifies"
+  ],
+  "roundTrip": "Round trip: the scenario reproduces the chosen month within 0.5 psi.",
+  "rtRows": 3,
+  "chartPoints": 3,
+  "paras": [
+   "Chosen: package:bhp:3 (latest qualifying test, default). J range across matched tests: 0.11 to 0.155 STB/day/psi. Trend shown: tests share depth, basis and assumptions.",
+   "Round trip: the scenario reproduces the chosen month within 0.5 psi."
+  ]
+ },
+ "c4_chosen": {
+  "counts": "BHP tests: 3 · matched: 3 · unmatched: 0 · not usable: 0 · qualifying: 3",
+  "status": "J from 2024-02-12 chosen.",
+  "statusCol": [
+   "qualifies",
+   "qualifies",
+   "qualifies"
+  ],
+  "roundTrip": "Round trip: the scenario reproduces the chosen month within 0.5 psi.",
+  "rtRows": 3,
+  "chartPoints": 3,
+  "paras": [
+   "J from 2024-02-12 chosen.",
+   "Chosen: package:bhp:1 (your choice: Synthetic: prefer the earlier test). J range across matched tests: 0.11 to 0.155 STB/day/psi. Trend shown: tests share depth, basis and assumptions.",
+   "Round trip: the scenario reproduces the chosen month within 0.5 psi."
+  ]
+ },
+ "c4_after1bExclude": {
+  "counts": "BHP tests: 3 · matched: 2 · unmatched: 0 · not usable: 1 · qualifying: 2",
+  "status": "Recalculated after a review change.",
+  "statusCol": [
+   "refused: Excluded in the Test records review.",
+   "qualifies",
+   "qualifies"
+  ],
+  "roundTrip": "Round trip: the scenario reproduces the chosen month within 0.5 psi.",
+  "rtRows": 2,
+  "chartPoints": 2,
+  "paras": [
+   "Your chosen test no longer qualifies; the latest qualifying test is used.",
+   "Chosen: package:bhp:3 (latest qualifying test, default). J range across matched tests: 0.133 to 0.155 STB/day/psi. Trend shown: tests share depth, basis and assumptions.",
+   "Round trip: the scenario reproduces the chosen month within 0.5 psi."
+  ]
+ },
+ "c4_restored": {
+  "counts": "BHP tests: 3 · matched: 3 · unmatched: 0 · not usable: 0 · qualifying: 3",
+  "status": "Recalculated after a review change.",
+  "statusCol": [
+   "qualifies",
+   "qualifies",
+   "qualifies"
+  ],
+  "roundTrip": "Round trip: the scenario reproduces the chosen month within 0.5 psi.",
+  "rtRows": 3,
+  "chartPoints": 3,
+  "paras": [
+   "Chosen: package:bhp:1 (your choice: Synthetic: prefer the earlier test). J range across matched tests: 0.11 to 0.155 STB/day/psi. Trend shown: tests share depth, basis and assumptions.",
+   "Round trip: the scenario reproduces the chosen month within 0.5 psi."
+  ]
+ },
+ "c5_downloads": [
+  {
+   "name": "test-referenced-j-000000417-726489b25fa4.json",
+   "type": "application/json",
+   "chars": 7510,
+   "sha256": "9a659107b414710d2a6116756d0464fdb6b08be7ecabdc3a1bed77f65480d902"
+  },
+  {
+   "name": "test-referenced-j-000000417-726489b25fa4.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 4700,
+   "sha256": "0bc65a3030f6a1229d93628d9fa866953ff81c1aad1e69fe0998c9e25cb364b1"
+  },
+  {
+   "name": "test-referenced-j-000000417-726489b25fa4.svg",
+   "type": "image/svg+xml",
+   "chars": 11110,
+   "sha256": "b6ee6e644145c031a31a54df668e1550410e9755843008aeeedcd4d66410c483"
+  }
+ ],
+ "c5_status": "Downloaded test-referenced-j-000000417-726489b25fa4.svg.",
+ "c5_layout": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "docClientW": 390,
+  "bodyScrollW": 390,
+  "pageHScroll": false,
+  "containers": [
+   {
+    "cls": "table-scroll",
+    "label": "BHP test matches",
+    "scrollW": 1380,
+    "clientW": 306
+   },
+   {
+    "cls": "analysis-chart-scroll",
+    "label": null,
+    "scrollW": 650,
+    "clientW": 306
+   },
+   {
+    "cls": "table-scroll",
+    "label": "Round trip",
+    "scrollW": 620,
+    "clientW": 306
+   }
+  ]
+ },
+ "c6_after_handoff": {
+  "hash": "#fluid/hydraulics",
+  "wsVisible": true,
+  "originsText": "Prefilled from the test-referenced J estimateInjectivity J: Test-referenced J (estimate) from BHP test 2024-02-12 and H-10 2024-02; sealed estimate 726489b25fa4Reservoir pressure: BHP test 2024-02-12: psig reading + 14.7 psi (basis confirmed: RRC Permian guidance: BHP reported in psig (verification))Fluid reference pressure: Set to the reservoir pressure (fluid reference state, context only)datum: From the BHP test depth (RRC guidance: top of the completed disposal interval)True vertical depth: BHP test depth; vertical well declaredMeasured depth: BHP test depth; vertical well declaredTubing inner diameter: Declared assumption (test-referenced J estimate)Absolute roughness: Declared assumption (test-referenced J estimate)Bottomhole / uniform temperature: Declared assumption (test-referenced J estimate)Surface temperature: Declared assumption (test-referenced J estimate)NaCl salinity: Declared assumption (test-referenced J estimate)Initial traverse intervals: Declared assumption (test-referenced J estimate)Selected injection rate: H-10 2024-02 calendar-day average ratePressure-curve maximum rate: 1.5 x the matched rateWellhead pressure limit: Inventory permitted surface pressure 1500 psi + 14.7 psi (permit value)Operating rate ceiling: Inventory permitted volume 1200 bbl/day (permit value)Bottomhole pressure limit: Not set from evidence; declare it.J range for sweeps: 0.1104 to 0.1552 STB/day/psi (enter it in Parameter sweeps).Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse; declared tubing and fluid assumptions; monthly calendar-day average rate.",
+  "originsItems": [
+   "Injectivity J: Test-referenced J (estimate) from BHP test 2024-02-12 and H-10 2024-02; sealed estimate 726489b25fa4",
+   "Reservoir pressure: BHP test 2024-02-12: psig reading + 14.7 psi (basis confirmed: RRC Permian guidance: BHP reported in psig (verification))",
+   "Fluid reference pressure: Set to the reservoir pressure (fluid reference state, context only)",
+   "datum: From the BHP test depth (RRC guidance: top of the completed disposal interval)",
+   "True vertical depth: BHP test depth; vertical well declared",
+   "Measured depth: BHP test depth; vertical well declared",
+   "Tubing inner diameter: Declared assumption (test-referenced J estimate)",
+   "Absolute roughness: Declared assumption (test-referenced J estimate)",
+   "Bottomhole / uniform temperature: Declared assumption (test-referenced J estimate)",
+   "Surface temperature: Declared assumption (test-referenced J estimate)",
+   "NaCl salinity: Declared assumption (test-referenced J estimate)",
+   "Initial traverse intervals: Declared assumption (test-referenced J estimate)",
+   "Selected injection rate: H-10 2024-02 calendar-day average rate",
+   "Pressure-curve maximum rate: 1.5 x the matched rate",
+   "Wellhead pressure limit: Inventory permitted surface pressure 1500 psi + 14.7 psi (permit value)",
+   "Operating rate ceiling: Inventory permitted volume 1200 bbl/day (permit value)",
+   "Bottomhole pressure limit: Not set from evidence; declare it."
+  ],
+  "values": {
+   "caseName": "Test-referenced J (estimate)",
+   "model": "segmented-brine",
+   "rateStbd": "14.379310344827585",
+   "injectivityStbdPerPsi": "0.11043303184658802",
+   "reservoirPsia": "1719.7",
+   "limitPsia": "",
+   "surfaceLimitPsia": "1514.7",
+   "operatingCeilingStbd": "1200",
+   "datum": "Top of completed interval at 3310 ft TVD (RRC guidance), from BHP test 2024-02-12",
+   "tvdFt": "3310",
+   "measuredDepthFt": "3310",
+   "innerDiameterInches": "3.958",
+   "roughnessInches": "0.0006",
+   "temperatureF": "100",
+   "salinityWtPercent": "10",
+   "referencePressurePsia": "1719.7",
+   "surfaceTemperatureF": "70",
+   "segments": "32",
+   "curveMaximumStbd": "22",
+   "curvePoints": "21"
+  },
+  "limitEmpty": true,
+  "status": "Prefilled from the test-referenced J estimate. Declare the bottomhole limit, review every value and calculate."
+ },
+ "c6_calc_blocked": {
+  "error": "Enter bottomhole pressure limit.",
+  "status": "Calculation blocked. Correct the input or unsupported numerical condition and calculate again.",
+  "exportsDisabled": true
+ },
+ "c6_calc_after_declare": {
+  "error": "",
+  "status": "Calculated depth-dependent brine · 14.379 STB/day selected · 0 flagged curve points. Downloads match these assumptions.",
+  "exportsDisabled": [
+   false,
+   false,
+   false
+  ]
+ },
+ "c6_hyd_export": [
+  {
+   "name": "swd-standalone-hydraulics.json",
+   "type": "application/json",
+   "chars": 903665,
+   "sha256": "266b803a4bb56351535ac8aeb51759520f45a5eb8b6564e01d601e34b755e865"
+  }
+ ],
+ "c6_inputOrigins": {
+  "present": true,
+  "keys": [
+   "injectivityStbdPerPsi",
+   "reservoirPsia",
+   "referencePressurePsia",
+   "datum",
+   "tvdFt",
+   "measuredDepthFt",
+   "innerDiameterInches",
+   "roughnessInches",
+   "temperatureF",
+   "surfaceTemperatureF",
+   "salinityWtPercent",
+   "segments",
+   "rateStbd",
+   "curveMaximumStbd",
+   "surfaceLimitPsia",
+   "operatingCeilingStbd",
+   "limitPsia"
+  ],
+  "limitPsia": "Declared by the user"
+ },
+ "c6_edit_J": {
+  "items": [
+   "Injectivity J: User override (was: Test-referenced J (estimate) from BHP test 2024-02-12 and H-10 2024-02; sealed estimate 726489b25fa4)",
+   "Reservoir pressure: BHP test 2024-02-12: psig reading + 14.7 psi (basis confirmed: RRC Permian guidance: BHP reported in psig (verification))",
+   "Fluid reference pressure: Set to the reservoir pressure (fluid reference state, context only)",
+   "datum: From the BHP test depth (RRC guidance: top of the completed disposal interval)",
+   "True vertical depth: BHP test depth; vertical well declared",
+   "Measured depth: BHP test depth; vertical well declared",
+   "Tubing inner diameter: Declared assumption (test-referenced J estimate)",
+   "Absolute roughness: Declared assumption (test-referenced J estimate)",
+   "Bottomhole / uniform temperature: Declared assumption (test-referenced J estimate)",
+   "Surface temperature: Declared assumption (test-referenced J estimate)",
+   "NaCl salinity: Declared assumption (test-referenced J estimate)",
+   "Initial traverse intervals: Declared assumption (test-referenced J estimate)",
+   "Selected injection rate: H-10 2024-02 calendar-day average rate",
+   "Pressure-curve maximum rate: 1.5 x the matched rate",
+   "Wellhead pressure limit: Inventory permitted surface pressure 1500 psi + 14.7 psi (permit value)",
+   "Operating rate ceiling: Inventory permitted volume 1200 bbl/day (permit value)",
+   "Bottomhole pressure limit: Declared by the user"
+  ],
+  "userOverride": true
+ },
+ "c6_layout_hyd": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "docClientW": 390,
+  "bodyScrollW": 390,
+  "pageHScroll": false,
+  "containers": []
+ },
+ "c7_gap_import": {
+  "ok": false,
+  "receiver": "Package rejected: Manifest history status contradicts canonical source dispositions. Your current dataset and stored pin are unchanged."
+ },
+ "c7_fallback_script": {
+  "h10Available": false,
+  "trTitle": true,
+  "jTitle": true,
+  "jParas": [
+   "",
+   "BHP tests: 3 · matched: 0 · unmatched: 3 · not usable: 0 · qualifying: 0",
+   "Confirm the pressure basis to see test-referenced J.",
+   "Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse; declared tubing and fluid assumptions; monthly calendar-day average rate.",
+   "Defaults: innerDiameterInches 3.958, roughnessInches 0.0006, surfaceTemperatureF 70, bottomholeTemperatureF 100, salinityWtPercent 10, segments 32. MD = TVD = test depth (vertical well declared). Tubing sensitivity always runs 3.958, 4.892, 6.276 in."
+  ],
+  "hasNoMonthsText": true,
+  "trNoRangeLabels": 3,
+  "matchRows": [
+   "unmatched: No H-10 months to match.",
+   "unmatched: No H-10 months to match.",
+   "unmatched: No H-10 months to match."
+  ]
+ },
+ "c8_layout": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "docClientW": 390,
+  "bodyScrollW": 390,
+  "pageHScroll": false,
+  "containers": [
+   {
+    "cls": "table-scroll",
+    "label": "BHP test matches",
+    "scrollW": 1047,
+    "clientW": 306
+   },
+   {
+    "cls": "analysis-chart-scroll",
+    "label": null,
+    "scrollW": 650,
+    "clientW": 306
+   }
+  ]
+ },
+ "console": [],
+ "warnings": 0
+}

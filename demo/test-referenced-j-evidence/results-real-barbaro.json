@@ -1,0 +1,65 @@
+{
+ "r_import": {
+  "ok": true,
+  "receiver": "Evidence verification passed. Review the exact version, coverage, row dispositions and calculation eligibility before adopting.",
+  "adopt": {
+   "import": "Confirmed preserved evidence rrc-2026-10-30-uic000125182-d04894d1-5c27-4392-b3f7-42a399c7fbe1. Public history calculations eligible. Origin: user-provided Explorer package; content: recorded public reported. Stored pin unchanged.",
+   "active": "rrc-2026-10-30-uic000125182-d04894d1-5c27-4392-b3f7-42a399c7fbe1 · user-provided Explorer package · public reported"
+  }
+ },
+ "r_initial": {
+  "counts": "BHP tests: 4 · matched: 3 · unmatched: 0 · not usable: 1 · qualifying: 0",
+  "paras": [
+   "Confirm the pressure basis to see test-referenced J."
+  ],
+  "status": "",
+  "hasTable": true,
+  "h10": true
+ },
+ "r_after_basis": {
+  "counts": "BHP tests: 4 · matched: 3 · unmatched: 0 · not usable: 1 · qualifying: 0",
+  "statusCounts": {
+   "refused": 4
+  },
+  "unmatchedReasons": [
+   [
+    "refused: Excluded in the Test records review.",
+    1
+   ],
+   [
+    "refused: Flowing pressure not above reservoir pressure; no J.",
+    3
+   ]
+  ],
+  "roundTrip": null,
+  "roundTripRows": 0,
+  "buttons": [
+   {
+    "t": "Change basis",
+    "disabled": false
+   },
+   {
+    "t": "Download J estimate JSON",
+    "disabled": false
+   },
+   {
+    "t": "Download J estimate CSV",
+    "disabled": false
+   },
+   {
+    "t": "Download J estimate SVG",
+    "disabled": false
+   },
+   {
+    "t": "Use in scenario (Hydraulics)",
+    "disabled": true
+   }
+  ]
+ },
+ "r_handoff": {
+  "clicked": false,
+  "disabled": true
+ },
+ "console": [],
+ "warnings": 0
+}

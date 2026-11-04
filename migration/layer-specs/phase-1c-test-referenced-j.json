@@ -1,0 +1,15 @@
+{
+  "purpose": "Phase 1c (PRD ANA-E03 under D5): test-referenced injectivity (J) estimate from reviewed H-10 months and included BHP tests, with sensitivities, a round-trip check, sealed exports and a Hydraulics workspace hand-off; fixes the Test records panel being absent when a well has tests but no H-10 rows.",
+  "acceptanceEvidence": "demo/TEST-REFERENCED-J-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-11-03-test-referenced-j-design.md",
+    "docs/superpowers/plans/2026-11-03-test-referenced-j.md"
+  ],
+  "changes": ["src/testRecords.ts", "web/h10-diagnostics.mjs", "web/test-records.mjs", "web/hydraulics.mjs", "web/import-ui.mjs", "tests/test-records-export.test.mjs"],
+  "newFiles": [
+    "src/injectivityEstimate.ts", "src/injectivityEstimateChart.ts", "src/injectivityEstimateExport.ts", "web/injectivity.mjs",
+    "tests/injectivity-estimate.test.mjs", "tests/injectivity-export.test.mjs", "tests/injectivity-session.test.mjs",
+    "tests/panel-hooks.test.mjs", "tests/hydraulics-handoff.test.mjs", "tests/helpers/injectivity-fixture.mjs"
+  ],
+  "rootFiles": ["migration/layers/index.json"]
+}

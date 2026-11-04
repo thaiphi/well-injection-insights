@@ -29,6 +29,24 @@ const numericFields = [
   ['curvePoints','Pressure-curve points','points',2,41],
 ];
 const fieldByKey = new Map(numericFields.map(field=>[field[0],field]));
+const HANDOFF_FIELDS=new Set([...numericFields.map(([key])=>key),'caseName','datum','model']);
+/** Test-referenced J hand-off → form strings. Null leaves a field empty so the user must declare it. */
+export function applyHandoff(handoff){
+  const fields={};
+  for(const [key,value] of Object.entries(handoff?.values??{})){if(!HANDOFF_FIELDS.has(key))throw Error(`Unknown hand-off field: ${key}`);fields[key]=value===null||value===undefined?'':String(value);}
+  return {fields,origins:{...(handoff?.origins??{})},notes:[...(handoff?.notes??[])]};
+}
+export function markOverride(origins,key){
+  if(!(key in origins)||origins[key].startsWith('User override')||origins[key]==='Declared by the user')return origins;
+  if(origins[key].startsWith('Not set from evidence'))return {...origins,[key]:'Declared by the user'};
+  const was=origins[key].length>379?`${origins[key].slice(0,378)}…`:origins[key];
+  return {...origins,[key]:`User override (was: ${was})`};
+}
+function checkOrigins(origins){
+  if(!origins||typeof origins!=='object'||Array.isArray(origins))throw Error('Each input origin must be a labelled string.');
+  const out={};for(const [key,value] of Object.entries(origins)){if(!HANDOFF_FIELDS.has(key)||typeof value!=='string'||!value||value.length>400)throw Error(`Invalid input origin for ${key}.`);out[key]=value;}
+  return out;
+}
 const clone = value=>structuredClone(value);
 const esc = value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&apos;');
 const fmt = value=>value===null||value===undefined?'Unavailable':typeof value==='number'?value.toLocaleString('en-US',value!==0&&Math.abs(value)<0.01?{maximumSignificantDigits:6}:{maximumFractionDigits:3}):String(value);
@@ -81,10 +99,10 @@ export function calculateHydraulics(raw) {
       friction:segmented?'Existing RK4 step-doubling traverse; Darcy-Weisbach with retained Nexus Serghides Fanning factor ×4 to Darcy; custom transition interpolation.':'Existing uniform Darcy-Weisbach model; Swamee-Jain turbulent factor, 64/Re laminar factor, custom transition interpolation.',
       profile:segmented?'Existing backend local depth nodes at the selected onstream rate. Unsupported solves retain null pressure outputs.':'Uniform backend exposes endpoint contributions only; no local depth traverse is calculated.',
       curve:'Existing caseHydraulicPoint evaluated on the explicit requested rate grid. Curves are screening points, not a capacity optimization.'},
-    provenance:{inputs:'User-entered assumptions; initial defaults are explicitly assumed fictional values.',outputs:'calculated',planningDatasetUsed:false,forecastUsed:false,liveMcpCall:false,pvt:pvt.provenance,
+    provenance:{inputs:'User-entered assumptions; initial defaults are explicitly assumed fictional values.',...(raw?.inputOrigins!==undefined?{inputOrigins:checkOrigins(raw.inputOrigins)}:{}),outputs:'calculated',planningDatasetUsed:false,forecastUsed:false,liveMcpCall:false,pvt:pvt.provenance,
       ...(segmented?{wellboreFrictionSource:{name:'reference/nexus-wellbore/serghides.ts',sha256:'db934a2a0d850aa3375789e590ad1699fac9611157459a8bed1343da641bc4be',conversion:'Darcy = 4 × Nexus Fanning',reuse:'Owner-authorized local snapshot; source license not established; full Nexus injection/VFP parity not claimed'}}:{}),
       hydraulicsImplementation:segmented?'Existing custom steady single-phase RK4 brine injection traverse and constant-J coupling.':'Existing custom uniform SI Darcy-Weisbach/Swamee-Jain screening model.',
-      pressureReferences:{reservoir:inputs.datum,bottomholeLimit:inputs.datum,wellhead:'Wellhead surface reference, 0 ft; related to the bottomhole datum by declared TVD.',basis:'All pressures absolute psia; no gauge conversion or inferred RRC pressure basis.'}},
+      pressureReferences:{reservoir:inputs.datum,bottomholeLimit:inputs.datum,wellhead:'Wellhead surface reference, 0 ft; related to the bottomhole datum by declared TVD.',basis:'All pressures absolute psia; no gauge conversion or inferred RRC pressure basis.',...(raw?.inputOrigins!==undefined?{handoffNote:'Prefilled values were converted to psia by the J estimate as their origins state; this workspace itself applies no gauge conversion.'}:{})}},
     limitations:[...pvt.limitations.filter(text=>!text.startsWith('Independent fluid case:')),
       'Assumed engineering screening only; no field calibration, sustainable-capacity acceptance or operating recommendation.',
       'No demand allocation, capacity optimization, availability schedule, saved case or planning forecast is calculated in this workspace.',
@@ -211,6 +229,7 @@ export function mountHydraulicsWorkspace(root=globalThis.document?.getElementByI
   // Recover the explicit current route without restoring any calculation state.
   const initialHash=doc.defaultView?.location?.hash??doc.location?.hash??'';
   let current=null,revision=0,activeTab=initialHash==='#fluid/profiles'?'profiles':'hydraulics';
+  let origins=null,prefilled=null,originNotes=[];
   const exports=[...root.querySelectorAll('[data-hyd-export]')];
   function switchTab(tab,focus=false) {
     if(!['hydraulics','profiles'].includes(tab)) return;
@@ -230,7 +249,15 @@ export function mountHydraulicsWorkspace(root=globalThis.document?.getElementByI
     const values={},model=form.elements.namedItem('model').value;
     for(const [key,label] of numericFields) {if(model==='uniform-brine'&&['surfaceTemperatureF','segments'].includes(key))continue;const raw=form.elements.namedItem(key).value.trim();if(!raw)throw Error(`Enter ${label.toLowerCase()}.`);values[key]=Number(raw);}
     for(const key of ['caseName','datum','model'])values[key]=form.elements.namedItem(key).value;
+    if(origins)values.inputOrigins={...origins};
     return values;
+  }
+  function renderOrigins(){
+    let box=$('hyd-origins');if(!origins){box?.remove();return;}
+    if(!box){box=doc.createElement('div');box.id='hyd-origins';box.className='hyd-origins';box.setAttribute('role','region');box.setAttribute('aria-label','Where the prefilled values came from');form.prepend(box);}
+    box.replaceChildren();const h=doc.createElement('h3');h.textContent='Prefilled from the test-referenced J estimate';box.append(h);
+    const ul=doc.createElement('ul');for(const [key,text] of Object.entries(origins)){const li=doc.createElement('li');li.textContent=`${fieldByKey.get(key)?.[1]??key}: ${text}`;ul.append(li);}box.append(ul);
+    for(const note of originNotes){const p=doc.createElement('p');p.textContent=note;box.append(p);}
   }
   function render(result) {
     current=result;$('hyd-results').hidden=false;$('hyd-empty').hidden=true;exports.forEach(button=>button.disabled=false);
@@ -262,13 +289,13 @@ export function mountHydraulicsWorkspace(root=globalThis.document?.getElementByI
     const pre=doc.createElement('pre');pre.textContent=JSON.stringify({methodVersion:result.methodVersion,inputs:result.inputs,units:result.units,provenance:result.provenance},null,2);evidence.append(pre);
     switchTab(activeTab);
   }
-  form.addEventListener('input',()=>{modelControls();invalidate();});
+  form.addEventListener('input',event=>{const key=event.target?.name;if(origins&&prefilled&&key in prefilled&&event.target.value!==prefilled[key]){origins=markOverride(origins,key);renderOrigins();}modelControls();invalidate();});
   form.addEventListener('change',()=>{modelControls();invalidate();});
   form.addEventListener('submit',event=> {
     event.preventDefault();invalidate('Calculating the declared wellbore and rate grid…');
     try {const result=calculateHydraulics(snapshot());render(result);} catch(error) {$('hyd-error').textContent=error.message;$('hyd-status').textContent='Calculation blocked. Correct the input or unsupported numerical condition and calculate again.';}
   });
-  $('hyd-reset').addEventListener('click',()=>{for(const [key,value] of Object.entries(HYDRAULICS_DEFAULTS))form.elements.namedItem(key).value=String(value);modelControls();invalidate('Fictional assumed defaults restored. Review them and calculate.');});
+  $('hyd-reset').addEventListener('click',()=>{for(const [key,value] of Object.entries(HYDRAULICS_DEFAULTS))form.elements.namedItem(key).value=String(value);origins=null;prefilled=null;originNotes=[];renderOrigins();modelControls();invalidate('Fictional assumed defaults restored. Review them and calculate.');});
   root.querySelectorAll('[data-hyd-tab]').forEach(button=> {
     button.addEventListener('click',()=>switchTab(button.dataset.hydTab));
     button.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){event.preventDefault();switchTab(event.key==='Home'?'hydraulics':event.key==='End'?'profiles':activeTab==='hydraulics'?'profiles':'hydraulics',true);}});
@@ -285,7 +312,9 @@ export function mountHydraulicsWorkspace(root=globalThis.document?.getElementByI
   }));
   const navigation=event=>switchTab(event.detail?.view);
   doc.addEventListener('workspace-navigation',navigation);
-  const api={switchTab,invalidate,getResult:()=>current?clone(current):null,getRevision:()=>revision,destroy:()=>{doc.removeEventListener('workspace-navigation',navigation);root.replaceChildren();delete root.hydraulicsWorkspace;}};
+  const api={switchTab,invalidate,prefill(handoff){const r=applyHandoff(handoff);for(const [key,value] of Object.entries(r.fields)){const input=form.elements.namedItem(key);if(input)input.value=value;}
+  origins=r.origins;prefilled={...r.fields};originNotes=r.notes;modelControls();renderOrigins();invalidate('Prefilled from the test-referenced J estimate. Declare the bottomhole limit, review every value and calculate.');switchTab('hydraulics');},
+  getResult:()=>current?clone(current):null,getRevision:()=>revision,destroy:()=>{doc.removeEventListener('workspace-navigation',navigation);root.replaceChildren();delete root.hydraulicsWorkspace;}};
   root.hydraulicsWorkspace=api;modelControls();switchTab(activeTab);return api;
 }
 

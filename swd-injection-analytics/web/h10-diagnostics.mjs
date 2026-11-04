@@ -3,6 +3,8 @@ import {pressureRateSvg,ratioOverTimeSvg} from '../dist/h10DiagnosticsChart.js';
 import {sealDiagnostics,diagnosticsJson,diagnosticsCsv,diagnosticsSvg} from '../dist/h10DiagnosticsExport.js';
 
 const FORMATS={json:['application/json',s=>diagnosticsJson(s)],csv:['text/csv;charset=utf-8',s=>diagnosticsCsv(s)],svg:['image/svg+xml',(s,state)=>diagnosticsSvg(s,state)]};
+/** False when the selection has no H-10 monthly rows; diagnoseMonthly would throw, so no 1a panel is mounted. */
+export const h10Available=selection=>Array.isArray(selection?.artifact?.injectionMonthly)&&selection.artifact.injectionMonthly.length>0;
 
 /** DOM-free session: the user's month decisions, a revision counter and stale-export refusal. Nothing runs at import time. */
 export function createDiagnosticsSession(selection,gate){
@@ -29,7 +31,7 @@ function svgNode(svg){const doc=new DOMParser().parseFromString(svg,'image/svg+x
 const fmt=v=>v===null||v===undefined?'not reported':Number(Number(v).toPrecision(6)).toLocaleString('en-US');
 
 /** Panel inside Injector history. import-ui disposes it whenever results are cleared, so a well or source change always starts fresh. */
-export function mountH10Diagnostics(root,{selection,gate,download}){
+export function mountH10Diagnostics(root,{selection,gate,download,onChange=()=>{}}){
  const session=createDiagnosticsSession(selection,gate),section=el('section',undefined,'panel');section.setAttribute('aria-labelledby','h10-diagnostics-title');
  root.replaceChildren(section);
  let reviewOpen=null,focusKey=null,message='',markers=[],disposed=false;
@@ -51,8 +53,8 @@ export function mountH10Diagnostics(root,{selection,gate,download}){
    const box=el('input');box.type='checkbox';box.checked=d.include;box.setAttribute('aria-label',`Include ${m.month}`);
    const reason=el('input');reason.type='text';reason.maxLength=200;reason.value=d.reason??'';reason.placeholder=m.flags.length?'optional':'required to exclude';reason.setAttribute('aria-label',`Reason for ${m.month}`);
    box.dataset.focusKey='box:'+m.month;reason.dataset.focusKey='reason:'+m.month;
-   box.onchange=()=>{try{session.decide(m.month,box.checked,reason.value);focusKey='box:'+m.month;message=`${m.month} ${box.checked?'included':'excluded'}.`;render();}catch(e){box.checked=!box.checked;status.textContent=e.message;reason.focus();}};
-   reason.onchange=()=>{if(session.state.decisions[m.month].include)return;try{session.decide(m.month,false,reason.value);message=status.textContent=`Reason for ${m.month} saved.`;}catch(e){reason.value=session.state.decisions[m.month].reason??'';status.textContent=e.message;}};
+   box.onchange=()=>{try{session.decide(m.month,box.checked,reason.value);onChange();focusKey='box:'+m.month;message=`${m.month} ${box.checked?'included':'excluded'}.`;render();}catch(e){box.checked=!box.checked;status.textContent=e.message;reason.focus();}};
+   reason.onchange=()=>{if(session.state.decisions[m.month].include)return;try{session.decide(m.month,false,reason.value);onChange();message=status.textContent=`Reason for ${m.month} saved.`;}catch(e){reason.value=session.state.decisions[m.month].reason??'';status.textContent=e.message;}};
    const inc=el('td');inc.append(box);if(d.include&&!m.usable)inc.append(el('small',' included, but its values cannot be compared'));tr.append(inc);
    const rs=el('td');rs.append(reason);tr.append(rs);body.append(tr);
   }
@@ -75,5 +77,5 @@ export function mountH10Diagnostics(root,{selection,gate,download}){
  }
  render();
  const months=session.state.months;
- return {dispose(){disposed=true;session.dispose();root.replaceChildren();},setMarkers(next){markers=Array.isArray(next)?[...next]:[];if(!disposed)render();},range:months.length?{first:months[0].month,last:months[months.length-1].month}:null};
+ return {get state(){return session.state;},dispose(){disposed=true;session.dispose();root.replaceChildren();},setMarkers(next){markers=Array.isArray(next)?[...next]:[];if(!disposed)render();},range:months.length?{first:months[0].month,last:months[months.length-1].month}:null};
 }

@@ -1,0 +1,22 @@
+{
+ "r_import": {
+  "ok": true,
+  "receiver": "Evidence verification passed. Review the exact version, coverage, row dispositions and calculation eligibility before adopting.",
+  "adopt": {
+   "import": "Confirmed preserved evidence rrc-2026-10-30-uic000109605-b7628a71-03fe-4a16-928c-033353e1fce0. Public history calculations eligible. Origin: user-provided Explorer package; content: recorded public reported. Stored pin unchanged.",
+   "active": "rrc-2026-10-30-uic000109605-b7628a71-03fe-4a16-928c-033353e1fce0 · user-provided Explorer package · public reported"
+  }
+ },
+ "r_initial": {
+  "counts": "BHP tests: 0 · matched: 0 · unmatched: 0 · not usable: 0 · qualifying: 0",
+  "paras": [
+   "No BHP test records for this well; no test-referenced J."
+  ],
+  "status": "",
+  "hasTable": true,
+  "h10": true
+ },
+ "r_trippet_text": "Test-referenced J (estimate)BHP tests: 0 · matched: 0 · unmatched: 0 · not usable: 0 · qualifying: 0No BHP test records for this well; no test-referenced J.Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse; declared tubing and fluid assumptions; monthly calendar-day average rate.Pressure basis of the BHP field (required before any J) psig (RRC Permian guidance, default) psia (as the source field is named)C",
+ "console": [],
+ "warnings": 0
+}

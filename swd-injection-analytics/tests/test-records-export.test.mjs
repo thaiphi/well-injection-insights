@@ -15,7 +15,7 @@ test('sealed JSON round-trips and detects tampering',async()=>{
  const r=sealed.records.find(x=>x.key==='package:bhp:3');
  assert.deepEqual([r.flags,r.include,r.decidedBy,r.contributes,r.rangePosition],[['depth-differs'],false,'system',false,'before']);
  assert.equal(sealed.records.find(x=>x.key==='package:bhp:1').contributes,true);
- assert.equal(sealed.readiness,'Calibrated injectivity (J): not ready. Needs a flowing bottomhole pressure with a same-time rate and a reservoir pressure reference (Phase 1c).');
+ assert.equal(sealed.readiness,'Calibrated injectivity (J): not available. A test-referenced estimate is shown in the panel below; a calibrated J needs a measured flowing bottomhole pressure at a known rate, for example from step-rate test analysis, which is out of scope.');
  assert.deepEqual(sealed.outOfRange,{before:['package:bhp:3','package:srt:1'],after:['package:bhp:4']});
 });
 test('re-including the off-depth test changes what contributes',async()=>{
