@@ -1,0 +1,62 @@
+name: CI
+
+# Full offline test gate (HANDOVER.md §6). The live Portfolio probe
+# (scripts/check-portfolio.mjs) is excluded: tests make no network calls.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Preservation gate (182 protected files)
+        run: node scripts/verify-preservation.mjs .
+
+      - name: Assemble analytics app
+        run: node scripts/prepare-swd.mjs
+
+      - name: Root transfer, preservation and connection tests
+        run: node --test tests/*.test.mjs
+
+      - name: Type-check hosting adapter
+        run: node node_modules/typescript/bin/tsc --noEmit
+
+      - name: Type-check analytics app
+        run: node node_modules/typescript/bin/tsc -p swd-injection-analytics/tsconfig.json --noEmit
+
+      - name: Build site
+        run: node node_modules/vite/bin/vite.js build
+
+      - name: Analytics engineering suite and carried oracles (isolated copy)
+        run: node scripts/check-analytics.mjs --include-server
+
+      - name: Upload gate record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: analytics-gates
+          path: tmp/analytics-check-*/gates.json
+          if-no-files-found: ignore
