@@ -1,0 +1,39 @@
+SWD Injection Analytics (well-injection-insights)
+Copyright (c) 2026 Thai Phi
+
+This repository is licensed under the GNU Affero General Public License v3.0
+only (AGPL-3.0-only); see LICENSE. The parts below carry their own notices.
+
+Third-party and separately licensed components
+------------------------------------------------
+
+1. pyResToolbox brine PVT (GPL-3.0-or-later)
+   - swd-injection-analytics/reference/pyrestoolbox-pvt/
+     (exact copies of brine.py, iapws_if97.py and their LICENSE)
+   - swd-injection-analytics/src/pyrestoolboxBrine.ts
+     (gas-free browser adaptation of that code)
+   Copyright (C) 2022 Mark Burgoyne, pyResToolbox. These files remain under
+   the GNU General Public License v3.0 or later. They are combined with the
+   AGPL-3.0-only application as permitted by section 13 of GPLv3 and of
+   AGPLv3; the full GPLv3 text is in
+   swd-injection-analytics/reference/pyrestoolbox-pvt/LICENSE.
+
+2. pdf-lib 1.17.1 (MIT)
+   - swd-injection-analytics/web/vendor/pdf-lib-1.17.1.mjs
+   Copyright (c) 2019 Andrew Dillon. Licence:
+   swd-injection-analytics/web/vendor/pdf-lib-LICENSE.md
+
+3. SheetJS xlsx (Apache-2.0)
+   - swd-injection-analytics/web/vendor/xlsx.mjs
+   Licence: swd-injection-analytics/web/vendor/xlsx-LICENSE.txt
+
+Owner-authored components
+-------------------------
+
+esp-nexus: the copies under swd-injection-analytics/src/vendor/nexus/ and
+swd-injection-analytics/reference/nexus*/ come from esp-nexus, which the
+copyright holder wrote. They are licensed with this repository under
+AGPL-3.0-only (owner statement, 2026-11-05). Older notes in
+swd-injection-analytics/reference/nexus-wellbore/README.md that say "no
+open-source license is inferred" predate this statement and are kept
+unchanged because that file is under byte-for-byte source preservation.

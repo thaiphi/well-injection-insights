@@ -21,3 +21,9 @@ Run the preserved analytics tests in an isolated copy because some existing test
 The home route opens the full original app at /analytics/index.html. Asset paths, module workers and evidence URLs retain the original /dist, /data, /reference and /exhibits roots. Public assets are generated at dev/build; source and tests remain in the private repository.
 
 The external backend is the existing **Portfolio Supabase** project. The app includes a read-only connection check in Data & sources; imported files and results remain session-only because cloud saving is not configured. See [connection scope and verification](integrations/portfolio/README.md). No new database or paid service was provisioned. GitHub synchronization updates Lovable's editor preview; publication remains a separate release-gated action.
+
+## License
+
+Copyright (c) 2026 Thai Phi. Licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only); see [LICENSE](LICENSE). For use under other terms, contact the copyright holder.
+
+Some components carry their own licences: the pyResToolbox brine PVT code (GPL-3.0-or-later, Mark Burgoyne), pdf-lib (MIT) and SheetJS xlsx (Apache-2.0). They are listed with their paths in [NOTICE](NOTICE).
