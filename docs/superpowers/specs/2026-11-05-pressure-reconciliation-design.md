@@ -141,7 +141,7 @@ For each included BHP test whose matched month (from the J estimate, including m
 - **Differential = modelled pwf − P_res,** where P_res = `toAbsolute(bhp, bhpBasis)`.
   - The BHP basis is the J panel's confirmed basis. Until it is confirmed, the status is "Confirm the BHP basis in the J panel".
   - With the shared tubing ID, the value equals the J estimate's `deltaPsi` for that test, and a test pins this.
-- **Depth check:** a test more than 20 ft (`DEPTH_TOLERANCE_FT`) from the report depth gets "Test depth differs from report depth; no differential".
+- **Depth check:** a test more than 10 ft (`DEPTH_TOLERANCE_FT` in `testRecords.ts`) from the report depth gets "Test depth differs from report depth; no differential".
 - **Negative differential:** flagged with the Q1 wording and a cause checklist:
   1. "Shut-in days included in the monthly average pressure."
   2. "Brine column density or salinity differs from the declared assumption."
