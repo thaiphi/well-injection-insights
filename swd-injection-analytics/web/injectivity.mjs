@@ -1,4 +1,5 @@
-import {createEstimateState,withInputs,confirmBasis,setAssumptions,moveMatch,chooseJ,estimate,handoff,LABEL_J,BASIS_STATEMENT,DEFAULT_ASSUMPTIONS,TUBING_SENSITIVITY_IN} from '../dist/injectivityEstimate.js';
+import {createEstimateState,withInputs,confirmBasis,setSurfaceBasis,setAssumptions,moveMatch,chooseJ,estimate,handoff,LABEL_J,BASIS_STATEMENT} from '../dist/injectivityEstimate.js';
+import {DEFAULT_WELL_ASSUMPTIONS} from '../dist/wellAssumptions.js';
 import {jEstimateSvg} from '../dist/injectivityEstimateChart.js';
 import {sealEstimate,estimateJson,estimateCsv,estimateSvg} from '../dist/injectivityEstimateExport.js';
 
@@ -6,12 +7,13 @@ const FORMATS={json:['application/json',s=>estimateJson(s)],csv:['text/csv;chars
 const copyUploads=list=>(Array.isArray(list)?list:[]).map(u=>({kind:u.kind,fileName:u.fileName,sha256:u.sha256}));
 const num=v=>typeof v==='number'&&Number.isFinite(v)?v:null;
 
-/** DOM-free session: basis, assumptions, moved matches and the chosen J over the live 1a/1b states; revision counter and stale refusal. */
-export function createInjectivitySession({selection,gate,h10,tests,uploads=[]}){
+/** DOM-free session: BHP basis, moved matches and the chosen J over the live 1a/1b states and the shared well assumptions; revision counter and stale refusal. */
+export function createInjectivitySession({selection,gate,h10,tests,uploads=[],well=DEFAULT_WELL_ASSUMPTIONS,declaredLimit=null}){
  const artifact=selection.artifact,inv=artifact.inventory?.[0]??{},uic=String(artifact.injectionMonthly?.[0]?.uic_number??inv.uic_number??'');
  const permit={surfacePsi:num(inv.permit_liquid_pressure_limit_psi),volumeBpd:num(inv.permit_liquid_volume_limit_bpd)};
  const source={uic,artifactId:String(artifact.artifactId),normalizedSha256:selection.pin?.normalizedSha256??null,manifestSha256:selection.pin?.manifestSha256??null,tests:{packageFiles:{...(selection.tests?.sha256??{})},uploads:[]}};
- let state=createEstimateState({h10,tests}),revision=0,alive=true,uploadList=copyUploads(uploads);
+ const applyWell=(s,w)=>setSurfaceBasis(setAssumptions(s,w),w.surfaceBasis??null);
+ let state=applyWell(createEstimateState({h10,tests}),well),revision=0,alive=true,uploadList=copyUploads(uploads),limit=declaredLimit;
  // Compute the estimate before committing: a failing recomputation rejects with its message and leaves state and revision unchanged.
  const change=next=>{estimate(next);state=next;revision++;};
  const sealSource=()=>{
@@ -19,8 +21,9 @@ export function createInjectivitySession({selection,gate,h10,tests,uploads=[]}){
   return {...source,tests:{packageFiles:{...source.tests.packageFiles},uploads:uploadList.map(u=>({...u}))}};
  };
  const session={
-  get state(){return state;},get estimate(){return estimate(state);},get revision(){return revision;},get uploads(){return uploadList.map(u=>({...u}));},gate,uic,
-  update(inputs){const next=withInputs(state,{h10:inputs.h10,tests:inputs.tests});if(inputs.uploads!==undefined)uploadList=copyUploads(inputs.uploads);change(next);},
+  get state(){return state;},get estimate(){return estimate(state);},get revision(){return revision;},get uploads(){return uploadList.map(u=>({...u}));},get declaredLimit(){return limit;},gate,uic,
+  update(inputs){let next=withInputs(state,{h10:inputs.h10,tests:inputs.tests});if(inputs.well!==undefined)next=applyWell(next,inputs.well);change(next);
+   if(inputs.uploads!==undefined)uploadList=copyUploads(inputs.uploads);if(inputs.declaredLimit!==undefined)limit=inputs.declaredLimit;},
   confirmBasis(value,reason){change(confirmBasis(state,value,reason));},
   setAssumptions(partial){change(setAssumptions(state,partial));},
   move(key,shift,reason){change(moveMatch(state,key,shift,reason));},
@@ -37,7 +40,7 @@ export function createInjectivitySession({selection,gate,h10,tests,uploads=[]}){
   async handoffRequest(){
    if(!gate.ready)throw new Error('Hand-off blocked: '+gate.reasons.join(' '));
    const r=revision,snapshot=state,est=estimate(snapshot),src=sealSource();const sealed=await sealEstimate(est,src);if(!session.isCurrent(r))return null;
-   return handoff(snapshot,est,permit,sealed.contentSha256);
+   return handoff(snapshot,est,permit,sealed.contentSha256,limit);
   }};
  return session;
 }
@@ -45,7 +48,6 @@ export function createInjectivitySession({selection,gate,h10,tests,uploads=[]}){
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const fmt=v=>v===null||v===undefined?'—':typeof v==='number'?Number(v.toPrecision(5)).toLocaleString('en-US'):String(v);
 function svgNode(svg){const doc=new DOMParser().parseFromString(svg,'image/svg+xml');if(doc.getElementsByTagName('parsererror').length||doc.documentElement.localName!=='svg')throw new Error('Generated J chart could not be parsed.');return document.importNode(doc.documentElement,true);}
-const ASSUMPTION_FIELDS=[['innerDiameterInches','Tubing inner diameter (in)'],['roughnessInches','Absolute roughness (in)'],['surfaceTemperatureF','Surface temperature (°F)'],['bottomholeTemperatureF','Bottomhole temperature (°F)'],['salinityWtPercent','NaCl salinity (wt%)'],['segments','Traverse segments']];
 
 /** Counts for the status line. matched = has a month and is not unmatched; qualifying = status 'qualifies'. */
 export function statusCounts(est){
@@ -54,8 +56,8 @@ export function statusCounts(est){
 }
 
 /** Panel inside Injector history, below Test records. import-ui disposes it whenever results are cleared. */
-export function mountInjectivity(root,{selection,gate,download,h10,tests,uploads,onHandoff}){
- const session=createInjectivitySession({selection,gate,h10,tests,uploads}),section=el('section',undefined,'panel');section.setAttribute('aria-labelledby','injectivity-title');
+export function mountInjectivity(root,{selection,gate,download,h10,tests,uploads,well,declaredLimit=null,onHandoff,onChange=()=>{}}){
+ const session=createInjectivitySession({selection,gate,h10,tests,uploads,well,declaredLimit}),section=el('section',undefined,'panel');section.setAttribute('aria-labelledby','injectivity-title');
  const statusEl=el('p');statusEl.setAttribute('role','status');
  const body=el('div');
  const h=el('h2',LABEL_J);h.id='injectivity-title';
@@ -64,7 +66,7 @@ export function mountInjectivity(root,{selection,gate,download,h10,tests,uploads
  let disposed=false,focusKey=null;const drafts=new Map();
  const setStatus=t=>{statusEl.textContent=t;};
  const draft=(key,input,persisted)=>{input.dataset.focusKey=key;input.value=drafts.has(key)?drafts.get(key):(persisted??'');input.addEventListener('input',()=>drafts.set(key,input.value));return input;};
- const act=(key,fn,ok)=>{try{fn();drafts.delete(key+':reason');setStatus(ok);}catch(e){setStatus(e.message);}focusKey=key;render();};
+ const act=(key,fn,ok)=>{let done=false;try{fn();drafts.delete(key+':reason');setStatus(ok);done=true;}catch(e){setStatus(e.message);}focusKey=key;render();if(done){try{onChange();}catch(e){console.error(e);}}};
  function render(){
   if(disposed)return;
   const page=el('div'),top=el('div'),tail=el('div');
@@ -75,11 +77,8 @@ export function mountInjectivity(root,{selection,gate,download,h10,tests,uploads
    const why=el('input');why.type='text';why.maxLength=200;draft('basis:reason',why,session.state.basis?.reason);why.placeholder='reason (required)';why.setAttribute('aria-label','Reason for the basis');
    const confirm=el('button',session.state.basis?'Change basis':'Confirm basis');confirm.type='button';confirm.dataset.focusKey='basis';confirm.onclick=()=>act('basis',()=>session.confirmBasis(radios.psia.checked?'psia':'psig',why.value),'Basis confirmed.');
    basis.append(why,confirm);
-   // 2. assumptions
-   const form=el('fieldset');form.append(el('legend','Declared assumptions (not public records)'));
-   for(const [key,label] of ASSUMPTION_FIELDS){const l=el('label',label+' — declared assumption '),i=el('input');i.type='number';i.step='any';i.value=String(session.state.assumptions[key]);i.setAttribute('aria-label',`${label}, declared assumption`);i.dataset.focusKey='assump:'+key;
-    i.onchange=()=>act('assump:'+key,()=>session.setAssumptions({[key]:Number(i.value)}),`${label} updated.`);l.append(i);form.append(l);}
-   form.append(el('p',`Defaults: ${Object.entries(DEFAULT_ASSUMPTIONS).map(([k,v])=>`${k} ${v}`).join(', ')}. MD = TVD = test depth (vertical well declared). Tubing sensitivity always runs ${TUBING_SENSITIVITY_IN.join(', ')} in.`));
+   // 2. assumptions live in Well assumptions above
+   const form=el('p','Tubing, fluid and the H-10 and permit pressure basis are declared in Well assumptions above.');
   page.append(top,basis,form,tail);
   try{
    const est=session.estimate;
@@ -131,5 +130,6 @@ export function mountInjectivity(root,{selection,gate,download,h10,tests,uploads
   if(focusKey){const t=section.querySelector(`[data-focus-key="${focusKey}"]`);if(t)t.focus();focusKey=null;}
  }
  render();
- return {dispose(){disposed=true;session.dispose();root.replaceChildren();},update(inputs){if(disposed)return;try{session.update(inputs);setStatus('Recalculated after a review change.');}catch(e){setStatus(e&&e.message?e.message:String(e));}render();}};
+ return {dispose(){disposed=true;session.dispose();root.replaceChildren();},get estimate(){try{return session.estimate;}catch{return null;}},
+  update(inputs){if(disposed)return;try{session.update(inputs);setStatus('Recalculated after a review change.');}catch(e){setStatus(e&&e.message?e.message:String(e));}render();}};
 }

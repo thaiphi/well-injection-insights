@@ -1,0 +1,17 @@
+{
+  "purpose": "Phase 2a (PRD ANA-E04): shared well assumptions with a user-confirmed H-10 and permit pressure basis for the J estimate and a new WHP/BHP reconciliation and pressure-margin screening panel (modelled flowing BHP per reviewed H-10 month, regulatory, permit-equivalent and declared margins, formation not evaluated, test-month flowing minus static differential), with sealed exports.",
+  "acceptanceEvidence": "demo/PRESSURE-RECONCILIATION-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-11-05-pressure-reconciliation-design.md",
+    "docs/superpowers/plans/2026-11-05-pressure-reconciliation.md"
+  ],
+  "changes": ["src/injectivityEstimate.ts", "src/injectivityEstimateExport.ts", "web/injectivity.mjs", "web/import-ui.mjs",
+    "tests/injectivity-estimate.test.mjs", "tests/injectivity-export.test.mjs", "tests/injectivity-session.test.mjs", "tests/panel-hooks.test.mjs"],
+  "newFiles": [
+    "src/wellAssumptions.ts", "src/pressureReconciliation.ts", "src/pressureReconciliationChart.ts", "src/pressureReconciliationExport.ts",
+    "web/well-assumptions.mjs", "web/reconciliation.mjs",
+    "tests/well-assumptions.test.mjs", "tests/pressure-reconciliation.test.mjs", "tests/pressure-reconciliation-export.test.mjs", "tests/reconciliation-session.test.mjs",
+    "tests/fixtures/test-referenced-j-v1-golden.json"
+  ],
+  "rootFiles": ["migration/layers/index.json"]
+}

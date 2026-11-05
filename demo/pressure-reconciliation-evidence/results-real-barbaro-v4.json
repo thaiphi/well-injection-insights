@@ -1,0 +1,145 @@
+{
+ "r1_import": {
+  "ok": true,
+  "receiver": "Evidence verification passed. Review the exact version, coverage, row dispositions and calculation eligibility before adopting."
+ },
+ "r1_order": {
+  "ids": [
+   "h10-diagnostics",
+   "test-records",
+   "well-assumptions",
+   "injectivity-estimate",
+   "pressure-reconciliation"
+  ],
+  "order": [
+   1,
+   2,
+   3,
+   4
+  ]
+ },
+ "r2_j_before": {
+  "counts": "BHP tests: 4 · matched: 3 · unmatched: 0 · not usable: 1 · qualifying: 0",
+  "paras": [
+   "Confirm the H-10 and permit pressure basis in Well assumptions.",
+   "Downloads need a confirmed pressure basis."
+  ],
+  "status": ""
+ },
+ "r2_rc_before": {
+  "title": "WHP/BHP reconciliation (screening)",
+  "counts": null,
+  "readiness": "Confirm the H-10 and permit pressure basis in Well assumptions.",
+  "refused": null,
+  "summary": [],
+  "waiting": [
+   "Confirm the H-10 and permit pressure basis in Well assumptions.",
+   "Downloads need the confirmed H-10 and permit pressure basis."
+  ],
+  "screening": true,
+  "srtNote": false,
+  "rows": 0,
+  "statusCounts": {},
+  "negativeFlags": 0,
+  "abovePermitFlags": 0,
+  "svg": 0,
+  "buttons": [
+   {
+    "t": "Set limit",
+    "disabled": false
+   },
+   {
+    "t": "Clear limit",
+    "disabled": true
+   },
+   {
+    "t": "Download reconciliation JSON",
+    "disabled": true
+   },
+   {
+    "t": "Download reconciliation CSV",
+    "disabled": true
+   },
+   {
+    "t": "Download reconciliation SVG",
+    "disabled": true
+   }
+  ],
+  "calibrated": false
+ },
+ "r3_surface_status": "H-10 and permit basis confirmed.",
+ "r3_j": {
+  "counts": "BHP tests: 4 · matched: 3 · unmatched: 0 · not usable: 1 · qualifying: 0",
+  "paras": [
+   "Basis confirmed."
+  ],
+  "status": "Basis confirmed."
+ },
+ "r3_rc": {
+  "title": "WHP/BHP reconciliation (screening)",
+  "counts": "Months in range: 31 · included: 31 · modelled: 31 · refused: 0 · test months: 3 · negative differentials: 3 · months above the permit: 0",
+  "readiness": "31 of 31 included months modelled at # ft (BHP test depth).",
+  "refused": null,
+  "summary": [
+   "Regulatory margin (smallest): # psi",
+   "Permit-equivalent margin (smallest): # psi — restates the permit limit at depth; not an independent constraint",
+   "Declared limit margin (smallest): No limit declared",
+   "Formation margin: Not evaluated in this phase"
+  ],
+  "waiting": [],
+  "screening": true,
+  "srtNote": true,
+  "rows": 31,
+  "statusCounts": {
+   "modelled": 31
+  },
+  "negativeFlags": 6,
+  "abovePermitFlags": 0,
+  "svg": 1,
+  "buttons": [
+   {
+    "t": "Set limit",
+    "disabled": false
+   },
+   {
+    "t": "Clear limit",
+    "disabled": true
+   },
+   {
+    "t": "Download reconciliation JSON",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation CSV",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation SVG",
+    "disabled": false
+   }
+  ],
+  "calibrated": false
+ },
+ "r3_layout": {
+  "innerWidth": 1280,
+  "docScrollW": 1265,
+  "pageHScroll": false
+ },
+ "r9_included": 0,
+ "r9_rc": {
+  "counts": "Months in range: 31 · included: 31 · modelled: 31 · refused: 0 · test months: 3 · negative differentials: 3 · months above the permit: 0",
+  "refused": null,
+  "statusCounts": {
+   "modelled": 31
+  },
+  "abovePermitFlags": 0,
+  "console": null
+ },
+ "r8_layout": {
+  "innerWidth": 1280,
+  "docScrollW": 1265,
+  "pageHScroll": false
+ },
+ "console": [],
+ "externalRequests": "see server log"
+}

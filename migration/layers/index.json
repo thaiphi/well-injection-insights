@@ -24,6 +24,10 @@
     {
       "name": "phase-1c-test-referenced-j",
       "baseline": "migration/layers/phase-1c-test-referenced-j.json"
+    },
+    {
+      "name": "phase-2a-pressure-reconciliation",
+      "baseline": "migration/layers/phase-2a-pressure-reconciliation.json"
     }
   ]
 }

@@ -1,0 +1,150 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "phase-2a-pressure-reconciliation",
+  "status": "accepted",
+  "acceptedAt": "2026-11-05",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/PRESSURE-RECONCILIATION-VERIFICATION.md",
+  "purpose": "Phase 2a (PRD ANA-E04): shared well assumptions with a user-confirmed H-10 and permit pressure basis for the J estimate and a new WHP/BHP reconciliation and pressure-margin screening panel (modelled flowing BHP per reviewed H-10 month, regulatory, permit-equivalent and declared margins, formation not evaluated, test-month flowing minus static differential), with sealed exports.",
+  "parentBaselineSha256": "4f065209ca74bba25493cda299085fb00d914c46680c58cb4fe0386f7c805c71",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-11-05-pressure-reconciliation-design.md",
+      "sha256": "3fcff01340865d71bdb63f095e692325345955326934a6cebaa5d69d15700a6c"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-05-pressure-reconciliation.md",
+      "sha256": "6ff835c44cbc36c1b25c7e04a235efa7347426cab522d2423dbd97dc57ac52bb"
+    }
+  ],
+  "changes": [
+    {
+      "path": "src/injectivityEstimate.ts",
+      "archive": "migration/baselines/phase-2a-pressure-reconciliation-before/swd-injection-analytics/src/injectivityEstimate.ts",
+      "beforeSha256": "8003fb1654ec138c9815699d6e4faf539a4271ce76d06cd1726c86193375a102",
+      "beforeBytes": 19230,
+      "afterSha256": "7228696d7a15e3b92f8acb89731d2e793226981fa29b4f991a40954329ae67b5",
+      "afterBytes": 17750
+    },
+    {
+      "path": "src/injectivityEstimateExport.ts",
+      "archive": "migration/baselines/phase-2a-pressure-reconciliation-before/swd-injection-analytics/src/injectivityEstimateExport.ts",
+      "beforeSha256": "79d6528f7d9f287f839bf4cea309dc0886f4228b06075a47f2bec1f831908684",
+      "beforeBytes": 4986,
+      "afterSha256": "0ea7df685998c2098564234b165143a08b74ad84b41319a5605374ebe5c2298a",
+      "afterBytes": 5140
+    },
+    {
+      "path": "web/injectivity.mjs",
+      "archive": "migration/baselines/phase-2a-pressure-reconciliation-before/swd-injection-analytics/web/injectivity.mjs",
+      "beforeSha256": "92cf28ed52bc346e6c2776da76df1dd0dcd45a8fd5ead5c6b47f8952b15c6e84",
+      "beforeBytes": 14544,
+      "afterSha256": "8af6f54f8e318be04298273de374564bbd6e5a98cfb898feae6eec756360d907",
+      "afterBytes": 14227
+    },
+    {
+      "path": "web/import-ui.mjs",
+      "archive": "migration/baselines/phase-2a-pressure-reconciliation-before/swd-injection-analytics/web/import-ui.mjs",
+      "beforeSha256": "1fc48b7c6ae003598d143c7062d53af747f090fd94d6e1dd2edf314b02b07b12",
+      "beforeBytes": 68983,
+      "afterSha256": "c5212e0dcbe02cd68f2bae9b0b3aa88dc07cb117eddb51a0b54f3dbef69a8ec3",
+      "afterBytes": 70319
+    },
+    {
+      "path": "tests/injectivity-estimate.test.mjs",
+      "archive": "migration/baselines/phase-2a-pressure-reconciliation-before/swd-injection-analytics/tests/injectivity-estimate.test.mjs",
+      "beforeSha256": "933079713c3a060fa05884db18adddcecd5ec2dd3a546be7b4a70a8de4b43c7b",
+      "beforeBytes": 15053,
+      "afterSha256": "47bc87064fffaf312b370c7d486a8a671aea3fe2b00b7c9cacde7820823a55f9",
+      "afterBytes": 19043
+    },
+    {
+      "path": "tests/injectivity-export.test.mjs",
+      "archive": "migration/baselines/phase-2a-pressure-reconciliation-before/swd-injection-analytics/tests/injectivity-export.test.mjs",
+      "beforeSha256": "f85a4a5fd37d41ab9c4f9cec81a1f4bec4b6b941bec2934d84ee403e0e54930d",
+      "beforeBytes": 3489,
+      "afterSha256": "2d13465b0297b2d2731b2cd5bdea55582213ab81ddc03de085fdbe0090ad428c",
+      "afterBytes": 4444
+    },
+    {
+      "path": "tests/injectivity-session.test.mjs",
+      "archive": "migration/baselines/phase-2a-pressure-reconciliation-before/swd-injection-analytics/tests/injectivity-session.test.mjs",
+      "beforeSha256": "a39f06269185bc120a94e2024a18fe95ab04461232eb3dd7c0cc212e2d40a901",
+      "beforeBytes": 6503,
+      "afterSha256": "f20ec5cfda3181e62930c432662b7369b4173bcda21f67d8dfa8d30b3daab67d",
+      "afterBytes": 8897
+    },
+    {
+      "path": "tests/panel-hooks.test.mjs",
+      "archive": "migration/baselines/phase-2a-pressure-reconciliation-before/swd-injection-analytics/tests/panel-hooks.test.mjs",
+      "beforeSha256": "578ef3c962ae873d127b5d209b76a50d7d33bc00c50c1ab52cd210b32a7ba8b3",
+      "beforeBytes": 5544,
+      "afterSha256": "899d400bd8893239bfaf584b1d848effc6cb12b5f57744e31addc1cbf8972f2e",
+      "afterBytes": 7051
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/wellAssumptions.ts",
+      "sha256": "f49e2d173038ad2bdf2b976075e3ce167d9c86e271fada84b9f5d81a7de9833b",
+      "bytes": 5311
+    },
+    {
+      "path": "src/pressureReconciliation.ts",
+      "sha256": "e19f5da0cc6b81ead97a441d417f6e2c9525b37f0b43669abe00761bec712cbd",
+      "bytes": 13528
+    },
+    {
+      "path": "src/pressureReconciliationChart.ts",
+      "sha256": "b4fd94742af3ee2e894fb9481a3f4ed28d09c6fce09c59ce809a0a02d434b98b",
+      "bytes": 6210
+    },
+    {
+      "path": "src/pressureReconciliationExport.ts",
+      "sha256": "722bf22f5b8633215ca8b6264610cac315728486eabbd534bec1ad55c550e7dc",
+      "bytes": 6096
+    },
+    {
+      "path": "web/well-assumptions.mjs",
+      "sha256": "020920251cd8d3a3f4a6863e44bae37ee0a832edbfaaa73417c5c38192c24eef",
+      "bytes": 4639
+    },
+    {
+      "path": "web/reconciliation.mjs",
+      "sha256": "1d584f298d31f3eccbf73e55fd017c56ccbe0ca39214558e2d01ab2bc941637c",
+      "bytes": 12220
+    },
+    {
+      "path": "tests/well-assumptions.test.mjs",
+      "sha256": "4fbb505061653cd5ce374a50a73e4ee557f4591eda779cbd6a21eb49cf3dad0f",
+      "bytes": 4404
+    },
+    {
+      "path": "tests/pressure-reconciliation.test.mjs",
+      "sha256": "a9a500e0a777194428389a58f44df5081d265c534e1bfc44f3c668055280b576",
+      "bytes": 12670
+    },
+    {
+      "path": "tests/pressure-reconciliation-export.test.mjs",
+      "sha256": "27c054eaebc693080f097c366058e7026bd06e1b62a6da86acd6101342a7ccf9",
+      "bytes": 4839
+    },
+    {
+      "path": "tests/reconciliation-session.test.mjs",
+      "sha256": "77b8c95ca3cd3682f2f49353ec27617d07c98c3684a3f21a74af4ca77f87a6ac",
+      "bytes": 9576
+    },
+    {
+      "path": "tests/fixtures/test-referenced-j-v1-golden.json",
+      "sha256": "04578c8ddc03e3baffab72ec14418bc3f7b54462c6f8e23133370ab46b578d8d",
+      "bytes": 9769
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "10860a4cf75a182719afdce79612f56ddfc38c0b08415c5e742dba9d4d357542",
+      "bytes": 838
+    }
+  ]
+}

@@ -1,0 +1,284 @@
+{
+ "r1_import": {
+  "ok": true,
+  "receiver": "Evidence verification passed. Review the exact version, coverage, row dispositions and calculation eligibility before adopting."
+ },
+ "r1_order": {
+  "ids": [
+   "h10-diagnostics",
+   "test-records",
+   "well-assumptions",
+   "injectivity-estimate",
+   "pressure-reconciliation"
+  ],
+  "order": [
+   1,
+   2,
+   3,
+   4
+  ]
+ },
+ "r2_j_before": {
+  "counts": "BHP tests: 4 · matched: 4 · unmatched: 0 · not usable: 0 · qualifying: 0",
+  "paras": [
+   "Confirm the H-10 and permit pressure basis in Well assumptions.",
+   "Downloads need a confirmed pressure basis."
+  ],
+  "status": ""
+ },
+ "r2_rc_before": {
+  "title": "WHP/BHP reconciliation (screening)",
+  "counts": null,
+  "readiness": "Confirm the H-10 and permit pressure basis in Well assumptions.",
+  "refused": null,
+  "summary": [],
+  "waiting": [
+   "Confirm the H-10 and permit pressure basis in Well assumptions.",
+   "Downloads need the confirmed H-10 and permit pressure basis."
+  ],
+  "screening": true,
+  "srtNote": false,
+  "rows": 0,
+  "statusCounts": {},
+  "negativeFlags": 0,
+  "abovePermitFlags": 0,
+  "svg": 0,
+  "buttons": [
+   {
+    "t": "Set limit",
+    "disabled": false
+   },
+   {
+    "t": "Clear limit",
+    "disabled": true
+   },
+   {
+    "t": "Download reconciliation JSON",
+    "disabled": true
+   },
+   {
+    "t": "Download reconciliation CSV",
+    "disabled": true
+   },
+   {
+    "t": "Download reconciliation SVG",
+    "disabled": true
+   }
+  ],
+  "calibrated": false
+ },
+ "r3_surface_status": "H-10 and permit basis confirmed.",
+ "r3_j": {
+  "counts": "BHP tests: 4 · matched: 4 · unmatched: 0 · not usable: 0 · qualifying: 3",
+  "paras": [
+   "Basis confirmed."
+  ],
+  "status": "Basis confirmed."
+ },
+ "r3_rc": {
+  "title": "WHP/BHP reconciliation (screening)",
+  "counts": "Months in range: 16 · included: 16 · modelled: 16 · refused: 0 · test months: 4 · negative differentials: 1 · months above the permit: 0",
+  "readiness": "16 of 16 included months modelled at 3310 ft (BHP test depth).",
+  "refused": null,
+  "summary": [
+   "Regulatory margin (smallest): # psi",
+   "Permit-equivalent margin (smallest): # psi — restates the permit limit at depth; not an independent constraint",
+   "Declared limit margin (smallest): No limit declared",
+   "Formation margin: Not evaluated in this phase"
+  ],
+  "waiting": [],
+  "screening": true,
+  "srtNote": true,
+  "rows": 16,
+  "statusCounts": {
+   "modelled": 16
+  },
+  "negativeFlags": 2,
+  "abovePermitFlags": 0,
+  "svg": 1,
+  "buttons": [
+   {
+    "t": "Set limit",
+    "disabled": false
+   },
+   {
+    "t": "Clear limit",
+    "disabled": true
+   },
+   {
+    "t": "Download reconciliation JSON",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation CSV",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation SVG",
+    "disabled": false
+   }
+  ],
+  "calibrated": false
+ },
+ "r3_layout": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "pageHScroll": false
+ },
+ "r3_negative": {
+  "counts": "Months in range: 16 · included: 16 · modelled: 16 · refused: 0 · test months: 4 · negative differentials: 1 · months above the permit: 0",
+  "checklist": true,
+  "flag": 1
+ },
+ "r4_reportDepth": 3310,
+ "r4_set": {
+  "status": "Declared bottomhole limit set.",
+  "focusKey": "limit",
+  "focusInPanel": true
+ },
+ "r4_at": {
+  "title": "WHP/BHP reconciliation (screening)",
+  "counts": "Months in range: 16 · included: 16 · modelled: 16 · refused: 0 · test months: 4 · negative differentials: 1 · months above the permit: 0",
+  "readiness": "16 of 16 included months modelled at 3310 ft (BHP test depth).",
+  "refused": null,
+  "summary": [
+   "Regulatory margin (smallest): # psi",
+   "Permit-equivalent margin (smallest): # psi — restates the permit limit at depth; not an independent constraint",
+   "Declared limit margin (smallest): # psi",
+   "Formation margin: Not evaluated in this phase"
+  ],
+  "waiting": [],
+  "screening": true,
+  "srtNote": true,
+  "rows": 16,
+  "statusCounts": {
+   "modelled": 16
+  },
+  "negativeFlags": 2,
+  "abovePermitFlags": 0,
+  "svg": 1,
+  "buttons": [
+   {
+    "t": "Change limit",
+    "disabled": false
+   },
+   {
+    "t": "Clear limit",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation JSON",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation CSV",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation SVG",
+    "disabled": false
+   }
+  ],
+  "calibrated": false
+ },
+ "r4_row_2024_02": "#",
+ "r4_off_set": {
+  "status": "Declared bottomhole limit set.",
+  "focusKey": "limit",
+  "focusInPanel": true
+ },
+ "r4_row_off": "Limit datum differs from report depth; no comparison",
+ "r4_handoff_limit_note": "see J hand-off unit tests; declared limit datum 2 ft off is not prefilled",
+ "r5_row_2024_09": [
+  "Excluded in the H-10 review"
+ ],
+ "r5_counts": "Months in range: 16 · included: 15 · modelled: 15 · refused: 0 · test months: 4 · negative differentials: 1 · months above the permit: 0",
+ "r5_restored": "Months in range: 16 · included: 16 · modelled: 16 · refused: 0 · test months: 4 · negative differentials: 1 · months above the permit: 0",
+ "r6_inflight": {
+  "status": "The selection changed while preparing this export. Download again.",
+  "downloads": 0
+ },
+ "r6_row_moved": {
+  "surfaceChanged": true,
+  "modelledChanged": true
+ },
+ "r6_j": {
+  "before": "BHP tests: 4 · matched: 4 · unmatched: 0 · not usable: 0 · qualifying: 3",
+  "after": "BHP tests: 4 · matched: 4 · unmatched: 0 · not usable: 0 · qualifying: 3"
+ },
+ "r6_rc": {
+  "title": "WHP/BHP reconciliation (screening)",
+  "counts": "Months in range: 16 · included: 16 · modelled: 16 · refused: 0 · test months: 4 · negative differentials: 1 · months above the permit: 0",
+  "readiness": "16 of 16 included months modelled at 3310 ft (BHP test depth).",
+  "refused": null,
+  "summary": [
+   "Regulatory margin (smallest): # psi",
+   "Permit-equivalent margin (smallest): # psi — restates the permit limit at depth; not an independent constraint",
+   "Declared limit margin (smallest): # psi",
+   "Formation margin: Not evaluated in this phase"
+  ],
+  "waiting": [],
+  "screening": true,
+  "srtNote": true,
+  "rows": 16,
+  "statusCounts": {
+   "modelled": 16
+  },
+  "negativeFlags": 2,
+  "abovePermitFlags": 0,
+  "svg": 1,
+  "buttons": [
+   {
+    "t": "Change limit",
+    "disabled": false
+   },
+   {
+    "t": "Clear limit",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation JSON",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation CSV",
+    "disabled": false
+   },
+   {
+    "t": "Download reconciliation SVG",
+    "disabled": false
+   }
+  ],
+  "calibrated": false
+ },
+ "r7_downloads": [
+  {
+   "name": "pressure-reconciliation-000000417-b514c1808ef2.json",
+   "type": "application/json",
+   "chars": 21799,
+   "sha256": "479c7fdc043ca30570d41960a76f8d4de97ddc81a81f1d705a3ce89b71e7f5d5",
+   "calibrated": false
+  },
+  {
+   "name": "pressure-reconciliation-000000417-b514c1808ef2.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 9556,
+   "sha256": "ef7ea9a10589907c6f169debc73cc162e00f41e703c6c4ce46c0288d7637778f",
+   "calibrated": false
+  },
+  {
+   "name": "pressure-reconciliation-000000417-b514c1808ef2.svg",
+   "type": "image/svg+xml",
+   "chars": 30828,
+   "sha256": "a986dde0b17c436c562c1a00ba5cd21d201223a0ee3a320338bae9488c2bc4b8",
+   "calibrated": false
+  }
+ ],
+ "r8_layout": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "pageHScroll": false
+ },
+ "console": [],
+ "externalRequests": "see server log"
+}

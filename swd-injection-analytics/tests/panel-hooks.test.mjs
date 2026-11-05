@@ -28,9 +28,11 @@ test('final review I-2: the Test records session exposes its uploads read-only',
  assert.equal(s.uploads.length,1);assert.deepEqual(Object.keys(s.uploads[0]),['kind','fileName','sha256']);assert.equal(s.uploads[0].fileName,'bhp.csv');assert.match(s.uploads[0].sha256,/^[a-f0-9]{64}$/);
  s.uploads[0].fileName='changed';s.uploads.pop();assert.equal(s.uploads[0].fileName,'bhp.csv');
 });
-test('final review I-3: the basis and assumptions fieldsets are built before the try that computes the estimate',async()=>{
+test('final review I-3 (2a): the J basis fieldset is built before the try; the assumptions form now lives in Well assumptions',async()=>{
  const src=await readFile('web/injectivity.mjs','utf8'),tryAt=src.indexOf('try{\n   const est=session.estimate');
- assert.ok(tryAt>0);for(const marker of ["'Pressure basis of the BHP field","'Declared assumptions (not public records)'"])assert.ok(src.indexOf(marker)>0&&src.indexOf(marker)<tryAt,marker);
+ assert.ok(tryAt>0);assert.ok(src.indexOf("'Pressure basis of the BHP field")>0&&src.indexOf("'Pressure basis of the BHP field")<tryAt);
+ assert.ok(!src.includes("'Declared assumptions (not public records)'"));
+ const wa=await readFile('web/well-assumptions.mjs','utf8');assert.ok(wa.includes("'Declared assumptions (not public records)'"));assert.ok(wa.includes("'Pressure basis of H-10 and permit pressures (required before any calculation)'"));
 });
 function fakeDom(){
  class N{constructor(t){this.tagName=t;this.children=[];this.dataset={};this._t='';this.style={};}
@@ -53,4 +55,15 @@ test('final review I-4: with no H-10 range every included dated record is labell
 test('final review M-2: the panel tells the user to download the sealed JSON before opening Hydraulics',async()=>{
  const src=await readFile('web/injectivity.mjs','utf8');
  assert.ok(src.includes("Download the J estimate JSON first: opening Hydraulics clears this review, and the hand-off cites the sealed estimate's hash."));
+});
+test('R6-1 (source): the J panel calls onChange only on a successful act; import-ui refreshes the reconciliation from it',async()=>{
+ const j=await readFile('web/injectivity.mjs','utf8');assert.match(j,/onChange=\(\)=>\{\}/);
+ const act=j.slice(j.indexOf('const act='),j.indexOf('function render()'));assert.ok(act.includes('onChange()')&&act.indexOf('onChange()')>act.indexOf('render();'));
+ const upd=j.slice(j.indexOf('update(inputs){if(disposed)'));assert.ok(!upd.includes('onChange'),'update() must not call onChange');
+ const u=await readFile('web/import-ui.mjs','utf8'),at=u.indexOf('mountInjectivity(j,{'),cb=u.slice(u.indexOf('onChange:',at),u.indexOf('onHandoff:',at));
+ assert.ok(cb.startsWith('onChange:'));assert.ok(cb.includes('reconPanel?.update('));assert.ok(!cb.includes('jPanel?.update('));
+});
+test('RF-1 (source): the reconciliation limit callback updates only the J panel',async()=>{
+ const u=await readFile('web/import-ui.mjs','utf8'),at=u.indexOf('mountReconciliation(r,{'),cb=u.slice(u.indexOf('onLimitChange:',at));
+ const end=cb.indexOf('});',0),body=cb.slice(0,end);assert.ok(body.startsWith('onLimitChange:'));assert.ok(body.includes('jPanel?.update('));assert.ok(!body.includes('reconPanel?.update('));
 });

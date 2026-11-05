@@ -3,10 +3,13 @@ import {createInjectivitySession,statusCounts} from '../web/injectivity.mjs';
 import {verifyEstimateSealed} from '../dist/injectivityEstimateExport.js';
 import {applyTestDecision} from '../dist/testRecords.js';
 import {fixtureInputs} from './helpers/injectivity-fixture.mjs';
+import {DEFAULT_WELL_ASSUMPTIONS} from '../dist/wellAssumptions.js';
+import {createWellAssumptionsSession} from '../web/well-assumptions.mjs';
 
 const ready={ready:true,reasons:[]},blocked={ready:false,reasons:['Inspection only: test.']};
 const selection={artifact:{artifactId:'synthetic',inventory:[{uic_number:'000000417',permit_liquid_pressure_limit_psi:1176,permit_liquid_volume_limit_bpd:30000}],injectionMonthly:[{uic_number:'000000417'}]},pin:null,tests:{sha256:{'tests.json':'ab'}}};
-const make=(gate=ready,inputs=fixtureInputs())=>createInjectivitySession({selection,gate,...inputs});
+const WELL={...DEFAULT_WELL_ASSUMPTIONS,surfaceBasis:{value:'psig',reason:'RRC H-10 reports gauge pressure'}};
+const make=(gate=ready,inputs=fixtureInputs())=>createInjectivitySession({selection,gate,well:WELL,...inputs});
 
 test('starts at revision 0 awaiting the basis; each change bumps the revision; a rejected change does not',()=>{
  const s=make();assert.equal(s.revision,0);assert.equal(s.uic,'000000417');assert.match(s.estimate.readiness,/Confirm the pressure basis/);
@@ -19,7 +22,7 @@ test('a 1a or 1b change arrives through update and recomputes',()=>{
  s.update(next);assert.equal(s.revision,2);assert.deepEqual(s.estimate.qualifying,['package:bhp:1']);
 });
 test('no H-10 rows: every test is unmatched with the reason',()=>{
- const s=createInjectivitySession({selection,gate:ready,h10:null,tests:fixtureInputs().tests});s.confirmBasis('psig','x');
+ const s=createInjectivitySession({selection,gate:ready,well:WELL,h10:null,tests:fixtureInputs().tests});s.confirmBasis('psig','x');
  assert.ok(s.estimate.tests.filter(t=>t.status==='unmatched').every(t=>t.reason==='No H-10 months to match.'));
 });
 test('export: sealed JSON verifies; filename carries the UIC and hash; a stale export resolves null',async()=>{
@@ -67,4 +70,25 @@ test('final review I-3: a failing recomputation rejects with its message and lea
  assert.throws(()=>s.confirmBasis('psia','y'),/failed to converge/);assert.throws(()=>s.setAssumptions({salinityWtPercent:12}),/failed to converge/);
  assert.throws(()=>s.move('package:bhp:4',-1,'z'),/failed to converge/);assert.throws(()=>s.choose('package:bhp:2','z'),/failed to converge/);
  assert.equal(s.state,before);assert.equal(s.revision,rev);boom=false;s.setAssumptions({salinityWtPercent:12});assert.equal(s.revision,rev+1);
+});
+test('2a: without the shared surface basis the J waits for it; a well update supplies it and bumps the revision',()=>{
+ const s=createInjectivitySession({selection,gate:ready,...fixtureInputs()});s.confirmBasis('psig','x');
+ assert.equal(s.estimate.readiness,'Confirm the H-10 and permit pressure basis in Well assumptions.');const r=s.revision;
+ s.update({...fixtureInputs(),well:WELL});assert.equal(s.revision,r+1);assert.deepEqual(s.estimate.qualifying,['package:bhp:1','package:bhp:2']);
+ s.update({...fixtureInputs(),well:{...WELL,surfaceBasis:{value:'psia',reason:'absolute'}}});assert.ok(Math.abs(s.estimate.tests[0].surfacePsia-900)<1e-9);
+ s.update({...fixtureInputs(),well:{...WELL,salinityWtPercent:12}});assert.equal(s.state.assumptions.salinityWtPercent,12);
+});
+test('2a: an update without well or declaredLimit keeps the current ones',()=>{
+ const s=make();s.confirmBasis('psig','x');s.update({...fixtureInputs(),declaredLimit:{psia:4000,depthFt:3310,reason:'design'}});
+ s.update(fixtureInputs());assert.deepEqual(s.state.surfaceBasis,WELL.surfaceBasis);assert.deepEqual(s.declaredLimit,{psia:4000,depthFt:3310,reason:'design'});
+});
+test('2a: the declared limit reaches the hand-off',async()=>{
+ const s=make();s.confirmBasis('psig','x');s.update({...fixtureInputs(),declaredLimit:{psia:4000,depthFt:3310,reason:'design'}});
+ const h=await s.handoffRequest();assert.equal(h.values.limitPsia,4000);assert.equal(h.origins.limitPsia,'Declared by the user in WHP/BHP reconciliation (design)');
+});
+test('2a: well-assumptions session confirms the basis, validates edits and counts revisions',()=>{
+ const w=createWellAssumptionsSession();assert.equal(w.state.surfaceBasis,null);assert.equal(w.revision,0);
+ assert.throws(()=>w.confirmBasis('psig',''),/reason/);assert.equal(w.revision,0);
+ w.confirmBasis('psig','RRC gauge');assert.deepEqual(w.state.surfaceBasis,{value:'psig',reason:'RRC gauge'});assert.equal(w.revision,1);
+ assert.throws(()=>w.set({salinityWtPercent:25}));assert.equal(w.revision,1);w.set({salinityWtPercent:12});assert.equal(w.state.salinityWtPercent,12);assert.equal(w.revision,2);
 });

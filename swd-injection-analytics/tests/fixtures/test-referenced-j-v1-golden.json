@@ -1,0 +1,278 @@
+{
+  "commit": "5bc1690",
+  "note": "Synthetic UIC 000000417; 1c estimate, sealed export and hand-off before Phase 2a.",
+  "sealed": {
+    "schemaVersion": "test-referenced-j-export/1",
+    "method": "test-referenced-j/1",
+    "label": "Test-referenced J (estimate)",
+    "basis": {
+      "value": "psig",
+      "reason": "RRC Permian guidance"
+    },
+    "assumptions": {
+      "innerDiameterInches": 3.958,
+      "roughnessInches": 0.0006,
+      "surfaceTemperatureF": 70,
+      "bottomholeTemperatureF": 100,
+      "salinityWtPercent": 10,
+      "segments": 32
+    },
+    "tests": [
+      {
+        "key": "package:bhp:1",
+        "date": "2024-02-12",
+        "depthFt": 3310,
+        "reportedPsi": 1705,
+        "month": "2024-02",
+        "shift": 0,
+        "shiftReason": null,
+        "status": "qualifies",
+        "reason": null,
+        "rateStbd": 10000,
+        "surfacePsi": 900,
+        "surfacePsia": 914.7,
+        "pResPsia": 1719.7,
+        "pWfPsia": 2384.0276702726687,
+        "hydrostaticPsi": 1537.3873669330758,
+        "frictionPsi": 68.05969666040731,
+        "deltaPsi": 664.3276702726687,
+        "j": 15.05281271197927,
+        "jNoFriction": 11.111111111111114,
+        "jAlternateBasis": 14.726940355736055,
+        "alternateBasis": "psia",
+        "jByTubing": [
+          {
+            "innerDiameterInches": 3.958,
+            "j": 15.05281271197927,
+            "reason": null
+          },
+          {
+            "innerDiameterInches": 4.892,
+            "j": 14.115015928380766,
+            "reason": null
+          },
+          {
+            "innerDiameterInches": 6.276,
+            "j": 13.785645391711649,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "key": "package:bhp:2",
+        "date": "2024-07-22",
+        "depthFt": 3310,
+        "reportedPsi": 1731,
+        "month": "2024-07",
+        "shift": 0,
+        "shiftReason": null,
+        "status": "qualifies",
+        "reason": null,
+        "rateStbd": 10000,
+        "surfacePsi": 900,
+        "surfacePsia": 914.7,
+        "pResPsia": 1745.7,
+        "pWfPsia": 2384.0276702726687,
+        "hydrostaticPsi": 1537.3873669330758,
+        "frictionPsi": 68.05969666040731,
+        "deltaPsi": 638.3276702726687,
+        "j": 15.665935327115601,
+        "jNoFriction": 11.111111111111114,
+        "jAlternateBasis": 15.313286795067269,
+        "alternateBasis": "psia",
+        "jByTubing": [
+          {
+            "innerDiameterInches": 3.958,
+            "j": 15.665935327115601,
+            "reason": null
+          },
+          {
+            "innerDiameterInches": 4.892,
+            "j": 14.652758104898691,
+            "reason": null
+          },
+          {
+            "innerDiameterInches": 6.276,
+            "j": 14.298128611811189,
+            "reason": null
+          }
+        ]
+      },
+      {
+        "key": "package:bhp:3",
+        "date": "2023-11-07",
+        "depthFt": 3100,
+        "reportedPsi": 1500,
+        "month": null,
+        "shift": 0,
+        "shiftReason": null,
+        "status": "refused",
+        "reason": "Excluded in the Test records review.",
+        "rateStbd": null,
+        "surfacePsi": null,
+        "surfacePsia": null,
+        "pResPsia": null,
+        "pWfPsia": null,
+        "hydrostaticPsi": null,
+        "frictionPsi": null,
+        "deltaPsi": null,
+        "j": null,
+        "jNoFriction": null,
+        "jAlternateBasis": null,
+        "alternateBasis": null,
+        "jByTubing": []
+      },
+      {
+        "key": "package:bhp:4",
+        "date": "2024-05-10",
+        "depthFt": 3310,
+        "reportedPsi": 1720,
+        "month": "2024-05",
+        "shift": 0,
+        "shiftReason": null,
+        "status": "unmatched",
+        "reason": "The matched month is excluded in the H-10 review.",
+        "rateStbd": null,
+        "surfacePsi": null,
+        "surfacePsia": null,
+        "pResPsia": null,
+        "pWfPsia": null,
+        "hydrostaticPsi": null,
+        "frictionPsi": null,
+        "deltaPsi": null,
+        "j": null,
+        "jNoFriction": null,
+        "jAlternateBasis": null,
+        "alternateBasis": null,
+        "jByTubing": []
+      }
+    ],
+    "qualifying": [
+      "package:bhp:1",
+      "package:bhp:2"
+    ],
+    "chosenKey": "package:bhp:2",
+    "choiceBy": "system",
+    "choiceReason": null,
+    "choiceDropped": false,
+    "range": {
+      "min": 15.05281271197927,
+      "max": 15.665935327115601
+    },
+    "trend": [
+      {
+        "date": "2024-02-12",
+        "j": 15.05281271197927
+      },
+      {
+        "date": "2024-07-22",
+        "j": 15.665935327115601
+      }
+    ],
+    "roundTrip": [
+      {
+        "key": "package:bhp:1",
+        "month": "2024-02",
+        "rateStbd": 10000,
+        "observedSurfacePsia": 914.7,
+        "chosen": false,
+        "reproducedSurfacePsia": 914.7000000000004,
+        "residualPsi": 3.410605131648481e-13,
+        "reason": null
+      },
+      {
+        "key": "package:bhp:2",
+        "month": "2024-07",
+        "rateStbd": 10000,
+        "observedSurfacePsia": 914.7,
+        "chosen": true,
+        "reproducedSurfacePsia": 914.7000000000004,
+        "residualPsi": 3.410605131648481e-13,
+        "reason": null
+      }
+    ],
+    "roundTripOk": true,
+    "readiness": "2 of 4 BHP tests give a test-referenced J (estimate).",
+    "source": {
+      "uic": "000000417",
+      "artifactId": "synthetic",
+      "normalizedSha256": null,
+      "manifestSha256": null,
+      "tests": {
+        "packageFiles": {},
+        "uploads": []
+      }
+    },
+    "units": {
+      "j": "STB/day/psi",
+      "rate": "bbl/day calendar-day average, treated as STB/day",
+      "pressure": "psia unless named psi (gauge, as reported)",
+      "depth": "ft (MD = TVD declared)",
+      "diameterAndRoughness": "in",
+      "temperature": "°F",
+      "salinity": "NaCl wt%"
+    },
+    "limitations": [
+      "Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse; declared tubing and fluid assumptions; monthly calendar-day average rate.",
+      "The calendar-day rate understates the onstream rate whenever the well had downtime, so J reads low; no correction is made.",
+      "The matched month contains the shut-in of at least 24 hours for the test.",
+      "H-10 average pressure is a monthly figure, not a flowing pressure measured at the time of the test; it is treated as psig and 14.7 psi is added.",
+      "Tubing size, roughness, temperatures and salinity are declared assumptions, not public records; the well is treated as vertical (MD = TVD = test depth).",
+      "The basis of the BHP source field is unresolved in the source; the confirmed reading is the user's.",
+      "No-friction check: P_wf = surface pressure + (test pressure / test depth) x test depth; it equals the fluid column only if the shut-in surface pressure was about zero.",
+      "Rate in bbl/day is treated as STB/day.",
+      "The BHP test is treated as a static shut-in reservoir pressure reading (RRC Permian guidance); the source record does not state the test type."
+    ],
+    "contentSha256": "d8859736adf5d17d87ca780f2ef1c7670ab866027421cf7fc0816ef172f0faa2"
+  },
+  "handoff": {
+    "values": {
+      "model": "segmented-brine",
+      "caseName": "Test-referenced J (estimate)",
+      "datum": "Top of completed interval at 3310 ft TVD (RRC guidance), from BHP test 2024-07-22",
+      "injectivityStbdPerPsi": 15.665935327115601,
+      "reservoirPsia": 1745.7,
+      "referencePressurePsia": 1745.7,
+      "tvdFt": 3310,
+      "measuredDepthFt": 3310,
+      "innerDiameterInches": 3.958,
+      "roughnessInches": 0.0006,
+      "temperatureF": 100,
+      "surfaceTemperatureF": 70,
+      "salinityWtPercent": 10,
+      "segments": 32,
+      "rateStbd": 10000,
+      "curveMaximumStbd": 15000,
+      "surfaceLimitPsia": 1190.7,
+      "operatingCeilingStbd": 30000,
+      "limitPsia": null
+    },
+    "origins": {
+      "injectivityStbdPerPsi": "Test-referenced J (estimate) from BHP test 2024-07-22 and H-10 2024-07; sealed estimate d8859736adf5",
+      "reservoirPsia": "BHP test 2024-07-22: psig reading + 14.7 psi (basis confirmed: RRC Permian guidance)",
+      "referencePressurePsia": "Set to the reservoir pressure (fluid reference state, context only)",
+      "datum": "From the BHP test depth (RRC guidance: top of the completed disposal interval)",
+      "tvdFt": "BHP test depth; vertical well declared",
+      "measuredDepthFt": "BHP test depth; vertical well declared",
+      "innerDiameterInches": "Declared assumption (test-referenced J estimate)",
+      "roughnessInches": "Declared assumption (test-referenced J estimate)",
+      "temperatureF": "Declared assumption (test-referenced J estimate)",
+      "surfaceTemperatureF": "Declared assumption (test-referenced J estimate)",
+      "salinityWtPercent": "Declared assumption (test-referenced J estimate)",
+      "segments": "Declared assumption (test-referenced J estimate)",
+      "rateStbd": "H-10 2024-07 calendar-day average rate",
+      "curveMaximumStbd": "1.5 x the matched rate",
+      "surfaceLimitPsia": "Inventory permitted surface pressure 1176 psi + 14.7 psi (permit value)",
+      "operatingCeilingStbd": "Inventory permitted volume 30000 bbl/day (permit value)",
+      "limitPsia": "Not set from evidence; declare it."
+    },
+    "sweep": {
+      "min": 15.05281271197927,
+      "max": 15.665935327115601
+    },
+    "notes": [
+      "J range for sweeps: 15.05 to 15.67 STB/day/psi (enter it in Parameter sweeps).",
+      "Measured static reservoir pressure (BHP test); flowing bottomhole pressure modelled from H-10 surface pressure through the wellbore traverse; declared tubing and fluid assumptions; monthly calendar-day average rate."
+    ]
+  }
+}

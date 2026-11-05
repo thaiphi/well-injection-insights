@@ -1,0 +1,801 @@
+{
+  "schemaVersion": "pressure-reconciliation-export/1",
+  "method": "pressure-reconciliation/1",
+  "label": "WHP/BHP reconciliation (screening)",
+  "screening": "Screening only: not a regulatory approval, compliance finding or safe-operating determination.",
+  "surfaceBasis": {
+    "value": "psig",
+    "reason": "RRC H-10 reports gauge pressure (verification)"
+  },
+  "bhpBasis": {
+    "value": "psig",
+    "reason": "RRC Permian guidance (verification)"
+  },
+  "assumptions": {
+    "innerDiameterInches": 3.958,
+    "roughnessInches": 0.0006,
+    "surfaceTemperatureF": 70,
+    "bottomholeTemperatureF": 100,
+    "salinityWtPercent": 10,
+    "segments": 32
+  },
+  "reportDepth": {
+    "depthFt": 3310,
+    "source": "BHP test depth"
+  },
+  "permit": {
+    "surfacePsi": 1500,
+    "topDepthFt": 3028
+  },
+  "declaredLimit": {
+    "psia": 4000,
+    "depthFt": 3310,
+    "reason": "Synthetic design limit (verification)"
+  },
+  "srtPresent": true,
+  "formation": "Not evaluated in this phase",
+  "notes": [
+    "Calendar-day average rate; it understates the rate while the well is actually injecting, so friction is understated and the modelled pressure reads high.",
+    "Step-rate records carry fracture-pressure fields; this phase does not use them."
+  ],
+  "rows": [
+    {
+      "month": "2024-01",
+      "status": "included",
+      "rateBpd": 14,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.908457988571,
+        "hydroPsi": 1535.2099399021715,
+        "frictionPsi": 0.0014819136008706211,
+        "band": {
+          "min": 1835.1517146875,
+          "max": 1849.9097080124268
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5089003119756,
+        "marginPsi": 1204.6004423234046,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.091542011429,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2024-02",
+      "status": "included",
+      "rateBpd": 14.379310344827585,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084177567734,
+        "hydroPsi": 1535.2099398207417,
+        "frictionPsi": 0.0015220639694167332,
+        "band": {
+          "min": 1835.1516744544617,
+          "max": 1849.9097016482704
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5088601804364,
+        "marginPsi": 1204.600442423663,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915822432266,
+        "reason": null
+      },
+      "tests": [
+        {
+          "key": "package:bhp:1",
+          "date": "2024-02-12",
+          "depthFt": 3310,
+          "reportedPsi": 1705,
+          "pResPsia": 1719.7,
+          "differentialPsi": 130.20841775677331,
+          "band": {
+            "min": 115.45167445446168,
+            "max": 130.2097016482703
+          },
+          "negative": false,
+          "reason": null,
+          "testGradientPsiFt": 0.5151057401812689,
+          "columnGradientPsiFt": 0.4638096494926712,
+          "checklist": []
+        }
+      ]
+    },
+    {
+      "month": "2024-03",
+      "status": "included",
+      "rateBpd": 14.451612903225806,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084100879545,
+        "hydroPsi": 1535.2099398052203,
+        "frictionPsi": 0.0015297172654742078,
+        "band": {
+          "min": 1835.1516667854069,
+          "max": 1849.9097004351618
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.50885253073,
+        "marginPsi": 1204.6004424427756,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915899120455,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2024-04",
+      "status": "included",
+      "rateBpd": 14.533333333333333,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084014202242,
+        "hydroPsi": 1535.2099397876766,
+        "frictionPsi": 0.0015383674524028718,
+        "band": {
+          "min": 1835.1516581174094,
+          "max": 1849.9096990640378
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.508843884598,
+        "marginPsi": 1204.6004424643736,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915985797756,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2024-05",
+      "status": "included",
+      "rateBpd": 14.193548387096774,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.908437459736,
+        "hydroPsi": 1535.209939860621,
+        "frictionPsi": 0.0015024008857002756,
+        "band": {
+          "min": 1835.1516941580314,
+          "max": 1849.9097047650275
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5088798342986,
+        "marginPsi": 1204.6004423745626,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.091562540264,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2024-06",
+      "status": "included",
+      "rateBpd": 14.166666666666666,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084403109623,
+        "hydroPsi": 1535.2099398663918,
+        "frictionPsi": 0.001499555429473894,
+        "band": {
+          "min": 1835.1516970093458,
+          "max": 1849.909705216055
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.508882678421,
+        "marginPsi": 1204.6004423674585,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915596890377,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2024-07",
+      "status": "included",
+      "rateBpd": 13.870967741935484,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084716744605,
+        "hydroPsi": 1535.209939929872,
+        "frictionPsi": 0.0014682554109845646,
+        "band": {
+          "min": 1835.1517283738128,
+          "max": 1849.9097101773602
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5089139637635,
+        "marginPsi": 1204.600442289303,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915283255395,
+        "reason": null
+      },
+      "tests": [
+        {
+          "key": "package:bhp:2",
+          "date": "2024-07-22",
+          "depthFt": 3310,
+          "reportedPsi": 1731,
+          "pResPsia": 1745.7,
+          "differentialPsi": 104.2084716744605,
+          "band": {
+            "min": 89.45172837381278,
+            "max": 104.2097101773602
+          },
+          "negative": false,
+          "reason": null,
+          "testGradientPsiFt": 0.5229607250755287,
+          "columnGradientPsiFt": 0.4638096495256411,
+          "checklist": []
+        }
+      ]
+    },
+    {
+      "month": "2024-08",
+      "status": "included",
+      "rateBpd": 13.516129032258064,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9085093106592,
+        "hydroPsi": 1535.2099400060479,
+        "frictionPsi": 0.0014306953887994692,
+        "band": {
+          "min": 1835.1517660111706,
+          "max": 1849.909716130926
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5089515061704,
+        "marginPsi": 1204.6004421955113,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.091490689341,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2024-09",
+      "status": "included",
+      "rateBpd": 14.5,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.908404955746,
+        "hydroPsi": 1535.2099397948327,
+        "frictionPsi": 0.0015348390866819536,
+        "band": {
+          "min": 1835.1516616530412,
+          "max": 1849.909699623311
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5088474113086,
+        "marginPsi": 1204.6004424555626,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.091595044254,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2024-10",
+      "status": "included",
+      "rateBpd": 13.870967741935484,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084716744605,
+        "hydroPsi": 1535.209939929872,
+        "frictionPsi": 0.0014682554109845646,
+        "band": {
+          "min": 1835.1517283738128,
+          "max": 1849.9097101773602
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5089139637635,
+        "marginPsi": 1204.600442289303,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915283255395,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2024-11",
+      "status": "included",
+      "rateBpd": 14,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.908457988571,
+        "hydroPsi": 1535.2099399021715,
+        "frictionPsi": 0.0014819136008706211,
+        "band": {
+          "min": 1835.1517146875,
+          "max": 1849.9097080124268
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5089003119756,
+        "marginPsi": 1204.6004423234046,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.091542011429,
+        "reason": null
+      },
+      "tests": [
+        {
+          "key": "package:bhp:4",
+          "date": "2024-11-15",
+          "depthFt": 3310,
+          "reportedPsi": 3000,
+          "pResPsia": 3014.7,
+          "differentialPsi": -1164.7915420114289,
+          "band": {
+            "min": -1179.5482853124997,
+            "max": -1164.790291987573
+          },
+          "negative": true,
+          "reason": null,
+          "testGradientPsiFt": 0.9063444108761329,
+          "columnGradientPsiFt": 0.4638096495172724,
+          "checklist": [
+            "Shut-in days included in the monthly average pressure.",
+            "Brine column density or salinity differs from the declared assumption.",
+            "Test taken with pressure held on the tubing.",
+            "Calendar-day rate understates the rate while injecting."
+          ]
+        }
+      ]
+    },
+    {
+      "month": "2024-12",
+      "status": "included",
+      "rateBpd": 14.193548387096774,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.908437459736,
+        "hydroPsi": 1535.209939860621,
+        "frictionPsi": 0.0015024008857002756,
+        "band": {
+          "min": 1835.1516941580314,
+          "max": 1849.9097047650275
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5088798342986,
+        "marginPsi": 1204.6004423745626,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.091562540264,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2025-01",
+      "status": "included",
+      "rateBpd": 14.064516129032258,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084511456253,
+        "hydroPsi": 1535.2099398883215,
+        "frictionPsi": 0.0014887426958137642,
+        "band": {
+          "min": 1835.151707844344,
+          "max": 1849.9097069299607
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.508893486084,
+        "marginPsi": 1204.6004423404588,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915488543747,
+        "reason": null
+      },
+      "tests": [
+        {
+          "key": "package:bhp:3",
+          "date": "2025-01-15",
+          "depthFt": 3310,
+          "reportedPsi": 1710,
+          "pResPsia": 1724.7,
+          "differentialPsi": 125.2084511456253,
+          "band": {
+            "min": 110.4517078443439,
+            "max": 125.2097069299607
+          },
+          "negative": false,
+          "reason": null,
+          "testGradientPsiFt": 0.5166163141993958,
+          "columnGradientPsiFt": 0.46380964951308806,
+          "checklist": []
+        }
+      ]
+    },
+    {
+      "month": "2025-02",
+      "status": "included",
+      "rateBpd": 14.857142857142858,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.908367075157,
+        "hydroPsi": 1535.2099397181628,
+        "frictionPsi": 0.001572643005121405,
+        "band": {
+          "min": 1835.1516237712838,
+          "max": 1849.9096936310862
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.5088096251197,
+        "marginPsi": 1204.6004425499627,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.091632924843,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2025-03",
+      "status": "included",
+      "rateBpd": 14.516129032258064,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084032450096,
+        "hydroPsi": 1535.2099397913698,
+        "frictionPsi": 0.0015365463604178795,
+        "band": {
+          "min": 1835.151659942251,
+          "max": 1849.9096993526946
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.508845704838,
+        "marginPsi": 1204.6004424598286,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915967549904,
+        "reason": null
+      },
+      "tests": []
+    },
+    {
+      "month": "2025-04",
+      "status": "included",
+      "rateBpd": 14.533333333333333,
+      "avgPsi": 300,
+      "maxPsi": 425,
+      "surfacePsia": 314.7,
+      "regulatory": {
+        "marginPsi": 1075,
+        "reason": null,
+        "abovePermit": false
+      },
+      "modelled": {
+        "pwfPsia": 1849.9084014202242,
+        "hydroPsi": 1535.2099397876766,
+        "frictionPsi": 0.0015383674524028718,
+        "band": {
+          "min": 1835.1516581174094,
+          "max": 1849.9096990640378
+        },
+        "reason": null
+      },
+      "permitEquivalent": {
+        "pwfPsia": 3054.508843884598,
+        "marginPsi": 1204.6004424643736,
+        "reason": null
+      },
+      "declared": {
+        "marginPsi": 2150.0915985797756,
+        "reason": null
+      },
+      "tests": []
+    }
+  ],
+  "summary": {
+    "minRegulatoryPsi": 1075,
+    "minPermitEquivalentPsi": 1204.6004421955113,
+    "minDeclaredPsi": 2150.091490689341
+  },
+  "counts": {
+    "months": 16,
+    "included": 16,
+    "modelled": 16,
+    "refused": {},
+    "testMonths": 4,
+    "negativeDifferentials": 1,
+    "abovePermit": 0
+  },
+  "readiness": "16 of 16 included months modelled at 3310 ft (BHP test depth).",
+  "source": {
+    "uic": "000000417",
+    "artifactId": "rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627",
+    "normalizedSha256": "522a5ad67a657b77d84c5bb05a54bbd434efad72960dbe7ff330ed688cc06d79",
+    "manifestSha256": "ed38040afc4cb07af7b690619b718a1ec260685b685402e4099ffed745908dff",
+    "h10Decisions": {
+      "2024-01": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-02": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-03": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-04": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-05": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-06": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-07": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-08": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-09": {
+        "include": true,
+        "reason": null,
+        "byUser": true
+      },
+      "2024-10": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-11": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2024-12": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2025-01": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2025-02": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2025-03": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      },
+      "2025-04": {
+        "include": true,
+        "reason": null,
+        "byUser": false
+      }
+    },
+    "tests": {
+      "packageFiles": {
+        "tests.json": "de9e960b46e182cbf41b94fb5c1d3c004d93c3506328b2740756141d64595352",
+        "tests_bhp.csv": "250cb39b173d07bd63259dec96fe25937887c9f9c9e8faf7589f649c2af82579",
+        "tests_srt.csv": "814c86920a520a3b87f2ed2f7cb1bef4ed47cc8be3815052b8b853211a52d3cd",
+        "tests_dictionary.json": "690574e58f75535d546dd14a1ab51c8bf7e480f0b2674e0eb501ef0cfd9699d4"
+      },
+      "uploads": [],
+      "inclusions": {
+        "package:bhp:1": true,
+        "package:bhp:2": true,
+        "package:bhp:3": true,
+        "package:bhp:4": true,
+        "package:srt:1": true
+      }
+    },
+    "jMatches": {
+      "package:bhp:1": "2024-02",
+      "package:bhp:2": "2024-07",
+      "package:bhp:3": "2025-01",
+      "package:bhp:4": "2024-11"
+    }
+  },
+  "units": {
+    "pressure": "psia unless named psi (as reported, on the confirmed basis)",
+    "margin": "psi",
+    "rate": "bbl/day calendar-day average, treated as STB/day",
+    "depth": "ft (MD = TVD declared)",
+    "gradient": "psi/ft",
+    "diameterAndRoughness": "in",
+    "temperature": "°F",
+    "salinity": "NaCl wt%"
+  },
+  "formulas": [
+    "P_bh = P_wh + ΔP_hydrostatic − ΔP_friction (forward surface-boundary traverse at the report depth)",
+    "Regulatory margin = permit liquid pressure limit (psi) − reported monthly maximum (psi), same basis, no conversion",
+    "Permit-equivalent margin = P_bh(permit pressure at surface) − P_bh(reported average at surface), same month rate",
+    "Declared margin = declared bottomhole limit (psia) − modelled P_bh",
+    "Differential = modelled flowing P_bh − measured static P_res (BHP test on its confirmed basis)"
+  ],
+  "limitations": [
+    "Screening only: not a regulatory approval, compliance finding or safe-operating determination.",
+    "Surface pressures are H-10 monthly figures read on the user-confirmed basis; the regulatory margin compares the permit limit with the reported monthly maximum on that same basis.",
+    "Calendar-day average rate; it understates the rate while the well is actually injecting, so friction is understated and the modelled pressure reads high.",
+    "Tubing size, roughness, temperatures and salinity are declared assumptions, not public records; the well is treated as vertical (MD = TVD).",
+    "BHP tests are treated as static shut-in readings (RRC Permian guidance); the source does not state the test type. The flowing minus static differential, not a model error.",
+    "The permit-equivalent bottomhole pressure restates the permit limit at depth; not an independent constraint.",
+    "Formation margin: Not evaluated in this phase; no fracture-pressure or formation-limit evidence is used.",
+    "Rate in bbl/day is treated as STB/day."
+  ],
+  "contentSha256": "b514c1808ef20975cda5ae362657b050c5479936f3890fd20d01326c1f380d6d"
+}

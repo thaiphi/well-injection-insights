@@ -1,20 +1,25 @@
-import test from 'node:test';import assert from 'node:assert/strict';
-import {createEstimateState,withInputs,confirmBasis,setAssumptions,moveMatch,chooseJ,estimate,handoff,validateAssumptions,datumFor,
- REASONS,DEFAULT_ASSUMPTIONS,TUBING_SENSITIVITY_IN,ATMOSPHERE_PSI,LABEL_J,LIMITATIONS,BASIS_STATEMENT} from '../dist/injectivityEstimate.js';
+import test from 'node:test';import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';
+import {createEstimateState,withInputs,confirmBasis,setSurfaceBasis,setAssumptions,moveMatch,chooseJ,estimate,handoff,validateAssumptions,datumFor,
+ REASONS,DEFAULT_ASSUMPTIONS,TUBING_SENSITIVITY_IN,ATMOSPHERE_PSI,LABEL_J,LIMITATIONS,BASIS_STATEMENT,J_ESTIMATE_VERSION} from '../dist/injectivityEstimate.js';
 import {traverseBrineWell} from '../dist/wellboreTraverse.js';
 import {applyDecision} from '../dist/h10Diagnostics.js';
 import {applyTestDecision} from '../dist/testRecords.js';
+import {applyHandoff} from '../web/hydraulics.mjs';
 import {fixtureInputs,monthlyRow,bhpRow} from './helpers/injectivity-fixture.mjs';
 
 const K=n=>`package:bhp:${n}`;
 const near=(a,b,tol=1e-9)=>assert.ok(Math.abs(a-b)<=tol*Math.max(1,Math.abs(b)),`${a} != ${b}`);
-const psig=s=>confirmBasis(s,'psig','RRC Permian guidance');
+const SURFACE_PSIG={value:'psig',reason:'RRC H-10 reports gauge pressure'};
+const psig=s=>confirmBasis(setSurfaceBasis(s,SURFACE_PSIG),'psig','RRC Permian guidance');
 const byKey=(est,n)=>est.tests.find(t=>t.key===K(n));
 const pwf=(depth,surfacePsia,id=3.958,rate=10000)=>traverseBrineWell({well:{tvdFt:depth,measuredDepthFt:depth,innerDiameterInches:id,roughnessInches:0.0006,bottomholeTemperatureF:100},
  fluid:{referencePressurePsia:surfacePsia,temperatureF:100,salinityWtPercent:10},settings:{model:'segmented-brine',surfaceTemperatureF:70,segments:32},rateStbd:rate,boundary:{location:'surface',pressurePsia:surfacePsia}});
 
-test('matches show before the basis is confirmed, with no J',()=>{
- const e=estimate(createEstimateState(fixtureInputs())),t1=byKey(e,1);
+test('matches show before either basis is confirmed, with no J',()=>{
+ const e0=estimate(createEstimateState(fixtureInputs())),t0=byKey(e0,1);
+ assert.equal(t0.status,'awaiting-basis');assert.equal(t0.reason,REASONS.surfaceBasis);assert.equal(t0.month,'2024-02');assert.equal(t0.surfacePsi,900);assert.equal(t0.surfacePsia,null);
+ assert.equal(e0.readiness,'Confirm the H-10 and permit pressure basis in Well assumptions.');
+ const e=estimate(setSurfaceBasis(createEstimateState(fixtureInputs()),SURFACE_PSIG)),t1=byKey(e,1);
  assert.equal(t1.status,'awaiting-basis');assert.equal(t1.reason,REASONS.basis);assert.equal(t1.month,'2024-02');
  assert.equal(t1.rateStbd,10000);near(t1.surfacePsia,914.7);assert.equal(t1.j,null);assert.equal(e.chosenKey,null);
  assert.equal(e.readiness,'Confirm the pressure basis to see test-referenced J.');
@@ -27,7 +32,7 @@ test('psig basis: P_res = reported + 14.7; P_wf from the surface traverse; J = q
 test('no-friction check equals q over the gauge surface pressure (R4) and alternate basis uses the reported value',()=>{
  const t1=byKey(estimate(psig(createEstimateState(fixtureInputs()))),1),t=pwf(3310,914.7);
  near(t1.jNoFriction,10000/900);near(t1.jAlternateBasis,10000/(t.bottomholePsia-1705));assert.equal(t1.alternateBasis,'psia');
- const a=byKey(estimate(confirmBasis(createEstimateState(fixtureInputs()),'psia','source field name')),1);
+ const a=byKey(estimate(confirmBasis(setSurfaceBasis(createEstimateState(fixtureInputs()),SURFACE_PSIG),'psia','source field name')),1);
  near(a.pResPsia,1705);near(a.jAlternateBasis,10000/(t.bottomholePsia-1719.7));assert.equal(a.alternateBasis,'psig');
 });
 test('tubing sensitivity: larger ID, less friction, lower J (R5); first entry equals the default J',()=>{
@@ -100,7 +105,7 @@ test('round trip: the scenario reproduces the chosen month within 0.5 psi; other
 test('withInputs keeps the basis, assumptions and moves for tests that still exist',()=>{
  const s=moveMatch(setAssumptions(psig(createEstimateState(fixtureInputs())),{salinityWtPercent:12}),K(4),-1,'reason');
  const next=withInputs(s,fixtureInputs({bhp:[bhpRow(1,'2024-02-12',1705,3310)]}));
- assert.deepEqual(next.basis,s.basis);assert.equal(next.assumptions.salinityWtPercent,12);assert.deepEqual(Object.keys(next.shifts),[]);
+ assert.deepEqual(next.basis,s.basis);assert.equal(next.assumptions.salinityWtPercent,12);assert.deepEqual(Object.keys(next.shifts),[]);assert.deepEqual(next.surfaceBasis,s.surfaceBasis);
 });
 test('assumptions are validated, never clamped',()=>{
  assert.deepEqual(validateAssumptions({...DEFAULT_ASSUMPTIONS}),{...DEFAULT_ASSUMPTIONS});
@@ -149,4 +154,36 @@ test('final review M-1: a moved match and the chosen J follow the record identit
 });
 test('final review M-7: the BHP test-type limitation is listed',()=>{
  assert.ok(LIMITATIONS.includes('The BHP test is treated as a static shut-in reservoir pressure reading (RRC Permian guidance); the source record does not state the test type.'));
+});
+test('2a equivalence: with both bases psig and default assumptions, estimate and hand-off equal the 1c golden from 5bc1690',async()=>{
+ const g=JSON.parse(await readFile('tests/fixtures/test-referenced-j-v1-golden.json','utf8'));assert.equal(g.sealed.schemaVersion,'test-referenced-j-export/1');
+ const s=psig(createEstimateState(fixtureInputs())),e=JSON.parse(JSON.stringify(estimate(s)));
+ for(const k of ['tests','qualifying','chosenKey','choiceBy','choiceReason','choiceDropped','range','trend','roundTrip','roundTripOk','readiness','basis','assumptions'])assert.deepEqual(e[k],g.sealed[k],k);
+ const h=handoff(s,estimate(s),{surfacePsi:1176,volumeBpd:30000},g.sealed.contentSha256);
+ assert.deepEqual(h.values,g.handoff.values);assert.deepEqual(h.origins,g.handoff.origins);assert.deepEqual(h.notes,g.handoff.notes);assert.deepEqual(h.sweep,g.handoff.sweep);
+});
+test('2a: a psia surface basis shifts the surface pressure and the permit by exactly -14.7 psi',()=>{
+ const g=psig(createEstimateState(fixtureInputs())),a=confirmBasis(setSurfaceBasis(createEstimateState(fixtureInputs()),{value:'psia',reason:'reported as absolute'}),'psig','RRC Permian guidance');
+ const ta=byKey(estimate(a),1),tg=byKey(estimate(g),1);near(ta.surfacePsia,900);near(ta.surfacePsia,tg.surfacePsia-14.7);
+ const ha=handoff(a,estimate(a),{surfacePsi:1176,volumeBpd:null},'ab'.repeat(32));near(ha.values.surfaceLimitPsia,1176);
+ assert.equal(ha.origins.surfaceLimitPsia,'Inventory permitted surface pressure 1176 psi, read as psia (permit value; basis confirmed: reported as absolute)');
+});
+test('2a: the surface basis needs a known value and a reason; null clears it; the estimate records it',()=>{
+ const s=createEstimateState(fixtureInputs());
+ assert.throws(()=>setSurfaceBasis(s,{value:'bar',reason:'x'}),/psig or psia/);assert.throws(()=>setSurfaceBasis(s,{value:'psig',reason:' '}),/reason/);
+ assert.equal(setSurfaceBasis(setSurfaceBasis(s,SURFACE_PSIG),null).surfaceBasis,null);
+ assert.deepEqual(estimate(psig(s)).surfaceBasis,SURFACE_PSIG);
+ const e=estimate(psig(s));assert.throws(()=>handoff(setSurfaceBasis(psig(s),null),e,{surfacePsi:null,volumeBpd:null},'x'),/Confirm the H-10 and permit pressure basis/);
+});
+test('2a: a bottomhole limit declared within 1 ft of the J datum prefills the hand-off; 2 ft away does not',()=>{
+ const s=psig(createEstimateState(fixtureInputs())),e=estimate(s),limit={psia:4000,depthFt:3311,reason:'operator design limit'};
+ const h=handoff(s,e,{surfacePsi:1176,volumeBpd:30000},'ab'.repeat(32),limit);
+ assert.equal(h.values.limitPsia,4000);assert.equal(h.origins.limitPsia,'Declared by the user in WHP/BHP reconciliation (operator design limit)');
+ assert.equal(applyHandoff(h).fields.limitPsia,'4000');
+ const far=handoff(s,e,{surfacePsi:1176,volumeBpd:30000},'ab'.repeat(32),{...limit,depthFt:3312});
+ assert.equal(far.values.limitPsia,null);assert.equal(far.origins.limitPsia,'Not set from evidence; declare it.');
+});
+test('2a: version and the H-10 limitation refer to the confirmed surface basis',()=>{
+ assert.equal(J_ESTIMATE_VERSION,'test-referenced-j/2');
+ assert.equal(LIMITATIONS[3],'H-10 average pressure is a monthly figure, not a flowing pressure measured at the time of the test; it is converted on the user-confirmed surface basis.');
 });
