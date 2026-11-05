@@ -20,3 +20,7 @@ The application is in `swd-injection-analytics/`. The outer TanStack project is 
 Use direct Node paths for checks. `scripts/prepare-swd.mjs` compiles the nested app using TypeScript 5.9.3 and assembles its existing static routes. Do not edit generated `public/` assets. Preserve full-document navigation: an iframe changes the handoff and browsing context. Do not provision a backend or publish the app merely to make the transfer preview work.
 
 The owner's backend is the existing **Portfolio Supabase** project (`phxiqnsebqaalvkanljb`), not Lovable Cloud. Its connection boundary is in `integrations/portfolio/`. Keep data/session state and numerical code independent of API availability. Do not infer cloud saving from service reachability, provision another backend, change permissions, add data uploads or migrate schemas without an explicitly scoped request. Only publishable keys may appear in browser configuration.
+
+## Issue tracking
+
+Work from a GitHub issue in thaiphi/well-injection-insights. Requirements are tracked as `ANA-Exx` issues (#1–#10, milestones by phase). Reference the issue number in delegation briefs and PRs, and use `Closes #n` in the PR body. Before an issue is closed, record its evidence on the issue: acceptance-test output, preservation-gate result and the owner's acceptance. Opening PRs, posting evidence and closing issues still need the owner's go-ahead, like merge and push.
