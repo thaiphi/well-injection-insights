@@ -1,0 +1,10 @@
+{
+  "purpose": "Zoomcamp ZC-02 follow-up (texas-rail-sync #47): an optional HOST listen address for the preview server (default 127.0.0.1, unchanged) and a repo-root Dockerfile that serves the Analytics app on 0.0.0.0:4290 inside the joint Explorer + Analytics Docker Compose stack.",
+  "acceptanceEvidence": "demo/ZC02-DOCKER-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-11-05-zc02-analytics-docker-design.md"
+  ],
+  "changes": ["scripts/serve.mjs"],
+  "newFiles": ["tests/serve-host.test.mjs"],
+  "rootFiles": ["migration/layers/index.json"]
+}

@@ -1,0 +1,23 @@
+# Only swd-injection-analytics/ is copied into the image; keep the rest of the repo out of the build context.
+**/node_modules
+**/dist
+**/.git
+.git
+tmp
+.superpowers
+.lovable
+.output
+.tanstack
+.wrangler
+public
+src
+integrations
+migration
+handover
+demo
+docs
+tests
+swd-injection-analytics/output/*
+!swd-injection-analytics/output/pdf
+swd-injection-analytics/tests
+swd-injection-analytics/docs

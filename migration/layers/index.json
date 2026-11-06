@@ -28,6 +28,10 @@
     {
       "name": "phase-2a-pressure-reconciliation",
       "baseline": "migration/layers/phase-2a-pressure-reconciliation.json"
+    },
+    {
+      "name": "zc02-analytics-docker",
+      "baseline": "migration/layers/zc02-analytics-docker.json"
     }
   ]
 }

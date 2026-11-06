@@ -1,0 +1,40 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "zc02-analytics-docker",
+  "status": "accepted",
+  "acceptedAt": "2026-11-06",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/ZC02-DOCKER-VERIFICATION.md",
+  "purpose": "Zoomcamp ZC-02 follow-up (texas-rail-sync #47): an optional HOST listen address for the preview server (default 127.0.0.1, unchanged) and a repo-root Dockerfile that serves the Analytics app on 0.0.0.0:4290 inside the joint Explorer + Analytics Docker Compose stack.",
+  "parentBaselineSha256": "71153dcfcd6c48e245001564525e6f86d86623e76f6026bbb4c956f22cc211c1",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-11-05-zc02-analytics-docker-design.md",
+      "sha256": "43e133b6c9e0377ba5b5bba42946ca7c82e8aab8f4a3119f9d440f397c35d8ae"
+    }
+  ],
+  "changes": [
+    {
+      "path": "scripts/serve.mjs",
+      "archive": "migration/baselines/zc02-analytics-docker-before/swd-injection-analytics/scripts/serve.mjs",
+      "beforeSha256": "50507d19dd7c845a3403d62016e5b401a69ed787262b0880eeae337bc6b90dc4",
+      "beforeBytes": 1897,
+      "afterSha256": "214b55437331f87a4d4b863d55a2dd759a004240bf5110923881c3a2a7914c15",
+      "afterBytes": 1923
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "tests/serve-host.test.mjs",
+      "sha256": "d7966f5ba146c3f2e6db04020bf62a7154698b244b34ea628e2991b13c32b2f5",
+      "bytes": 2281
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "d7260c9f294d042d46aedfbc0e2ceca1d6429ed5a0f8800eeb44dd3907816dc3",
+      "bytes": 954
+    }
+  ]
+}
