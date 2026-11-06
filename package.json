@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "test": "vitest run",
+    "test": "node scripts/check-all.mjs",
+    "test:vitest": "vitest run",
     "test:watch": "vitest",
     "prepare:analytics": "node scripts/prepare-swd.mjs",
     "test:transfer": "node --test tests/transfer.test.mjs"

@@ -6,10 +6,10 @@ Prepared October 11, 2026. Engineering and connection baseline: commit `e5b58e87
 
 | Item | Established state |
 |---|---|
-| GitHub | Private repository: [thaiphi/well-injection-insights](https://github.com/thaiphi/well-injection-insights), branch `main`; user confirmed owner `thaiphi`. |
+| GitHub | Public repository since 2026-11-05 (AGPL-3.0-only): [thaiphi/well-injection-insights](https://github.com/thaiphi/well-injection-insights), branch `main`; user confirmed owner `thaiphi`. |
 | Lovable | [Well Injection Insights](https://lovable.dev/projects/c65e0f06-6e8b-4b9c-bb88-45c3aec39927), project `c65e0f06-6e8b-4b9c-bb88-45c3aec39927`, Thai's Lovable workspace. GitHub sync is established. |
 | Backend | Existing **Portfolio Supabase**, reference `phxiqnsebqaalvkanljb`, us-east-1, API `https://phxiqnsebqaalvkanljb.supabase.co`. **Not Lovable Cloud.** |
-| Hosting | Actual engineering app is served at `/analytics/index.html`; the outer home route forwards query and fragment to it. Preview was verified; project was unpublished at the last check. |
+| Hosting | Actual engineering app is served at `/analytics/index.html`; the outer home route forwards query and fragment to it. Published at https://swdinjectionanalytics.lovable.app (verified 2026-11-06); release and rollback steps are in [README.md](README.md#release-and-rollback). |
 | Persistence | Imported files, mapping confirmations, assumptions and results are browser-session state. No sign-in, saved-case storage, database upload or cloud curve library is implemented. Portfolio had zero public tables at inspection. |
 | Product | Educational reservoir/disposal engineering demonstration. Conditional screening results do not establish sustainable disposal capacity, transient pressure evolution or field calibration. |
 | Target | Governing documents target delivery **before October 14, 2026**. Product acceptance remains open; the transfer does not satisfy all release gates. |
