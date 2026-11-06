@@ -65,6 +65,8 @@ docker run --rm -p 127.0.0.1:4290:4290 swd-analytics
 
 Then open http://127.0.0.1:4290/. The container runs the preview server (`swd-injection-analytics/scripts/serve.mjs`) as a non-root user on Node 24.13.0, listens on `0.0.0.0:$PORT` (default 4290) and has a health check. Outside Docker the server still listens on 127.0.0.1 unless `HOST` is set.
 
+To build and smoke-test the image in one step, run `bash scripts/docker-smoke.sh`. It builds the image and waits until it is healthy. It then checks that `/`, `/dist/pressureReconciliation.js` and the technical-exhibit PDF return 200, that `POST /` returns 405, and that the container runs as a non-root user. CI runs this script as the `docker` job on every pull request and on every push to `main`.
+
 ## Release and rollback
 
 | Environment | What it is | How it updates |

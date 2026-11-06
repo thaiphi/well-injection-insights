@@ -49,3 +49,15 @@ jobs:
           name: analytics-gates
           path: tmp/analytics-check-*/gates.json
           if-no-files-found: ignore
+
+  # Standalone Analytics image (Zoomcamp ZC-02): build the repo-root Dockerfile,
+  # wait for its HEALTHCHECK, then check key routes, POST refusal and non-root user.
+  docker:
+    name: docker
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build and smoke-test the image
+        run: bash scripts/docker-smoke.sh
