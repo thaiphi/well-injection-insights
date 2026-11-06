@@ -26,7 +26,7 @@ Explorer and Analytics are submitted as one system. Explorer's `docker compose u
    - With no `HOST`, the server reports `127.0.0.1`.
    - With `HOST=0.0.0.0`, it reports `0.0.0.0` and still serves on loopback.
    - A POST is still refused with 405.
-   - Static checks of the Dockerfile: base image, non-root user, `HOST`/`PORT`, health check and entry point.
+5. **Root `tests/docker-image.test.mjs`** (unpinned, like the Dockerfile): static checks of the Dockerfile, covering the base image, the non-root user, `HOST`/`PORT`, the health check and the entry point. It sits with the root tests because CI runs the app suite in an isolated copy of `swd-injection-analytics/` that has no repo root.
 
 ## Not in scope
 
@@ -35,4 +35,4 @@ Explorer and Analytics are submitted as one system. Explorer's `docker compose u
 - Telemetry (ZC-05/06), on hold until the owner approves the design.
 - Any change to the Lovable app.
 
-The preservation layer is `zc02-analytics-docker`. It archives the before-image of `serve.mjs` and pins the new test. The `Dockerfile` and `.dockerignore` are not pinned. They are new, unprotected root files, and the root `.gitattributes` (itself pinned) does not mark them `-text`. A Windows `core.autocrlf` checkout would therefore rewrite their line endings and fail a byte pin. The test in item 4 checks the Dockerfile's content instead.
+The preservation layer is `zc02-analytics-docker`. It archives the before-image of `serve.mjs` and pins the new test. The `Dockerfile` and `.dockerignore` are not pinned. They are new, unprotected root files, and the root `.gitattributes` (itself pinned) does not mark them `-text`. A Windows `core.autocrlf` checkout would therefore rewrite their line endings and fail a byte pin. The root test in item 5 checks the Dockerfile's content instead.

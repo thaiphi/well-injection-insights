@@ -10,7 +10,7 @@
   "approvedDocs": [
     {
       "path": "docs/superpowers/specs/2026-11-05-zc02-analytics-docker-design.md",
-      "sha256": "43e133b6c9e0377ba5b5bba42946ca7c82e8aab8f4a3119f9d440f397c35d8ae"
+      "sha256": "ba052ba1a005bcd518d8656d1b75833ee1943c1db5c82e9780aeef3dc35adb51"
     }
   ],
   "changes": [
@@ -26,8 +26,8 @@
   "newFiles": [
     {
       "path": "tests/serve-host.test.mjs",
-      "sha256": "d7966f5ba146c3f2e6db04020bf62a7154698b244b34ea628e2991b13c32b2f5",
-      "bytes": 2281
+      "sha256": "95f61d78c8dba09cf3520dc814968432ec5988d9e61da88d2f426626f47e09fa",
+      "bytes": 1506
     }
   ],
   "rootFiles": [

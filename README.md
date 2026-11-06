@@ -56,7 +56,14 @@ No test makes network calls. The live Portfolio probe (`node scripts/check-portf
 
 ## Run with Docker
 
-The whole system, Explorer + Analytics + Postgres, starts with one command from the Explorer repository. See [Run the whole system (Docker)](https://github.com/thaiphi/texas-rail-sync#run-the-whole-system-docker). A standalone Analytics image (a `Dockerfile` in this repository) is being added under Zoomcamp ZC-02.
+The whole system, Explorer + Analytics + Postgres, starts with one command from the Explorer repository. See [Run the whole system (Docker)](https://github.com/thaiphi/texas-rail-sync#run-the-whole-system-docker). To run Analytics on its own, build the repo-root `Dockerfile` (Zoomcamp ZC-02):
+
+```
+docker build -t swd-analytics .
+docker run --rm -p 127.0.0.1:4290:4290 swd-analytics
+```
+
+Then open http://127.0.0.1:4290/. The container runs the preview server (`swd-injection-analytics/scripts/serve.mjs`) as a non-root user on Node 24.13.0, listens on `0.0.0.0:$PORT` (default 4290) and has a health check. Outside Docker the server still listens on 127.0.0.1 unless `HOST` is set.
 
 ## Release and rollback
 

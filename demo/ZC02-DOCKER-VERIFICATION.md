@@ -16,23 +16,24 @@ Date: 2026-11-05. Branch: `feature/zc02-analytics-docker`, from main `fa5ff3c` (
   - It runs as user `node`, with `HOST=0.0.0.0`, `PORT=4290` and `EXPOSE 4290`.
   - A `HEALTHCHECK` sends `GET /` through Node's `fetch`, on `$PORT` (default 4290).
 - **`.dockerignore`** keeps the build context to the app sources.
-- **`swd-injection-analytics/tests/serve-host.test.mjs`**, three tests:
+- **`swd-injection-analytics/tests/serve-host.test.mjs`**, two tests:
   - with `HOST` unset, the server listens on 127.0.0.1;
-  - with `HOST=0.0.0.0`, it still serves on loopback and POST returns 405;
-  - static checks of the Dockerfile.
+  - with `HOST=0.0.0.0`, it still serves on loopback and POST returns 405.
+- **Root `tests/docker-image.test.mjs`**: static checks of the Dockerfile.
 
 ## Commands (direct Node paths only)
 
 From the nested app folder:
 - `node ../node_modules/typescript/bin/tsc -p tsconfig.json`: clean.
-- `node --test tests/*.test.mjs`: 639 tests, 639 pass, 0 fail. The baseline was 636; this layer adds 3.
+- `node --test tests/*.test.mjs`: 638 tests, 638 pass, 0 fail. The baseline was 636; this layer adds 2. It also passes in an isolated copy of the app folder, which is how CI runs it.
 - `node scripts/check-carried-oracles.mjs`: 248 comparisons, 0 failures.
 
-**RED to GREEN.** Against the archived `serve.mjs`, `tests/serve-host.test.mjs` gives 2 pass, 1 fail: the `HOST=0.0.0.0` test fails because the old server ignores `HOST`. Against the new file it gives 3 pass.
+**RED to GREEN.** Against the archived `serve.mjs`, `tests/serve-host.test.mjs` gives 2 pass, 1 fail: the `HOST=0.0.0.0` test fails because the old server ignores `HOST`. Against the new file it gives 3 pass. (These counts include the Dockerfile check, which has since moved to the root tests; see "CI fix" below.)
 
 From the repository root:
 - `node scripts/prepare-swd.mjs`: exit 0.
 - `node scripts/record-layer.mjs zc02-analytics-docker`: pending-review.
+- Root tests: 121 tests (with the new `tests/docker-image.test.mjs`); all pass once the layer is accepted.
 
 ## Container check (Docker 29.9.2, local)
 
@@ -65,6 +66,10 @@ The review (Opus, read-only) returned **CHANGES REQUIRED** with one medium findi
 - **N2** (not fixed): with `HOST=::` the startup line prints `http://:::4290`. This is cosmetic only.
 
 After the fixes, the rebuilt image (236 MB) is healthy and returns 200 for `/`, `/output/pdf/swd-technical-exhibit.pdf` and `/dist/pressureReconciliation.js`, and 405 for POST.
+
+## CI fix (PR #14, first run)
+
+The first CI run failed one test. CI runs the app suite in an isolated copy of `swd-injection-analytics/`, so the Dockerfile check in `serve-host.test.mjs` could not open `../Dockerfile` (ENOENT). The Dockerfile checks moved to the root test `tests/docker-image.test.mjs`, which CI runs in place. The app test now holds only the two server tests. The pinned test changed, so the layer was re-recorded as pending-review and needs the owner's acceptance again.
 
 ## Not covered
 
