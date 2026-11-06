@@ -25,7 +25,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 24
+          # Pinned to the verified version. Node 24.22.x rejects trailing DEFLATE
+          # data, which breaks the protected observation test at
+          # swd-injection-analytics/tests/xlsx-boundary.test.mjs:268. Raise this
+          # only through a reviewed preservation layer that updates that test.
+          node-version: 24.13.0
 
       - uses: oven-sh/setup-bun@v2
 
