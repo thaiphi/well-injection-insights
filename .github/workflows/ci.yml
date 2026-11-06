@@ -36,26 +36,11 @@ jobs:
       - name: Install locked dependencies
         run: bun install --frozen-lockfile
 
-      - name: Preservation gate (182 protected files)
-        run: node scripts/verify-preservation.mjs .
-
-      - name: Assemble analytics app
-        run: node scripts/prepare-swd.mjs
-
-      - name: Root transfer, preservation and connection tests
-        run: node --test tests/*.test.mjs
-
-      - name: Type-check hosting adapter
-        run: node node_modules/typescript/bin/tsc --noEmit
-
-      - name: Type-check analytics app
-        run: node node_modules/typescript/bin/tsc -p swd-injection-analytics/tsconfig.json --noEmit
-
-      - name: Build site
-        run: node node_modules/vite/bin/vite.js build
-
-      - name: Analytics engineering suite and carried oracles (isolated copy)
-        run: node scripts/check-analytics.mjs --include-server
+      # Same single command as `npm test` locally (scripts/check-all.mjs):
+      # preservation gate, app assembly, root tests, vitest, both type checks,
+      # site build, and the isolated engineering suite with carried oracles.
+      - name: Full offline test gate
+        run: node scripts/check-all.mjs
 
       - name: Upload gate record
         if: always()

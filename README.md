@@ -1,26 +1,86 @@
-# SWD Injection Analytics — Lovable hosting
+# SWD Injection Analytics
 
-The existing engineering application is preserved in [swd-injection-analytics/](swd-injection-analytics/README.md). This project hosts its current interface, calculations, imports and evidence; it does not regenerate them from the Lovable placeholder.
+**Live:** https://swdinjectionanalytics.lovable.app (opens the app at `/analytics/index.html`)
 
-Moving to another computer: start with [HANDOVER.md](HANDOVER.md) for clone/setup steps, project identities, portable governing documents/design references, verification commands and unfinished work.
+SWD Injection Analytics is a browser-based engineering demonstration for saltwater-disposal (SWD) injection wells. It covers:
+- produced-water forecasting and reconciliation;
+- injection diagnostics;
+- injectivity (J) estimates referenced to tests;
+- wellhead-to-bottomhole pressure reconciliation;
+- capacity scenarios;
+- technical exports.
 
-See [migration/README.md](migration/README.md) for source preservation, runtime and acceptance boundaries. [migration/source-manifest.json](migration/source-manifest.json) records the 182 transferred files and their original hashes.
+It is the analysis half of a two-part system. **[Texas RRC Explorer](https://github.com/thaiphi/texas-rail-sync)** collects and verifies public Railroad Commission data. Its **Use in Injection Analytics** button hands a hash-verified evidence package to this app.
 
-## Development and verification
+Results are screening calculations with their assumptions shown. They are not field calibration, permitting or regulatory determinations.
 
-Install the scaffold dependencies from bun.lock. TypeScript is pinned to the original application's 5.9.3. On this Windows host use actual executable paths instead of npm/npx shims.
+## Repository layout
 
-- Dev: node node_modules/vite/bin/vite.js --host 127.0.0.1
-- Build: node node_modules/vite/bin/vite.js build
-- Static transfer check after dev/build assembly: node --test tests/transfer.test.mjs
-- Scaffold type check: node node_modules/typescript/bin/tsc --noEmit
-- Analytics type check: node node_modules/typescript/bin/tsc -p swd-injection-analytics/tsconfig.json --noEmit
+- [swd-injection-analytics/](swd-injection-analytics/README.md): the preserved engineering application (calculations, imports, evidence, tests). [migration/source-manifest.json](migration/source-manifest.json) protects its 182 transferred files by hash. Changes to them go through reviewed preservation layers; see [migration/README.md](migration/README.md).
+- The outer TanStack/Vite project is the Lovable hosting adapter. Its home route forwards to the preserved app.
+- [HANDOVER.md](HANDOVER.md) covers setup on a new computer, project identities and open work. [AGENTS.md](AGENTS.md) holds the rules for AI agents working here.
+- Requirements are tracked as GitHub issues (`ANA-Exx`, [#1–#10](https://github.com/thaiphi/well-injection-insights/issues)). Course work for the combined system is tracked in Explorer's [Zoomcamp final project milestone](https://github.com/thaiphi/texas-rail-sync/milestones).
 
-Run the preserved analytics tests in an isolated copy because some existing tests write reference/exhibit fixtures. Original commands and engineering limitations are in its README and dated correctness reports. The optional offline Python report tool is preserved; it is not a browser or backend dependency.
+## Run locally
 
-The home route opens the full original app at /analytics/index.html. Asset paths, module workers and evidence URLs retain the original /dist, /data, /reference and /exhibits roots. Public assets are generated at dev/build; source and tests remain in the private repository.
+You need Node 24.13.0 (the version CI uses) and Bun. Run every command from the repository root.
 
-The external backend is the existing **Portfolio Supabase** project. The app includes a read-only connection check in Data & sources; imported files and results remain session-only because cloud saving is not configured. See [connection scope and verification](integrations/portfolio/README.md). No new database or paid service was provisioned. GitHub synchronization updates Lovable's editor preview; publication remains a separate release-gated action.
+```sh
+bun install --frozen-lockfile
+node scripts/prepare-swd.mjs                         # assemble the analytics app
+node node_modules/vite/bin/vite.js --host 127.0.0.1  # dev server
+```
+
+Open the printed URL. The engineering app is at `/analytics/index.html`.
+
+## Test
+
+One command runs the full offline gate:
+
+```sh
+npm test            # or: node scripts/check-all.mjs
+```
+
+It runs these checks in order, prints a PASS/FAIL summary, and exits non-zero if any check fails:
+1. the preservation gate (182 protected files);
+2. app assembly;
+3. the root transfer and connection tests;
+4. the hosting-adapter vitest suite;
+5. both TypeScript checks;
+6. the site build;
+7. the isolated engineering suite with the carried numerical oracles.
+
+No test makes network calls. The live Portfolio probe (`node scripts/check-portfolio.mjs`) is separate on purpose.
+
+[CI](.github/workflows/ci.yml) runs the same script on every pull request and on every push to `main`, as the `test` job.
+
+## Run with Docker
+
+The whole system, Explorer + Analytics + Postgres, starts with one command from the Explorer repository. See [Run the whole system (Docker)](https://github.com/thaiphi/texas-rail-sync#run-the-whole-system-docker). A standalone Analytics image (a `Dockerfile` in this repository) is being added under Zoomcamp ZC-02.
+
+## Release and rollback
+
+| Environment | What it is | How it updates |
+|---|---|---|
+| Local | Dev server or Docker on your machine | By hand |
+| Dev | The Lovable editor preview (requires Lovable sign-in) | **Automatically** when `main` changes on GitHub |
+| Production | https://swdinjectionanalytics.lovable.app | **By hand**: the owner presses **Publish** in Lovable |
+
+Release steps:
+1. Merge to `main` only with the owner's approval and a green `test` check.
+2. Check the editor preview.
+3. The owner publishes.
+4. After publishing, open the live URL and confirm that `/analytics/index.html` loads.
+
+To roll back, either:
+- restore the previous version in Lovable's version history and **Publish**; or
+- revert the commit on `main` with a new commit, then publish.
+
+Never force-push or rewrite pushed history: the branch is connected to Lovable.
+
+## Backend
+
+The app uses the existing **Portfolio Supabase** project, and only for a read-only health check in Data & sources. Only the publishable key is used. Imported files and results stay in the browser session, and nothing is saved to the cloud. See [integrations/portfolio/README.md](integrations/portfolio/README.md).
 
 ## License
 
