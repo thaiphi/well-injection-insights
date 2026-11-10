@@ -21,6 +21,21 @@ Use direct Node paths for checks. `scripts/prepare-swd.mjs` compiles the nested 
 
 The owner's backend is the existing **Portfolio Supabase** project (`phxiqnsebqaalvkanljb`), not Lovable Cloud. Its connection boundary is in `integrations/portfolio/`. Keep data/session state and numerical code independent of API availability. Do not infer cloud saving from service reachability, provision another backend, change permissions, add data uploads or migrate schemas without an explicitly scoped request. Only publishable keys may appear in browser configuration.
 
+## Agent team
+
+The main session is the orchestrator. It talks to the owner, scopes each issue, writes the design and plan, dispatches subagents, integrates their work and owns all Git. It runs at most two subagents at a time, with non-overlapping write paths, each briefed with the seven fields in [handover/context/agent-workflow.md](handover/context/agent-workflow.md). That document's Codex model names are historical; in Claude Code the roles are defined in `.claude/agents/`:
+
+| Role | File | Does |
+|---|---|---|
+| Product manager | the orchestrator itself | Turns an issue into a design under `docs/superpowers/specs/` and gets the owner's approval before any code |
+| Software engineer | [.claude/agents/engineer.md](.claude/agents/engineer.md) | Implements one issue, test first, inside a file allowlist |
+| QA | [.claude/agents/qa.md](.claude/agents/qa.md) | Runs the full gate and a browser check against the issue's acceptance criteria |
+| Reviewer | [.claude/agents/reviewer.md](.claude/agents/reviewer.md) | Independent read-only review (owner decision D13) |
+
+Reusable procedures are skills in `.claude/skills/`: [preservation-layer](.claude/skills/preservation-layer/SKILL.md) records a reviewed layer for protected files, and [browser-check](.claude/skills/browser-check/SKILL.md) drives the app in headless Chrome for evidence. Agents that do not read `.claude/` follow the same files as plain instructions.
+
+Flow for each issue: design approved by the owner → plan → engineer → reviewer → QA → preservation layer recorded → owner accepts the layer → owner instructs push and merge. Subagents never stage, commit or push.
+
 ## Issue tracking
 
 Work from a GitHub issue in thaiphi/well-injection-insights. Requirements are tracked as `ANA-Exx` issues (#1–#10, milestones by phase). Reference the issue number in delegation briefs and PRs, and use `Closes #n` in the PR body. Before an issue is closed, record its evidence on the issue: acceptance-test output, preservation-gate result and the owner's acceptance. Opening PRs, posting evidence and closing issues still need the owner's go-ahead, like merge and push.
