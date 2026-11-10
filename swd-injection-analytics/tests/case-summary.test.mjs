@@ -46,3 +46,25 @@ test('deterministic',()=>assert.equal(JSON.stringify(caseSummary(short)),JSON.st
 test('fmtNumber is locale-independent',()=>{
  assert.equal(fmtNumber(1234567.6),'1,234,568');assert.equal(fmtNumber(-1500),'−1,500');assert.equal(fmtNumber(0.456,2),'0.46');
 });
+const {checkWellHistory,HISTORY_CHECK_VERSION}=await import(pathToFileURL(resolve(engineDir,'wellHistoryCheck.js')));
+const hrow=(month,bbl,avg=500,max=900)=>({source_row_key:month,parent_key:'p',parent_join_status:'joined',uic_number:'000000417',reporting_year:Number(month.slice(0,4)),reporting_month:Number(month.slice(5,7)),period_start:month+'-01',injected_liquid_bbl:bbl,reported_avg_injection_pressure_psi:avg,reported_max_injection_pressure_psi:max,calendar_days:30,calculated_calendar_day_avg_bpd:bbl/30});
+const hlink=(bbl,avg)=>({wellId:'FICTIONAL-A',label:'A',uic:'000000417',monthly:['2027-01','2027-02'].map(m=>hrow(m,bbl,avg)),surfaceBasis:null});
+test('A6 lines follow A5 and precede A8',()=>{
+ const checks=checkWellHistory(short.base,[hlink(300)]);
+ const lines=caseSummary(short,{history:checks});
+ assert.deepEqual(lines.map(l=>l.rule),['A1','A2','A3','A4','A5','A6','A6','A8']);
+ const a6=lines.filter(l=>l.rule==='A6');
+ assert.equal(a6[0].method,HISTORY_CHECK_VERSION);
+ assert.equal(a6[0].text,`FICTIONAL-A: ${checks[0].reason} ${checks[0].pressure.note}`);
+ assert.equal(a6[1].text,`FICTIONAL-B: ${checks[1].reason}`);
+});
+test('A6 is absent without history',()=>{
+ assert.ok(!caseSummary(short).some(l=>l.rule==='A6'));
+ assert.ok(!caseSummary(short,{}).some(l=>l.rule==='A6'));
+});
+test('A6 lines avoid banned words',()=>{
+ const sets=[checkWellHistory(short.base,[]),checkWellHistory(short.base,[hlink(300)]),checkWellHistory(short.base,[hlink(900_000_000)]),checkWellHistory(short.base,[hlink(0)]),checkWellHistory(short.base,[hlink(300,null)])];
+ const statuses=new Set(sets.flat().map(c=>c.status));
+ for(const s of ['within','above','cannot-check','no-injection'])assert.ok(statuses.has(s),s);
+ for(const h of sets)for(const l of caseSummary(short,{history:h}).filter(x=>x.rule==='A6'))assert.doesNotMatch(l.text,BANNED);
+});

@@ -1,4 +1,6 @@
 import type {DisposalCase} from './disposalCase.js';
+import type {WellHistoryCheck} from './wellHistoryCheck.js';
+import {HISTORY_CHECK_VERSION} from './wellHistoryCheck.js';
 export const CASE_SUMMARY_VERSION='case-summary/1';
 export const CLOSING_LINE='Screening estimate from assumed inputs; not proven field capacity.';
 export const BANNED=/\b(proven|sustainable|calibrated|validated|safe)\b/i;
@@ -13,8 +15,8 @@ export function fmtNumber(v:number,digits=0):string{
 }
 const fmtSigned=(v:number)=>(v>0?'+':'')+fmtNumber(v);
 const plural=(n:number)=>n===1?'':'s';
-/** Rule-based, deterministic summary of a calculated disposal case. `extras` is reserved for later rules (A6, A7) and ignored here. */
-export function caseSummary(result:DisposalCase,_extras?:{history?:unknown;performance?:unknown}):SummaryLine[]{
+/** Rule-based, deterministic summary of a calculated disposal case. `extras.history` adds A6; `performance` is reserved for A7. */
+export function caseSummary(result:DisposalCase,extras?:{history?:readonly WellHistoryCheck[];performance?:unknown}):SummaryLine[]{
  const lines:SummaryLine[]=[],base=result.base,months=base.monthly;
  const short=months.filter(m=>m.shortfallBbl>0),first=short[0];
  if(!first)lines.push({rule:'A1',text:'All demand is placed in every month.',cites:[],method:result.methods.allocation});
@@ -30,6 +32,10 @@ export function caseSummary(result:DisposalCase,_extras?:{history?:unknown;perfo
  lines.push({rule:'A4',text:`Least spare capacity: ${least.month}, ${fmtNumber(least.headroomBbl)} bbl.`,cites:[{label:`Headroom ${least.month}`,value:least.headroomBbl,unit:'bbl'}],method:null});
  const c=result.inputs.comparison,delta=result.compared.totalShortfallBbl-base.totalShortfallBbl;
  lines.push({rule:'A5',text:`The compared case (${c.wellId}: J × ${c.injectivityMultiplier}, ID ${c.innerDiameterInches} in, availability ${c.availability}) moves the first shortfall from ${base.firstShortfallMonth??'none'} to ${result.compared.firstShortfallMonth??'none'} and changes unplaced water by ${fmtSigned(delta)} bbl.`,cites:[{label:'Base unplaced water',value:base.totalShortfallBbl,unit:'bbl'},{label:'Compared unplaced water',value:result.compared.totalShortfallBbl,unit:'bbl'}],method:null});
+ if(extras?.history)for(const h of extras.history){
+  const note=h.uic!==null&&(h.pressure.status==='above-reported'||h.pressure.status==='not-checked')?' '+h.pressure.note:'';
+  lines.push({rule:'A6',text:`${h.wellId}: ${h.reason}${note}`,cites:[],method:HISTORY_CHECK_VERSION});
+ }
  lines.push({rule:'A8',text:CLOSING_LINE,cites:[],method:null});
  return lines;
 }
