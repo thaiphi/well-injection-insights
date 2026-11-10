@@ -170,3 +170,36 @@ test('performance worker mirrors the sweep worker',async()=>{
  const w=await readFile('web/performance-worker.mjs','utf8');
  for(const x of ["action==='calculate'","action==='verify'",'buildPerformanceCases','verifyCaseInsights','caseInsightsJson','caseInsightsCsv','self.postMessage({error'])assert.ok(w.includes(x),x);
 });
+// ---- final fix wave: panel case table (I1) and history heading (D5) ----
+const panelMod=await import('../web/case-insights.mjs');
+const {fmtNumber}=await import('../dist/caseSummary.js');
+test('D5: history heading does not repeat the well identity',()=>{
+ const {historyHeading}=panelMod;
+ assert.equal(historyHeading({wellId:'UIC-000000417',label:'UIC-000000417',uic:'000000417'}),'UIC-000000417');
+ assert.equal(historyHeading({wellId:'FICTIONAL-A',label:'FICTIONAL-A',uic:'000000417'}),'FICTIONAL-A · UIC 000000417');
+ assert.equal(historyHeading({wellId:'FICTIONAL-A',label:'Fictional A (UIC 000000417)',uic:'000000417'}),'Fictional A (UIC 000000417)');
+ assert.equal(historyHeading({wellId:'FICTIONAL-B',label:null,uic:null}),'FICTIONAL-B');
+ assert.equal(historyHeading({wellId:'FICTIONAL-A',label:'Fictional A',uic:null}),'Fictional A');
+ const panel=readFile('web/case-insights.mjs','utf8');
+ return panel.then(src=>assert.ok(src.includes('historyHeading(h)'),'renderHistory uses historyHeading'));
+});
+test('I1: panel case table shows offset as % of headroom and unsupported-pressure months',()=>{
+ const {performanceCaseHeaders,performanceCaseRows}=panelMod;
+ const offsetSpec={pessimistic:{...N,reservoirOffsetPsi:750},optimistic:{...N,injectivityMultiplier:2}};
+ const p=buildPerformanceCases(input(),offsetSpec);
+ const headers=performanceCaseHeaders(),rows=performanceCaseRows(p);
+ const oi=headers.indexOf('Offset (% of headroom, assumed)'),ui=headers.indexOf('Unsupported-pressure months');
+ assert.ok(oi>0&&ui>0,headers.join('|'));assert.equal(rows.length,3);
+ assert.equal(rows[0][oi],`FICTIONAL-A: ${fmtNumber(50,1)}%; FICTIONAL-B: ${fmtNumber(50,1)}%`);
+ assert.equal(rows[1][oi],`FICTIONAL-A: ${fmtNumber(0,1)}%; FICTIONAL-B: ${fmtNumber(0,1)}%`);
+ assert.equal(rows[0][ui],'None');
+ const fake=structuredClone(p);fake.cases[0].offsetPercentOfHeadroom[1].percent=null;
+ fake.cases[0].summary.monthly[0].unsupportedAllocations=[{wellId:'FICTIONAL-B'}];fake.cases[0].summary.monthly[1].unsupportedAllocations=[{wellId:'FICTIONAL-B'}];
+ const fr=performanceCaseRows(fake)[0];
+ assert.equal(fr[oi],`FICTIONAL-A: ${fmtNumber(50,1)}%; FICTIONAL-B: no headroom`);
+ assert.equal(fr[ui],`FICTIONAL-B: 2 months (first ${fake.cases[0].summary.monthly[0].month})`);
+});
+test('I1: renderPerformance uses the shared case-table rows',async()=>{
+ const src=await readFile('web/case-insights.mjs','utf8');
+ assert.ok(src.includes('table(performanceCaseHeaders(),performanceCaseRows(p),'));
+});

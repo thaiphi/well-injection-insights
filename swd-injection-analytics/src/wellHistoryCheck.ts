@@ -18,6 +18,9 @@ export type WellHistoryCheck={wellId:string;label:string|null;uic:string|null;st
  ratio:number|null;historyMonthsAtOrAbovePeakForecast:number|null;forecastMonthsAbovePeakReported:number|null;onstreamNote:string|null;
  pressure:PressureCheck;series:{reported:{month:string;bbl:number|null;gap:boolean;included:boolean}[];forecast:{month:string;bbl:number}[]}};
 
+const plural=(n:number)=>n===1?'':'s';
+/** Ratio with two decimals; a ratio above 1 that would round to "1.00" prints ">1.00". */
+export function fmtRatio(ratio:number):string{const t=fmtNumber(ratio,2);return ratio>1&&t==='1.00'?'>1.00':t;}
 const notChecked=(note:string):PressureCheck=>({status:'not-checked',month:null,requiredSurfacePsia:null,highestReportedPsia:null,highestReportedMonth:null,basis:null,note});
 export function checkWellHistory(base:DisposalCase['base'],links:readonly HistoryLink[]):WellHistoryCheck[]{
  return base.wells.map(w=>{
@@ -41,9 +44,12 @@ export function checkWellHistory(base:DisposalCase['base'],links:readonly Histor
   const peakForecast={month:pf.month,averageStbd:pf.a.averageStbd,onstreamStbd:pf.a.onstreamStbd};
   const ratio=peakForecast.averageStbd/peakReported.rateBpd;
   const status:HistoryStatus=ratio<=1?'within':'above';
+  const historyMonthsAtOrAbovePeakForecast=included.filter(m=>(m.rateBpd as number)>=peakForecast.averageStbd).length;
+  const forecastMonthsAbovePeakReported=allocs.filter(x=>x.a.averageStbd>peakReported.rateBpd).length;
+  const counts=`${fmtNumber(historyMonthsAtOrAbovePeakForecast)} of ${fmtNumber(included.length)} included history month${plural(included.length)} at or above the peak forecast rate; ${fmtNumber(forecastMonthsAbovePeakReported)} of ${fmtNumber(allocs.length)} forecast month${plural(allocs.length)} above the reported peak.`;
   const reason=status==='within'
-   ?`Within reported history: peak forecast ${fmtNumber(peakForecast.averageStbd)} STB/day vs highest reported ${fmtNumber(peakReported.rateBpd)} bbl/day (${peakReported.month}).`
-   :`${fmtNumber(ratio,1)}× the highest reported month (${fmtNumber(peakReported.rateBpd)} bbl/day, ${peakReported.month}); not shown in reported history.`;
+   ?`Within reported history: peak forecast ${fmtNumber(peakForecast.averageStbd)} STB/day vs highest reported ${fmtNumber(peakReported.rateBpd)} bbl/day treated as STB/day (${peakReported.month}); ${counts}`
+   :`${fmtRatio(ratio)}× the highest reported month (${fmtNumber(peakReported.rateBpd)} bbl/day treated as STB/day, ${peakReported.month}); not shown in reported history. ${counts}`;
   const onstreamNote=w.well.availability<1?`Onstream rate ${fmtNumber(peakForecast.onstreamStbd)} STB/day while available; H-10 monthly data cannot show onstream rates.`:null;
   let pressure:PressureCheck;
   if(!link.surfaceBasis)pressure=notChecked(PRESSURE_NOT_CHECKED);
@@ -65,7 +71,6 @@ export function checkWellHistory(base:DisposalCase['base'],links:readonly Histor
    }
   }
   return {wellId:id,label:link.label,uic:link.uic,status,reason,includedMonths:included.length,peakReported,peakForecast,ratio,
-   historyMonthsAtOrAbovePeakForecast:included.filter(m=>(m.rateBpd as number)>=peakForecast.averageStbd).length,
-   forecastMonthsAbovePeakReported:allocs.filter(x=>x.a.averageStbd>peakReported.rateBpd).length,onstreamNote,pressure,series};
+   historyMonthsAtOrAbovePeakForecast,forecastMonthsAbovePeakReported,onstreamNote,pressure,series};
  });
 }

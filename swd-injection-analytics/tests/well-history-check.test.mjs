@@ -101,3 +101,25 @@ test('linked well with empty monthly rows is cannot-check, no throw',()=>{
  const b=first(c,[link([],{value:'psig',reason:'RRC H-10 reports gauge pressure'})]);
  assert.equal(b.pressure.note,'Pressure not compared: no usable history month.');assert.equal(b.pressure.basis,'psig');
 });
+const {fmtRatio}=await import(pathToFileURL(resolve(engineDir,'wellHistoryCheck.js')));
+const {fmtNumber}=await import(pathToFileURL(resolve(engineDir,'caseSummary.js')));
+test('I2/M1: within reason states treated as STB/day and both month counts',()=>{
+ const c=build(),r=first(c,[link(hist(100_000_000))]);
+ assert.equal(r.reason,`Within reported history: peak forecast ${fmtNumber(r.peakForecast.averageStbd)} STB/day vs highest reported ${fmtNumber(r.peakReported.rateBpd)} bbl/day treated as STB/day (${r.peakReported.month}); 3 of 3 included history months at or above the peak forecast rate; 0 of 3 forecast months above the reported peak.`);
+});
+test('I2/M1: above reason states treated as STB/day and both month counts',()=>{
+ const c=build(),r=first(c,[link(hist(300))]);
+ assert.equal(r.reason,`${fmtRatio(r.ratio)}× the highest reported month (${fmtNumber(r.peakReported.rateBpd)} bbl/day treated as STB/day, ${r.peakReported.month}); not shown in reported history. 0 of 3 included history months at or above the peak forecast rate; ${r.forecastMonthsAbovePeakReported} of 3 forecast months above the reported peak.`);
+});
+test('M2: fmtRatio never prints a ratio above 1 as 1.00',()=>{
+ assert.equal(fmtRatio(1.004),'>1.00');assert.equal(fmtRatio(1.0000001),'>1.00');assert.equal(fmtRatio(1.5),'1.50');assert.equal(fmtRatio(2),'2.00');assert.equal(fmtRatio(12.345),'12.35');
+ assert.equal(fmtRatio(1),'1.00');assert.equal(fmtRatio(0.5),'0.50');
+});
+test('M2: a ratio just above 1 reads ">1.00×", never "1.0×"',()=>{
+ const c=build(),peak=first(c,[link(hist(100_000_000))]).peakForecast.averageStbd;
+ const rows=['2026-12','2027-01','2027-02'].map(m=>row(m,peak/1.001*daysInMonth(m),500,900));
+ const r=first(c,[link(rows)]);
+ assert.equal(r.status,'above');assert.ok(r.ratio>1&&r.ratio<1.005,String(r.ratio));
+ assert.ok(r.reason.startsWith('>1.00× the highest reported month ('),r.reason);
+ assert.ok(!/\b1\.0×/.test(r.reason));
+});

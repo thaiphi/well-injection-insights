@@ -85,3 +85,44 @@ test('A7 lines avoid banned words',()=>{
  const perf=pcMod.buildPerformanceCases(short.inputs,perfSpec);
  for(const l of caseSummary(short,{performance:perf}).filter(x=>x.rule==='A7'))assert.doesNotMatch(l.text,BANNED);
 });
+test('D2: A5 says "keeps the first shortfall at" when the month is unchanged',()=>{
+ assert.equal(short.base.firstShortfallMonth,short.compared.firstShortfallMonth,'fixture keeps the first shortfall month');
+ const l=caseSummary(short).find(x=>x.rule==='A5');
+ assert.ok(l.text.includes(`keeps the first shortfall at ${short.base.firstShortfallMonth} and changes unplaced water by `),l.text);
+ assert.ok(!l.text.includes('moves'));assert.ok(l.text.endsWith('bbl.'));
+});
+test('D2: A5 says neither case has a shortfall when both are none',()=>{
+ assert.equal(fits.base.firstShortfallMonth,null);assert.equal(fits.compared.firstShortfallMonth,null);
+ const l=caseSummary(fits).find(x=>x.rule==='A5');
+ assert.ok(l.text.includes('neither case has a shortfall'),l.text);assert.ok(!l.text.includes('moves'));
+ assert.ok(l.text.includes('changes unplaced water by 0 bbl'),l.text);assert.ok(l.text.endsWith('bbl.'));
+});
+test('D2: A5 still says "moves" when the first shortfall month changes',()=>{
+ const r=build([{month:'2028-02',demandBbl:250_000}]);
+ assert.notEqual(r.base.firstShortfallMonth,r.compared.firstShortfallMonth,'fixture moves the first shortfall');
+ const l=caseSummary(r).find(x=>x.rule==='A5');
+ assert.ok(l.text.includes(`moves the first shortfall from ${r.base.firstShortfallMonth??'none'} to ${r.compared.firstShortfallMonth??'none'} and changes unplaced water by `),l.text);
+});
+test('D3: A4 with negative headroom states a positive shortfall',()=>{
+ const least=short.base.monthly.reduce((b,m)=>m.headroomBbl<b.headroomBbl?m:b);
+ assert.ok(least.headroomBbl<0,'fixture has negative headroom');
+ const l=caseSummary(short).find(x=>x.rule==='A4');
+ assert.equal(l.text,`Least spare capacity: ${least.month}, shortfall of ${fmtNumber(-least.headroomBbl)} bbl.`);
+ assert.ok(!l.text.includes('−'));assert.equal(l.cites[0].value,least.headroomBbl);
+});
+test('D3: A4 keeps the plain text when headroom is not negative',()=>{
+ const least=fits.base.monthly[0];assert.ok(least.headroomBbl>=0);
+ assert.equal(caseSummary(fits).find(x=>x.rule==='A4').text,`Least spare capacity: ${least.month}, ${fmtNumber(least.headroomBbl)} bbl.`);
+});
+test('D4: a non-Base case with neutral factors reads "same as base"',()=>{
+ const perf=pcMod.buildPerformanceCases(short.inputs,{pessimistic:perfSpec.pessimistic,optimistic:{...pcMod.NEUTRAL_FACTORS}});
+ const lines=caseSummary(short,{performance:perf}).filter(l=>l.rule==='A7');
+ assert.equal(lines.length,2);
+ assert.ok(lines[0].text.startsWith('Pessimistic: '));assert.ok(!lines[0].text.includes('same as base'));
+ assert.equal(lines[1].text,'Optimistic: same as base (no factors changed).');
+ for(const l of lines)assert.doesNotMatch(l.text,BANNED);
+});
+test('new A4/A5/A7 texts avoid banned words',()=>{
+ const r=build([{month:'2028-02',demandBbl:250_000}]);
+ for(const x of [fits,short,r])for(const l of caseSummary(x).slice(0,-1))assert.doesNotMatch(l.text,BANNED);
+});

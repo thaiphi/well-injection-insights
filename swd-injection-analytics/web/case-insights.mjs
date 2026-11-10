@@ -1,4 +1,5 @@
-import {buildCaseInsights,sealCaseInsights} from '../dist/caseInsights.js';
+import {buildCaseInsights,sealCaseInsights,unsupportedPressureMonths} from '../dist/caseInsights.js';
+import {fmtNumber} from '../dist/caseSummary.js';
 import {validateFactors,NEUTRAL_FACTORS,CASE_LABEL,FLAT_NOTE,FLUID_NOTE,ATTRIBUTION_NOTE} from '../dist/performanceCases.js';
 import {confirmBasisValue} from '../dist/wellAssumptions.js';
 
@@ -100,6 +101,23 @@ export function historyTimelineSvg(check,width=600){
  return parts.join('');
 }
 
+/** History heading: the link label (or well ID), plus " · UIC <uic>" only when the label does not already carry the UIC digits. */
+export function historyHeading(h){
+ const name=h.label??h.wellId;if(!h.uic)return name;
+ const digits=String(h.uic).replace(/\D/g,'');
+ return digits&&name.replace(/\D/g,'').includes(digits)?name:`${name} · UIC ${h.uic}`;
+}
+/** Part C case table (pure): headers and one row per case, including offset as % of headroom and unsupported-pressure months. */
+export const performanceCaseHeaders=()=>['Case','First unplaced month','Unplaced (bbl)','Limiting constraints','Capped availability','No headroom','Offset (% of headroom, assumed)','Unsupported-pressure months'];
+export function performanceCaseRows(p){
+ return p.cases.map(c=>{
+  const unsupported=unsupportedPressureMonths(c).filter(u=>u.count>0);
+  return [c.label,c.summary.firstShortfallMonth??'None',c.summary.totalShortfallBbl,c.summary.wells.map(w=>`${w.wellId}: ${w.limitingConstraints.join(' + ')}`).join('; '),c.cappedWells.join(', ')||'None',c.noHeadroomWells.join(', ')||'None',
+   c.offsetPercentOfHeadroom.map(o=>`${o.wellId}: ${o.percent===null?'no headroom':fmtNumber(o.percent,1)+'%'}`).join('; '),
+   unsupported.length?unsupported.map(u=>`${u.wellId}: ${fmtNumber(u.count)} month${u.count===1?'':'s'} (first ${u.firstMonth})`).join('; '):'None'];
+ });
+}
+
 // ---- DOM wiring (only runs when import-ui.mjs calls mountCaseInsights) ----
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 function table(headers,rows,caption){const t=el('table');t.append(el('caption',caption));const h=el('thead'),r=el('tr');for(const label of headers){const th=el('th',label);th.scope='col';r.append(th);}h.append(r);t.append(h);const b=el('tbody');for(const row of rows){const tr=el('tr');for(const v of row)tr.append(el('td',fmt(v)));b.append(tr);}t.append(b);return t;}
@@ -168,7 +186,7 @@ export function mountCaseInsights(root,{getLinks}){
  function renderHistory(ins){
   history.replaceChildren();basisButtons.clear();const links=new Map(ins.links.map(l=>[l.wellId,l]));
   for(const h of ins.history){
-   const box=el('div');box.append(el('h5',`${h.wellId}${h.uic?' · UIC '+h.uic:''} — ${STATUS_TEXT[h.status]??h.status}`),el('p',h.reason));
+   const box=el('div');box.append(el('h5',`${historyHeading(h)} — ${STATUS_TEXT[h.status]??h.status}`),el('p',h.reason));
    if(h.onstreamNote)box.append(el('p',h.onstreamNote,'small'));
    box.append(el('p',`Pressure: ${h.pressure.note}`,'small'));
    const rows=[...h.series.reported.map(r=>[r.month,'Reported H-10',r.gap?null:r.bbl,r.gap?'Gap: no H-10 row':r.included?'Reported, included':'Reported, not included']),...h.series.forecast.map(f=>[f.month,'Forecast',f.bbl,'Calculated'])];
@@ -182,7 +200,7 @@ export function mountCaseInsights(root,{getLinks}){
   headroomSlot.replaceChildren(scroll(table(['Well','Reservoir (psia, assumed)','Limit (psia, assumed)','Headroom (psi, calculated)'],ins.caseInputs.wells.map(w=>[w.id,w.reservoirPsia,w.limitPsia,w.limitPsia-w.reservoirPsia]),'Pressure headroom before any well-performance factor'),'Pressure headroom'));
   perfTables.replaceChildren();
   const p=ins.performance;if(!p)return;
-  perfTables.append(scroll(table(['Case','First unplaced month','Unplaced (bbl)','Limiting constraints','Capped availability','No headroom'],p.cases.map(c=>[c.label,c.summary.firstShortfallMonth??'None',c.summary.totalShortfallBbl,c.summary.wells.map(w=>`${w.wellId}: ${w.limitingConstraints.join(' + ')}`).join('; '),c.cappedWells.join(', ')||'None',c.noHeadroomWells.join(', ')||'None']),CASE_LABEL+' · '+FLAT_NOTE),'Well-performance case results'));
+  perfTables.append(scroll(table(performanceCaseHeaders(),performanceCaseRows(p),CASE_LABEL+' · '+FLAT_NOTE),'Well-performance case results'));
   perfTables.append(scroll(table(['Case','Factor changed alone','Unplaced (bbl)','Change from base (bbl)'],p.cases.flatMap(c=>c.attribution.map(a=>[c.label,a.factor,a.totalShortfallBbl,a.changeBbl])),ATTRIBUTION_NOTE),'Single-factor attribution'));
  }
  function render(){

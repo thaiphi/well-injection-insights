@@ -30,14 +30,32 @@ export async function sealCaseInsights(i:CaseInsights):Promise<SealedCaseInsight
     versions:{caseSummary:CASE_SUMMARY_VERSION,historyCheck:HISTORY_CHECK_VERSION,performanceCases:PERFORMANCE_CASES_VERSION}};
   return {...unsealed,contentSha256:await sha256(body(unsealed))};
 }
+/** Relative tolerance for numbers when the stored insights are compared with a recomputation (D1): JS engines may differ in the last digit of floating-point results. */
+export const VERIFY_RELATIVE_TOLERANCE=1e-9;
+/** Structural equality: strings, booleans, null, keys and array lengths exact; finite numbers equal within VERIFY_RELATIVE_TOLERANCE. */
+function sameWithin(a:unknown,b:unknown):boolean{
+  if(typeof a==='number'&&typeof b==='number'){
+    if(!Number.isFinite(a)||!Number.isFinite(b))return Object.is(a,b);
+    return Math.abs(a-b)<=VERIFY_RELATIVE_TOLERANCE*Math.max(1,Math.abs(a),Math.abs(b));
+  }
+  if(a===null||b===null||typeof a!=='object'||typeof b!=='object')return a===b;
+  if(Array.isArray(a)!==Array.isArray(b))return false;
+  if(Array.isArray(a)){const y=b as unknown[];return a.length===y.length&&a.every((x,i)=>sameWithin(x,y[i]));}
+  const ka=Object.keys(a).filter(k=>(a as Record<string,unknown>)[k]!==undefined).sort(),kb=Object.keys(b).filter(k=>(b as Record<string,unknown>)[k]!==undefined).sort();
+  return ka.length===kb.length&&ka.every((k,i)=>k===kb[i]&&sameWithin((a as Record<string,unknown>)[k],(b as Record<string,unknown>)[k]));
+}
 export async function verifyCaseInsights(s:SealedCaseInsights):Promise<SealedCaseInsights>{
   const fail=()=>new Error(STALE+'recompute before export');
   try{
     if(!/^[a-f0-9]{64}$/.test(s?.contentSha256??'')||s.schemaVersion!==CASE_INSIGHTS_SCHEMA)throw fail();
+    // Integrity: the stored body must hash exactly to the stored digest.
+    if(await sha256(body(s))!==s.contentSha256)throw fail();
     const result=buildDisposalCase(s.caseInputs);
     const perf=s.performanceSpec?buildPerformanceCases(s.caseInputs,s.performanceSpec):null;
     const rebuilt=await sealCaseInsights(buildCaseInsights(result,s.links,perf));
-    if(canonical(rebuilt)!==canonical(s))throw fail();
+    // Recomputation: structural match, numbers within relative tolerance (the digests may differ across engines).
+    const {contentSha256:_a,...storedBody}=s,{contentSha256:_b,...rebuiltBody}=rebuilt;
+    if(!sameWithin(clone(rebuiltBody),clone(storedBody)))throw fail();
     return s;
   }catch(e){
     if(e instanceof Error&&e.message.startsWith(STALE))throw e;
@@ -52,6 +70,11 @@ const cell=(v:unknown)=>{
   let s=typeof v==='object'?JSON.stringify(v):String(v);if(/^[=+\-@\t\r]/.test(s))s="'"+s;
   return `"${s.replace(/"/g,'""')}"`;
 };
+/** Per well of a performance case: months whose allocation needs a pressure the model does not support, and the first such month. */
+export function unsupportedPressureMonths(c:{summary:{wells:readonly {wellId:string}[];monthly:readonly {month:string;unsupportedAllocations:readonly {wellId:string}[]}[]}}):{wellId:string;count:number;firstMonth:string|null}[]{
+  return c.summary.wells.map(w=>{const months=c.summary.monthly.filter(m=>m.unsupportedAllocations.some(a=>a.wellId===w.wellId)).map(m=>m.month);
+    return {wellId:w.wellId,count:months.length,firstMonth:months[0]??null};});
+}
 export function caseInsightsCsv(s:SealedCaseInsights):string{
   const rows:unknown[][]=[['section','rule_or_well','field','value']];
   for(const l of s.summary){
@@ -61,6 +84,7 @@ export function caseInsightsCsv(s:SealedCaseInsights):string{
   for(const h of s.history){
     rows.push(['history',h.wellId,'status',h.status],['history',h.wellId,'reason',h.reason],['history',h.wellId,'included_months',h.includedMonths],
       ['history',h.wellId,'peak_reported',h.peakReported],['history',h.wellId,'peak_forecast',h.peakForecast],['history',h.wellId,'ratio',h.ratio],
+      ['history',h.wellId,'history_months_at_or_above_peak_forecast',h.historyMonthsAtOrAbovePeakForecast],['history',h.wellId,'forecast_months_above_peak_reported',h.forecastMonthsAbovePeakReported],
       ['history',h.wellId,'pressure_status',h.pressure.status],['history',h.wellId,'pressure_note',h.pressure.note]);
   }
   const p=s.performance;
@@ -70,6 +94,8 @@ export function caseInsightsCsv(s:SealedCaseInsights):string{
     for(const c of p.cases){
       rows.push(['performance',c.label,'factors',c.factors],['performance',c.label,'capped_wells',c.cappedWells.join(' ')],['performance',c.label,'no_headroom_wells',c.noHeadroomWells.join(' ')],
         ['performance',c.label,'summary',c.summary]);
+      for(const o of c.offsetPercentOfHeadroom)rows.push(['performance',c.label,`offset_percent_of_headroom ${o.wellId}`,o.percent===null?'no headroom':o.percent]);
+      for(const u of unsupportedPressureMonths(c))rows.push(['performance',c.label,`unsupported_pressure_months ${u.wellId}`,u.count],['performance',c.label,`first_unsupported_pressure_month ${u.wellId}`,u.firstMonth??'none']);
       for(const a of c.attribution)rows.push(['performance',c.label,`attribution ${a.factor} change_bbl`,a.changeBbl]);
     }
   }
