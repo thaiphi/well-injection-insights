@@ -5,7 +5,7 @@
     "docs/superpowers/specs/2026-11-10-e05-scenario-monitoring-design.md",
     "docs/superpowers/plans/2026-11-10-e05-scenario-monitoring.md"
   ],
-  "changes": ["src/disposalSensitivity.ts", "web/import-ui.mjs", "web/index.html"],
+  "changes": ["src/disposalSensitivity.ts", "web/import-ui.mjs", "web/index.html", "web/redesign.css"],
   "newFiles": [
     "src/caseSummary.ts", "src/wellHistoryCheck.ts", "src/performanceCases.ts", "src/caseInsights.ts",
     "web/case-insights.mjs", "web/performance-worker.mjs",
