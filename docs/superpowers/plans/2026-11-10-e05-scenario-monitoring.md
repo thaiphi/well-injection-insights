@@ -75,9 +75,9 @@
   export type Cite={label:string;value:number|string|null;unit:string};
   export type SummaryLine={rule:SummaryRule;text:string;cites:Cite[];method:string|null};
   export function fmtNumber(v:number,digits?:number):string; // Math.round to digits (default 0), then 'en-US' grouping; '−' for negatives
-  export function caseSummary(result:DisposalCase,extras?:{history?:readonly WellHistoryCheck[];performance?:PerformanceCases|null}):SummaryLine[];
+  export function caseSummary(result:DisposalCase,extras?:{history?:unknown;performance?:unknown}):SummaryLine[];
   ```
-  `WellHistoryCheck` and `PerformanceCases` are type-only imports from Tasks 2 and 3. In this task `extras` is accepted and ignored; Tasks 2 and 3 add A6 and A7.
+  In this task `extras` is loosely typed and ignored, because the modules of Tasks 2 and 3 do not exist yet (`tsc` fails on a missing module even for `import type`). Task 2 tightens `history` to `readonly WellHistoryCheck[]` and Task 3 tightens `performance` to `PerformanceCases|null`.
 
 **Rules.** Lines come in rule order A1, A2, A3, A4, A5, then A6 and A7 when present, then A8.
 
@@ -119,6 +119,7 @@
 
 **Interfaces:**
 - Consumes:
+  - `fmtNumber` from `src/caseSummary.ts`, the only number formatter (do not define another);
   - `diagnoseMonthly` and `DiagnosticsState` from `src/h10Diagnostics.ts`;
   - `toAbsolute`, `Basis` and `BasisConfirmation` from `src/wellAssumptions.ts`;
   - `PublicMonthly` from `src/publicArtifact.ts`;
@@ -180,7 +181,7 @@
   - `pressure not above gives only the caveat`: a reported max far above the required pressure gives `not-above` with note `RATE_CAVEAT`.
   - `onstream note when availability < 1`.
   - `deterministic`: two calls are equal by `JSON.stringify`.
-  - Appended to `case-summary.test.mjs`: `A6 lines follow A5 and precede A8`, and `A6 is absent without history`.
+  - Appended to `case-summary.test.mjs`: `A6 lines follow A5 and precede A8`, `A6 is absent without history`, and `A6 lines avoid banned words` (every status).
 - [ ] **Step 2: Run and confirm it fails.** Run `tsc`, then `node --test tests/well-history-check.test.mjs tests/case-summary.test.mjs`. Expected: the new tests fail.
 - [ ] **Step 3: Implement** `src/wellHistoryCheck.ts` per the Rules, and add A6 to `caseSummary`.
 - [ ] **Step 4: Run and confirm it passes.** Run the same command. Expected: all pass.
@@ -195,7 +196,8 @@
 - Test: `tests/performance-cases.test.mjs`, plus A7 tests appended to `tests/case-summary.test.mjs`
 
 **Interfaces:**
-- Consumes: `buildDisposalCase`, `DisposalCaseInput`, `DisposalWell`, and `summarize` from `src/disposalSensitivity.ts`.
+- Consumes: `buildDisposalCase`, `DisposalCaseInput`, `DisposalWell`, `summarize` from `src/disposalSensitivity.ts`, and `fmtNumber` from `src/caseSummary.ts`.
+- Checked before planning: with the uniform model, `buildDisposalCase` accepts `reservoirPsia >= limitPsia` and returns `maximumStbd 0` rather than throwing.
 - Produces:
   ```ts
   export const PERFORMANCE_CASES_VERSION='well-performance-cases/1';
@@ -251,7 +253,7 @@
   - `attribution has three single-factor runs, not additive`: the Pessimistic attribution factors are `['injectivity','reservoir','availability']`, and `notes` includes `ATTRIBUTION_NOTE`.
   - `deterministic`.
   - `existing sweep unchanged`: `node --test tests/disposal-sensitivity.test.mjs` still passes (run in Step 4).
-  - Appended to `case-summary.test.mjs`: `A7 per non-base case, no-headroom appended`.
+  - Appended to `case-summary.test.mjs`: `A7 per non-base case, no-headroom appended`, and `A7 lines avoid banned words`.
 - [ ] **Step 2: Run and confirm it fails.** Run `tsc`, then `node --test tests/performance-cases.test.mjs tests/case-summary.test.mjs`. Expected: the new tests fail.
 - [ ] **Step 3: Implement** the code. Add `export` to `summarize` in `src/disposalSensitivity.ts` (a one-word change) and write `src/performanceCases.ts`.
 - [ ] **Step 4: Run and confirm it passes.** Run `node --test tests/performance-cases.test.mjs tests/case-summary.test.mjs tests/disposal-sensitivity.test.mjs`. Expected: all pass.
@@ -312,28 +314,28 @@
 ### Task 5: Panel, worker and wiring
 
 **Files:**
-- Create: `web/case-insights.mjs`
+- Create: `web/case-insights.mjs`. It is **pure**: no import of `web/import-ui.mjs` and no top-level `document` access, so `node:test` can import it, like `web/h10-diagnostics.mjs`.
 - Create: `web/performance-worker.mjs`
-- Modify: `web/import-ui.mjs`. **Protected**; keep exactly 4 CR bytes.
+- Modify: `web/import-ui.mjs`. **Protected**; keep exactly 4 CR bytes. This is the only file that imports `case-insights.mjs`: it calls `mountCaseInsights(...)` next to the existing `mountReconciliation` import.
 - Modify: `web/index.html`. **Protected**; keep exactly 3 CR bytes.
 - Test: `tests/case-insights-session.test.mjs`
 
 **Interfaces:**
 - Consumes: `buildCaseInsights`, `sealCaseInsights`, `verifyCaseInsights`, `caseInsightsJson` and `caseInsightsCsv` (Task 4), `validateFactors` and `NEUTRAL_FACTORS` (Task 3), and `confirmBasisValue` from `src/wellAssumptions.ts`.
 - Produces:
-  - In `web/import-ui.mjs`: `export function linkedWellHistories()`.
+  - In `web/import-ui.mjs`: a module-local `linkedWellHistories()` (not exported), passed to `mountCaseInsights($('case-insights'),{getLinks:linkedWellHistories})`.
     - Returns `[]` unless `source==='sample'&&sampleSession`.
     - Otherwise returns `sampleSession.selections.map(s=>({wellId:s.wellId,label:s.label,uic:s.artifact.injectionMonthly[0]?.uic_number??'',monthly:s.artifact.injectionMonthly}))`. There is no `surfaceBasis`; the panel adds it.
   - In `web/case-insights.mjs`: `export function createInsightsSession({getLinks,runPerformance})`.
     - It is a DOM-free state machine with `onCaseResult(result)`, `onInvalidated()`, `setBasis(wellId,value,reason)`, `requestPerformance(spec)` and `snapshot()`.
     - `snapshot()` returns `{status, insights|null, error|null, generation}`.
-    - It also has `mountCaseInsights(root)`, which wires the DOM.
-  - In `web/performance-worker.mjs`: messages `{action:'calculate',caseInput,spec}`, answered `{result}` or `{error}`. It mirrors `web/sensitivity-worker.mjs`.
+    - It also exports `mountCaseInsights(root,{getLinks})`, which wires the DOM and the two document events. It is called only from `import-ui.mjs`.
+  - In `web/performance-worker.mjs`: messages `{action:'calculate',caseInput,spec}` → `{result}`, and `{action:'verify',sealed,format:'json'|'csv'}` → `{text}`; either can answer `{error}`. It mirrors `web/sensitivity-worker.mjs`.
 
 **Rules:**
 - **Mount point** in `index.html`:
   - `<section id="case-insights" class="panel" hidden aria-labelledby="case-insights-title"></section>` goes directly after the closing tag of `#disposal-results`.
-  - `<script type="module" src="/case-insights.mjs"></script>` is appended after the `disposal-sensitivity.mjs` script on line 15.
+  - No new script tag: `import-ui.mjs` imports the module.
 - **Events:**
   - On `disposal-case-result`, take `event.detail.result`, build the insights with `getLinks()`, any confirmed bases and `performance:null`, show the panel, and enable the downloads.
   - On `disposal-case-invalidated`, increment `generation`, discard the insights and the in-flight performance work, hide the panel, and disable the downloads.
@@ -343,7 +345,7 @@
   3. summary lines, each a `<details>` whose `<summary>` is the text and whose body lists cites and method;
   4. history section: one table per well (reported and forecast rows with labels), a basis form per linked well (psig/psia select, reason input, Confirm), and an SVG timeline per linked well (reported bars, forecast bars, a dashed boundary line, gaps left empty, no thinning, as in D16);
   5. performance section: headroom table, a form with three inputs each for Pessimistic and Optimistic prefilled from `NEUTRAL_FACTORS`, a Calculate button, a results table with columns case / first unplaced month / unplaced bbl / limiting constraints / capped / no headroom, an attribution table, and the notes;
-  6. downloads: JSON and CSV, both re-verified with `verifyCaseInsights` before download.
+  6. downloads: JSON and CSV. Each is re-verified with `verifyCaseInsights` **in the performance worker** (action `verify`, as the sweep does), because verification reruns the engine up to 9 times. The worker returns the verified text or an error.
 - **Changes after a result:**
   - Confirming a basis rebuilds the insights.
   - A new performance result rebuilds the insights.
@@ -356,7 +358,9 @@
   - `invalidated clears insights`: `snapshot().insights===null`.
   - `stale performance result dropped` (Review Focus 5): a stub `runPerformance` resolves only after `onInvalidated()` and a new `onCaseResult()`; the old result is ignored (`insights.performance===null`).
   - `performance result adds A7`.
-  - In `tests/panel-hooks.test.mjs` style, read `web/index.html` text: `index.html mounts the panel and script`.
+  - In `tests/panel-hooks.test.mjs` style, read file text:
+    - `index.html has the case-insights mount`;
+    - `import-ui mounts case insights with the sample link`, which checks that `web/import-ui.mjs` contains `mountCaseInsights(`.
 - [ ] **Step 2: Run and confirm it fails.** Run `node --test tests/case-insights-session.test.mjs`. Expected: FAIL.
 - [ ] **Step 3: Implement.** Write both web modules. Make the two protected edits, then confirm the CR counts (`tr -cd '\r' < web/import-ui.mjs | wc -c` → 4; `web/index.html` → 3).
 - [ ] **Step 4: Run the checks and confirm they pass.** Run `node --test tests/*.test.mjs`, which must show all pass (the baseline is 638 tests plus the new ones). Run `node scripts/check-carried-oracles.mjs` → 248 comparisons, 0 failures. Then from the repo root, `node scripts/prepare-swd.mjs` → exit 0.
@@ -370,7 +374,7 @@
 
 - [ ] **Step 1 (before Task 3).** The orchestrator writes the layer spec:
   - `changes`: `src/disposalSensitivity.ts`, `web/import-ui.mjs`, `web/index.html`;
-  - `newFiles`: the 7 new app files and the 5 new test files;
+  - `newFiles`: `src/caseSummary.ts`, `src/wellHistoryCheck.ts`, `src/performanceCases.ts`, `src/caseInsights.ts`, `web/case-insights.mjs`, `web/performance-worker.mjs`, `tests/case-summary.test.mjs`, `tests/well-history-check.test.mjs`, `tests/performance-cases.test.mjs`, `tests/case-insights.test.mjs`, `tests/case-insights-session.test.mjs`;
   - `approvedDocs`: the spec and this plan;
   - `acceptanceEvidence`: `demo/E05-SCENARIO-MONITORING-VERIFICATION.md`;
   - `rootFiles`: `migration/layers/index.json`.
@@ -383,6 +387,7 @@
   - the JSON and CSV downloads re-verify;
   - there are no console errors.
   Evidence goes in `demo/e05-evidence/`.
+  - **Data rule:** the sample case holds two real TRRC wells, and the sealed downloads embed their raw H-10 rows in `links[].monthly`. QA records only download SHA-256 hashes, row counts, statuses and screenshots. The downloaded JSON/CSV files are **not** committed. Screenshots must not show per-month values in a readable table: crop or collapse the history tables.
 - [ ] **Step 4.** The orchestrator writes `demo/E05-SCENARIO-MONITORING-VERIFICATION.md`:
   - the commands and counts;
   - the acceptance table with PASS/FAIL;
