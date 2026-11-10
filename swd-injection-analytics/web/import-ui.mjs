@@ -13,6 +13,7 @@ import {mountTestRecords} from './test-records.mjs';
 import {mountInjectivity} from './injectivity.mjs';
 import {mountWellAssumptions} from './well-assumptions.mjs';
 import {mountReconciliation} from './reconciliation.mjs';
+import {mountCaseInsights} from './case-insights.mjs';
 import {mountNavigation,viewFromHash} from './navigation.mjs';
 import {renderCurveLibrary,renderSchedules,renderReports,renderScope,dataTable} from './workspace-views.mjs';
 import {mountExplorerReceiver} from './explorer-receiver.mjs';
@@ -323,6 +324,9 @@ $('input-template').onclick=()=>{const key=$('requirements-analysis').value,prof
 // Keep sweeps directly reachable even before a capacity calculation exists.
 $('disposal-results').after($('disposal-sensitivity'));
 $('disposal-input-details').before($('disposal-results'));
+function linkedWellHistories(){if(source!=='sample'||!sampleSession)return [];return sampleSession.selections.map(s=>({wellId:s.wellId,label:s.label,uic:s.artifact.injectionMonthly[0]?.uic_number??'',monthly:s.artifact.injectionMonthly}));}
+$('disposal-results').after($('case-insights'));
+mountCaseInsights($('case-insights'),{getLinks:linkedWellHistories});
 const sourcePanel=$('disposal-source').closest('section'),sourceDetails=el('details',undefined,'panel source-evidence-details');sourceDetails.append(el('summary','Demand source, forecast & coverage'),...[...sourcePanel.childNodes]);sourcePanel.replaceWith(sourceDetails);
 const capacityGrid=el('div',undefined,'capacity-result-grid'),constraintSummary=el('aside',undefined,'panel constraint-summary');$('disposal-demand-chart').before(capacityGrid);capacityGrid.append($('disposal-demand-chart'),constraintSummary);
 $('disposal-results-title').textContent='Capacity, constraints & unmet demand';
