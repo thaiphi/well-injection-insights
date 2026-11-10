@@ -1,0 +1,421 @@
+{
+ "chrome": "Chrome/157.0.8103.39",
+ "viewport": [
+  390,
+  844,
+  "1"
+ ],
+ "s1": {
+  "order": {
+   "domIndex": [
+    16,
+    5265,
+    5996
+   ],
+   "sensitivityHiddenInScenarios": true,
+   "top": [
+    861,
+    5231,
+    0
+   ]
+  },
+  "status": "8 summary lines from the calculated case. Screening estimate from assumed inputs.",
+  "rules": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5",
+   "A6",
+   "A6",
+   "A8"
+  ],
+  "lines": [
+   {
+    "rule": "A1",
+    "phrase": "Unplaced water starts in #: # bbl over # months."
+   },
+   {
+    "rule": "A2",
+    "phrase": "UIC-# is limited by its bottomhole limit; UIC-# is limited by its bottomhole limit."
+   },
+   {
+    "rule": "A3",
+    "phrase": "No unsupported allocated pressures in the base case."
+   },
+   {
+    "rule": "A4",
+    "phrase": "Least spare capacity: # −# bbl."
+   },
+   {
+    "rule": "A5",
+    "phrase": "The compared case (UIC-#: J × # ID # in, availability #) moves the first shortfall from # to # and changes unplaced water by # bbl."
+   },
+   {
+    "rule": "A6",
+    "phrase": "not shown in reported history | pressure not checked"
+   },
+   {
+    "rule": "A6",
+    "phrase": "not shown in reported history | pressure not checked"
+   },
+   {
+    "rule": "A8",
+    "phrase": "Screening estimate from assumed inputs; not proven field capacity."
+   }
+  ],
+  "closingExact": true,
+  "history": [
+   {
+    "well": "UIC-000020838",
+    "status": "Above reported history",
+    "tables": 1,
+    "forms": 1,
+    "svgs": 1,
+    "noHistory": false
+   },
+   {
+    "well": "UIC-000056484",
+    "status": "Above reported history",
+    "tables": 1,
+    "forms": 1,
+    "svgs": 1,
+    "noHistory": false
+   }
+  ],
+  "downloads": [
+   [
+    "Download insights JSON",
+    false
+   ],
+   [
+    "Download insights CSV",
+    false
+   ]
+  ]
+ },
+ "s2": {
+  "well": "UIC-000020838",
+  "before": "Pressure: Pressure not checked: confirm this well's H-# pressure basis (psig or psia).",
+  "after": "Pressure: Requires more surface pressure (# psia, #-#) than any reported month (# psia, #-#).",
+  "confirmed": "Confirmed: psig — QA",
+  "otherWellConfirmed": "Not confirmed: pressure is not compared until a basis is confirmed.",
+  "focus": {
+   "tag": "BUTTON",
+   "text": "Confirm",
+   "wellBox": "UIC-000020838",
+   "connected": true
+  },
+  "a6": [
+   {
+    "rule": "A6",
+    "phrase": "not shown in reported history"
+   },
+   {
+    "rule": "A6",
+    "phrase": "not shown in reported history | pressure not checked"
+   }
+  ],
+  "alerts": [
+   "",
+   ""
+  ]
+ },
+ "s3": {
+  "neutral": [
+   [
+    "pessimistic.injectivityMultiplier",
+    "1"
+   ],
+   [
+    "pessimistic.reservoirOffsetPsi",
+    "0"
+   ],
+   [
+    "pessimistic.availabilityMultiplier",
+    "1"
+   ],
+   [
+    "optimistic.injectivityMultiplier",
+    "1"
+   ],
+   [
+    "optimistic.reservoirOffsetPsi",
+    "0"
+   ],
+   [
+    "optimistic.availabilityMultiplier",
+    "1"
+   ]
+  ],
+  "status": "10 summary lines from the calculated case with well-performance cases. Screening estimate from assumed inputs.",
+  "perfInfo": {
+   "tables": [
+    {
+     "caption": "Pressure headroom before any well-performance factor",
+     "headers": [
+      "Well",
+      "Reservoir (psia, assumed)",
+      "Limit (psia, assumed)",
+      "Headroom (psi, calculated)"
+     ],
+     "rows": 2,
+     "firstCols": [
+      "UIC-000020838",
+      "UIC-000056484"
+     ]
+    },
+    {
+     "caption": "Assumed well-performance case · End-of-period condition held for every month; not a pressure or decline forecast.",
+     "headers": [
+      "Case",
+      "First unplaced month",
+      "Unplaced (bbl)",
+      "Limiting constraints",
+      "Capped availability",
+      "No headroom"
+     ],
+     "rows": 3,
+     "firstCols": [
+      "Pessimistic",
+      "Base",
+      "Optimistic"
+     ]
+    },
+    {
+     "caption": "Single-factor runs; effects are not additive.",
+     "headers": [
+      "Case",
+      "Factor changed alone",
+      "Unplaced (bbl)",
+      "Change from base (bbl)"
+     ],
+     "rows": 6,
+     "firstCols": [
+      "Pessimistic / injectivity",
+      "Pessimistic / reservoir",
+      "Pessimistic / availability",
+      "Optimistic / injectivity",
+      "Optimistic / reservoir",
+      "Optimistic / availability"
+     ]
+    }
+   ],
+   "notes": [
+    "Assumed well-performance case",
+    "End-of-period condition held for every month; not a pressure or decline forecast.",
+    "Fluid reference pressure is unchanged in every case.",
+    "Single-factor runs; effects are not additive."
+   ],
+   "error": ""
+  },
+  "a7": [
+   "Pessimistic: water stops fitting in # (base #), # bbl unplaced.",
+   "Optimistic: water stops fitting in # (base #), # bbl unplaced."
+  ],
+  "rules": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5",
+   "A6",
+   "A6",
+   "A7",
+   "A7",
+   "A8"
+  ]
+ },
+ "s5_JSON": [
+  {
+   "name": "swd-case-insights-2d6c1f82dc8b.json",
+   "type": "application/json",
+   "chars": 205894
+  }
+ ],
+ "s5_CSV": [
+  {
+   "name": "swd-case-insights-2d6c1f82dc8b.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 40046
+  }
+ ],
+ "s5_statusAfter": "10 summary lines from the calculated case with well-performance cases. Screening estimate from assumed inputs.",
+ "s3_afterEdit": {
+  "status": "8 summary lines from the calculated case. Screening estimate from assumed inputs.",
+  "perfTables": 1,
+  "a7": 0,
+  "rules": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5",
+   "A6",
+   "A6",
+   "A8"
+  ],
+  "downloads": [
+   [
+    "Download insights JSON",
+    false
+   ],
+   [
+    "Download insights CSV",
+    false
+   ]
+  ]
+ },
+ "s4": {
+  "disposalDownloadsBefore": [
+   [
+    "disposal-json",
+    false
+   ],
+   [
+    "disposal-csv",
+    false
+   ],
+   [
+    "disposal-svg",
+    false
+   ]
+  ],
+  "panelHidden": true,
+  "panelVisible": false,
+  "insightsDownloads": [
+   [
+    "Download insights JSON",
+    true
+   ],
+   [
+    "Download insights CSV",
+    true
+   ]
+  ],
+  "disposalDownloadsAfter": [
+   [
+    "disposal-json",
+    true
+   ],
+   [
+    "disposal-csv",
+    true
+   ],
+   [
+    "disposal-svg",
+    true
+   ]
+  ],
+  "summaryLines": 0,
+  "historyBoxes": 0,
+  "disposalStatus": "Assumptions changed. Recalculate both scenarios before interpreting or exporting results."
+ },
+ "s6": {
+  "view": "#injection/sensitivity",
+  "hidden": false,
+  "display": "none",
+  "offsetParent": false,
+  "height": 0,
+  "disposalWorkspaceHidden": false
+ },
+ "s6_backToScenarios": {
+  "hidden": false,
+  "visible": true
+ },
+ "s9": {
+  "innerWidth": 390,
+  "docScrollW": 390,
+  "docClientW": 390,
+  "pageHScroll": false,
+  "plots": [
+   {
+    "containerW": 334,
+    "scrollW": 334,
+    "overflowX": "auto",
+    "svgW": 334,
+    "svgAttrW": "360",
+    "containerRight": 363
+   },
+   {
+    "containerW": 334,
+    "scrollW": 334,
+    "overflowX": "auto",
+    "svgW": 334,
+    "svgAttrW": "360",
+    "containerRight": 363
+   }
+  ],
+  "tableScrolls": [
+   {
+    "scrollW": 336,
+    "clientW": 336,
+    "overflowX": "auto"
+   },
+   {
+    "scrollW": 336,
+    "clientW": 336,
+    "overflowX": "auto"
+   },
+   {
+    "scrollW": 336,
+    "clientW": 336,
+    "overflowX": "auto"
+   }
+  ],
+  "panelOverflowers": []
+ },
+ "s7": {
+  "status": "8 summary lines from the calculated case. Screening estimate from assumed inputs.",
+  "rules": [
+   "A1",
+   "A2",
+   "A3",
+   "A4",
+   "A5",
+   "A6",
+   "A6",
+   "A8"
+  ],
+  "a6": [
+   "FICTIONAL-INJ-A: Cannot be checked: no H-10 history loaded for this well.",
+   "FICTIONAL-INJ-B: Cannot be checked: no H-10 history loaded for this well."
+  ],
+  "history": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "status": "Cannot be checked",
+    "reason": "Cannot be checked: no H-10 history loaded for this well.",
+    "tables": 1,
+    "forms": 0,
+    "svgs": 0
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "status": "Cannot be checked",
+    "reason": "Cannot be checked: no H-10 history loaded for this well.",
+    "tables": 1,
+    "forms": 0,
+    "svgs": 0
+   }
+  ],
+  "allNoHistory": true
+ },
+ "s8": {
+  "consoleErrors": [],
+  "workerResponses": [],
+  "resourceTiming": [
+   "http://127.0.0.1:4174/dist/caseInsights.js",
+   "http://127.0.0.1:4174/dist/performanceCases.js",
+   "http://127.0.0.1:4174/performance-worker.mjs",
+   "http://127.0.0.1:4174/dist/performanceCases.js",
+   "http://127.0.0.1:4174/dist/caseInsights.js",
+   "http://127.0.0.1:4174/performance-worker.mjs",
+   "http://127.0.0.1:4174/dist/performanceCases.js",
+   "http://127.0.0.1:4174/dist/caseInsights.js",
+   "http://127.0.0.1:4174/performance-worker.mjs",
+   "http://127.0.0.1:4174/dist/performanceCases.js",
+   "http://127.0.0.1:4174/dist/caseInsights.js"
+  ]
+ }
+}

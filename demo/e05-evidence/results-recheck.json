@@ -1,0 +1,4 @@
+{"chrome":"Chrome/157.0.8103.39","viewport":[1280,900,0],"tsc":"exit 0",
+"D1":{"status":"PASS","download":"swd-case-insights-e5e3fb60e06d.json","bytes":206313,"sha256":"bf30746fd6ac05ca6dd7a49872a50c2a27b53ebbdc54c07c7b832e83e79fb375","verifyCaseInsights":"resolved","tamperedSummaryLine":"rejected (Result changed or stale)"},
+"check2":{"status":"PASS","caseTableExtraColumns":["Offset (% of headroom, assumed)","Unsupported-pressure months"],"historySentences":{"treatedAsSTBperDay":true,"nOfNCounts":true},"movesFirstShortfallWording":"absent; reads 'keeps the first shortfall at #'","A4":"reads 'shortfall of # bbl'","neutralOptimistic":"Optimistic: same as base (no factors changed).","historyHeadingRepeatsUIC":false},
+"check3":{"status":"PASS (app); 1 log entry","consoleErrors":["Failed to load resource: 404 /favicon.ico"],"exceptions":0}}

@@ -1,0 +1,50 @@
+{
+ "chrome": "Chrome/157.0.8103.39",
+ "node": "v24.13.0",
+ "commit": "a7cc15c",
+ "branch": "feature/e05-scenario-monitoring",
+ "desktop": {
+  "s1_sample": "PASS",
+  "s2_basis": "PASS",
+  "s3_performance": "PASS",
+  "s4_invalidate": "PASS",
+  "s6_sensitivity": "PASS",
+  "s7_demo": "PASS",
+  "s8_console": "PASS",
+  "s9_layout": "PASS"
+ },
+ "mobile": {
+  "s1_sample": "PASS",
+  "s2_basis": "PASS",
+  "s3_performance": "PASS",
+  "s4_invalidate": "PASS",
+  "s6_sensitivity": "PASS",
+  "s7_demo": "PASS",
+  "s8_console": "PASS",
+  "s9_layout": "PASS"
+ },
+ "downloads": {
+  "note": "Files kept outside the repo (scratchpad chrome-e05/downloads). Identical bytes at desktop and mobile.",
+  "json": {
+   "bytes": 205923,
+   "sha256": "76a595ccf2e2b8399295eef7ada94268fd81e731b609bee70b6f8bcade8e3a0f",
+   "browserWorkerVerify": "PASS (download produced)",
+   "nodeVerifyCaseInsights": "FAIL (Result changed or stale) - 12 hydraulics.frictionPsi values in performance.cases[0] (Pessimistic) differ in the last digit between Chrome V8 15.7 and Node 24.13 V8 13.6",
+   "jsonEqualsCaseInsightsJson": true,
+   "tamperedSummaryRejected": true,
+   "bannedWordsInGeneratedLines": 0,
+   "summaryRules": "A1,A2,A3,A4,A5,A6,A6,A7,A7,A8",
+   "basisConfirmed": 1
+  },
+  "csv": {
+   "bytes": 40053,
+   "sha256": "fa161cee71369bd4bd421e943f416893e38aebda77bcbcbb587e255cbcfb87c8",
+   "equalsCaseInsightsCsvOfJson": true
+  },
+  "baseOnlyJson": {
+   "bytes": 91362,
+   "nodeVerifyCaseInsights": "PASS",
+   "note": "extra capture without performance cases (exploration tab)"
+  }
+ }
+}

@@ -1,0 +1,115 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "phase-2b-scenario-monitoring",
+  "status": "pending-review",
+  "purpose": "Phase 2b (PRD ANA-E05, issue #6): a rule-based case summary, a history-vs-forecast check (volume primary, pressure warning only; sample-case linked history) and Pessimistic/Base/Optimistic well-performance cases with single-factor attribution, inside the existing disposal capacity case, with sealed JSON/CSV exports. The disposal calculation engine is unchanged.",
+  "parentBaselineSha256": "6514e2b8501814144a40a7736fd655feb4fd6f26b8590577481ceb1d60e9313e",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-11-10-e05-scenario-monitoring-design.md",
+      "sha256": "ebc5cd1f73538a7b78ecb157fdf09417dde9efc56cfe837995503a0e82e8cc86"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-10-e05-scenario-monitoring.md",
+      "sha256": "34ddf1d9fe6de8855143692f369f851a63c2444e58ca375b1a7cbec3b1cbd72a"
+    }
+  ],
+  "changes": [
+    {
+      "path": "src/disposalSensitivity.ts",
+      "archive": "migration/baselines/phase-2b-scenario-monitoring-before/swd-injection-analytics/src/disposalSensitivity.ts",
+      "beforeSha256": "38157257900a133366486ca1419cdeeb5be35a9fab4c637d07a53a99b321eeef",
+      "beforeBytes": 10409,
+      "afterSha256": "e53522d643afdf700a97c408671c180bcf60b5bcbde1f7e4f610623634ba8465",
+      "afterBytes": 10416
+    },
+    {
+      "path": "web/import-ui.mjs",
+      "archive": "migration/baselines/phase-2b-scenario-monitoring-before/swd-injection-analytics/web/import-ui.mjs",
+      "beforeSha256": "c5212e0dcbe02cd68f2bae9b0b3aa88dc07cb117eddb51a0b54f3dbef69a8ec3",
+      "beforeBytes": 70319,
+      "afterSha256": "60f327095e74fc69792227605202024a3fca1264deddc321142573b130c4eba5",
+      "afterBytes": 70734
+    },
+    {
+      "path": "web/index.html",
+      "archive": "migration/baselines/phase-2b-scenario-monitoring-before/swd-injection-analytics/web/index.html",
+      "beforeSha256": "5c4ff54c68ad5018e474474161d9749a2d1042b16fff4d72caee0f0b214f5de3",
+      "beforeBytes": 41447,
+      "afterSha256": "0d9842fa8b6f3088962a48704f1b6aacbcff775a8628567fb2a122435ee48e21",
+      "afterBytes": 41544
+    },
+    {
+      "path": "web/redesign.css",
+      "archive": "migration/baselines/phase-2b-scenario-monitoring-before/swd-injection-analytics/web/redesign.css",
+      "beforeSha256": "7f7966e6c95d2e57cb233600bf3d8076de7861b2aaf6cc1c4da8181670b17fd3",
+      "beforeBytes": 11897,
+      "afterSha256": "c418429105d8a574f35246a6ac3bc47787963e7cf9ebea9e9a0e8cc3d43662d3",
+      "afterBytes": 11942
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/caseSummary.ts",
+      "sha256": "2d797c1043e60b468d30c6df0da15787e33f4ecab25a0ae366c639a4a668c645",
+      "bytes": 5744
+    },
+    {
+      "path": "src/wellHistoryCheck.ts",
+      "sha256": "52d7540cfdbeddbe999a8c4f8ffa3c000ff80c80266216e026a184d7d6c16086",
+      "bytes": 7418
+    },
+    {
+      "path": "src/performanceCases.ts",
+      "sha256": "d277d6aa5423b9d80954ed6e2c987b4a593097a00b9727ca67bb77d731df8db7",
+      "bytes": 4606
+    },
+    {
+      "path": "src/caseInsights.ts",
+      "sha256": "20ad5e43c7b5d01799415204961b21bffda9a52622f13d7159912c16fed8a79f",
+      "bytes": 8011
+    },
+    {
+      "path": "web/case-insights.mjs",
+      "sha256": "43456427437a12b310bbb0d353a54f0b9a2dc70bd71e1e3185ebab200a96608a",
+      "bytes": 20222
+    },
+    {
+      "path": "web/performance-worker.mjs",
+      "sha256": "b031cc0eb1ccc9e7692ea8c006c67b8dfff02a2338e42b023b2768f707575181",
+      "bytes": 815
+    },
+    {
+      "path": "tests/case-summary.test.mjs",
+      "sha256": "d1f19a4f145bc7f56d77f357914fd11ba3cdef3e94932235c601bb4e2afb9712",
+      "bytes": 10683
+    },
+    {
+      "path": "tests/well-history-check.test.mjs",
+      "sha256": "3e3d6309a2c67461df81b3422e452dfbf26108805a328cd451b9699807b768d2",
+      "bytes": 10373
+    },
+    {
+      "path": "tests/performance-cases.test.mjs",
+      "sha256": "c295e7f809380723e56032cc349090f7c37e1ce9c24761d4b37e8e9085e64bd2",
+      "bytes": 5567
+    },
+    {
+      "path": "tests/case-insights.test.mjs",
+      "sha256": "a69ab2bf5b049482e375cdf93789ca756d784a8ac34e972b4a9a1f00de3d044a",
+      "bytes": 10806
+    },
+    {
+      "path": "tests/case-insights-session.test.mjs",
+      "sha256": "4f6f353139c13bebfdd460390073e5a710ff611b3074ebf247ab025ae32fb938",
+      "bytes": 15422
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "59e2740b9d4fe35a93292b60201c8ba1e351d97453c3afce684bcf978ce244eb",
+      "bytes": 1084
+    }
+  ]
+}

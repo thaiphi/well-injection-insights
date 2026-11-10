@@ -32,6 +32,10 @@
     {
       "name": "zc02-analytics-docker",
       "baseline": "migration/layers/zc02-analytics-docker.json"
+    },
+    {
+      "name": "phase-2b-scenario-monitoring",
+      "baseline": "migration/layers/phase-2b-scenario-monitoring.json"
     }
   ]
 }
