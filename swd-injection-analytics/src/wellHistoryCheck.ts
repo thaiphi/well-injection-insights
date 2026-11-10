@@ -24,6 +24,7 @@ export function checkWellHistory(base:DisposalCase['base'],links:readonly Histor
   const id=w.well.id,link=links.find(l=>l.wellId===id);
   const empty=(status:HistoryStatus,reason:string,extra:Partial<WellHistoryCheck>={},pnote='Pressure not compared: no usable history month.'):WellHistoryCheck=>({wellId:id,label:link?.label??null,uic:link?.uic??null,status,reason,includedMonths:0,peakReported:null,peakForecast:null,ratio:null,historyMonthsAtOrAbovePeakForecast:null,forecastMonthsAbovePeakReported:null,onstreamNote:null,pressure:link&&link.surfaceBasis?{...notChecked(pnote),basis:link.surfaceBasis.value}:notChecked(PRESSURE_NOT_CHECKED),series:{reported:[],forecast:[]},...extra});
   if(!link)return empty('cannot-check',NO_HISTORY);
+  if(!link.monthly.length)return empty('cannot-check','Cannot be checked: no H-10 monthly rows.');
   const state=diagnoseMonthly(link.monthly);
   const included=state.months.filter(m=>!m.gap&&state.decisions[m.month]?.include&&m.rateBpd!==null&&m.rateBpd>0);
   const incl=new Set(included.map(m=>m.month));

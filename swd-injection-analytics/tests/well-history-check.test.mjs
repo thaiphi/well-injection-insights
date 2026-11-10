@@ -94,3 +94,10 @@ test('well without base allocations is cannot-check, no throw',()=>{
  assert.equal(b.pressure.note,'Pressure not compared: no forecast allocation for this well.');assert.equal(b.pressure.basis,'psig');
  assert.equal(r.pressure.note,PRESSURE_NOT_CHECKED);
 });
+test('linked well with empty monthly rows is cannot-check, no throw',()=>{
+ const c=build();let r;
+ assert.doesNotThrow(()=>{r=first(c,[link([])]);});
+ assert.equal(r.status,'cannot-check');assert.equal(r.reason,'Cannot be checked: no H-10 monthly rows.');assert.equal(r.pressure.status,'not-checked');assert.equal(r.pressure.note,PRESSURE_NOT_CHECKED);
+ const b=first(c,[link([],{value:'psig',reason:'RRC H-10 reports gauge pressure'})]);
+ assert.equal(b.pressure.note,'Pressure not compared: no usable history month.');assert.equal(b.pressure.basis,'psig');
+});
