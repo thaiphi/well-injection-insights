@@ -1,0 +1,16 @@
+{
+  "purpose": "Phase 2b (PRD ANA-E05, issue #6): a rule-based case summary, a history-vs-forecast check (volume primary, pressure warning only; sample-case linked history) and Pessimistic/Base/Optimistic well-performance cases with single-factor attribution, inside the existing disposal capacity case, with sealed JSON/CSV exports. The disposal calculation engine is unchanged.",
+  "acceptanceEvidence": "demo/E05-SCENARIO-MONITORING-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-11-10-e05-scenario-monitoring-design.md",
+    "docs/superpowers/plans/2026-11-10-e05-scenario-monitoring.md"
+  ],
+  "changes": ["src/disposalSensitivity.ts", "web/import-ui.mjs", "web/index.html"],
+  "newFiles": [
+    "src/caseSummary.ts", "src/wellHistoryCheck.ts", "src/performanceCases.ts", "src/caseInsights.ts",
+    "web/case-insights.mjs", "web/performance-worker.mjs",
+    "tests/case-summary.test.mjs", "tests/well-history-check.test.mjs", "tests/performance-cases.test.mjs",
+    "tests/case-insights.test.mjs", "tests/case-insights-session.test.mjs"
+  ],
+  "rootFiles": ["migration/layers/index.json"]
+}
