@@ -1,7 +1,10 @@
 {
   "version": "swd-preservation-layer/1",
   "name": "phase-2b-scenario-monitoring",
-  "status": "pending-review",
+  "status": "accepted",
+  "acceptedAt": "2026-11-10",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/E05-SCENARIO-MONITORING-VERIFICATION.md",
   "purpose": "Phase 2b (PRD ANA-E05, issue #6): a rule-based case summary, a history-vs-forecast check (volume primary, pressure warning only; sample-case linked history) and Pessimistic/Base/Optimistic well-performance cases with single-factor attribution, inside the existing disposal capacity case, with sealed JSON/CSV exports. The disposal calculation engine is unchanged.",
   "parentBaselineSha256": "6514e2b8501814144a40a7736fd655feb4fd6f26b8590577481ceb1d60e9313e",
   "approvedDocs": [
