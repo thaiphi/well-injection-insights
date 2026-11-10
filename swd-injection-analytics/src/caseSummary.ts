@@ -1,6 +1,8 @@
 import type {DisposalCase} from './disposalCase.js';
 import type {WellHistoryCheck} from './wellHistoryCheck.js';
 import {HISTORY_CHECK_VERSION} from './wellHistoryCheck.js';
+import type {PerformanceCases} from './performanceCases.js';
+import {PERFORMANCE_CASES_VERSION} from './performanceCases.js';
 export const CASE_SUMMARY_VERSION='case-summary/1';
 export const CLOSING_LINE='Screening estimate from assumed inputs; not proven field capacity.';
 export const BANNED=/\b(proven|sustainable|calibrated|validated|safe)\b/i;
@@ -16,7 +18,7 @@ export function fmtNumber(v:number,digits=0):string{
 const fmtSigned=(v:number)=>(v>0?'+':'')+fmtNumber(v);
 const plural=(n:number)=>n===1?'':'s';
 /** Rule-based, deterministic summary of a calculated disposal case. `extras.history` adds A6; `performance` is reserved for A7. */
-export function caseSummary(result:DisposalCase,extras?:{history?:readonly WellHistoryCheck[];performance?:unknown}):SummaryLine[]{
+export function caseSummary(result:DisposalCase,extras?:{history?:readonly WellHistoryCheck[];performance?:PerformanceCases|null}):SummaryLine[]{
  const lines:SummaryLine[]=[],base=result.base,months=base.monthly;
  const short=months.filter(m=>m.shortfallBbl>0),first=short[0];
  if(!first)lines.push({rule:'A1',text:'All demand is placed in every month.',cites:[],method:result.methods.allocation});
@@ -35,6 +37,15 @@ export function caseSummary(result:DisposalCase,extras?:{history?:readonly WellH
  if(extras?.history)for(const h of extras.history){
   const note=h.uic!==null&&(h.pressure.status==='above-reported'||h.pressure.status==='not-checked')?' '+h.pressure.note:'';
   lines.push({rule:'A6',text:`${h.wellId}: ${h.reason}${note}`,cites:[],method:HISTORY_CHECK_VERSION});
+ }
+ if(extras?.performance){
+  const perf=extras.performance,baseFirst=perf.cases.find(c=>c.label==='Base')?.summary.firstShortfallMonth??null;
+  for(const c of perf.cases){
+   if(c.label==='Base')continue;
+   const f=c.summary.firstShortfallMonth;
+   lines.push({rule:'A7',text:`${c.label}: ${f?`water stops fitting in ${f}`:'all demand is placed'} (base ${baseFirst??'none'}), ${fmtNumber(c.summary.totalShortfallBbl)} bbl unplaced.`+(c.noHeadroomWells.length?` No headroom: ${c.noHeadroomWells.join(', ')}.`:''),
+    cites:[{label:`${c.label} unplaced water`,value:c.summary.totalShortfallBbl,unit:'bbl'}],method:PERFORMANCE_CASES_VERSION});
+  }
  }
  lines.push({rule:'A8',text:CLOSING_LINE,cites:[],method:null});
  return lines;

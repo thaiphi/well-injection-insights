@@ -9,7 +9,7 @@ const parameters={
  innerDiameterInches:{label:'Inner diameter',unit:'in',minimum:0.25,maximum:30},
  availability:{label:'Availability',unit:'fraction of calendar time',minimum:0,maximum:1},
 } as const;
-function summarize(base:DisposalCase['base']){
+export function summarize(base:DisposalCase['base']){
  return {
   totalAvailableStbd:base.totalAvailableStbd,totalShortfallBbl:base.totalShortfallBbl,firstShortfallMonth:base.firstShortfallMonth,
   operatingFeasible:base.monthly.every(month=>month.operatingFeasible),

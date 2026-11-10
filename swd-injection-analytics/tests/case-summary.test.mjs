@@ -68,3 +68,20 @@ test('A6 lines avoid banned words',()=>{
  for(const s of ['within','above','cannot-check','no-injection'])assert.ok(statuses.has(s),s);
  for(const h of sets)for(const l of caseSummary(short,{history:h}).filter(x=>x.rule==='A6'))assert.doesNotMatch(l.text,BANNED);
 });
+const pcMod=await import(pathToFileURL(resolve(engineDir,'performanceCases.js'))).catch(()=>({}));
+const perfSpec={pessimistic:{injectivityMultiplier:0.5,reservoirOffsetPsi:1600,availabilityMultiplier:0.8},optimistic:{injectivityMultiplier:2,reservoirOffsetPsi:0,availabilityMultiplier:1}};
+test('A7 per non-base case, no-headroom appended',()=>{
+ const perf=pcMod.buildPerformanceCases(short.inputs,perfSpec),all=caseSummary(short,{performance:perf}),lines=all.filter(l=>l.rule==='A7');
+ assert.equal(lines.length,2);
+ const fmtFirst=f=>f?`water stops fitting in ${f}`:'all demand is placed';
+ const p=perf.cases[0],o=perf.cases[2],base=perf.cases[1];
+ assert.equal(lines[0].text,`Pessimistic: ${fmtFirst(p.summary.firstShortfallMonth)} (base ${base.summary.firstShortfallMonth??'none'}), ${fmtNumber(p.summary.totalShortfallBbl)} bbl unplaced. No headroom: ${p.noHeadroomWells.join(', ')}.`);
+ assert.equal(lines[1].text,`Optimistic: ${fmtFirst(o.summary.firstShortfallMonth)} (base ${base.summary.firstShortfallMonth??'none'}), ${fmtNumber(o.summary.totalShortfallBbl)} bbl unplaced.`);
+ assert.equal(lines[0].method,pcMod.PERFORMANCE_CASES_VERSION);
+ const rules=all.map(l=>l.rule);assert.ok(rules.indexOf('A7')>rules.indexOf('A5'));assert.equal(rules.at(-1),'A8');
+ assert.equal(caseSummary(short,{performance:null}).some(l=>l.rule==='A7'),false);assert.equal(caseSummary(short).some(l=>l.rule==='A7'),false);
+});
+test('A7 lines avoid banned words',()=>{
+ const perf=pcMod.buildPerformanceCases(short.inputs,perfSpec);
+ for(const l of caseSummary(short,{performance:perf}).filter(x=>x.rule==='A7'))assert.doesNotMatch(l.text,BANNED);
+});
