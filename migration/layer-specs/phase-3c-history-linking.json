@@ -1,0 +1,16 @@
+{
+  "purpose": "Phase 3c (PRD ANA-E10, issue #9): a shared Explorer history-package loader and user-chosen links from the user's own or demo case wells to their H-10 history, as evidence only (no calculation input changes), with a Wells compared table and in-panel row detail inside the disposal case; insights exports carry link provenance (schema /2; /1 still verifies).",
+  "acceptanceEvidence": "demo/E10-HISTORY-LINKING-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-11-15-e10-multiwell-assessment-design.md",
+    "docs/superpowers/specs/2026-11-15-e07-interference-screening-design.md",
+    "docs/superpowers/plans/2026-11-15-history-loader-and-e10.md"
+  ],
+  "changes": ["src/caseInsights.ts", "web/case-insights.mjs", "web/import-ui.mjs"],
+  "newFiles": [
+    "src/historyPackages.ts", "src/caseHistoryLinks.ts",
+    "tests/history-packages.test.mjs", "tests/case-history-links.test.mjs", "tests/case-insights-links.test.mjs",
+    "tests/fixtures/case-insights-v1.json"
+  ],
+  "rootFiles": ["migration/layers/index.json"]
+}
