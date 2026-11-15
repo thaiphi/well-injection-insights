@@ -19,7 +19,7 @@ const make=()=>{const r=buildDisposalCase(input());return ci.buildCaseInsights(r
 test('module exists',()=>assert.equal(typeof ci.sealCaseInsights,'function'));
 test('seal and verify round-trip',async()=>{
  const s=await ci.sealCaseInsights(make());
- assert.equal(s.schemaVersion,'case-insights-export/1');
+ assert.equal(s.schemaVersion,'case-insights-export/2');
  await ci.verifyCaseInsights(s);
  await ci.verifyCaseInsights(JSON.parse(ci.caseInsightsJson(s)));
 });

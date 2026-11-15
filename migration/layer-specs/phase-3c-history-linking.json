@@ -6,11 +6,21 @@
     "docs/superpowers/specs/2026-11-15-e07-interference-screening-design.md",
     "docs/superpowers/plans/2026-11-15-history-loader-and-e10.md"
   ],
-  "changes": ["src/caseInsights.ts", "web/case-insights.mjs", "web/import-ui.mjs"],
+  "changes": [
+    "src/caseInsights.ts",
+    "web/case-insights.mjs",
+    "web/import-ui.mjs",
+    "tests/case-insights.test.mjs"
+  ],
   "newFiles": [
-    "src/historyPackages.ts", "src/caseHistoryLinks.ts",
-    "tests/history-packages.test.mjs", "tests/case-history-links.test.mjs", "tests/case-insights-links.test.mjs",
+    "src/historyPackages.ts",
+    "src/caseHistoryLinks.ts",
+    "tests/history-packages.test.mjs",
+    "tests/case-history-links.test.mjs",
+    "tests/case-insights-links.test.mjs",
     "tests/fixtures/case-insights-v1.json"
   ],
-  "rootFiles": ["migration/layers/index.json"]
+  "rootFiles": [
+    "migration/layers/index.json"
+  ]
 }
