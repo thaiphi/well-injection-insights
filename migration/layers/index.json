@@ -36,6 +36,10 @@
     {
       "name": "phase-2b-scenario-monitoring",
       "baseline": "migration/layers/phase-2b-scenario-monitoring.json"
+    },
+    {
+      "name": "phase-3c-history-linking",
+      "baseline": "migration/layers/phase-3c-history-linking.json"
     }
   ]
 }

@@ -1,0 +1,102 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "phase-3c-history-linking",
+  "status": "pending-review",
+  "purpose": "Phase 3c (PRD ANA-E10, issue #9): a shared Explorer history-package loader and user-chosen links from the user's own or demo case wells to their H-10 history, as evidence only (no calculation input changes), with a Wells compared table and in-panel row detail inside the disposal case; insights exports carry link provenance (schema /2; /1 still verifies).",
+  "parentBaselineSha256": "d8b19c22253f9c93fec515c2d77526f35d80bf8eca24ba66963ea4a2e56db7e5",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-11-15-e10-multiwell-assessment-design.md",
+      "sha256": "ef256a9c929d7b4e7ff89f4c6996feed31eaaab2cbb0a5f29ede9f09fc59997f"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-11-15-e07-interference-screening-design.md",
+      "sha256": "9e4de025c8786606c29c927fcd67368bc07cbb9f101ec08f6925535db4f61ddb"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-15-history-loader-and-e10.md",
+      "sha256": "2c5e4fd8ce59f94f5b143370671e8e9c6996bed2ca9937d12bb3ef095ea3b816"
+    }
+  ],
+  "changes": [
+    {
+      "path": "src/caseInsights.ts",
+      "archive": "migration/baselines/phase-3c-history-linking-before/swd-injection-analytics/src/caseInsights.ts",
+      "beforeSha256": "20ad5e43c7b5d01799415204961b21bffda9a52622f13d7159912c16fed8a79f",
+      "beforeBytes": 8011,
+      "afterSha256": "b68378beacbb6701aecd36fdd4d630b43287141e81cff546310999ed46a314a0",
+      "afterBytes": 10665
+    },
+    {
+      "path": "web/case-insights.mjs",
+      "archive": "migration/baselines/phase-3c-history-linking-before/swd-injection-analytics/web/case-insights.mjs",
+      "beforeSha256": "43456427437a12b310bbb0d353a54f0b9a2dc70bd71e1e3185ebab200a96608a",
+      "beforeBytes": 20222,
+      "afterSha256": "f85f1528f4982dd260e5187740f36dc9ed1eb482d2b3637eea4aba3b75cf3bff",
+      "afterBytes": 33181
+    },
+    {
+      "path": "web/import-ui.mjs",
+      "archive": "migration/baselines/phase-3c-history-linking-before/swd-injection-analytics/web/import-ui.mjs",
+      "beforeSha256": "60f327095e74fc69792227605202024a3fca1264deddc321142573b130c4eba5",
+      "beforeBytes": 70734,
+      "afterSha256": "f80d3838cb410304c7d877c2910c3eb5d40681cabba18e34d3a97dd8845bf0b6",
+      "afterBytes": 70959
+    },
+    {
+      "path": "tests/case-insights.test.mjs",
+      "archive": "migration/baselines/phase-3c-history-linking-before/swd-injection-analytics/tests/case-insights.test.mjs",
+      "beforeSha256": "a69ab2bf5b049482e375cdf93789ca756d784a8ac34e972b4a9a1f00de3d044a",
+      "beforeBytes": 10806,
+      "afterSha256": "5c79186fbcd72c82ef1313422ec4b106626773a7d4b7a0bce5e46ba7a363472b",
+      "afterBytes": 10806
+    },
+    {
+      "path": "tests/case-insights-session.test.mjs",
+      "archive": "migration/baselines/phase-3c-history-linking-before/swd-injection-analytics/tests/case-insights-session.test.mjs",
+      "beforeSha256": "4f6f353139c13bebfdd460390073e5a710ff611b3074ebf247ab025ae32fb938",
+      "beforeBytes": 15422,
+      "afterSha256": "0d53e79243ad22f36b7600cd4fffcd31bfd996b0dc9d5de9ec431febb4c428c7",
+      "afterBytes": 31495
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/historyPackages.ts",
+      "sha256": "07d2d668d43b1f850a5f821e6f500ad38ba1ed34153132c1499b3181b8ee4172",
+      "bytes": 5391
+    },
+    {
+      "path": "src/caseHistoryLinks.ts",
+      "sha256": "634e0568b18d2beec51ac6fd4c5a3e9e3a4bfbd76882113270081339783bcd6f",
+      "bytes": 3897
+    },
+    {
+      "path": "tests/history-packages.test.mjs",
+      "sha256": "204524b5aff63f5e3e47fc236aa31556d7c9dbadc1d4fae401b70ee5cb037827",
+      "bytes": 6031
+    },
+    {
+      "path": "tests/case-history-links.test.mjs",
+      "sha256": "ffcc0c3c771935e0409886eb23cd731e972ed01caedc8ed5ba2f27b6f6f470de",
+      "bytes": 7583
+    },
+    {
+      "path": "tests/case-insights-links.test.mjs",
+      "sha256": "c8ea21c75092e2b3f5f0f35a801dd966c53a2ca82e7c8da0e8133768255c16f2",
+      "bytes": 9160
+    },
+    {
+      "path": "tests/fixtures/case-insights-v1.json",
+      "sha256": "eefe85ec52609f534cc28198ff7a5f224a5f45345bee87c51867776db3abc4d4",
+      "bytes": 9621
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "95eb355480fc01ff7c9bbbaa9307f2b5843376bd4fd06dfb673968ea17e478a5",
+      "bytes": 1206
+    }
+  ]
+}
