@@ -1,7 +1,10 @@
 {
   "version": "swd-preservation-layer/1",
   "name": "phase-3c-history-linking",
-  "status": "pending-review",
+  "status": "accepted",
+  "acceptedAt": "2026-11-15",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/E10-HISTORY-LINKING-VERIFICATION.md",
   "purpose": "Phase 3c (PRD ANA-E10, issue #9): a shared Explorer history-package loader and user-chosen links from the user's own or demo case wells to their H-10 history, as evidence only (no calculation input changes), with a Wells compared table and in-panel row detail inside the disposal case; insights exports carry link provenance (schema /2; /1 still verifies).",
   "parentBaselineSha256": "d8b19c22253f9c93fec515c2d77526f35d80bf8eca24ba66963ea4a2e56db7e5",
   "approvedDocs": [
