@@ -2,34 +2,100 @@ import {buildCaseInsights,sealCaseInsights,unsupportedPressureMonths} from '../d
 import {fmtNumber} from '../dist/caseSummary.js';
 import {validateFactors,NEUTRAL_FACTORS,CASE_LABEL,FLAT_NOTE,FLUID_NOTE,ATTRIBUTION_NOTE} from '../dist/performanceCases.js';
 import {confirmBasisValue} from '../dist/wellAssumptions.js';
+import {checkWellHistory} from '../dist/wellHistoryCheck.js';
+import {packageFromVerified,addPackage,removePackage as dropPackage,joinedHistory,uics,EMPTY_PACKAGE_SET} from '../dist/historyPackages.js';
+import {setLink as linkWell,pruneLinks,historyLinksFor,wellsCompared,UNLINKED,J_SOURCE_ASSUMED,EVIDENCE_ONLY} from '../dist/caseHistoryLinks.js';
+import {CLASS_LABELS} from '../dist/sampleCase.js';
+import {verifyExplorerPackage} from './explorer-package.mjs';
 
 /** "What the case says": deterministic summary, history vs forecast and assumed well-performance cases.
  * Pure at import time (no DOM access), so node:test imports it. Mounted only by import-ui.mjs. */
 
 const msg=e=>e instanceof Error?e.message:String(e);
 
-/** DOM-free state machine. `generation` changes on every case result and invalidation; work started under an older generation is ignored. */
-export function createInsightsSession({getLinks,runPerformance,onChange=()=>{}}){
+/** User and demo cases link their own loaded packages; the sample keeps getLinks; public (or no source) feeds no links. */
+const ownCase=src=>src==='user'||src==='demo';
+const NO_SOURCE=Symbol('no case result yet');
+
+/** DOM-free state machine. `generation` changes on every case result and invalidation; work started under an older generation is ignored.
+ * Without `getSource` the session behaves as in E05 (getLinks feeds the check). Links and packages are evidence only: the case input is never read for or changed by them. */
+export function createInsightsSession({getLinks,getSource,runPerformance,onChange=()=>{}}){
  let status='idle',result=null,insights=null,error=null,generation=0,performance=null,perfSeq=0;
+ let set=EMPTY_PACKAGE_SET,wellLinks={},compared=null,coverage=new Map(),lastSource=NO_SOURCE;
  const bases=new Map(),key=(wellId,uic)=>wellId+'|'+uic;
- function rebuild(){
-  const links=(getLinks()??[]).map(l=>({wellId:l.wellId,label:l.label,uic:l.uic,monthly:l.monthly,surfaceBasis:bases.get(key(l.wellId,l.uic))??null}));
-  insights=buildCaseInsights(result,links,performance);
+ const sourceNow=()=>getSource?getSource():undefined;
+ const caseSource=()=>result?lastSource:sourceNow();
+ /** A source switch withdraws the links and their confirmed bases; loaded packages are kept. */
+ const followSource=src=>{if(lastSource!==NO_SOURCE&&src!==lastSource){wellLinks={};bases.clear();}lastSource=src;};
+ const caseWellIds=()=>result.base.wells.map(bw=>bw.well.id);
+ const sampleLinkRows=()=>(getLinks()??[]).map(l=>({wellId:l.wellId,label:l.label,uic:l.uic,monthly:l.monthly,surfaceBasis:bases.get(key(l.wellId,l.uic))??null}));
+ /** Sample rows: coverage from each link's own reported rows (window source 'rows'); no package provenance is invented.
+  * J source: the sample's injectivity input class (getLinks item jClass), labelled as in sampleCase; never from H-10. */
+ function sampleCompared(links,history){
+  const withRows=links.filter(l=>l.monthly?.length),packages=withRows.map(l=>{const ms=l.monthly.map(r=>String(r.period_start).slice(0,7)).sort();
+   return {artifactId:'',manifestSha256:'',uic:l.uic,window:{startMonth:ms[0],endMonth:ms[ms.length-1],source:'rows'},monthly:l.monthly};});
+  const tmp={packages};coverage=new Map(withRows.map(l=>[l.wellId,joinedHistory(tmp,l.uic).months]));
+  const jClass=new Map((getLinks()??[]).map(l=>[l.wellId,l.jClass]));
+  return wellsCompared(result,Object.fromEntries(withRows.map(l=>[l.wellId,l.uic])),tmp,history,id=>CLASS_LABELS[jClass.get(id)]??J_SOURCE_ASSUMED).map(r=>({...r,packages:[]}));
  }
+ function rebuild(){
+  const src=caseSource();
+  if(ownCase(src)){
+   const wells=result.base.wells.map(bw=>({id:bw.well.id,label:bw.well.label??bw.well.id}));
+   const links=historyLinksFor(wells,wellLinks,set,Object.fromEntries(Object.entries(wellLinks).map(([w,u])=>[w,bases.get(key(w,u))??null])));
+   compared=wellsCompared(result,wellLinks,set,checkWellHistory(result.base,links),()=>J_SOURCE_ASSUMED);
+   coverage=new Map(Object.entries(wellLinks).map(([w,u])=>[w,joinedHistory(set,u).months]));
+   insights=buildCaseInsights(result,links,performance,compared);
+  }else if(src==='public'||src===null){compared=null;coverage=new Map();insights=buildCaseInsights(result,[],performance);}
+  else{
+   const links=sampleLinkRows();
+   insights=buildCaseInsights(result,links,performance);
+   if(src==='sample')compared=sampleCompared(links,insights.history);else{compared=null;coverage=new Map();}
+  }
+ }
+ const refresh=()=>{if(result){rebuild();onChange();}};
+ const linkedUic=wellId=>ownCase(caseSource())?wellLinks[wellId]:caseSource()==='public'||caseSource()===null?undefined:(getLinks()??[]).find(l=>l.wellId===wellId)?.uic;
  const session={
   onCaseResult(next){
    generation++;perfSeq++;result=next;performance=null;error=null;
-   try{rebuild();status='ready';}catch(e){insights=null;status='error';error=msg(e);}
+   try{
+    const src=sourceNow();
+    followSource(src);wellLinks=pruneLinks(wellLinks,caseWellIds(),set);
+    rebuild();status='ready';
+   }catch(e){insights=null;compared=null;status='error';error=msg(e);}
    onChange();
   },
-  onInvalidated(){generation++;perfSeq++;result=null;insights=null;performance=null;error=null;status='idle';onChange();},
+  onInvalidated(){if(getSource&&lastSource!==NO_SOURCE)followSource(sourceNow());generation++;perfSeq++;result=null;insights=null;compared=null;performance=null;error=null;status='idle';onChange();},
   setBasis(wellId,value,reason){
-   const link=(getLinks()??[]).find(l=>l.wellId===wellId);if(!link)throw new Error(`No H-10 history is linked to ${wellId}.`);
+   const uic=linkedUic(wellId);if(uic===undefined)throw new Error(`No H-10 history is linked to ${wellId}.`);
    const confirmed=confirmBasisValue(value,reason,`Surface basis (${wellId})`);
-   bases.set(key(link.wellId,link.uic),confirmed);
+   bases.set(key(wellId,uic),confirmed);
    if(result){rebuild();onChange();}
    return confirmed;
   },
+  /** Verified Explorer package → package set. A refusal returns {error} and leaves every state unchanged. */
+  loadPackage(verified){
+   if(!ownCase(sourceNow()))return {error:'History packages can be loaded only for a user or demo case.'};
+   let p;try{p=packageFromVerified(verified);set=addPackage(set,p);}catch(e){return {error:msg(e)};}
+   refresh();return {package:p};
+  },
+  removePackage(artifactId){
+   set=dropPackage(set,artifactId);
+   wellLinks=pruneLinks(wellLinks,result?caseWellIds():Object.keys(wellLinks),set);
+   refresh();
+  },
+  setLink(wellId,uic){
+   if(!ownCase(sourceNow()))throw new Error('H-10 history can be linked only in a user or demo case.');
+   if(uic!==null&&!uics(set).includes(uic))throw new Error(`UIC ${uic} is not loaded.`);
+   if(result&&!caseWellIds().includes(wellId))throw new Error(`Well ${wellId} is not in the case.`);
+   wellLinks=linkWell(wellLinks,wellId,uic);
+   refresh();
+  },
+  packages(){return [...set.packages];},
+  links(){return {...wellLinks};},
+  compared(){return compared;},
+  /** Month states of a linked well's joined window (reported, reported-zero, gap), or null. */
+  coverageMonths(wellId){return coverage.get(wellId)??null;},
   clearPerformance(){
    perfSeq++;if(!result)return;const had=performance!==null||status==='calculating';performance=null;error=null;
    if(had){rebuild();status='ready';onChange();}
@@ -127,7 +193,12 @@ function download(text,name,type){const url=URL.createObjectURL(new Blob([text],
 const FACTOR_FIELDS=[['injectivityMultiplier','Injectivity multiplier (×)'],['reservoirOffsetPsi','Reservoir pressure offset (psi)'],['availabilityMultiplier','Availability multiplier (×)']];
 const STATUS_TEXT={within:'Within reported history','above':'Above reported history','cannot-check':'Cannot be checked','no-injection':'No injection reported'};
 
-export function mountCaseInsights(root,{getLinks}){
+const COMPARED_HEADERS=['Well','Linked UIC','Coverage','Rate check','Pressure check','J source','Status'];
+const MONTH_TEXT={reported:'reported','reported-zero':'reported zero',gap:'gap: no H-10 row (never zero)'};
+const wellName=r=>r.label===r.wellId?r.wellId:`${r.label} (${r.wellId})`;
+const coverageText=c=>`${c.startMonth} to ${c.endMonth} · ${fmtNumber(c.reported)} months with reported injection · ${fmtNumber(c.reportedZero)} reported zero · ${fmtNumber(c.gap)} gap months`;
+
+export function mountCaseInsights(root,{getLinks,getSource}){
  const workers={calculate:null,verify:null};
  function cancel(action){const w=workers[action];if(w){w.worker.terminate();w.reject(new Error('Calculation replaced by newer inputs'));workers[action]=null;}}
  function request(action,payload){
@@ -140,7 +211,7 @@ export function mountCaseInsights(root,{getLinks}){
    worker.postMessage({action,...payload});
   });
  }
- const session=createInsightsSession({getLinks,runPerformance:async({caseInput,spec})=>(await request('calculate',{caseInput,spec})).result,onChange:()=>render()});
+ const session=createInsightsSession({getLinks,getSource,runPerformance:async({caseInput,spec})=>(await request('calculate',{caseInput,spec})).result,onChange:()=>render()});
 
  const title=el('h3','What the case says');title.id='case-insights-title';
  const status=el('p','Calculate the disposal case first.');status.setAttribute('role','status');
@@ -156,9 +227,15 @@ export function mountCaseInsights(root,{getLinks}){
  const jsonBtn=el('button','Download insights JSON'),csvBtn=el('button','Download insights CSV');jsonBtn.disabled=csvBtn.disabled=true;
  const downloads=el('div',undefined,'import-actions');downloads.append(jsonBtn,csvBtn);
  const historySection=el('section');historySection.append(el('h4','Reported history vs forecast'),history);
- root.replaceChildren(title,status,summary,historySection,perf,downloads);root.hidden=true;
- let exporting=false,rendered=null;
- const openDetails=new Set(),basisButtons=new Map();
+ // Wells compared: loader (user/demo only), table, evidence note and one well's detail. Built once; only their contents are replaced.
+ const fileLabel=el('label','Load history packages (Explorer .tar)'),fileInput=el('input');fileInput.type='file';fileInput.accept='.tar,application/x-tar';fileInput.multiple=true;fileLabel.append(fileInput);
+ const loadError=el('p','');loadError.setAttribute('role','alert');const linkError=el('p','');linkError.setAttribute('role','alert');
+ const packageList=el('ul',undefined,'small'),loader=el('div');loader.append(fileLabel,loadError,packageList);
+ const comparedTable=el('div'),detail=el('div');detail.id='wells-compared-detail';detail.hidden=true;
+ const compareSection=el('section');compareSection.append(el('h4','Wells compared'),loader,linkError,comparedTable,el('p',EVIDENCE_ONLY,'small'),detail);compareSection.hidden=true;
+ root.replaceChildren(title,status,summary,compareSection,historySection,perf,downloads);root.hidden=true;
+ let exporting=false,rendered=null,openWell=null;
+ const openDetails=new Set(),basisButtons=new Map(),linkSelects=new Map(),rowButtons=new Map();
 
  function renderSummary(ins){
   summary.replaceChildren();const seen={};
@@ -196,6 +273,75 @@ export function mountCaseInsights(root,{getLinks}){
    history.append(box);
   }
  }
+ function renderPackages(){
+  packageList.replaceChildren();
+  for(const p of session.packages()){
+   const li=el('li',`UIC ${p.uic} · ${p.window.startMonth} to ${p.window.endMonth} · ${p.artifactId}${p.window.source==='rows'?' · window from reported rows (legacy package)':''} `);
+   const rm=el('button','Remove');rm.type='button';rm.setAttribute('aria-label',`Remove ${p.artifactId}`);
+   rm.onclick=()=>{session.removePackage(p.artifactId);fileInput.focus();};li.append(rm);packageList.append(li);
+  }
+  if(!packageList.children.length)packageList.append(el('li','No history packages loaded.'));
+ }
+ function renderCompared(ins){
+  const rows=session.compared(),own=ownCase(getSource?.());
+  linkSelects.clear();rowButtons.clear();comparedTable.replaceChildren();
+  compareSection.hidden=!rows;loader.hidden=!own;if(own)renderPackages();
+  if(!rows){openWell=null;renderDetail(ins);return;}
+  const links=session.links(),loaded=own?uics({packages:session.packages()}):[];
+  const t=el('table');t.append(el('caption','Wells compared: one row per case well, in case order'));
+  const h=el('thead'),hr=el('tr');for(const label of COMPARED_HEADERS){const th=el('th',label);th.scope='col';hr.append(th);}h.append(hr);t.append(h);
+  const b=el('tbody');
+  for(const r of rows){
+   const tr=el('tr'),well=el('td'),btn=el('button',wellName(r));btn.type='button';btn.setAttribute('aria-expanded',String(openWell===r.wellId));btn.setAttribute('aria-controls',detail.id);
+   btn.onclick=()=>{openWell=openWell===r.wellId?null:r.wellId;for(const [id,x] of rowButtons)x.setAttribute('aria-expanded',String(openWell===id));renderDetail(session.snapshot().insights);};
+   well.append(btn);rowButtons.set(r.wellId,btn);
+   const uicCell=el('td');
+   if(own){
+    const sel=el('select');sel.setAttribute('aria-label',`Linked UIC for ${wellName(r)}`);
+    const none=el('option','No history');none.value='';sel.append(none);
+    for(const u of loaded){const o=el('option',u);o.value=u;o.disabled=Object.entries(links).some(([id,x])=>x===u&&id!==r.wellId);sel.append(o);}
+    sel.value=r.uic??'';linkSelects.set(r.wellId,sel);
+    sel.addEventListener('change',()=>{linkError.textContent='';
+     try{session.setLink(r.wellId,sel.value||null);}catch(x){linkError.textContent=msg(x);sel.value=r.uic??'';}
+     linkSelects.get(r.wellId)?.focus();});
+    uicCell.append(sel);
+   }else uicCell.textContent=r.uic??UNLINKED;
+   const cov=el('td');
+   if(r.coverage){cov.append(el('span',coverageText(r.coverage)));if(r.gapLabel)cov.append(el('br'),el('small',r.gapLabel));}else cov.textContent=UNLINKED;
+   tr.append(well,uicCell,cov,el('td',r.check?.reason??''),el('td',r.check?r.check.pressure.note:''),el('td',r.jSource),el('td',r.check?STATUS_TEXT[r.check.status]??r.check.status:''));
+   b.append(tr);
+  }
+  t.append(b);comparedTable.append(scroll(t,'Wells compared'));
+  if(openWell&&!rows.some(r=>r.wellId===openWell))openWell=null;
+  renderDetail(ins);
+ }
+ /** One well at a time; switching rows replaces the whole detail, and an unlinked well shows only UNLINKED. */
+ function renderDetail(ins){
+  detail.replaceChildren();const r=openWell?(session.compared()??[]).find(x=>x.wellId===openWell):null;
+  detail.hidden=!r;if(!r)return;
+  if(!r.uic||!r.check){detail.append(el('p',UNLINKED));return;}
+  detail.append(el('h5',`${wellName(r)} · UIC ${r.uic}`));
+  try{const c=el('div',undefined,'pvt-plot');c.append(svgNode(historyTimelineSvg(r.check,matchMedia('(max-width:700px)').matches?360:600)));detail.append(c);}catch(x){detail.append(el('p',msg(x)));}
+  detail.append(el('p',`Rate check: ${r.check.reason}`),el('p',`Pressure: ${r.check.pressure.note}`,'small'));
+  if(r.coverage)detail.append(el('p',`Coverage: ${coverageText(r.coverage)}`,'small'));
+  const months=session.coverageMonths(r.wellId)??[],gaps=months.filter(m=>m.state==='gap').map(m=>m.month);
+  detail.append(el('p',gaps.length?`Gap months (no H-10 row; never zero): ${gaps.join(', ')}`:'Gap months: none.','small'));
+  const ml=el('ul',undefined,'small');for(const m of months)ml.append(el('li',`${m.month}: ${MONTH_TEXT[m.state]??m.state}`));detail.append(ml);
+  if(r.packages.length){const pl=el('ul',undefined,'small');
+   for(const p of r.packages)pl.append(el('li',`${p.artifactId} · manifest SHA-256 ${p.manifestSha256.slice(0,12)} · ${p.window.startMonth} to ${p.window.endMonth}${p.window.source==='rows'?' · window from reported rows (legacy package)':''}`));
+   detail.append(el('h6','Packages'),pl);}
+  else detail.append(el('p','Packages: the sample case’s pinned TRRC records (see Data & sources); no history package is loaded here.','small'));
+  const link=ins?.links.find(l=>l.wellId===r.wellId);if(link)detail.append(basisForm(link,r.check));
+ }
+ detail.addEventListener('submit',e=>{if(!detail.contains(e.target))detail.querySelector('form button[type="submit"]')?.focus();});
+ fileInput.addEventListener('change',async()=>{
+  const files=[...fileInput.files],errors=[];loadError.textContent='';
+  for(const f of files){
+   try{const out=session.loadPackage(await verifyExplorerPackage(new Uint8Array(await f.arrayBuffer())));if(out.error)errors.push(`${f.name}: ${out.error}`);}
+   catch(x){errors.push(`${f.name}: ${msg(x)}`);}
+  }
+  loadError.textContent=errors.join(' ');fileInput.value='';fileInput.focus();
+ });
  function renderPerformance(ins){
   headroomSlot.replaceChildren(scroll(table(['Well','Reservoir (psia, assumed)','Limit (psia, assumed)','Headroom (psi, calculated)'],ins.caseInputs.wells.map(w=>[w.id,w.reservoirPsia,w.limitPsia,w.limitPsia-w.reservoirPsia]),'Pressure headroom before any well-performance factor'),'Pressure headroom'));
   perfTables.replaceChildren();
@@ -205,13 +351,13 @@ export function mountCaseInsights(root,{getLinks}){
  }
  function render(){
   const snap=session.snapshot(),ins=snap.insights;
-  if(!ins){rendered=null;openDetails.clear();basisButtons.clear();summary.replaceChildren();history.replaceChildren();perfTables.replaceChildren();headroomSlot.replaceChildren();calc.disabled=true;jsonBtn.disabled=csvBtn.disabled=true;
+  if(!ins){rendered=null;openDetails.clear();basisButtons.clear();openWell=null;linkSelects.clear();rowButtons.clear();comparedTable.replaceChildren();detail.replaceChildren();detail.hidden=compareSection.hidden=true;summary.replaceChildren();history.replaceChildren();perfTables.replaceChildren();headroomSlot.replaceChildren();calc.disabled=true;jsonBtn.disabled=csvBtn.disabled=true;
    if(snap.status==='error'){root.hidden=false;status.textContent='Case insights unavailable: '+snap.error;}else{root.hidden=true;status.textContent='Calculate the disposal case first.';}return;}
   root.hidden=false;
   status.textContent=snap.status==='calculating'?'Calculating well-performance cases…':`${ins.summary.length} summary lines from the calculated case${ins.performance?' with well-performance cases':''}. Screening estimate from assumed inputs.`;
   perfError.textContent=snap.error??'';
   // Rebuild sections only when the insights object changes; a status-only change keeps forms, focus and open details.
-  if(ins!==rendered){rendered=ins;renderSummary(ins);renderHistory(ins);renderPerformance(ins);}
+  if(ins!==rendered){rendered=ins;renderSummary(ins);renderCompared(ins);renderHistory(ins);renderPerformance(ins);}
   calc.disabled=snap.status==='calculating';jsonBtn.disabled=csvBtn.disabled=exporting||snap.status==='calculating';
  }
  function readSpec(){
