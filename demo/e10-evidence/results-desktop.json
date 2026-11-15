@@ -1,0 +1,466 @@
+{
+ "chrome": "Chrome/157.0.8103.39",
+ "viewport": [
+  1280,
+  900,
+  "0"
+ ],
+ "port": "4174",
+ "mode": "full",
+ "setup": [
+  "Confirmed Produced-water history: seed417-history.csv. Origin: user; content: synthetic; SHA-256 4ab5b0e115c5c25d37e414cbff3677464fcad3ab02f96d6e03635d913c0d776",
+  "Confirmed Producer schedule: schedule.csv. Origin: user; content: synthetic; SHA-256 40b5ad4400bf546f38b4937ca7c8ed9159333d469e1aa5ee11bd2a2357028654",
+  "Confirmed Constant-J injector: assumed-injectors.csv. Origin: user; content: synthetic; SHA-256 44996c0f7b91ae838b8bb0b5479e8e4adeee6b111a9cb8403628eaa4ad229fcc"
+ ],
+ "s0_userCase": {
+  "ciHidden": false,
+  "sectionHidden": false,
+  "loaderHidden": false,
+  "status": "8 summary lines from the calculated case. Screening estimate from assumed inputs.",
+  "summaryLines": 8,
+  "rows": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "expanded": "false",
+    "uicSelect": "",
+    "uicText": null,
+    "options": [
+     ""
+    ],
+    "coverage": "No H-10 package linked to this well.",
+    "rate": "Cannot be checked: no H-10 history loaded for this well.",
+    "pressure": "Pressure not checked: confirm this well's H-10 pressure basis (psig or psia).",
+    "jSource": "assumed (case input)",
+    "status": "Cannot be checked"
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "expanded": "false",
+    "uicSelect": "",
+    "uicText": null,
+    "options": [
+     ""
+    ],
+    "coverage": "No H-10 package linked to this well.",
+    "rate": "Cannot be checked: no H-10 history loaded for this well.",
+    "pressure": "Pressure not checked: confirm this well's H-10 pressure basis (psig or psia).",
+    "jSource": "assumed (case input)",
+    "status": "Cannot be checked"
+   }
+  ],
+  "detail": {
+   "hidden": true,
+   "text": "",
+   "h5": null,
+   "svgs": 0,
+   "paragraphs": []
+  },
+  "alerts": [
+   "",
+   ""
+  ],
+  "packages": [
+   "No history packages loaded."
+  ],
+  "downloads": [
+   [
+    "Download insights JSON",
+    false
+   ],
+   [
+    "Download insights CSV",
+    false
+   ]
+  ],
+  "historyBoxes": [
+   "FICTIONAL-INJ-A — Cannot be checked",
+   "FICTIONAL-INJ-B — Cannot be checked"
+  ]
+ },
+ "s1": {
+  "packagesAfterLoad": [
+   "UIC 000000417 · YYYY-MM to YYYY-MM · rrc-YYYY-MM-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627",
+   "UIC 000000418 · YYYY-MM to YYYY-MM · rrc-YYYY-MM-10-uic000000418-df804201-eb4a-4aa5-8ef2-c550c6a70627"
+  ],
+  "loadAlerts": [
+   "",
+   ""
+  ],
+  "rowsBeforeLink": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "",
+    "status": "Cannot be checked",
+    "options": [
+     "",
+     "000000417",
+     "000000418"
+    ]
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": "",
+    "status": "Cannot be checked",
+    "options": [
+     "",
+     "000000417",
+     "000000418"
+    ]
+   }
+  ],
+  "rowsAfterLink": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "000000417",
+    "coverage": "YYYY-MM to YYYY-MM · 16 months with reported injection · 0 reported zero · 12 gap months12 gap months in the window; a gap is never zero.",
+    "rate": "#× the highest reported month (# bbl/day treated as ST",
+    "pressure": "Pressure not checked: confirm this well's H-10 pressure basis (psig or psia).",
+    "jSource": "assumed (case input)",
+    "status": "Above reported history"
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": "000000418",
+    "coverage": "YYYY-MM to YYYY-MM · 16 months with reported injection · 0 reported zero · 12 gap months12 gap months in the window; a gap is never zero.",
+    "rate": "#× the highest reported month (# bbl/day treated as ST",
+    "pressure": "Pressure not checked: confirm this well's H-10 pressure basis (psig or psia).",
+    "jSource": "assumed (case input)",
+    "status": "Above reported history"
+   }
+  ],
+  "alerts": [
+   "",
+   ""
+  ],
+  "bothHaveVerdict": true,
+  "statusLine": "8 summary lines from the calculated case. Screening estimate from assumed inputs.",
+  "summaryLines": 8
+ },
+ "s2": {
+  "expandedA": {
+   "expanded": [
+    "true",
+    "false"
+   ],
+   "h5": "FICTIONAL-INJ-A · UIC 000000417",
+   "svgs": 1
+  },
+  "expandedLinkedB": {
+   "expanded": [
+    "false",
+    "true"
+   ],
+   "h5": "FICTIONAL-INJ-B · UIC 000000418",
+   "svgs": 1
+  },
+  "unlinkedBDetailText": "No H-10 package linked to this well.",
+  "exactUnlinked": true,
+  "detailMentionsA": false,
+  "detailSvgs": 0,
+  "rowsAfter": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "000000417",
+    "status": "Above reported history",
+    "expanded": "false"
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": "",
+    "status": "Cannot be checked",
+    "expanded": "true"
+   }
+  ]
+ },
+ "s3": {
+  "before": {
+   "rows": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "uic": "000000417",
+     "status": "Above reported history"
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "uic": "000000418",
+     "status": "Above reported history"
+    }
+   ],
+   "packages": 2,
+   "exportLinks": [
+    {
+     "wellId": "FICTIONAL-INJ-A",
+     "uic": "000000417"
+    },
+    {
+     "wellId": "FICTIONAL-INJ-B",
+     "uic": "000000418"
+    }
+   ],
+   "exportSchema": "case-insights-export/2",
+   "jsonSha": "56d0d4b8137c3f5ec115ac3cb38e604bc1c1601c0fc36ae61602158dafea405e"
+  },
+  "after": {
+   "rows": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "uic": "000000417",
+     "status": "Above reported history",
+     "options": [
+      "",
+      "000000417"
+     ]
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "uic": "",
+     "status": "Cannot be checked",
+     "options": [
+      "",
+      "000000417(disabled)"
+     ]
+    }
+   ],
+   "packages": 1,
+   "downloads": [
+    [
+     "Download insights JSON",
+     false
+    ],
+    [
+     "Download insights CSV",
+     false
+    ]
+   ],
+   "exportLinks": [
+    {
+     "wellId": "FICTIONAL-INJ-A",
+     "uic": "000000417"
+    }
+   ],
+   "jsonSha": "6c7c73d489a78b33b20fd26e8a181f5ffc121cf3bb13169353edb64dfaf4a77e",
+   "exportChanged": true
+  },
+  "statusAfter": "8 summary lines from the calculated case. Screening estimate from assumed inputs."
+ },
+ "s4": {
+  "packagesBefore": [
+   "UIC 000000417 · YYYY-MM to YYYY-MM · rrc-YYYY-MM-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627"
+  ],
+  "packagesAfter": [
+   "UIC 000000417 · YYYY-MM to YYYY-MM · rrc-YYYY-MM-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627"
+  ],
+  "alerts": [
+   "pkg-417.tar: Package rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627 is already loaded",
+   ""
+  ],
+  "unchanged": true,
+  "linkStill": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "000000417"
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": ""
+   }
+  ]
+ },
+ "s5_demo": {
+  "linkedBefore": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "000000417"
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": ""
+   }
+  ],
+  "afterSwitchPanelHidden": true,
+  "demoRows": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "",
+    "status": "Cannot be checked",
+    "options": [
+     "",
+     "000000417"
+    ]
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": "",
+    "status": "Cannot be checked",
+    "options": [
+     "",
+     "000000417"
+    ]
+   }
+  ],
+  "demoPackages": 1,
+  "demoLoaderHidden": false,
+  "historyBoxes": 2
+ },
+ "s5_user_demo_user": {
+  "linkedBefore": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "000000417"
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": ""
+   }
+  ],
+  "after": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "",
+    "status": "Cannot be checked"
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": "",
+    "status": "Cannot be checked"
+   }
+  ],
+  "packages": 1,
+  "cleared": true,
+  "alerts": [
+   "pkg-417.tar: Package rrc-2026-10-10-uic000000417-df804201-eb4a-4aa5-8ef2-c550c6a70627 is already loaded",
+   ""
+  ]
+ },
+ "s7": {
+  "rowsAtExport": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "uic": "000000417",
+    "status": "Above reported history"
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "uic": "000000418",
+    "status": "Above reported history"
+   }
+  ],
+  "json": {
+   "name": "swd-case-insights-b3235dc3e651.json",
+   "chars": 511353,
+   "sha256": "56d0d4b8137c3f5ec115ac3cb38e604bc1c1601c0fc36ae61602158dafea405e",
+   "schema": "case-insights-export/2",
+   "topKeys": [
+    "caseInputs",
+    "links",
+    "performanceSpec",
+    "history",
+    "performance",
+    "summary",
+    "compared",
+    "schemaVersion",
+    "versions",
+    "contentSha256"
+   ],
+   "links": [
+    {
+     "wellId": "FICTIONAL-INJ-A",
+     "uic": "000000417"
+    },
+    {
+     "wellId": "FICTIONAL-INJ-B",
+     "uic": "000000418"
+    }
+   ],
+   "nodeVerify": {
+    "ok": true
+   }
+  },
+  "csv": {
+   "name": "swd-case-insights-b3235dc3e651.csv",
+   "chars": 5697,
+   "sha256": "9cbf2f00f33d93ec66c2a1b026525fed1c858c7c01555abdced7426fe2ce2913",
+   "lines": 63,
+   "fieldCountsPerLine": [
+    4
+   ],
+   "allFour": true
+  }
+ },
+ "s6": {
+  "status": "# summary lines from the calculated case. Screening estimate from assumed inputs.",
+  "rows": [
+   {
+    "well": "UIC-000020838",
+    "uic": "000020838",
+    "jSource": "Synthetic: you'd gather",
+    "status": "Above reported history",
+    "coverage": "YYYY-MM to YYYY-MM · # months with reported injection · # reported zero · # gap months",
+    "pressure": "Pressure not checked: confirm this well's H-10 pressure basis (psig or psia)."
+   },
+   {
+    "well": "UIC-000056484",
+    "uic": "000056484",
+    "jSource": "Synthetic: you'd gather",
+    "status": "Above reported history",
+    "coverage": "YYYY-MM to YYYY-MM · # months with reported injection · # reported zero · # gap months",
+    "pressure": "Pressure not checked: confirm this well's H-10 pressure basis (psig or psia)."
+   }
+  ],
+  "loaderHidden": true,
+  "summaryLineCount": 8,
+  "summaryLinesSha256": [
+   "8788459b19659f1e5e01a2af9ffbd59fec29e4016c5b3fa0562dc516c5a20799",
+   "052d375755337d3e7e76374da1101f4fde16c8849773fd2a300e3014f7b3a5d3",
+   "ee067122f640a7d5bf1b2dea171b43e8986a7c58e0d4745710e8734bc9ab9143",
+   "7a5985c06af89754bc170f44e811638e5fe41aad82791f7e7bd920df83512f4c",
+   "dbc4d89c49e374d8a247241936ad3ba12592ef5c5567af4d7b29cf73f2f44dd8",
+   "414fd9f9c2c34d947bfda873edd37007be468010701408c733833a59eae1252d",
+   "b80585dbe0630a614878234ba70b98fe1e319dea0ec5c7beef9e7bd389e49e90",
+   "1400ed9e1c3859665dfcd29950b10c5b12745fbf035794fcc5923adfb02b5fff"
+  ],
+  "summaryLinesRedacted": [
+   "Unplaced water starts in #: # bbl over # months.",
+   "UIC-# is limited by its bottomhole limit; UIC-# is limited by its bottomhole limit.",
+   "No unsupported allocated pressures in the base case.",
+   "Least spare capacity: # shortfall of # bbl.",
+   "The compared case (UIC-#: J × # ID # in, availability #) keeps the first shortfall at # and changes unplaced water by # bbl.",
+   "UIC-#: #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. Pressure not checked: confirm this well's H-# pressure basis (psig or psia).",
+   "UIC-#: #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. Pressure not checked: confirm this well's H-# pressure basis (psig or psia).",
+   "Screening estimate from assumed inputs; not proven field capacity."
+  ]
+ },
+ "s6_detail": {
+  "h5": "UIC-000020838 · UIC 000020838",
+  "svgs": 1,
+  "paragraphs": [
+   "Rate check: #× the highest reported month (# bbl/day treated as STB/day, YYYY-MM); not shown in reported history. # of # included hist",
+   "Pressure: Pressure not checked: confirm this well's H-# pressure basis (psig or psia).",
+   "Coverage: YYYY-MM to YYYY-MM · # months with reported injection · # reported zero · # gap months",
+   "Gap months: none.",
+   "Packages: the sample case’s pinned TRRC records (see Data & sources); no history package is loaded here."
+  ]
+ },
+ "s9": {
+  "innerWidth": 1280,
+  "scrollW": 1265,
+  "clientW": 1265,
+  "pageHScroll": false
+ },
+ "s8": {
+  "consoleErrors": []
+ },
+ "screenshots": {
+  "desktop-s0-user-case-before-load.png": "f9cc0058c9fe5d72228bf05706bcd910cab3cffbb761208879515bcc4b0c64e8",
+  "desktop-s1-linked.png": "8433297afcbb82bfdde5b308a3206b9c4963adf16b5a0e73327e0a2a651f416a",
+  "desktop-s2-expand-a.png": "8770710a660410756bc34df87482b002d2164bb692bdd040698f8a8a12efe46f",
+  "desktop-s2-b-unlinked.png": "b6bb804b564a8bbe1910dcf4860e951143a24da0433402af0ee79f3e8fb6e110",
+  "desktop-s3-418-removed.png": "6b8d36cfac09be02dc044227b0cad1d749521833180d47b6224db97e6133c866",
+  "desktop-s4-duplicate-refused.png": "8f982e37dcffd41733fe9778328387f125e4c229bd3cb542cc5d801d80c8805a",
+  "desktop-s5-demo-links-cleared.png": "6249dc0549f23061dc69b3210464a76ed35020cc371a7b7b70451d224e57cd6d",
+  "desktop-s5-user-demo-user.png": "6efb65ac8b53e33c5415b4af0f0738c52c0cfc31caadf4695abdb7061c0f8967",
+  "desktop-s7-linked-for-export.png": "dd0dbb13153d0c03ffae6dc3aa57294b59ca5acbebe37352d38ce701f65bcd70",
+  "desktop-s6-sample-table.png": "7eaa22b802575345a6bda85544b984b846e95e79edd15cbcc58e0f4525b50915",
+  "desktop-s6-sample-detail.png": "34b270f95af50b3be440f777918b47810dc6017ebe3115920599385edc66c3d6"
+ }
+}

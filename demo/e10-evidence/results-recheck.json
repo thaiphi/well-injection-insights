@@ -1,0 +1,292 @@
+{
+ "head": "7fd5228",
+ "chrome": "Chrome/157.0.8103.39",
+ "desktop": {
+  "fatal": null,
+  "s1": {
+   "bothVerdict": true,
+   "gapSentenceOnce": true
+  },
+  "s3": {
+   "rows": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "uic": "000000417",
+     "status": "Above reported history"
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "uic": "",
+     "status": "Cannot be checked"
+    }
+   ],
+   "packages": 1,
+   "downloadsEnabled": true
+  },
+  "s5": {
+   "alertEmpty": true,
+   "rowsCleared": true,
+   "packagesKept": 1,
+   "alertAfterDuplicateWasRefusal": true
+  },
+  "s5_demo": {
+   "rows": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "uic": ""
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "uic": ""
+    }
+   ],
+   "packagesKept": 1,
+   "loaderVisible": true
+  },
+  "s_reimport": {
+   "status": "Confirmed Constant-J injector: injectors-edited.csv. Origin:",
+   "linkedBefore": [
+    "000000417",
+    "000000418"
+   ],
+   "after": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "uic": "",
+     "status": "Cannot be checked"
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "uic": "",
+     "status": "Cannot be checked"
+    }
+   ],
+   "linksCleared": true,
+   "packagesKept": 2,
+   "packagesBefore": 2
+  },
+  "s7": {
+   "json": {
+    "chars": 511946,
+    "sha256": "e4109cb101ab077f8b47b4199a0e8d2718614c0a4c9cd3a43a8f640015337fc9",
+    "schema": "case-insights-export/2",
+    "links": [
+     {
+      "wellId": "FICTIONAL-INJ-A",
+      "uic": "000000417"
+     },
+     {
+      "wellId": "FICTIONAL-INJ-B",
+      "uic": "000000418"
+     }
+    ],
+    "nodeVerify": {
+     "ok": true
+    }
+   },
+   "csv": {
+    "chars": 6558,
+    "sha256": "fd5229e44229f15fb8ed1fe74da5743b031452edb013ee729128ee17310f5e86",
+    "lines": 69,
+    "fieldCountsPerLine": [
+     4
+    ],
+    "allFour": true,
+    "inclusionBasisRows": 2,
+    "packageManifestRows": 2,
+    "packageWindowRows": 2
+   }
+  },
+  "s6": {
+   "rows": [
+    {
+     "well": "UIC-000020838",
+     "jSource": "Synthetic: you'd gather",
+     "status": "Above reported history",
+     "windowFromRows": true
+    },
+    {
+     "well": "UIC-000056484",
+     "jSource": "Synthetic: you'd gather",
+     "status": "Above reported history",
+     "windowFromRows": true
+    }
+   ],
+   "allWindowFromRows": true,
+   "summaryLineCount": 8,
+   "summaryLinesSha256": [
+    "8788459b19659f1e5e01a2af9ffbd59fec29e4016c5b3fa0562dc516c5a20799",
+    "052d375755337d3e7e76374da1101f4fde16c8849773fd2a300e3014f7b3a5d3",
+    "ee067122f640a7d5bf1b2dea171b43e8986a7c58e0d4745710e8734bc9ab9143",
+    "7a5985c06af89754bc170f44e811638e5fe41aad82791f7e7bd920df83512f4c",
+    "dbc4d89c49e374d8a247241936ad3ba12592ef5c5567af4d7b29cf73f2f44dd8",
+    "414fd9f9c2c34d947bfda873edd37007be468010701408c733833a59eae1252d",
+    "b80585dbe0630a614878234ba70b98fe1e319dea0ec5c7beef9e7bd389e49e90",
+    "1400ed9e1c3859665dfcd29950b10c5b12745fbf035794fcc5923adfb02b5fff"
+   ],
+   "sameAsMain": true
+  },
+  "s9": {
+   "innerWidth": 1280,
+   "scrollW": 1265,
+   "clientW": 1265,
+   "pageHScroll": false
+  },
+  "s8": {
+   "consoleErrors": [
+    "log: Failed to load resource: the server responded with a status of 404 (Not Found) http://127.0.0.1:4174/favicon.ico"
+   ]
+  },
+  "screenshots": {
+   "desktop-r1-linked.png": "1e905b1ddb6e47ac583434ab046a8757b6acd9c742087137b5faf5fb50b66402",
+   "desktop-r3-418-removed.png": "7d3151a9a344204d9d42ca360816dc31572eb081c83c4f3db2d1e9a33cacd76b",
+   "desktop-r5-user-demo-user.png": "b848d5cbeb944ce2d402149bf4df37cb5c15bf1376b57d20defb85bdba91f449",
+   "desktop-r-reimport.png": "137c435e3bef210644a144437e159a5bc4355c40275168ab90e8f60421a5ba60",
+   "desktop-r7-linked.png": "af9db734128e53553207d2a6c79da7efa127cdb57358a0ac1226cf941b3dcf36",
+   "desktop-r6-sample.png": "12cf75c41a73fd936a727d1dac431226ab47c3e8988b13c8bf33ac50af721c4e"
+  }
+ },
+ "mobile": {
+  "fatal": null,
+  "s1": {
+   "bothVerdict": true,
+   "gapSentenceOnce": true
+  },
+  "s3": {
+   "rows": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "uic": "000000417",
+     "status": "Above reported history"
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "uic": "",
+     "status": "Cannot be checked"
+    }
+   ],
+   "packages": 1,
+   "downloadsEnabled": true
+  },
+  "s5": {
+   "alertEmpty": true,
+   "rowsCleared": true,
+   "packagesKept": 1,
+   "alertAfterDuplicateWasRefusal": true
+  },
+  "s5_demo": {
+   "rows": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "uic": ""
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "uic": ""
+    }
+   ],
+   "packagesKept": 1,
+   "loaderVisible": true
+  },
+  "s_reimport": {
+   "status": "Confirmed Constant-J injector: injectors-edited.csv. Origin:",
+   "linkedBefore": [
+    "000000417",
+    "000000418"
+   ],
+   "after": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "uic": "",
+     "status": "Cannot be checked"
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "uic": "",
+     "status": "Cannot be checked"
+    }
+   ],
+   "linksCleared": true,
+   "packagesKept": 2,
+   "packagesBefore": 2
+  },
+  "s7": {
+   "json": {
+    "chars": 511946,
+    "sha256": "02d5a30fe98d7d01accdb7f360a21548d874992e3632744970acc79b29f14b13",
+    "schema": "case-insights-export/2",
+    "links": [
+     {
+      "wellId": "FICTIONAL-INJ-A",
+      "uic": "000000417"
+     },
+     {
+      "wellId": "FICTIONAL-INJ-B",
+      "uic": "000000418"
+     }
+    ],
+    "nodeVerify": {
+     "ok": true
+    }
+   },
+   "csv": {
+    "chars": 6558,
+    "sha256": "20275d4863489460622da6fa6356fdcb1b033fc3ea093c70f701464da2b4aa3c",
+    "lines": 69,
+    "fieldCountsPerLine": [
+     4
+    ],
+    "allFour": true,
+    "inclusionBasisRows": 2,
+    "packageManifestRows": 2,
+    "packageWindowRows": 2
+   }
+  },
+  "s6": {
+   "rows": [
+    {
+     "well": "UIC-000020838",
+     "jSource": "Synthetic: you'd gather",
+     "status": "Above reported history",
+     "windowFromRows": true
+    },
+    {
+     "well": "UIC-000056484",
+     "jSource": "Synthetic: you'd gather",
+     "status": "Above reported history",
+     "windowFromRows": true
+    }
+   ],
+   "allWindowFromRows": true,
+   "summaryLineCount": 8,
+   "summaryLinesSha256": [
+    "8788459b19659f1e5e01a2af9ffbd59fec29e4016c5b3fa0562dc516c5a20799",
+    "052d375755337d3e7e76374da1101f4fde16c8849773fd2a300e3014f7b3a5d3",
+    "ee067122f640a7d5bf1b2dea171b43e8986a7c58e0d4745710e8734bc9ab9143",
+    "7a5985c06af89754bc170f44e811638e5fe41aad82791f7e7bd920df83512f4c",
+    "dbc4d89c49e374d8a247241936ad3ba12592ef5c5567af4d7b29cf73f2f44dd8",
+    "414fd9f9c2c34d947bfda873edd37007be468010701408c733833a59eae1252d",
+    "b80585dbe0630a614878234ba70b98fe1e319dea0ec5c7beef9e7bd389e49e90",
+    "1400ed9e1c3859665dfcd29950b10c5b12745fbf035794fcc5923adfb02b5fff"
+   ],
+   "sameAsMain": true
+  },
+  "s9": {
+   "innerWidth": 390,
+   "scrollW": 390,
+   "clientW": 390,
+   "pageHScroll": false
+  },
+  "s8": {
+   "consoleErrors": []
+  },
+  "screenshots": {
+   "mobile-r1-linked.png": "5c8ee1f84017ddbe97242884629f11dd82f8a694d0a4227549a1c7583a669ec8",
+   "mobile-r3-418-removed.png": "3a9e7b27acab40a0d3ff345ae227443b2e5083eef83a92cd9f6f024a15445be7",
+   "mobile-r5-user-demo-user.png": "7003bc6fa6b9da7ccfe7f41591af7e01a8bd2e94b82f091c79c503111f64f57c",
+   "mobile-r-reimport.png": "a91278702540ac5301ef530b2c9071ffb4c5bc30154918a3ca50638a0a724197",
+   "mobile-r7-linked.png": "3835dc475dd6c4bb07aef384870efd12b785b547c6b39d875127e3f5de0bb53a",
+   "mobile-r6-sample.png": "2489829429a5bc0393ef38f69237c41ba3da24b3aabe012c456c6ece7d020b99"
+  }
+ }
+}
