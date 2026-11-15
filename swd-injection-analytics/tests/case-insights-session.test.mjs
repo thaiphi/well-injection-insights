@@ -159,7 +159,7 @@ test('panel source: no rebuild on status-only changes, details kept open, confir
 test('import-ui mounts case insights with the sample link',async()=>{
  const src=await readFile('web/import-ui.mjs','utf8');
  assert.match(src,/import \{mountCaseInsights\} from '\.\/case-insights\.mjs';/);
- assert.ok(src.includes("mountCaseInsights($('case-insights'),{getLinks:linkedWellHistories,getSource:()=>source})"));
+ assert.ok(src.includes("mountCaseInsights($('case-insights'),{getLinks:linkedWellHistories,getSource:()=>source,getCaseOrigin:()=>source==='user'?state.result?.inputs?.injectors?.id??null:null})"));
  assert.ok(src.includes("$('disposal-results').after($('case-insights'))"));
  assert.match(src,/function linkedWellHistories\(\)\{if\(source!=='sample'\|\|!sampleSession\)return \[\];/);
  assert.ok(!/export[^;]*linkedWellHistories/.test(src));
@@ -321,14 +321,18 @@ test('E10: user case export with two packages on one UIC, a link and a basis ver
  assert.ok(json.text.includes('fictional-pkg-2'));
  const csv=await s.exportInsights('csv',workerVerify);assert.ok(csv.text.includes(`"wells-compared","FICTIONAL-B","uic","${UNLINKED}"`));
 });
-test('E10: a basis is kept per well and UIC; relinking to another UIC does not inherit it',()=>{
+test('E10: relinking to another UIC does not inherit a basis; unlinking clears it (M1)',()=>{
  const {s}=userSession();s.onCaseResult(buildDisposalCase(input()));s.loadPackage(P1);s.loadPackage(P3);
  assert.throws(()=>s.setBasis('FICTIONAL-A','psig','Fictional'),/No H-10 history is linked/);
  s.setLink('FICTIONAL-A','000000417');s.setBasis('FICTIONAL-A','psig','Fictional');
  s.setLink('FICTIONAL-A','000000418');
  assert.equal(s.snapshot().insights.links[0].surfaceBasis,null);
  s.setLink('FICTIONAL-A','000000417');
- assert.equal(s.snapshot().insights.links[0].surfaceBasis.value,'psig');
+ assert.equal(s.snapshot().insights.links[0].surfaceBasis,null,'unlinking (relink to another UIC) cleared the basis');
+ s.setBasis('FICTIONAL-A','psig','Fictional');s.setLink('FICTIONAL-A',null);s.setLink('FICTIONAL-A','000000417');
+ assert.equal(s.snapshot().insights.links[0].surfaceBasis,null,'setLink null cleared the basis');
+ s.setBasis('FICTIONAL-A','psia','Fictional');s.removePackage('fictional-pkg-1');s.loadPackage(P1);s.setLink('FICTIONAL-A','000000417');
+ assert.equal(s.snapshot().insights.links[0].surfaceBasis,null,'a package removal that prunes the link cleared the basis');
 });
 // ---- E10 fix round 1 ----
 test('E10 fix 1+3: a source switch seen only through invalidation withdraws links and bases; packages kept',()=>{
@@ -362,6 +366,45 @@ test('E10 fix 2: sample J source is the sample injectivity class label; sample i
  assert.ok(src.includes("jClass:sampleSession.sample?.wells?.find(w=>w.id===s.wellId)?.inputs.find(i=>i.key==='injectivityStbdPerPsi')?.class??null"));
  const sample=JSON.parse(await readFile('data/sample-case/sample-case.json','utf8'));
  for(const w of sample.wells)assert.ok(CLASS_LABELS[w.inputs.find(i=>i.key==='injectivityStbdPerPsi').class],w.id);
+});
+// ---- E10 final fix wave ----
+test('E10 I1: a new case origin (injector profile re-imported) withdraws links and bases; same origin keeps them',()=>{
+ let origin='fictional-injector-profile-1';
+ const s=createInsightsSession({getLinks:()=>[],getSource:()=>'user',getCaseOrigin:()=>origin,runPerformance:realPerformance});
+ s.onCaseResult(buildDisposalCase(input()));s.loadPackage(P1);s.setLink('FICTIONAL-A','000000417');s.setBasis('FICTIONAL-A','psig','Fictional');
+ s.onInvalidated();s.onCaseResult(buildDisposalCase(input()));
+ assert.deepEqual(s.links(),{'FICTIONAL-A':'000000417'},'same origin keeps links');
+ assert.equal(s.snapshot().insights.links[0].surfaceBasis.value,'psig');
+ const w=s.snapshot().withdrawn;
+ origin='fictional-injector-profile-2';s.onInvalidated();s.onCaseResult(buildDisposalCase(input()));
+ assert.deepEqual(s.links(),{});assert.equal(s.packages().length,1);assert.ok(s.snapshot().withdrawn>w);
+ s.setLink('FICTIONAL-A','000000417');assert.equal(s.snapshot().insights.links[0].surfaceBasis,null);
+});
+test('E10 QA-D1: a source switch counts as a withdrawal and the panel clears its alerts on it',async()=>{
+ const {s,set}=userSession();s.onCaseResult(buildDisposalCase(input()));const w=s.snapshot().withdrawn;
+ set('demo');s.onInvalidated();assert.ok(s.snapshot().withdrawn>w);
+ const w2=s.snapshot().withdrawn;s.onCaseResult(buildDisposalCase(input()));assert.equal(s.snapshot().withdrawn,w2,'counted once');
+ const src=await readFile('web/case-insights.mjs','utf8');
+ assert.ok(src.includes("if(snap.withdrawn!==seenWithdrawn){seenWithdrawn=snap.withdrawn;loadError.textContent='';linkError.textContent='';}"));
+});
+test('E10 I3 + QA-obs: coverage lines name a rows window and state the gap sentence once',()=>{
+ const {coverageLines}=panelMod;
+ const sample=createInsightsSession({getLinks:sampleLinks,getSource:()=>'sample',runPerformance:realPerformance});sample.onCaseResult(buildDisposalCase(input()));
+ const sl=coverageLines(sample.compared()[0],true);
+ assert.ok(sl[0].endsWith(' · window from reported rows'),sl[0]);
+ assert.equal(sl.filter(l=>/gap month/.test(l)).length,1,sl.join('|'));
+ assert.deepEqual(coverageLines(sample.compared()[1],true),[UNLINKED]);
+ const legacy={...P2,artifact:{...P2.artifact,manifest:{}}};
+ const {s}=userSession();s.onCaseResult(buildDisposalCase(input()));s.loadPackage(P1);s.loadPackage(legacy);s.setLink('FICTIONAL-A','000000417');
+ const row=s.compared()[0];assert.ok(row.packages.some(p=>p.window.source==='rows'));
+ assert.ok(coverageLines(row,false)[0].endsWith(' · window from reported rows'));
+ s.removePackage('fictional-pkg-2');s.setLink('FICTIONAL-A','000000417');
+ const acq=coverageLines(s.compared()[0],false);assert.ok(!acq.join(' ').includes('window from reported rows'));
+ assert.equal(acq.filter(l=>/gap month/.test(l)).length,1);
+});
+test('E10 M3: the detail focus restore says why it works',async()=>{
+ const src=await readFile('web/case-insights.mjs','utf8');
+ assert.match(src,/detached by the re-render/);
 });
 test('E10 panel source: Wells compared section, loader label, table headers and row detail',async()=>{
  const src=await readFile('web/case-insights.mjs','utf8');

@@ -326,7 +326,7 @@ $('disposal-results').after($('disposal-sensitivity'));
 $('disposal-input-details').before($('disposal-results'));
 function linkedWellHistories(){if(source!=='sample'||!sampleSession)return [];return sampleSession.selections.map(s=>({wellId:s.wellId,label:s.label,uic:s.artifact.injectionMonthly[0]?.uic_number??'',monthly:s.artifact.injectionMonthly,jClass:sampleSession.sample?.wells?.find(w=>w.id===s.wellId)?.inputs.find(i=>i.key==='injectivityStbdPerPsi')?.class??null}));}
 $('disposal-results').after($('case-insights'));
-mountCaseInsights($('case-insights'),{getLinks:linkedWellHistories,getSource:()=>source});
+mountCaseInsights($('case-insights'),{getLinks:linkedWellHistories,getSource:()=>source,getCaseOrigin:()=>source==='user'?state.result?.inputs?.injectors?.id??null:null});
 const sourcePanel=$('disposal-source').closest('section'),sourceDetails=el('details',undefined,'panel source-evidence-details');sourceDetails.append(el('summary','Demand source, forecast & coverage'),...[...sourcePanel.childNodes]);sourcePanel.replaceWith(sourceDetails);
 const capacityGrid=el('div',undefined,'capacity-result-grid'),constraintSummary=el('aside',undefined,'panel constraint-summary');$('disposal-demand-chart').before(capacityGrid);capacityGrid.append($('disposal-demand-chart'),constraintSummary);
 $('disposal-results-title').textContent='Capacity, constraints & unmet demand';

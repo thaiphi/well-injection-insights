@@ -19,14 +19,16 @@ const NO_SOURCE=Symbol('no case result yet');
 
 /** DOM-free state machine. `generation` changes on every case result and invalidation; work started under an older generation is ignored.
  * Without `getSource` the session behaves as in E05 (getLinks feeds the check). Links and packages are evidence only: the case input is never read for or changed by them. */
-export function createInsightsSession({getLinks,getSource,runPerformance,onChange=()=>{}}){
+export function createInsightsSession({getLinks,getSource,getCaseOrigin,runPerformance,onChange=()=>{}}){
  let status='idle',result=null,insights=null,error=null,generation=0,performance=null,perfSeq=0;
- let set=EMPTY_PACKAGE_SET,wellLinks={},compared=null,coverage=new Map(),lastSource=NO_SOURCE;
+ let set=EMPTY_PACKAGE_SET,wellLinks={},compared=null,coverage=new Map(),lastSource=NO_SOURCE,lastOrigin=null,withdrawn=0;
  const bases=new Map(),key=(wellId,uic)=>wellId+'|'+uic;
  const sourceNow=()=>getSource?getSource():undefined;
  const caseSource=()=>result?lastSource:sourceNow();
- /** A source switch withdraws the links and their confirmed bases; loaded packages are kept. */
- const followSource=src=>{if(lastSource!==NO_SOURCE&&src!==lastSource){wellLinks={};bases.clear();}lastSource=src;};
+ /** A source switch, or a new case origin (the user's injector profile re-imported), withdraws the links and their confirmed bases; loaded packages are kept. */
+ const followSource=(src,origin=lastOrigin)=>{if(lastSource!==NO_SOURCE&&(src!==lastSource||origin!==lastOrigin)){wellLinks={};bases.clear();withdrawn++;}lastSource=src;lastOrigin=origin;};
+ /** Replace the links; a well whose link is removed or changed loses the basis confirmed for its old UIC. */
+ const replaceLinks=next=>{for(const [w,u] of Object.entries(wellLinks))if(next[w]!==u)bases.delete(key(w,u));wellLinks=next;};
  const caseWellIds=()=>result.base.wells.map(bw=>bw.well.id);
  const sampleLinkRows=()=>(getLinks()??[]).map(l=>({wellId:l.wellId,label:l.label,uic:l.uic,monthly:l.monthly,surfaceBasis:bases.get(key(l.wellId,l.uic))??null}));
  /** Sample rows: coverage from each link's own reported rows (window source 'rows'); no package provenance is invented.
@@ -60,7 +62,7 @@ export function createInsightsSession({getLinks,getSource,runPerformance,onChang
    generation++;perfSeq++;result=next;performance=null;error=null;
    try{
     const src=sourceNow();
-    followSource(src);wellLinks=pruneLinks(wellLinks,caseWellIds(),set);
+    followSource(src,getCaseOrigin?getCaseOrigin()??null:null);replaceLinks(pruneLinks(wellLinks,caseWellIds(),set));
     rebuild();status='ready';
    }catch(e){insights=null;compared=null;status='error';error=msg(e);}
    onChange();
@@ -81,14 +83,14 @@ export function createInsightsSession({getLinks,getSource,runPerformance,onChang
   },
   removePackage(artifactId){
    set=dropPackage(set,artifactId);
-   wellLinks=pruneLinks(wellLinks,result?caseWellIds():Object.keys(wellLinks),set);
+   replaceLinks(pruneLinks(wellLinks,result?caseWellIds():Object.keys(wellLinks),set));
    refresh();
   },
   setLink(wellId,uic){
    if(!ownCase(sourceNow()))throw new Error('H-10 history can be linked only in a user or demo case.');
    if(uic!==null&&!uics(set).includes(uic))throw new Error(`UIC ${uic} is not loaded.`);
    if(result&&!caseWellIds().includes(wellId))throw new Error(`Well ${wellId} is not in the case.`);
-   wellLinks=linkWell(wellLinks,wellId,uic);
+   replaceLinks(linkWell(wellLinks,wellId,uic));
    refresh();
   },
   packages(){return [...set.packages];},
@@ -128,7 +130,8 @@ export function createInsightsSession({getLinks,getSource,runPerformance,onChang
     return {cancelled:false,text,filename:`swd-case-insights-${sealed.contentSha256.slice(0,12)}.${format}`,mime:format==='json'?'application/json':'text/csv;charset=utf-8'};
    }catch(e){if(changed())return {cancelled:true};throw e;}
   },
-  snapshot(){return {status,insights,error,generation};},
+  /** `withdrawn` counts link withdrawals by a source or origin switch. */
+  snapshot(){return {status,insights,error,generation,withdrawn};},
  };
  return session;
 }
@@ -196,9 +199,14 @@ const STATUS_TEXT={within:'Within reported history','above':'Above reported hist
 const COMPARED_HEADERS=['Well','Linked UIC','Coverage','Rate check','Pressure check','J source','Status'];
 const MONTH_TEXT={reported:'reported','reported-zero':'reported zero',gap:'gap: no H-10 row (never zero)'};
 const wellName=r=>r.label===r.wellId?r.wellId:`${r.label} (${r.wellId})`;
-const coverageText=c=>`${c.startMonth} to ${c.endMonth} · ${fmtNumber(c.reported)} months with reported injection · ${fmtNumber(c.reportedZero)} reported zero · ${fmtNumber(c.gap)} gap months`;
+/** Coverage cell and detail text: the window (marked when it comes from reported rows: every sample row, and any legacy package), then the gap sentence once. */
+export function coverageLines(r,sample=false){
+ if(!r.coverage)return [UNLINKED];
+ const c=r.coverage,fromRows=sample||r.packages.some(p=>p.window.source==='rows');
+ return [`${c.startMonth} to ${c.endMonth} · ${fmtNumber(c.reported)} months with reported injection · ${fmtNumber(c.reportedZero)} reported zero${fromRows?' · window from reported rows':''}`,r.gapLabel??'No gap months in the window.'];
+}
 
-export function mountCaseInsights(root,{getLinks,getSource}){
+export function mountCaseInsights(root,{getLinks,getSource,getCaseOrigin}){
  const workers={calculate:null,verify:null};
  function cancel(action){const w=workers[action];if(w){w.worker.terminate();w.reject(new Error('Calculation replaced by newer inputs'));workers[action]=null;}}
  function request(action,payload){
@@ -211,7 +219,7 @@ export function mountCaseInsights(root,{getLinks,getSource}){
    worker.postMessage({action,...payload});
   });
  }
- const session=createInsightsSession({getLinks,getSource,runPerformance:async({caseInput,spec})=>(await request('calculate',{caseInput,spec})).result,onChange:()=>render()});
+ const session=createInsightsSession({getLinks,getSource,getCaseOrigin,runPerformance:async({caseInput,spec})=>(await request('calculate',{caseInput,spec})).result,onChange:()=>render()});
 
  const title=el('h3','What the case says');title.id='case-insights-title';
  const status=el('p','Calculate the disposal case first.');status.setAttribute('role','status');
@@ -234,7 +242,7 @@ export function mountCaseInsights(root,{getLinks,getSource}){
  const comparedTable=el('div'),detail=el('div');detail.id='wells-compared-detail';detail.hidden=true;
  const compareSection=el('section');compareSection.append(el('h4','Wells compared'),loader,linkError,comparedTable,el('p',EVIDENCE_ONLY,'small'),detail);compareSection.hidden=true;
  root.replaceChildren(title,status,summary,compareSection,historySection,perf,downloads);root.hidden=true;
- let exporting=false,rendered=null,openWell=null;
+ let exporting=false,rendered=null,openWell=null,seenWithdrawn=0;
  const openDetails=new Set(),basisButtons=new Map(),linkSelects=new Map(),rowButtons=new Map();
 
  function renderSummary(ins){
@@ -307,7 +315,7 @@ export function mountCaseInsights(root,{getLinks,getSource}){
     uicCell.append(sel);
    }else uicCell.textContent=r.uic??UNLINKED;
    const cov=el('td');
-   if(r.coverage){cov.append(el('span',coverageText(r.coverage)));if(r.gapLabel)cov.append(el('br'),el('small',r.gapLabel));}else cov.textContent=UNLINKED;
+   coverageLines(r,!own).forEach((line,i)=>{if(i)cov.append(el('br'));cov.append(i?el('small',line):el('span',line));});
    tr.append(well,uicCell,cov,el('td',r.check?.reason??''),el('td',r.check?r.check.pressure.note:''),el('td',r.jSource),el('td',r.check?STATUS_TEXT[r.check.status]??r.check.status:''));
    b.append(tr);
   }
@@ -323,7 +331,7 @@ export function mountCaseInsights(root,{getLinks,getSource}){
   detail.append(el('h5',`${wellName(r)} · UIC ${r.uic}`));
   try{const c=el('div',undefined,'pvt-plot');c.append(svgNode(historyTimelineSvg(r.check,matchMedia('(max-width:700px)').matches?360:600)));detail.append(c);}catch(x){detail.append(el('p',msg(x)));}
   detail.append(el('p',`Rate check: ${r.check.reason}`),el('p',`Pressure: ${r.check.pressure.note}`,'small'));
-  if(r.coverage)detail.append(el('p',`Coverage: ${coverageText(r.coverage)}`,'small'));
+  detail.append(el('p',`Coverage: ${coverageLines(r,!ownCase(getSource?.())).join(' ')}`,'small'));
   const months=session.coverageMonths(r.wellId)??[],gaps=months.filter(m=>m.state==='gap').map(m=>m.month);
   detail.append(el('p',gaps.length?`Gap months (no H-10 row; never zero): ${gaps.join(', ')}`:'Gap months: none.','small'));
   const ml=el('ul',undefined,'small');for(const m of months)ml.append(el('li',`${m.month}: ${MONTH_TEXT[m.state]??m.state}`));detail.append(ml);
@@ -333,6 +341,8 @@ export function mountCaseInsights(root,{getLinks,getSource}){
   else detail.append(el('p','Packages: the sample case’s pinned TRRC records (see Data & sources); no history package is loaded here.','small'));
   const link=ins?.links.find(l=>l.wellId===r.wellId);if(link)detail.append(basisForm(link,r.check));
  }
+ // Runs after basisForm's own submit handler. A successful confirm rebuilds the panel synchronously, so the submitted form is detached by the re-render
+ // and focus moves to the new form's Confirm; a refused confirm leaves the form in place and focus where it was.
  detail.addEventListener('submit',e=>{if(!detail.contains(e.target))detail.querySelector('form button[type="submit"]')?.focus();});
  fileInput.addEventListener('change',async()=>{
   const files=[...fileInput.files],errors=[];loadError.textContent='';
@@ -351,6 +361,7 @@ export function mountCaseInsights(root,{getLinks,getSource}){
  }
  function render(){
   const snap=session.snapshot(),ins=snap.insights;
+  if(snap.withdrawn!==seenWithdrawn){seenWithdrawn=snap.withdrawn;loadError.textContent='';linkError.textContent='';}
   if(!ins){rendered=null;openDetails.clear();basisButtons.clear();openWell=null;linkSelects.clear();rowButtons.clear();comparedTable.replaceChildren();detail.replaceChildren();detail.hidden=compareSection.hidden=true;summary.replaceChildren();history.replaceChildren();perfTables.replaceChildren();headroomSlot.replaceChildren();calc.disabled=true;jsonBtn.disabled=csvBtn.disabled=true;
    if(snap.status==='error'){root.hidden=false;status.textContent='Case insights unavailable: '+snap.error;}else{root.hidden=true;status.textContent='Calculate the disposal case first.';}return;}
   root.hidden=false;

@@ -68,6 +68,8 @@ test('wells compared: linked A, unlinked B',()=>{
  assert.deepEqual(a.packages,[{artifactId:'a',manifestSha256:'s1',window:{startMonth:'2026-12',endMonth:'2027-02',source:'acquisition'}}]);
  assert.equal(b.uic,null);assert.equal(b.coverage,null);assert.equal(b.gapLabel,null);assert.deepEqual(b.packages,[]);
  assert.equal(b.check.reason,NO_HISTORY);
+ assert.equal(a.inclusionBasis,'default H-10 month inclusions');assert.equal(chl.INCLUSION_BASIS,'default H-10 month inclusions');
+ assert.equal(b.inclusionBasis,null);
 });
 test('zero-row package: gap equals window; cannot-check, no throw',()=>{
  const set=setOf(pkg({artifactId:'z',sha:'sz',start:'2024-01',end:'2024-03',rows:[]}));

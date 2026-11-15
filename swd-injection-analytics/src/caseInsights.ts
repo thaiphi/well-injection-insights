@@ -1,7 +1,7 @@
 import {buildDisposalCase,type DisposalCase} from './disposalCase.js';
 import {caseSummary,CASE_SUMMARY_VERSION,type SummaryLine} from './caseSummary.js';
 import {checkWellHistory,HISTORY_CHECK_VERSION,type HistoryLink,type WellHistoryCheck} from './wellHistoryCheck.js';
-import {wellsCompared,UNLINKED,type ComparedRow} from './caseHistoryLinks.js';
+import {wellsCompared,UNLINKED,J_SOURCE_ASSUMED,type ComparedRow} from './caseHistoryLinks.js';
 import type {LoadedPackage,PackageSet} from './historyPackages.js';
 import {buildPerformanceCases,PERFORMANCE_CASES_VERSION,type PerformanceCases,type PerformanceCasesSpec} from './performanceCases.js';
 
@@ -29,7 +29,8 @@ export function buildCaseInsights(result:DisposalCase,links:readonly HistoryLink
   return {caseInputs:clone(result.inputs),links:clone([...links]),performanceSpec:performance?clone(performance.inputs.spec):null,history:clone(history),
     performance:performance?clone(performance):null,summary:clone(caseSummary(result,{history,performance})),...(compared?{compared:clone([...compared])}:{})};
 }
-/** Rebuild compared rows from the stored inputs only: links (with monthly rows), stored package provenance and windows, and the stored J source. */
+/** Rebuild compared rows from the stored inputs only: links (with monthly rows) and stored package provenance and windows.
+ * The J source is not trusted from the file: exported rows come from user/demo cases, whose J source is always J_SOURCE_ASSUMED (sample insights never export compared rows). */
 function recomputeCompared(result:DisposalCase,s:SealedCaseInsights):ComparedRow[]{
   const stored=s.compared as ComparedRow[],uicOf=Object.fromEntries(s.links.map(l=>[l.wellId,l.uic]));
   // joinedHistory counts every row of every package of a UIC, so the stored link rows go to the first rebuilt package and the others are empty.
@@ -40,7 +41,7 @@ function recomputeCompared(result:DisposalCase,s:SealedCaseInsights):ComparedRow
   const set:PackageSet={packages};
   // A stored row that claims a UIC but no package cannot be recomputed from the stored inputs.
   if(stored.some(r=>r.uic!==null&&!r.packages.length))throw new Error(STALE+'compared row has no package');
-  return wellsCompared(result,uicOf,set,checkWellHistory(result.base,s.links),id=>stored.find(r=>r.wellId===id)?.jSource??'');
+  return wellsCompared(result,uicOf,set,checkWellHistory(result.base,s.links),()=>J_SOURCE_ASSUMED);
 }
 export async function sealCaseInsights(i:CaseInsights):Promise<SealedCaseInsights>{
   const unsealed={...clone(i),schemaVersion:CASE_INSIGHTS_SCHEMA as typeof CASE_INSIGHTS_SCHEMA,
@@ -122,6 +123,8 @@ export function caseInsightsCsv(s:SealedCaseInsights):string{
     f('well',c.label);f('wellId',c.wellId);f('uic',c.uic??UNLINKED);f('window start',c.coverage?.startMonth);f('window end',c.coverage?.endMonth);
     f('reported months',c.coverage?.reported);f('reported-zero months',c.coverage?.reportedZero);f('gap months',c.coverage?.gap);f('status',c.check?.status);
     f('J source',c.jSource);f('package artifactIds',c.packages.map(p=>p.artifactId).join(';'));
+    if(c.uic!==null){f('inclusion basis',c.inclusionBasis);
+      for(const p of c.packages){f(`package ${p.artifactId} manifestSha256`,p.manifestSha256);f(`package ${p.artifactId} window`,`${p.window.startMonth}..${p.window.endMonth} (${p.window.source})`);}}
   }
   rows.push(['metadata','export','schema',s.schemaVersion],...Object.entries(s.versions).map(([k,v])=>['metadata','export',`version ${k}`,v]),['metadata','export','contentSha256',s.contentSha256]);
   return rows.map(r=>r.map(cell).join(',')).join('\r\n')+'\r\n';

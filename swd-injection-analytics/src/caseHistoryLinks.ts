@@ -9,6 +9,8 @@ import type {BasisConfirmation} from './wellAssumptions.js';
 export const LINKS_VERSION='case-history-links/1';
 export const UNLINKED='No H-10 package linked to this well.';
 export const J_SOURCE_ASSUMED='assumed (case input)';
+/** Month inclusions behind every linked well's check: E05's diagnoseMonthly default decisions. */
+export const INCLUSION_BASIS='default H-10 month inclusions';
 export const EVIDENCE_ONLY='Reported history is evidence only; it does not change any case input.';
 export type WellLinks=Readonly<Record<string,string>>;
 
@@ -43,7 +45,7 @@ export function historyLinksFor(wells:readonly {id:string;label:string}[],links:
 }
 
 export type ComparedRow={wellId:string;label:string;uic:string|null;coverage:{startMonth:string;endMonth:string;reported:number;reportedZero:number;gap:number}|null;
-  gapLabel:string|null;check:WellHistoryCheck|null;jSource:string;packages:{artifactId:string;manifestSha256:string;window:HistoryWindow}[]};
+  gapLabel:string|null;check:WellHistoryCheck|null;jSource:string;inclusionBasis:string|null;packages:{artifactId:string;manifestSha256:string;window:HistoryWindow}[]};
 
 /** One row per case well, in case order. */
 export function wellsCompared(result:DisposalCase,links:WellLinks,set:PackageSet,checks:readonly WellHistoryCheck[],jSourceFor:(wellId:string)=>string):ComparedRow[]{
@@ -52,10 +54,10 @@ export function wellsCompared(result:DisposalCase,links:WellLinks,set:PackageSet
     const wellId=w.id,label=w.label??w.id,uic=links[wellId]??null;
     const check=checks.find(c=>c.wellId===wellId)??null;
     const jSource=jSourceFor(wellId);
-    if(uic===null)return {wellId,label,uic:null,coverage:null,gapLabel:null,check,jSource,packages:[]};
+    if(uic===null)return {wellId,label,uic:null,coverage:null,gapLabel:null,check,jSource,inclusionBasis:null,packages:[]};
     const j=joinedHistory(set,uic);
     const coverage={startMonth:j.window.startMonth,endMonth:j.window.endMonth,reported:j.counts.reported,reportedZero:j.counts.reportedZero,gap:j.counts.gap};
-    return {wellId,label,uic,coverage,gapLabel:coverage.gap>0?gapLabel(coverage.gap):null,check,jSource,
+    return {wellId,label,uic,coverage,gapLabel:coverage.gap>0?gapLabel(coverage.gap):null,check,jSource,inclusionBasis:INCLUSION_BASIS,
       packages:j.packages.map(p=>({artifactId:p.artifactId,manifestSha256:p.manifestSha256,window:p.window}))};
   });
 }

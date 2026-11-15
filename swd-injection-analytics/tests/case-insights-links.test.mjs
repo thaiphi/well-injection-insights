@@ -46,6 +46,25 @@ test('resealed wrong coverage rejected by recomputation',async()=>{
  const resealed=await ci.sealCaseInsights(Object.fromEntries(Object.entries(rest).filter(([k])=>!['schemaVersion','versions'].includes(k))));
  await assert.rejects(ci.verifyCaseInsights(resealed),/Result changed or stale/);
 });
+test('JSON compared rows carry the inclusion basis (linked) or null (unlinked)',async()=>{
+ const s=JSON.parse(ci.caseInsightsJson(await ci.sealCaseInsights(make())));
+ assert.equal(s.compared[0].inclusionBasis,'default H-10 month inclusions');assert.equal(s.compared[1].inclusionBasis,null);
+ await ci.verifyCaseInsights(s);
+});
+test('verify does not trust a stored J source: an edited and resealed jSource is rejected',async()=>{
+ const s=JSON.parse(ci.caseInsightsJson(await ci.sealCaseInsights(make())));
+ s.compared[0].jSource='Fictional calibrated J';
+ const {contentSha256:_,...rest}=s;
+ const resealed=await ci.sealCaseInsights(Object.fromEntries(Object.entries(rest).filter(([k])=>!['schemaVersion','versions'].includes(k))));
+ await assert.rejects(ci.verifyCaseInsights(resealed),/Result changed or stale/);
+});
+test('a resealed edited inclusion basis is rejected',async()=>{
+ const s=JSON.parse(ci.caseInsightsJson(await ci.sealCaseInsights(make())));
+ s.compared[0].inclusionBasis='all months';
+ const {contentSha256:_,...rest}=s;
+ const resealed=await ci.sealCaseInsights(Object.fromEntries(Object.entries(rest).filter(([k])=>!['schemaVersion','versions'].includes(k))));
+ await assert.rejects(ci.verifyCaseInsights(resealed),/Result changed or stale/);
+});
 test('stored /1 fixture still verifies',async()=>{
  const f=JSON.parse(readFileSync('tests/fixtures/case-insights-v1.json','utf8'));
  assert.equal(f.schemaVersion,'case-insights-export/1');
@@ -61,10 +80,14 @@ test('CSV carries wells-compared rows in the 4-column format',async()=>{
  assert.equal(lines[0],'"section","rule_or_well","field","value"');
  for(const l of lines)assert.equal((l.match(/"(?:[^"]|"")*"/g)??[]).length,4,l);
  const wc=lines.filter(l=>l.startsWith('"wells-compared"'));
- assert.equal(wc.length,22);
+ assert.equal(wc.length,27,'A: 11 + inclusion basis + 2 rows per package; B (unlinked): 11');
  assert.ok(wc.includes('"wells-compared","FICTIONAL-B","uic","No H-10 package linked to this well."'));
  assert.ok(wc.includes('"wells-compared","FICTIONAL-A","package artifactIds","fictional-pkg-1;fictional-pkg-2"'));
- assert.deepEqual(wc.slice(0,11).map(l=>l.split('","')[2]),['well','wellId','uic','window start','window end','reported months','reported-zero months','gap months','status','J source','package artifactIds']);
+ assert.deepEqual(wc.slice(0,16).map(l=>l.split('","')[2]),['well','wellId','uic','window start','window end','reported months','reported-zero months','gap months','status','J source','package artifactIds','inclusion basis','package fictional-pkg-1 manifestSha256','package fictional-pkg-1 window','package fictional-pkg-2 manifestSha256','package fictional-pkg-2 window']);
+ assert.ok(wc.includes('"wells-compared","FICTIONAL-A","inclusion basis","default H-10 month inclusions"'));
+ assert.ok(wc.includes(`"wells-compared","FICTIONAL-A","package fictional-pkg-1 manifestSha256","${'a'.repeat(64)}"`));
+ assert.ok(wc.includes('"wells-compared","FICTIONAL-A","package fictional-pkg-2 window","2027-05..2027-06 (acquisition)"'));
+ assert.ok(!wc.some(l=>l.startsWith('"wells-compared","FICTIONAL-B","inclusion basis"')));
 });
 test('row outside its own package window but inside the span seals and verifies',async()=>{
  const r=buildDisposalCase(input());
