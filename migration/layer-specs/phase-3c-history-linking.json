@@ -10,7 +10,8 @@
     "src/caseInsights.ts",
     "web/case-insights.mjs",
     "web/import-ui.mjs",
-    "tests/case-insights.test.mjs"
+    "tests/case-insights.test.mjs",
+    "tests/case-insights-session.test.mjs"
   ],
   "newFiles": [
     "src/historyPackages.ts",
