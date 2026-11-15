@@ -9,6 +9,12 @@ Date: 2026-11-10. Issue: thaiphi/well-injection-insights #7 (PRD `docs/project-2
 - Building it is a separate, later go-ahead from the owner.
 - Merging this document does not close #7. It is referenced as "Refs #7".
 
+**Amended by the #8 design** (`docs/superpowers/specs/2026-11-15-e07-interference-screening-design.md`, section "Amendments to the #7 design"):
+- the unit response is exposed at any distance;
+- offset histories may be up to 600 months;
+- skin and the t_D guard apply at the subject wellbore only;
+- real H-10 rates are allowed as input for offset wells only (owner call A, 2026-11-15).
+
 ## Why
 
 **The question it answers:** "If this well injects this rate schedule for months or years, how much does pressure rise at the well and in the rock around it, and in which month does it use up the room under my bottomhole limit?"
