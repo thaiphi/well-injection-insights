@@ -210,3 +210,31 @@ test('CSV: an injected formula in a text cell is neutralised',async()=>{
  const rows=parseCsv(tx.transientCsv(await tx.sealTransient(x)));
  assert.ok(rows.some(r=>r[0]==='warnings'&&r[3]==='\'=HYPERLINK("http://x")'));
 });
+
+// ---- Task 8 fix round 1: the permitted interval in exports (evidence only; not a calculation input) ----
+const INTERVAL={permitted_top_depth_ft:4000,permitted_bottom_depth_ft:4500,label:'as reported; depth basis unknown'};
+const withIntervals=(list)=>({...makeExport(true),packages:PACKAGES.map((p,i)=>({...p,permittedInterval:list[i]??null}))});
+test('fix 1: the permitted interval round-trips with and without a value; the label is fixed',async()=>{
+ assert.equal(tx.PERMITTED_INTERVAL_LABEL,'as reported; depth basis unknown');
+ const s=await tx.sealTransient(withIntervals([INTERVAL,{...INTERVAL,permitted_top_depth_ft:null},null]));
+ assert.deepEqual(s.packages[0].permittedInterval,INTERVAL);assert.equal(s.packages[2].permittedInterval,null);
+ const back=JSON.parse(tx.transientJson(s));
+ assert.equal((await tx.verifyTransient(back)).contentSha256,s.contentSha256);
+ assert.deepEqual(back.packages.map(p=>p.permittedInterval),[INTERVAL,{...INTERVAL,permitted_top_depth_ft:null},null]);
+ // Older exports without the field still verify.
+ const old=await tx.sealTransient(makeExport(true));assert.equal(await tx.verifyTransient(old),old);
+ // CSV: one 4-column row per package in a packages section; null reads "unavailable", never 0.
+ const rows=parseCsv(tx.transientCsv(s)).filter(r=>r[0]==='packages');
+ assert.deepEqual(rows,[['packages',A,'permitted_interval pa','top 4,000 ft; bottom 4,500 ft; as reported; depth basis unknown'],
+  ['packages',B,'permitted_interval pb','top not reported; bottom 4,500 ft; as reported; depth basis unknown'],['packages',Cw,'permitted_interval pc','unavailable']]);
+ assert.ok(!parseCsv(tx.transientCsv(await tx.sealTransient(makeExport(false)))).some(r=>r[0]==='packages'));
+});
+test('fix 1: a resealed interval edit verifies (stored evidence, like other unread fields); an unsealed edit fails on the digest; a malformed one is refused',async()=>{
+ const s=clone(await tx.sealTransient(withIntervals([INTERVAL])));
+ s.packages[0].permittedInterval.permitted_top_depth_ft=4100;
+ await assert.rejects(()=>tx.verifyTransient(s),/content digest does not match/);
+ const resealed=await reseal(s);
+ assert.equal((await tx.verifyTransient(resealed)).packages[0].permittedInterval.permitted_top_depth_ft,4100);
+ for(const bad of [{...INTERVAL,label:'calibrated depth'},{...INTERVAL,permitted_top_depth_ft:'4000'},{...INTERVAL,extra:1},'4000-4500'])
+  await assert.rejects(async()=>tx.verifyTransient(await reseal({...clone(s),packages:s.packages.map((p,i)=>i===0?{...p,permittedInterval:bad}:p)})),STALE,JSON.stringify(bad));
+});

@@ -6,10 +6,15 @@ import {buildTransientCase,type TransientResult} from './transientCase.js';
 import {buildInterference,type InterferenceResult} from './interference.js';
 import {addPackage,EMPTY_PACKAGE_SET,type LoadedPackage,type PackageSet} from './historyPackages.js';
 import type {PublicMonthly} from './publicArtifact.js';
+import {fmtNumber} from './caseSummary.js';
 
 export const TRANSIENT_EXPORT_SCHEMA='transient-interference-export/1';
 export const TRANSIENT_EXPORT_VERSION='transient-export/1';
-export type ExportPackage={uic:string;artifactId:string;manifestSha256:string;window:{startMonth:string;endMonth:string;source:string};monthly:PublicMonthly[]};
+/** The package's permitted injection interval as reported (evidence only; never a calculation input; the depth basis is unknown). */
+export const PERMITTED_INTERVAL_LABEL='as reported; depth basis unknown';
+export type PermittedInterval={permitted_top_depth_ft:number|null;permitted_bottom_depth_ft:number|null;label:typeof PERMITTED_INTERVAL_LABEL};
+export type ExportPackage={uic:string;artifactId:string;manifestSha256:string;window:{startMonth:string;endMonth:string;source:string};monthly:PublicMonthly[];
+  permittedInterval?:PermittedInterval|null};
 export type TransientExport={caseInputs:DisposalCase['inputs'];transient:TransientResult;interference:InterferenceResult|null;packages:ExportPackage[]};
 export type SealedTransient=TransientExport&{schemaVersion:typeof TRANSIENT_EXPORT_SCHEMA;versions:Record<string,string>;contentSha256:string};
 
@@ -48,6 +53,11 @@ export async function sealTransient(x:TransientExport):Promise<SealedTransient>{
 function setFromPackages(packages:readonly ExportPackage[]):PackageSet{
   return packages.reduce<PackageSet>((set,p)=>addPackage(set,{artifactId:p.artifactId,manifestSha256:p.manifestSha256,uic:p.uic,window:p.window as LoadedPackage['window'],monthly:p.monthly}),EMPTY_PACKAGE_SET);
 }
+function validInterval(v:unknown):boolean{
+  if(typeof v!=='object'||v===null||Array.isArray(v))return false;
+  const keys=Object.keys(v).sort(),o=v as Record<string,unknown>,depth=(x:unknown)=>x===null||(typeof x==='number'&&Number.isFinite(x));
+  return keys.join(',')==='label,permitted_bottom_depth_ft,permitted_top_depth_ft'&&o.label===PERMITTED_INTERVAL_LABEL&&depth(o.permitted_top_depth_ft)&&depth(o.permitted_bottom_depth_ft);
+}
 export async function verifyTransient(s:SealedTransient):Promise<SealedTransient>{
   const fail=(why='recompute before export')=>new Error(STALE+why);
   try{
@@ -57,6 +67,8 @@ export async function verifyTransient(s:SealedTransient):Promise<SealedTransient
     if(!Array.isArray(s.packages))throw fail('packages are missing');
     if(s.interference!==null&&s.packages.length===0)throw fail('interference result has no packages to recompute it from');
     if(s.interference===null&&s.packages.length>0)throw fail('packages are stored without an interference result');
+    // The permitted interval is stored evidence: verify checks its shape and carries it as stored (it is not recomputed).
+    if(!s.packages.every(p=>p.permittedInterval===undefined||p.permittedInterval===null||validInterval(p.permittedInterval)))throw fail('a package permitted interval is malformed');
     const result=buildDisposalCase(s.caseInputs);
     const transient=buildTransientCase(result,s.transient.inputs);
     let interference:InterferenceResult|null=null;
@@ -124,6 +136,10 @@ export function transientCsv(s:SealedTransient):string{
       }
       for(const m of v.monthly)rows.push([sec,m.month,'own_rise_psi',m.ownRisePsi],[sec,m.month,'offsets_psi',m.offsetsPsi],[sec,m.month,'bottomhole_psia',m.bottomholePsia]);
     }
+  }
+  for(const p of s.packages){
+    const v=p.permittedInterval,d=(x:number|null)=>x===null?'not reported':`${fmtNumber(x)} ft`;
+    rows.push(['packages',p.uic,`permitted_interval ${p.artifactId}`,v?`top ${d(v.permitted_top_depth_ft)}; bottom ${d(v.permitted_bottom_depth_ft)}; ${v.label}`:null]);
   }
   t.warnings.forEach((x,n)=>rows.push(['warnings',w,`warning ${n+1}`,x]));
   (i?.warnings??[]).forEach((x,n)=>rows.push(['warnings','interference',`warning ${n+1}`,x]));

@@ -301,3 +301,299 @@ test('M1/M5/M6 panel source: cancel only after an accepted change, messageerror 
  assert.ok(src.includes('w.onmessageerror=()=>{finish();reject('),'M5');
  assert.ok(src.includes('if(t.averageRise?.length)'),'M6');
 });
+
+// ---- Task 7 review nits ----
+test('nit (a): the example label shows only after loadExample since the last reset, not because values match',()=>{
+ const s=make();s.onCaseResult(CASE);
+ for(const k of ['k','h','phi','cf','rw','skin'])s.setRock(k,FICTIONAL_EXAMPLE[k]);
+ s.setBoundaryKind('closed');s.setBoundaryValue('re',FICTIONAL_EXAMPLE.re);
+ assert.equal(s.snapshot().example,null,'typed values equal to the example are not labelled');assert.equal(exampleLabel(s.snapshot()),null);
+ s.loadExample();assert.equal(s.snapshot().example,'full');
+ s.onSourceSwitch();assert.equal(s.snapshot().example,null);
+ for(const k of ['k','h','phi','cf','rw','skin'])s.setRock(k,FICTIONAL_EXAMPLE[k]);
+ assert.equal(s.snapshot().example,null,'a reset forgets the example');
+});
+test('nit (b): clearing a copied schedule on a well change also resets the set-up fields',()=>{
+ const s=make();s.onCaseResult(CASE);s.copyForecast();
+ assert.deepEqual(s.snapshot().setup,{start:'2028-01',count:'4'});
+ s.selectWell('FICTIONAL-B');
+ assert.deepEqual(s.snapshot().draft.schedule.months,[]);assert.deepEqual(s.snapshot().setup,{start:'',count:''});
+});
+
+// ---- Task 8: Nearby wells (interference screening), fictional UICs 000000418 to 000000420 ----
+const {SETUP_FIRST,NEARBY_TITLE,rankingCells,totalText,limitMonthText,nearbyShapeKey,runInterferenceCore}=panel;
+const ix=await import('../dist/interference.js');
+const {addPackage,packageFromVerified,EMPTY_PACKAGE_SET}=await import('../dist/historyPackages.js');
+const U1='000000418',U2='000000419';
+const span=(a,b)=>{const out=[];let [y,m]=a.split('-').map(Number);for(;;){const s=`${y}-${String(m).padStart(2,'0')}`;out.push(s);if(s===b)return out;if(++m>12){m=1;y++;}}};
+const mrow=(month,bbl,uic)=>({source_row_key:month+uic,parent_key:'fictional-parent',parent_join_status:'joined',uic_number:uic,reporting_year:Number(month.slice(0,4)),reporting_month:Number(month.slice(5,7)),period_start:month+'-01',injected_liquid_bbl:bbl,reported_avg_injection_pressure_psi:500,reported_max_injection_pressure_psi:900,calendar_days:30,calculated_calendar_day_avg_bpd:bbl===null?null:bbl/30});
+/** A verified-shaped fictional package (as verifyExplorerPackage returns: artifact, pin, calculationEligibility). */
+const verified=({id,uic,start,end,vol={},def=60000,interval=true,ready=true})=>({
+ artifact:{schemaVersion:1,artifactId:id,inventory:[{source_record_key:'inv-'+id,uic_number:uic,api_no:'00000000000000',...(interval?{permitted_top_depth_ft:4000,permitted_bottom_depth_ft:4500}:{})}],
+  injectionMonthly:span(start,end).filter(m=>vol[m]!=='missing').map(m=>mrow(m,vol[m]!==undefined?vol[m]:def,uic)),
+  manifest:{scope:{uic_number:uic,start:start+'-01',end:end+'-28'}},qualityReport:{},dataDictionary:{}},
+ pin:{artifactId:id,manifestSha256:'sha-'+id},calculationEligibility:{ready,reasons:ready?[]:['fictional refusal']}});
+const V1=verified({id:'p418',uic:U1,start:'2027-06',end:'2027-12'});
+// UIC 000000419: a reported-zero month (2027-05) and a missing month (2027-08); no interval in the package.
+const V2=verified({id:'p419',uic:U2,start:'2027-01',end:'2028-02',vol:{'2027-05':0,'2027-08':'missing'},interval:false});
+/** The worker's interference action, run in-process through the shared core the worker imports. */
+const realInterference=async payload=>runInterferenceCore(structuredClone(payload));
+const makeN=(extra={})=>make({runInterference:realInterference,...extra});
+/** Subject ready, both packages loaded, every choice answered (U2 gaps filled), ranking month default. */
+function nearbyReady(s){
+ s.onCaseResult(CASE);fillTyped(s);
+ assert.equal(s.loadPackage(V1).error,undefined);assert.equal(s.loadPackage(V2).error,undefined);
+ s.setOffset(U1,'distanceFt',1500);s.setOffset(U1,'connected',true);
+ s.setOffset(U2,'distanceFt',3000);s.setOffset(U2,'connected',false);s.setOffset(U2,'zerosAreShutIn',true);s.setGapRate(U2,'2027-08',1000);
+}
+const nb=s=>s.snapshot().nearby;
+
+test('task 8: module exports the section copy and helpers',()=>{
+ assert.equal(NEARBY_TITLE,'Nearby wells (interference screening)');
+ assert.equal(SETUP_FIRST,"Set up the subject well's buildup first");
+ for(const f of [rankingCells,totalText,limitMonthText,nearbyShapeKey,runInterferenceCore])assert.equal(typeof f,'function');
+});
+
+test('task 8: before the subject has inputs the section asks for the buildup set-up first',()=>{
+ const s=makeN();s.onCaseResult(CASE);
+ assert.deepEqual(nb(s).messages,[SETUP_FIRST]);assert.equal(nb(s).canRun,false);
+ fillTyped(s);assert.ok(!nb(s).messages.includes(SETUP_FIRST));
+ assert.ok(nb(s).messages.some(m=>/Load at least one offset well package/.test(m)));
+});
+
+test('task 8: packages load through the #9 path with refusals; evidence is the window and the interval as reported',()=>{
+ const s=makeN();s.onCaseResult(CASE);fillTyped(s);
+ assert.equal(s.loadPackage(V1).package.uic,U1);
+ assert.match(s.loadPackage(V1).error,/already loaded/);
+ assert.match(s.loadPackage(verified({id:'bad',uic:U2,start:'2027-01',end:'2027-02',ready:false})).error,/not calculation-ready/);
+ assert.match(s.loadPackage(verified({id:'over',uic:U1,start:'2027-10',end:'2028-01'})).error,/overlaps/);
+ assert.deepEqual(nb(s).packages.map(p=>p.artifactId),['p418']);
+ s.loadPackage(V2);
+ const [o1,o2]=nb(s).offsets;
+ assert.equal(o1.uic,U1);assert.deepEqual(o1.window,{startMonth:'2027-06',endMonth:'2027-12'});
+ assert.deepEqual(o1.intervals,['4,000–4,500 ft, as reported; depth basis unknown']);
+ assert.deepEqual(o2.intervals,[],'no interval in the package: none shown, never 0');
+ // No defaults, no automatic decision.
+ assert.equal(o1.choice.connected,null);assert.equal(o1.choice.distanceFt,null);assert.equal(o1.choice.zerosAreShutIn,null);assert.equal(o1.choice.afterKind,null);
+ assert.deepEqual(o2.zeroMonths,['2027-05']);assert.deepEqual(o2.gapMonths,['2027-05','2027-08'],'reported zero is a gap until answered');assert.equal(o2.unfilled,2);
+ assert.equal(o1.needsZeros,false);assert.equal(o2.needsZeros,true);
+ s.setOffset(U2,'zerosAreShutIn',true);assert.deepEqual(nb(s).offsets[1].gapMonths,['2027-08']);assert.equal(nb(s).offsets[1].unfilled,1);
+ s.setGapRate(U2,'2027-08',0);assert.equal(nb(s).offsets[1].unfilled,0,'0 is an allowed typed gap rate');
+ s.setGapRate(U2,'2027-08',null);assert.equal(nb(s).offsets[1].unfilled,1,'blank is unfilled, never 0');
+});
+
+test('task 8 brief 1: the run is refused while any offset has connected===null',async()=>{
+ let called=0;const s=makeN({runInterference:async p=>{called++;return realInterference(p);}});
+ nearbyReady(s);s.setOffset(U2,'connected',null);
+ assert.ok(nb(s).messages.includes(`UIC ${U2}: choose connected or not connected (there is no default)`));assert.equal(nb(s).canRun,false);
+ await assert.rejects(()=>s.runInterference(),/choose connected or not connected/);assert.equal(called,0);
+ // The core refuses the same input on its own.
+ assert.throws(()=>ix.buildInterference(CASE,[V1,V2].reduce((set,v)=>addPackage(set,packageFromVerified(v)),EMPTY_PACKAGE_SET),s.interferenceInput()),/there is no default/);
+});
+
+test('task 8: the reported-zero answer is required (no default) and a half-filled prior or after choice is refused',async()=>{
+ const s=makeN();nearbyReady(s);s.setOffset(U2,'zerosAreShutIn',null);
+ assert.ok(nb(s).messages.some(m=>m===`UIC ${U2}: answer whether reported zero months are treated as shut in (there is no default)`));
+ await assert.rejects(()=>s.runInterference(),/reported zero months/);
+ s.setOffset(U2,'zerosAreShutIn',false);assert.ok(!nb(s).messages.some(m=>/reported zero/.test(m)),'unchecked is an answer');
+ s.setOffset(U1,'priorRate',500);assert.ok(nb(s).messages.some(m=>/UIC 000000418: prior rate and start month/.test(m)));
+ s.setOffset(U1,'priorRate',null);s.setOffset(U1,'afterKind','hold-average');assert.ok(nb(s).messages.some(m=>/UIC 000000418: type N/.test(m)));
+ s.setOffset(U1,'afterLastN',3);assert.ok(!nb(s).messages.some(m=>/UIC 000000418/.test(m)));
+ const i=s.interferenceInput();assert.deepEqual(i.offsets.find(o=>o.uic===U1).after,{kind:'hold-average',lastN:3});assert.equal(i.offsets.find(o=>o.uic===U1).prior,null);
+ assert.deepEqual(i.offsets.find(o=>o.uic===U2).gapRates,{'2027-08':1000});
+ // Gap rates are passed only for months that are gaps now; a blank is an absent key.
+ s.setGapRate(U2,'2027-05',5);assert.deepEqual(s.interferenceInput().offsets.find(o=>o.uic===U2).gapRates,{'2027-05':5,'2027-08':1000});
+ s.setOffset(U2,'zerosAreShutIn',true);assert.deepEqual(s.interferenceInput().offsets.find(o=>o.uic===U2).gapRates,{'2027-08':1000},'2027-05 is no longer a gap');
+ s.setGapRate(U2,'2027-08',null);assert.deepEqual(s.interferenceInput().offsets.find(o=>o.uic===U2).gapRates,{});
+ assert.throws(()=>s.setGapRate(U2,'2027-03',1),/not a gap month/);
+});
+
+test('task 8: ranking month defaults to the last month covered by every package; a typed month overrides; t_ref is optional',()=>{
+ const s=makeN();nearbyReady(s);
+ assert.equal(nb(s).rankingMonth,'2027-12');assert.equal(nb(s).rankingTyped,false);
+ s.setRankingMonth('2028-03');assert.equal(nb(s).rankingMonth,'2028-03');assert.equal(s.interferenceInput().rankingMonth,'2028-03');
+ s.setRankingMonth(null);assert.equal(nb(s).rankingMonth,'2027-12');
+ assert.equal(s.interferenceInput().tRef,null);s.setTRef('2027-12');assert.equal(s.interferenceInput().tRef,'2027-12');
+});
+
+test('task 8 brief 3: without t_ref no limit month and no absolute values; the rise-only label is shown',async()=>{
+ const s=makeN();nearbyReady(s);
+ const r=await s.runInterference();assert.ok(r);assert.equal(nb(s).status,'done');
+ assert.equal(r.mode,'rise-above-undisturbed');
+ for(const v of r.views){assert.equal(limitMonthText(r,v,nb(s).transient),null);assert.deepEqual(v.removalEffects,[]);assert.ok(v.monthly.every(m=>m.bottomholePsia===null));}
+ assert.ok(r.labels.some(l=>/no absolute pressure, limit line or limit month/.test(l)));
+ assert.equal(r.closing,ix.CLOSING_8);assert.ok(r.labels.includes(ix.RANKING_LABEL));
+});
+
+test('task 8: with t_ref the limit month is shown per view; a schedule not starting after t_ref is refused with the core message',async()=>{
+ const s=makeN();nearbyReady(s);s.setOffset(U1,'afterKind','shut-in');s.setOffset(U2,'afterKind','typed');s.setOffset(U2,'afterRate',500);
+ s.setTRef('2027-11');
+ await assert.rejects(()=>s.runInterference(),/must start the month after the pressure-as-of month/);
+ assert.match(nb(s).error,/must start the month after/);
+ s.setTRef('2027-12');s.setRankingMonth('2028-03');
+ const r=await s.runInterference();assert.equal(r.mode,'since-t-ref');
+ for(const v of r.views){const t=limitMonthText(r,v,nb(s).transient);assert.equal(typeof t,'string');assert.ok(t.length>0);}
+ const sel=r.views.find(v=>v.name==='your-selection');assert.equal(sel.removalEffects.length,1);
+});
+
+test('task 8 brief 4: an excluded row reads EXCLUDED; incomplete rows have no number; null totals read their state',async()=>{
+ const s=makeN();nearbyReady(s);s.setGapRate(U2,'2027-08',null);
+ const r=await s.runInterference();
+ const sel=r.views.find(v=>v.name==='your-selection'),all=r.views.find(v=>v.name==='all-connected'),none=r.views.find(v=>v.name==='none');
+ const ex=rankingCells(sel.rows.find(x=>x.uic===U2));
+ assert.equal(ex[0],U2);assert.equal(ex[1],ix.EXCLUDED);assert.equal(ex[2],ix.EXCLUDED);assert.ok(!ex.includes('0'));
+ const inc=all.rows.find(x=>x.uic===U2);assert.equal(inc.status,'incomplete');
+ const ic=rankingCells(inc);assert.match(ic[1],/^incomplete: 1 gap month/);assert.equal(ic[2],'no number');assert.equal(ic[3],'—');
+ assert.equal(all.totalPsi,null);assert.equal(totalText(all),'incomplete: no total while a counted offset has no number');
+ assert.equal(totalText(none),'no offsets counted');
+ const ok=rankingCells(sel.rows.find(x=>x.uic===U1));assert.match(ok[2],/^[−+]?[\d,]+\.\d$/);assert.match(ok[4],/1,500 ft \(assumed\)/);
+ assert.match(totalText(sel),/psi \(calculated\)$/);
+ for(const v of r.views)for(const row of v.rows)for(const c of rankingCells(row))assert.ok(!/NaN|undefined|null/.test(String(c)));
+});
+
+test('task 8 brief 2: removing a package withdraws its offset row inputs and the result',async()=>{
+ const s=makeN();nearbyReady(s);await s.runInterference();assert.ok(nb(s).output);
+ s.removePackage('p419');
+ assert.equal(nb(s).output,null);assert.deepEqual(nb(s).offsets.map(o=>o.uic),[U1]);
+ s.loadPackage(V2);const o2=nb(s).offsets.find(o=>o.uic===U2);
+ assert.equal(o2.choice.connected,null);assert.equal(o2.choice.distanceFt,null);assert.equal(o2.choice.zerosAreShutIn,null);assert.deepEqual(o2.choice.gapRates,{});
+ assert.equal(nb(s).offsets.find(o=>o.uic===U1).choice.distanceFt,1500,'the other UIC keeps its inputs');
+});
+
+test('task 8 brief 5: a source switch clears the offset choices and keeps the packages (both paths)',async()=>{
+ let src='demo';const s=makeN({getSource:()=>src});nearbyReady(s);s.setTRef('2027-12');s.setRankingMonth('2028-02');
+ src='sample';s.onInvalidated();s.onCaseResult(CASE);
+ const n=nb(s);assert.deepEqual(n.packages.map(p=>p.artifactId),['p418','p419']);
+ assert.ok(n.offsets.every(o=>o.choice.connected===null&&o.choice.distanceFt===null&&o.choice.zerosAreShutIn===null&&Object.keys(o.choice.gapRates).length===0));
+ assert.equal(n.tRef,null);assert.equal(n.rankingTyped,false);assert.equal(n.output,null);
+ fillTyped(s);s.setOffset(U1,'connected',true);s.setOffset(U1,'distanceFt',900);
+ s.onSourceSwitch();
+ assert.equal(nb(s).offsets[0].choice.connected,null);assert.equal(nb(s).offsets[0].choice.distanceFt,null);assert.equal(nb(s).packages.length,2);
+});
+
+test('task 8: invalidation: offset edits withdraw only the interference; subject edits and case events withdraw both; late runs are dropped',async()=>{
+ const s=makeN();nearbyReady(s);await s.calculate();await s.runInterference();
+ s.setOffset(U1,'distanceFt',1600);assert.equal(nb(s).output,null);assert.ok(s.snapshot().output,'the buildup result is kept');
+ const edits=[x=>x.setOffset(U1,'connected',false),x=>x.setGapRate(U2,'2027-08',5),x=>x.setTRef('2027-12'),x=>x.setRankingMonth('2028-01'),x=>x.setNearbySensitivity('k','low',10),
+  x=>x.removePackage('p418'),x=>x.loadPackage(verified({id:'p420',uic:'000000420',start:'2027-01',end:'2027-12'})),x=>x.setRock('k',60),x=>x.setRate('2028-02',3000),x=>x.onCaseResult(CASE),x=>x.onInvalidated()];
+ for(const edit of edits){const t=makeN();nearbyReady(t);await t.runInterference();assert.ok(nb(t).output);edit(t);assert.equal(nb(t).output,null,edit.toString());}
+ let release;const gate=new Promise(r=>{release=r;});
+ const late=makeN({runInterference:async p=>{await gate;return realInterference(p);}});nearbyReady(late);
+ const pending=late.runInterference();assert.equal(nb(late).status,'running');
+ late.setOffset(U1,'distanceFt',1700);release();assert.equal(await pending,null);assert.equal(nb(late).output,null);
+});
+
+test('task 8: the worker core seals the interference run; it verifies and downloads re-verify the shown export',async()=>{
+ const s=makeN();nearbyReady(s);
+ const payload=s.interferencePayload();
+ const sealed=await realInterference(payload);
+ assert.ok(sealed.interference);assert.equal(sealed.packages.length,2);assert.deepEqual(sealed.transient.inputs,sealed.interference.inputs.subject);
+ assert.equal((await verifyTransient(structuredClone(sealed))).contentSha256,sealed.contentSha256);
+ await s.runInterference();
+ const j=await s.exportInterference('json',realVerify);
+ assert.match(j.filename,/^swd-interference-screening-[a-f0-9]{12}\.json$/);assert.ok(JSON.parse(j.text).interference);
+ const c=await s.exportInterference('csv',realVerify);assert.match(c.filename,/\.csv$/);
+ await assert.rejects(()=>makeN().exportInterference('json',realVerify),/Run the interference screening first/);
+ // An edit during the verify cancels the download.
+ let release;const gate=new Promise(r=>{release=r;});
+ const pending=s.exportInterference('json',async(x,f)=>{await gate;return realVerify(x,f);});s.setOffset(U1,'distanceFt',1234);release();
+ assert.deepEqual(await pending,{cancelled:true});
+});
+
+test('task 8: sensitivity inputs reach the core; half-filled pairs are refused; rank notes come from the result',async()=>{
+ const s=makeN();nearbyReady(s);s.setOffset(U2,'connected',true);
+ s.setNearbySensitivity('k','low',10);assert.ok(nb(s).messages.some(m=>/Sensitivity k high/.test(m)));
+ s.setNearbySensitivity('k','high',200);s.setOffset(U1,'sensLow',1000);s.setOffset(U1,'sensHigh',2000);
+ const i=s.interferenceInput();assert.deepEqual(i.sensitivity,{k:{low:10,high:200},distance:{[U1]:{low:1000,high:2000}}});
+ const r=await s.runInterference();assert.equal(r.sensitivity.length,2);
+});
+
+test('task 8: nearby shape key changes on package, gap-list, after-kind or programmatic changes, never on typing',()=>{
+ const s=makeN();nearbyReady(s);const key=()=>nearbyShapeKey(s.snapshot());
+ let k=key();s.setOffset(U1,'distanceFt',1501);s.setGapRate(U2,'2027-08',7);s.setOffset(U1,'priorRate',4);s.setNearbySensitivity('k','low',3);s.setOffset(U1,'connected',false);s.setTRef('2027-12');s.setRankingMonth('2028-01');
+ assert.equal(key(),k,'typing and radios keep the inputs');
+ s.setOffset(U1,'afterKind','typed');assert.notEqual(key(),k);k=key();
+ s.setOffset(U2,'zerosAreShutIn',false);assert.notEqual(key(),k,'the gap-month list changed');k=key();
+ s.removePackage('p418');assert.notEqual(key(),k);k=key();
+ s.onSourceSwitch();assert.notEqual(key(),k);
+});
+
+test('task 8 source: worker interference action uses the shared core; no innerHTML; imported fixed copy; no banned words',async()=>{
+ const src=await readFile('web/transient-buildup.mjs','utf8'),w=await readFile('web/transient-worker.mjs','utf8');
+ assert.ok(w.includes("action==='interference'")&&w.includes('runInterferenceCore'));assert.ok(!w.includes('not available yet'));
+ for(const x of ['buildInterference','addPackage','EMPTY_PACKAGE_SET','verifyExplorerPackage','packageFromVerified','CLOSING_8','RANKING_LABEL','INDISTINGUISHABLE','REMOVAL_LABEL'])assert.ok(src.includes(x),x);
+ assert.ok(!src.includes(ix.CLOSING_8)&&!src.includes(ix.RANKING_LABEL),'fixed lines imported, not retyped');
+ assert.ok(!/innerHTML/.test(src));assert.ok(!BANNED.test(src));assert.ok(!BANNED.test(w));
+ assert.ok(src.includes("'/transient-worker.mjs'"));
+});
+
+test('task 8: every counted row shows all its own labels (sources, partial history, each incomplete reason); excluded rows are not repeated',async()=>{
+ const {rowLabelLines}=panel;
+ const s=makeN();nearbyReady(s);s.setGapRate(U2,'2027-08',null);
+ const r=await s.runInterference();
+ const all=r.views.find(v=>v.name==='all-connected'),sel=r.views.find(v=>v.name==='your-selection');
+ const a=rowLabelLines(all);assert.equal(a.length,2);
+ const l1=a.find(x=>x.startsWith(`UIC ${U1}: `)),l2=a.find(x=>x.startsWith(`UIC ${U2}: `));
+ assert.ok(l1.includes('reported, public H-10 monthly volumes'),l1);assert.ok(l1.includes('partial history'),l1);assert.ok(l1.includes('distance 1,500 ft (assumed, typed)'),l1);
+ assert.ok(/incomplete: 1 gap month/.test(l2),l2);
+ assert.deepEqual(rowLabelLines(sel).map(x=>x.slice(0,14)),[`UIC ${U1}: `.slice(0,14)],'the excluded row reads EXCLUDED in its table and is not repeated');
+ const src=await readFile('web/transient-buildup.mjs','utf8');assert.ok(src.includes('rowLabelLines(v)'),'rendered under each view');
+});
+
+test('task 8: a real verified package (in-memory v4 helper, fictional UIC 000000417) loads, runs and verifies',async()=>{
+ const {buildV4Package,SYNTHETIC_UIC}=await import('./helpers/explorer-v4.mjs');
+ const {verifyExplorerPackage}=await import('../web/explorer-package.mjs');
+ const s=makeN();s.onCaseResult(CASE);fillTyped(s);
+ const out=s.loadPackage(await verifyExplorerPackage(await buildV4Package()));
+ assert.equal(out.error,undefined);assert.equal(out.package.uic,SYNTHETIC_UIC);
+ const o=nb(s).offsets[0];assert.equal(o.intervals.length,1);assert.match(o.intervals[0],/ ft, as reported; depth basis unknown$/);
+ s.setOffset(SYNTHETIC_UIC,'distanceFt',2500);s.setOffset(SYNTHETIC_UIC,'connected',true);if(o.needsZeros)s.setOffset(SYNTHETIC_UIC,'zerosAreShutIn',false);
+ assert.deepEqual(nb(s).messages,[]);
+ const r=await s.runInterference();assert.ok(r);
+ const row=r.views.find(v=>v.name==='your-selection').rows[0];
+ if(o.gapMonths.length){assert.equal(row.status,'incomplete');assert.equal(row.addedPsi,null,'unfilled gaps give no number, never 0');}
+ const sealed=structuredClone(s.snapshot().nearby);assert.match(sealed.contentSha256,/^[a-f0-9]{64}$/);
+ const j=await s.exportInterference('json',realVerify);assert.equal(j.cancelled,false);
+ const c=await s.exportInterference('csv',realVerify);
+ assert.ok(c.text.includes(`"interference-your-selection","${SYNTHETIC_UIC}","status"`));assert.ok(c.text.includes('"closing","interference","closing"'));
+});
+
+// ---- Task 8 fix round 1 ----
+test('fix 1: the panel export carries each package permitted interval as reported, or null',async()=>{
+ const s=makeN();nearbyReady(s);
+ const p=s.interferencePayload().packages;
+ assert.deepEqual(p.find(x=>x.uic===U1).permittedInterval,{permitted_top_depth_ft:4000,permitted_bottom_depth_ft:4500,label:'as reported; depth basis unknown'});
+ assert.equal(p.find(x=>x.uic===U2).permittedInterval,null);
+ await s.runInterference();
+ const j=JSON.parse((await s.exportInterference('json',realVerify)).text);
+ assert.equal(j.packages.find(x=>x.uic===U1).permittedInterval.permitted_bottom_depth_ft,4500);
+ const c=(await s.exportInterference('csv',realVerify)).text;
+ assert.ok(c.includes(`"packages","${U1}","permitted_interval p418","top 4,000 ft; bottom 4,500 ft; as reported; depth basis unknown"`));
+ assert.ok(c.includes(`"packages","${U2}","permitted_interval p419","unavailable"`));
+});
+test('fix M1: a refused package load does not cancel an in-flight screening run (cancel only after an accepted load)',async()=>{
+ const src=await readFile('web/transient-buildup.mjs','utf8');
+ assert.ok(src.includes("const out=session.loadPackage(v);if(out.error)errs.push(`${f.name}: ${out.error}`);else cancel('nearby');"),'cancel after success only');
+ assert.ok(!src.includes("cancel('nearby');const out=session.loadPackage(v)"));
+ // Session side: a refusal leaves a finished result in place.
+ const s=makeN();nearbyReady(s);await s.runInterference();
+ assert.match(s.loadPackage(V1).error,/already loaded/);assert.ok(nb(s).output,'refused load keeps the result');
+});
+test('fix M3: gap months to fill cover only months the core reads (through the ranking month, or the subject schedule end when later)',async()=>{
+ // UIC 000000421: window 2027-01..2028-06 with gaps in 2027-03, 2028-02 and 2028-05. Subject schedule 2028-01..2028-06 (fillTyped).
+ const V3=verified({id:'p421',uic:'000000421',start:'2027-01',end:'2028-06',vol:{'2027-03':'missing','2028-02':'missing','2028-05':'missing'}});
+ const s=makeN();s.onCaseResult(CASE);s.loadExample();s.setScheduleMonths('2028-01',2);for(const m of ['2028-01','2028-02'])s.setRate(m,4000);
+ s.loadPackage(V3);
+ const o=()=>nb(s).offsets[0];
+ // Default ranking month = window end 2028-06: every window gap is read.
+ assert.deepEqual(o().gapMonths,['2027-03','2028-02','2028-05']);
+ s.setRankingMonth('2027-12');assert.deepEqual(o().gapMonths,['2027-03','2028-02'],'through the subject schedule end (2028-02), later than the ranking month');
+ assert.equal(o().unfilled,2);
+ assert.throws(()=>s.setGapRate('000000421','2028-05',1),/not a gap month/);
+ s.setScheduleMonths('2028-01',1);s.setRate('2028-01',4000);assert.deepEqual(o().gapMonths,['2027-03'],'through the ranking month 2027-12');
+ // The panel's count matches the core: with the one remaining gap filled, the row has a number.
+ s.setGapRate('000000421','2027-03',0);assert.equal(o().unfilled,0);
+ const key=nearbyShapeKey(s.snapshot());s.setRankingMonth('2028-03');assert.notEqual(nearbyShapeKey(s.snapshot()),key,'a ranking month change rebuilds the gap list');
+ const src=await readFile('web/transient-buildup.mjs','utf8');
+ assert.ok(src.includes("rk.addEventListener('change',"),'the ranking month applies on change (not while typing)');
+});
