@@ -18,6 +18,12 @@ It is the analysis half of a two-part system. **[Texas RRC Explorer](https://git
 
 Results are screening calculations with their assumptions shown. They are not field calibration, permitting or regulatory determinations.
 
+## How it fits with Explorer
+
+![Architecture of Texas RRC Explorer and SWD Injection Analytics](docs/images/system-diagram.png)
+
+Explorer (top) collects official RRC files and saves each result as a dataset version pinned with SHA-256. Its **Use in Injection Analytics** button opens this app and posts the package by `postMessage`. Analytics (bottom) re-hashes every file, waits for the engineer to confirm the dataset, then runs the capacity, pressure-buildup and nearby-wells calculations and seals each export. The diagram’s source and an interactive version, in which every box links to its source lines, are in [texas-rail-sync/docs](https://github.com/thaiphi/texas-rail-sync/tree/main/docs) (`system-diagram.json` and `system-diagram.html`).
+
 ## Zoomcamp final project
 
 This repository is the analysis half of a joint AI Dev Tools Zoomcamp submission with [Texas RRC Explorer](https://github.com/thaiphi/texas-rail-sync). The submission README, tracker (ZC-01 to ZC-10) and system-wide Docker, CD and observability live there. The Analytics part, with a demo walkthrough, is summarised in [docs/zoomcamp-analytics.md](docs/zoomcamp-analytics.md).
