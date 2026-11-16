@@ -13,6 +13,8 @@ export const GAP_OUTSIDE_SURVEY='outside the survey range';
 export const GAP_HORIZONTAL='the survey is horizontal here; this TVD has more than one MD';
 export const GAP_BASIS_UNKNOWN='depth basis not stated';
 export const GAP_PRESSURE_BASIS='pressure basis not stated';
+export const GAP_NO_TRAVERSE='modelled traverse not available for this month';
+export const GAP_NO_PRESSURE='modelled pressure not available for this month';
 export const GAP_SHUT_IN='shut in this month; no modelled curve';
 export const DROPPED='dropped: well no longer in the case';
 export const LIMIT_LABEL='declared bottomhole maximum at the pressure datum (case input)';
@@ -29,7 +31,7 @@ export type Scenario='base'|'compared';
 export type CurveSource={wellId:string;well:DisposalWell;fluid:DisposalCase['inputs']['fluid'];hydraulics:DisposalCase['inputs']['hydraulics']|null;onstreamStbd:number;point:HydraulicPoint};
 type Basis='MD'|'TVD';
 type Station={mdFt:number;tvdFt:number};
-type Conversion=null|{from:Basis;stations:[Station,Station]};
+type Conversion=null|{from:Basis;stations:[Station,Station];topStations:[Station,Station]|null};
 export type Placement={status:'placed';topFt:number;bottomFt:number|null;conversion:Conversion;pressurePsia?:number}|{status:'gap';reason:string};
 export type CurveNode={mdFt:number;tvdFt:number;depthFt:number;pressurePsia:number};
 export type Curve={status:'drawn';model:'segmented'|'uniform';nodes:CurveNode[];flagged:boolean;reasons:string[];rateStbd:number;limitMarker:{depthFt:number;pressurePsia:number;label:string};notes:string[]}|{status:'gap';reason:string};
@@ -87,8 +89,8 @@ function convert(value:number,from:Basis,st:readonly Station[]):{value:number;st
 }
 
 /** Places one evidence row on the display basis, or gives the reason it cannot be placed.
- * A casing runs from its top (the depth reference when none is given) to its shoe. A recorded
- * conversion holds the stations that bracket the deepest converted value of the row. */
+ * A casing runs from its top (the depth reference when none is given) to its shoe. `stations` of a recorded conversion
+ * bracket the bottom (or the single converted depth); `topStations` bracket an explicitly converted top. */
 export function placeRow(row:ProfileRow,basis:Basis,wellRows:readonly ProfileRow[]):Placement {
   if(basis!=='MD'&&basis!=='TVD')throw Error(`Unknown depth basis "${String(basis)}"`);
   if(!wellRows.some(r=>r.wellId===row.wellId&&r.kind==='depth-reference'&&r.wellheadBelowReferenceFt!==null))return {status:'gap',reason:GAP_NO_REFERENCE};
@@ -96,7 +98,7 @@ export function placeRow(row:ProfileRow,basis:Basis,wellRows:readonly ProfileRow
   if(rb==='unknown')return {status:'gap',reason:GAP_BASIS_UNKNOWN};
   const implicitTop=row.kind==='casing'&&row.topFt===null;
   const top=implicitTop?0:row.topFt,bottom=row.bottomFt;
-  if(top===null&&bottom===null)return {status:'gap',reason:GAP_OUTSIDE_SURVEY};
+  if(top===null&&bottom===null)throw Error(`Row ${row.row} has no depth; the profile parser should have refused it`);
   let topFt:number,bottomFt:number|null,conversion:Conversion=null;
   if(rb===basis) {
     topFt=top??bottom!;bottomFt=top===null?null:bottom;
@@ -109,8 +111,8 @@ export function placeRow(row:ProfileRow,basis:Basis,wellRows:readonly ProfileRow
     if(typeof t==='string')return {status:'gap',reason:t};
     if(typeof b==='string')return {status:'gap',reason:b};
     topFt=t?t.value:b!.value;bottomFt=t&&b?b.value:null;
-    const stations=(b??t)?.stations??t?.stations??null;
-    if(stations)conversion={from:rb,stations};
+    const stations=b?.stations??t?.stations??null;
+    if(stations)conversion={from:rb,stations,topStations:t?.stations??null};
   }
   const p:Placement={status:'placed',topFt,bottomFt,conversion};
   if(row.kind==='test-point') {
@@ -129,11 +131,11 @@ function buildCurve(src:CurveSource,basis:Basis,offset:number|null):Curve {
   const notes:string[]=[CURVE_DEPTH_NOTE];
   let nodes:CurveNode[],model:'segmented'|'uniform';
   if(src.hydraulics!==null) {
-    if(!pt.traverse)return {status:'gap',reason:'modelled traverse not available for this month'};
+    if(!pt.traverse)return {status:'gap',reason:GAP_NO_TRAVERSE};
     model='segmented';
     nodes=pt.traverse.points.map(n=>({mdFt:n.measuredDepthFt+offset,tvdFt:n.tvdFt+offset,depthFt:depthOf(n.measuredDepthFt,n.tvdFt),pressurePsia:n.pressurePsia}));
   } else {
-    if(pt.requiredSurfacePsia===null||pt.bottomholePsia===null)return {status:'gap',reason:'modelled pressure not available for this month'};
+    if(pt.requiredSurfacePsia===null||pt.bottomholePsia===null)return {status:'gap',reason:GAP_NO_PRESSURE};
     model='uniform';notes.push(UNIFORM_NOTE);
     const w=src.well;
     nodes=[{mdFt:offset,tvdFt:offset,depthFt:offset,pressurePsia:pt.requiredSurfacePsia},

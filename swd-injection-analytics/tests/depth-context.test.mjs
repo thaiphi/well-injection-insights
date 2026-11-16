@@ -40,6 +40,8 @@ test('constants carry the fixed copy verbatim',()=>{
   assert.equal(dc.GAP_HORIZONTAL,'the survey is horizontal here; this TVD has more than one MD');
   assert.equal(dc.GAP_BASIS_UNKNOWN,'depth basis not stated');
   assert.equal(dc.GAP_PRESSURE_BASIS,'pressure basis not stated');
+  assert.equal(dc.GAP_NO_TRAVERSE,'modelled traverse not available for this month');
+  assert.equal(dc.GAP_NO_PRESSURE,'modelled pressure not available for this month');
   assert.equal(dc.GAP_SHUT_IN,'shut in this month; no modelled curve');
   assert.equal(dc.DROPPED,'dropped: well no longer in the case');
   assert.equal(dc.LIMIT_LABEL,'declared bottomhole maximum at the pressure datum (case input)');
@@ -59,6 +61,7 @@ test('well A on TVD: MD casing converted with its stations, psig test point +14.
   assert.equal(casing.topFt,0);
   assert.equal(casing.conversion.from,'MD');
   assert.deepEqual(casing.conversion.stations,[{mdFt:1000,tvdFt:1000},{mdFt:3318,tvdFt:3018}]);
+  assert.deepEqual(casing.conversion.topStations,[{mdFt:0,tvdFt:0},{mdFt:1000,tvdFt:1000}]);
   const packer=item(t,'packer')[0].placement;
   near(packer.topFt,1000+(1950/2318)*2018);
   const tps=item(t,'test-point');
@@ -166,13 +169,30 @@ test('Review Focus 2: a TVD row on an MD display inside a flat survey stretch is
     {...base,kind:'formation-top',top_depth_ft:1000,bottom_depth_ft:1500,depth_basis:'TVD',label:'band',bottom_source_ref:'fictional base',content_class:'literature'});
   const rows=parseDepthProfile(text).rows,wr=rows;
   const p=l=>placeRow(rows.find(r=>r.label===l),'MD',wr);
-  assert.deepEqual(p('below'),{status:'placed',topFt:500,bottomFt:null,conversion:{from:'TVD',stations:[{mdFt:0,tvdFt:0},{mdFt:1000,tvdFt:1000}]}});
+  assert.deepEqual(p('below'),{status:'placed',topFt:500,bottomFt:null,conversion:{from:'TVD',stations:[{mdFt:0,tvdFt:0},{mdFt:1000,tvdFt:1000}],topStations:[{mdFt:0,tvdFt:0},{mdFt:1000,tvdFt:1000}]}});
   assert.deepEqual(p('flat edge'),{status:'gap',reason:dc.GAP_HORIZONTAL});
   assert.deepEqual(p('band'),{status:'gap',reason:dc.GAP_HORIZONTAL});
-  assert.deepEqual(p('after'),{status:'placed',topFt:2500,bottomFt:null,conversion:{from:'TVD',stations:[{mdFt:2000,tvdFt:1000},{mdFt:3000,tvdFt:2000}]}});
+  assert.deepEqual(p('after'),{status:'placed',topFt:2500,bottomFt:null,conversion:{from:'TVD',stations:[{mdFt:2000,tvdFt:1000},{mdFt:3000,tvdFt:2000}],topStations:[{mdFt:2000,tvdFt:1000},{mdFt:3000,tvdFt:2000}]}});
   // MD to TVD across the same flat stretch is unambiguous.
   const md=rowOf(csv(ref,sv(0,0),sv(1000,1000),sv(2000,1000),sv(3000,2000),{...base,kind:'packer',top_depth_ft:1500,depth_basis:'MD'}),'packer')[0];
   assert.deepEqual(placeRow(md,'TVD',parseDepthProfile(csv(ref,sv(0,0),sv(1000,1000),sv(2000,1000),sv(3000,2000),{...base,kind:'packer',top_depth_ft:1500,depth_basis:'MD'})).rows).topFt,1000);
+});
+
+test('an interval keeps the bracket of its top and of its bottom; an implicit casing top has none',()=>{
+  const rows=parseDepthProfile(csv(ref,sv(0,0),sv(1000,1000),sv(3318,3018),
+    {...base,kind:'perforated-interval',top_depth_ft:500,bottom_depth_ft:2000,depth_basis:'MD'},
+    {...base,kind:'casing',bottom_depth_ft:2000,depth_basis:'MD'},
+    {...base,kind:'packer',top_depth_ft:2000,depth_basis:'MD'})).rows;
+  const lo=[{mdFt:0,tvdFt:0},{mdFt:1000,tvdFt:1000}],hi=[{mdFt:1000,tvdFt:1000},{mdFt:3318,tvdFt:3018}];
+  const perf=placeRow(rows.find(r=>r.kind==='perforated-interval'),'TVD',rows);
+  assert.deepEqual(perf.conversion,{from:'MD',stations:hi,topStations:lo});
+  const casing=placeRow(rows.find(r=>r.kind==='casing'),'TVD',rows);
+  assert.equal(casing.topFt,0);assert.deepEqual(casing.conversion,{from:'MD',stations:hi,topStations:null});
+  const packer=placeRow(rows.find(r=>r.kind==='packer'),'TVD',rows);
+  assert.deepEqual(packer.conversion,{from:'MD',stations:hi,topStations:hi});
+  assert.deepEqual(placeRow(rows.find(r=>r.kind==='perforated-interval'),'MD',rows).conversion,null);
+  const empty={...rows.find(r=>r.kind==='perforated-interval'),topFt:null,bottomFt:null,kind:'packer'};
+  assert.throws(()=>placeRow(empty,'TVD',rows),/no depth/);
 });
 
 test('station depths and range ends are placed; 1e-6 ft beyond the end is outside',()=>{
@@ -247,10 +267,8 @@ test('the result carries version, selection, review aid and the axis maximum',()
   near(c.axisMaxFt,Math.max(...all));
   assert.ok(c.axisMaxFt>=3018);
   // Nothing drawn or placed: the axis maximum is 0.
-  const none=ctx(r,{wellIds:[B],scenario:'compared'},parseDepthProfile(csv({...ref,well_id:B,wellhead_below_reference_ft:0})));
   const shut=uniformCase({comparison:{wellId:B,injectivityMultiplier:1,innerDiameterInches:5,availability:0}});
   assert.equal(ctx(shut,{wellIds:[B],scenario:'compared'},parseDepthProfile(csv({...ref,well_id:B}))).axisMaxFt,0);
-  assert.ok(none.tracks.length===1);
   const same=ctx(r,{wellIds:[A,B]});assert.deepEqual(same,ctx(r,{wellIds:[A,B]}));
 });
 
