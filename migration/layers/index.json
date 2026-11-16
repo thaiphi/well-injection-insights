@@ -40,6 +40,10 @@
     {
       "name": "phase-3c-history-linking",
       "baseline": "migration/layers/phase-3c-history-linking.json"
+    },
+    {
+      "name": "phase-3a-transient-and-interference",
+      "baseline": "migration/layers/phase-3a-transient-and-interference.json"
     }
   ]
 }

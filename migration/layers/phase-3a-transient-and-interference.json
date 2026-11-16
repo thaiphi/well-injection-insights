@@ -1,0 +1,136 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "phase-3a-transient-and-interference",
+  "status": "pending-review",
+  "purpose": "#7 (ANA-E06) transient single-well buildup and #8 (ANA-E07) interference screening on one shared, display-only calculator inside the disposal case",
+  "parentBaselineSha256": "6176e62d6f0d724dc12dd63e74ada4cabc4d9f58dd04cec2a5f4ff8e773142e3",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-11-10-e06-transient-buildup-design.md",
+      "sha256": "03f8f5cca9b535378a38d7beb76fee7f134e76e46fcde2e2af346638e178909f"
+    },
+    {
+      "path": "docs/superpowers/specs/2026-11-15-e07-interference-screening-design.md",
+      "sha256": "9e4de025c8786606c29c927fcd67368bc07cbb9f101ec08f6925535db4f61ddb"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-15-transient-and-interference.md",
+      "sha256": "7870bdd70055cf1e70e9fd55ba045aff2311cce0d8d8a61dbc5ba8a1d6381cf1"
+    }
+  ],
+  "changes": [
+    {
+      "path": "web/import-ui.mjs",
+      "archive": "migration/baselines/phase-3a-transient-and-interference-before/swd-injection-analytics/web/import-ui.mjs",
+      "beforeSha256": "f80d3838cb410304c7d877c2910c3eb5d40681cabba18e34d3a97dd8845bf0b6",
+      "beforeBytes": 70959,
+      "afterSha256": "768f6f83732241c7e305c650071f4b84ff3743ecd2f3d56c08c58f00bf613824",
+      "afterBytes": 71141
+    },
+    {
+      "path": "web/index.html",
+      "archive": "migration/baselines/phase-3a-transient-and-interference-before/swd-injection-analytics/web/index.html",
+      "beforeSha256": "0d9842fa8b6f3088962a48704f1b6aacbcff775a8628567fb2a122435ee48e21",
+      "beforeBytes": 41544,
+      "afterSha256": "069e725523180080fbfbac5e850bafee7fdb906d53e474c43ea58aa2036e2137",
+      "afterBytes": 41649
+    },
+    {
+      "path": "web/redesign.css",
+      "archive": "migration/baselines/phase-3a-transient-and-interference-before/swd-injection-analytics/web/redesign.css",
+      "beforeSha256": "c418429105d8a574f35246a6ac3bc47787963e7cf9ebea9e9a0e8cc3d43662d3",
+      "beforeBytes": 11942,
+      "afterSha256": "9d9d997622cd010696496afa8790fbee6a09b6518b414b464d87e60e2a11cc28",
+      "afterBytes": 11991
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/transientMath.ts",
+      "sha256": "30d7c836bc0f922888a0e036a846759bdb22f77d1b665a9b30e544ea1f98e040",
+      "bytes": 6611
+    },
+    {
+      "path": "src/transientModel.ts",
+      "sha256": "3e8794cb09f3022e9bff84554fe3d8a1ef976370dbb2e78d3111d0f805c8359f",
+      "bytes": 5757
+    },
+    {
+      "path": "src/transientCase.ts",
+      "sha256": "b7ec8d6b1beac877685b4587017ea2e711932a1462344725ff2df68f283bc430",
+      "bytes": 22884
+    },
+    {
+      "path": "src/offsetHistory.ts",
+      "sha256": "6b4a010b4ccf45de3b8489e78fd10e53811f760dee153a8fb751dc51faec62a6",
+      "bytes": 5570
+    },
+    {
+      "path": "src/interference.ts",
+      "sha256": "0f1efa3308a832f060ae7f96f1f3ab29bf6f543003d08b08973ee609a573a1f3",
+      "bytes": 25510
+    },
+    {
+      "path": "src/transientExport.ts",
+      "sha256": "3b4306ce2fceecc320a3017568de95fb608a438574317ead3ae275b8a2db3329",
+      "bytes": 15299
+    },
+    {
+      "path": "web/transient-buildup.mjs",
+      "sha256": "5027efd379dd7d8b3660e5f4f618a86df29a5af490dce6e4c4632ea748d1fbdc",
+      "bytes": 67793
+    },
+    {
+      "path": "web/transient-worker.mjs",
+      "sha256": "949321e26bc5c8411c2a3045f3c763a69624510d7f62e2e148e5ee9cf98ddd8f",
+      "bytes": 1802
+    },
+    {
+      "path": "tests/transient-math.test.mjs",
+      "sha256": "7cb49496983081010cfbeb1be47bc3a942353c8e72b48e77ee942be547c66e00",
+      "bytes": 8409
+    },
+    {
+      "path": "tests/transient-model.test.mjs",
+      "sha256": "b9da9cfe90a0afbe9cd29b4f28dcdee037d4719087bdb0e3d02df4b4b45fd40e",
+      "bytes": 11478
+    },
+    {
+      "path": "tests/helpers/radial-fd.mjs",
+      "sha256": "e0c1d6bf7e09966c531cca2937b10de9cbc66a27fdb2a1f06ca58e439122fa22",
+      "bytes": 2620
+    },
+    {
+      "path": "tests/transient-case.test.mjs",
+      "sha256": "2bb70933fb463d9f880c75ce8a592956941db7c0e292865b044b74520f244205",
+      "bytes": 27679
+    },
+    {
+      "path": "tests/offset-history.test.mjs",
+      "sha256": "fb82337d9e4e682584fd6386f15ba17b9e2b9323511be415fd1b5f31b65a2c1f",
+      "bytes": 10229
+    },
+    {
+      "path": "tests/interference.test.mjs",
+      "sha256": "b76549623f81d9de540b81fe0e38255c56bce7f46d16c08bf1217522bb954544",
+      "bytes": 36589
+    },
+    {
+      "path": "tests/transient-export.test.mjs",
+      "sha256": "5e75eac5dd29acfd34ba5b4c6447ff70331b25f9afa1d4335a505555c5176c40",
+      "bytes": 23139
+    },
+    {
+      "path": "tests/transient-session.test.mjs",
+      "sha256": "912f750306ffe21a516fc2a76835d7cf38731039a0704414f453a635b6e312d5",
+      "bytes": 51585
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "9a3eec88e6b2e4b88b054f45912ec61d65db2663e96ac834aeab9229371dad27",
+      "bytes": 1350
+    }
+  ]
+}
