@@ -1,0 +1,1253 @@
+{
+ "chrome": "Chrome/157.0.8103.39",
+ "viewport": [
+  1280,
+  900,
+  "0"
+ ],
+ "port": "4174",
+ "mode": "full",
+ "s0_noCase": {
+  "hidden": true,
+  "status": "Load or calculate a disposal case to choose a well"
+ },
+ "setup": [
+  "Confirmed Produced-water history: seed417-history.csv. Origin: user; content: synthetic; SHA-256 4ab5b0e115c5c25d37e414cbff3677464fcad3ab02f96d6e03635d913c0d776",
+  "Confirmed Producer schedule: schedule.csv. Origin: user; content: synthetic; SHA-256 40b5ad4400bf546f38b4937ca7c8ed9159333d469e1aa5ee11bd2a2357028654",
+  "Confirmed Constant-J injector: assumed-injectors.csv. Origin: user; content: synthetic; SHA-256 44996c0f7b91ae838b8bb0b5479e8e4adeee6b111a9cb8403628eaa4ad229fcc"
+ ],
+ "s1_afterCase": {
+  "hidden": false,
+  "status": "Complete the inputs listed below to calculate.",
+  "wells": [
+   "FICTIONAL-INJ-A",
+   "FICTIONAL-INJ-B"
+  ],
+  "well": "FICTIONAL-INJ-A",
+  "exampleNote": null,
+  "calcDisabled": true,
+  "errors": [
+   "Permeability k must be a number between 0.01 and 10,000 md",
+   "Thickness h must be a number between 1 and 5,000 ft",
+   "Porosity φ must be a number between 0.01 and 0.40",
+   "Formation compressibility c_f must be a number between 1e-7 and 1e-4 /psi",
+   "Wellbore radius r_w must be a number between 0.1 and 2 ft",
+   "Skin s must be a number between −5 and 50",
+   "Boundary must be no edge (infinite-acting) or a closed circle",
+   "Rate schedule must have 1–120 consecutive months"
+  ],
+  "rateRows": 0,
+  "nearbySetupShown": true,
+  "nearbySetupText": "Set up the subject well's buildup first",
+  "nearbyBodyHidden": true
+ },
+ "s1_copy": {
+  "well": "FICTIONAL-INJ-A",
+  "boundary": "closed",
+  "exampleNote": "fictional example — not typical values",
+  "originNote": "Forecast (copied from disposal case \"Disposal screening case\", 2026-11-16). The copy is one-way; changing a copied rate makes the schedule typed.",
+  "months": [
+   "2026-01",
+   "2026-02",
+   "2026-03",
+   "2026-04",
+   "2026-05",
+   "2026-06",
+   "2026-07",
+   "2026-08",
+   "2026-09",
+   "2026-10",
+   "2026-11",
+   "2026-12"
+  ],
+  "firstMonth": "2026-01",
+  "lastMonth": "2026-12",
+  "emptyRates": [],
+  "missingPlaceholders": 0,
+  "calcDisabled": false,
+  "errors": [],
+  "setup": {
+   "start": "2026-01",
+   "count": "12"
+  }
+ },
+ "s1_result": {
+  "status": "Calculated from assumed rock and the rate schedule. Editing any input withdraws the result.",
+  "errors": [],
+  "h4": [
+   "Bottomhole pressure (calculated)",
+   "Pressure against distance (rise above initial; excludes skin)",
+   "Average pressure rise (closed boundary; excludes skin)",
+   "Warnings",
+   "Assumptions"
+  ],
+  "paras": [
+   "FICTIONAL-INJ-A: initial 2,000 psia, limit 3,500 psia, datum Formation reference depth; all pressures bottomhole psia (from the case well). Pressures are psia, bottomhole-absolute.",
+   "First month at the limit: 2026-05",
+   "Bottomhole pressure at the end of the schedule (2026-12): 5,073 psia",
+   "of which skin: 82 psi",
+   "Fluid: c_w 2.822e-6 1/psi (brine model) · c_f 4.000e-6 1/psi (assumed) · c_t 6.822e-6 1/psi · viscosity 0.387 cP · Bw 1.0251 rb/STB · 180 °F · 5.0 wt% NaCl.",
+   "Average rise at month 2026-12: 2,651.6 psi (closed boundary)",
+   "You may type this as an assumed reservoir-pressure offset in Well-performance cases. It is not applied automatically. That offset applies to every well in the case, not only this one.",
+   "Labels: rock assumed · boundary assumed · schedule forecast (copied from disposal case, 2026-11-16) · pressures calculated.",
+   "Screening estimate from assumed rock and fluid properties; not a calibrated or permitted pressure."
+  ],
+  "svgs": 1,
+  "tables": [
+   {
+    "caption": "FICTIONAL-INJ-A: calculated monthly pressure; a blocked month shows why it is not shown",
+    "rows": 12
+   },
+   {
+    "caption": "2026-01: rise above initial; excludes skin",
+    "rows": 25
+   },
+   {
+    "caption": "2026-07: rise above initial; excludes skin",
+    "rows": 25
+   },
+   {
+    "caption": "2026-12: rise above initial; excludes skin",
+    "rows": 25
+   },
+   {
+    "caption": "Average rise above initial, material balance in the closed circle",
+    "rows": 12
+   }
+  ],
+  "monthlyRows": 12,
+  "blockedRows": 0,
+  "warnings": [
+   "Bottomhole pressure reaches the limit (3,500 psia) in 2026-05",
+   "boundary reached in 2026-01: the radius of investigation reaches the assumed boundary radius r_e (3,000 ft)"
+  ],
+  "downloads": [
+   [
+    "Download pressure buildup JSON",
+    false
+   ],
+   [
+    "Download pressure buildup CSV",
+    false
+   ]
+  ],
+  "checks": {
+   "limitLine": "First month at the limit: 2026-05",
+   "skinLine": "of which skin: 82 psi",
+   "profileTables": 3,
+   "avgRise": true,
+   "handoffLine": "Average rise at month 2026-12: 2,651.6 psi (closed boundary)",
+   "handoffNote": true,
+   "closing": true
+  }
+ },
+ "s6_transient": {
+  "json": {
+   "name": "swd-transient-buildup-c04146b28a14.json",
+   "chars": 478486,
+   "sha256": "d3742ca2e0438cffacea89381bf4aac9396ab017ee3d7f8f553e0219a677b51e",
+   "topKeys": [
+    "caseInputs",
+    "transient",
+    "interference",
+    "packages",
+    "schemaVersion",
+    "versions",
+    "contentSha256"
+   ],
+   "interference": "null",
+   "nodeVerify": {
+    "ok": true
+   },
+   "hasClosing7": true,
+   "hasClosing8": false
+  },
+  "csv": {
+   "name": "swd-transient-buildup-c04146b28a14.csv",
+   "chars": 14777,
+   "sha256": "9536375d68aa9b731a8677b82d73634b4c77312b0a58aab54139edb77724b422",
+   "lines": 184,
+   "fieldCountsPerLine": [
+    4
+   ],
+   "allFour": true,
+   "hasClosing7": true,
+   "hasClosing8": false,
+   "lastLines": [
+    "metadata | export | version transientMath | transient-math/1",
+    "metadata | export | version disposalCase | constant-j-uniform-brine-darcy-weisbach/1",
+    "metadata | export | contentSha256 | c04146b28a1411d29735c69c43e69ca2446808192f5e9a47a73b72bf7e8c5a0a"
+   ]
+  }
+ },
+ "s3_editWithdraws": {
+  "typingTrail": [
+   {
+    "key": "rate.2026-02",
+    "value": "1"
+   },
+   {
+    "key": "rate.2026-02",
+    "value": "12"
+   },
+   {
+    "key": "rate.2026-02",
+    "value": "123"
+   },
+   {
+    "key": "rate.2026-02",
+    "value": "1234"
+   }
+  ],
+  "focusKept": true,
+  "finalValue": "1234",
+  "resultsAfterEdit": 0,
+  "downloadsAfterEdit": [
+   [
+    "Download pressure buildup JSON",
+    true
+   ],
+   [
+    "Download pressure buildup CSV",
+    true
+   ]
+  ],
+  "status": "Ready to calculate.",
+  "originNote": "Synthetic/assumed (typed). Empty months must be typed; nothing defaults to 0."
+ },
+ "s3_M1": {
+  "typingKTrail": [
+   {
+    "key": "rock.k",
+    "value": "5"
+   },
+   {
+    "key": "rock.k",
+    "value": "50"
+   },
+   {
+    "key": "rock.k",
+    "value": "50"
+   },
+   {
+    "key": "rock.k",
+    "value": "50.5"
+   }
+  ],
+  "kFocusKept": true,
+  "statusAtClick": "Calculating the pressure buildup…",
+  "errorsRightAfterRefusedSetup": [
+   "Number of months must be a whole number from 1 to 120"
+  ],
+  "finalStatus": "Calculated from assumed rock and the rate schedule. Editing any input withdraws the result.",
+  "finalErrors": [
+   "Number of months must be a whole number from 1 to 120"
+  ],
+  "resultShown": true,
+  "replacedError": false
+ },
+ "s4_loaded": {
+  "packages": [
+   "UIC 000000417 · 2024-01 to 2026-04 · <artifactId>",
+   "UIC 000000418 · 2024-01 to 2026-04 · <artifactId>"
+  ],
+  "loadError": "",
+  "fieldsets": [
+   "UIC 000000417",
+   "UIC 000000418"
+  ],
+  "radios": [
+   "n.000000417.connected.true",
+   "n.000000417.connected.false",
+   "n.000000418.connected.true",
+   "n.000000418.connected.false",
+   "n.000000418.zeros.true",
+   "n.000000418.zeros.false"
+  ],
+  "radiosChecked": [],
+  "afterSelects": [
+   [
+    "n.000000417.after",
+    "",
+    "Choose… (no default)"
+   ],
+   [
+    "n.000000418.after",
+    "",
+    "Choose… (no default)"
+   ]
+  ],
+  "evidence": [
+   [
+    "Window: 2024-01 to 2026-04 (16 reported, 0 reported zero, 12 with no H-10 row)",
+    "Permitted interval: 3,028–3,118 ft, as reported; depth basis unknown",
+    "Distance: not typed"
+   ],
+   [
+    "Window: 2024-01 to 2026-04 (15 reported, 1 reported zero, 12 with no H-10 row)",
+    "Permitted interval: 3,028–3,118 ft, as reported; depth basis unknown",
+    "Distance: not typed"
+   ]
+  ],
+  "gapInputs": {
+   "000000417": 12,
+   "000000418": 13
+  },
+  "notes": [
+   "Ranking month used: 2026-04 (default: the last month covered by every loaded package)",
+   "12 of 12 gap months to fill (an unfilled month leaves this well incomplete, with no number)",
+   "13 of 13 gap months to fill (an unfilled month leaves this well incomplete, with no number)"
+  ],
+  "runDisabled": true,
+  "errors": [
+   "UIC 000000417: choose connected or not connected (there is no default)",
+   "UIC 000000417: type the distance (ft, assumed)",
+   "UIC 000000418: choose connected or not connected (there is no default)",
+   "UIC 000000418: type the distance (ft, assumed)",
+   "UIC 000000418: answer whether reported zero months are treated as shut in (there is no default)"
+  ]
+ },
+ "s4_refusedBeforeConnected": {
+  "distanceTrail": [
+   "n.000000417.distanceFt",
+   "n.000000417.distanceFt",
+   "n.000000417.distanceFt",
+   "n.000000417.distanceFt"
+  ],
+  "focusKept": true,
+  "runDisabled": true,
+  "errors": [
+   "UIC 000000417: choose connected or not connected (there is no default)",
+   "UIC 000000418: choose connected or not connected (there is no default)",
+   "UIC 000000418: answer whether reported zero months are treated as shut in (there is no default)"
+  ],
+  "evidence": [
+   [
+    "Window: 2024-01 to 2026-04 (16 reported, 0 reported zero, 12 with no H-10 row)",
+    "Permitted interval: 3,028–3,118 ft, as reported; depth basis unknown",
+    "Distance: 1,000 ft (assumed), typed"
+   ],
+   [
+    "Window: 2024-01 to 2026-04 (15 reported, 1 reported zero, 12 with no H-10 row)",
+    "Permitted interval: 3,028–3,118 ft, as reported; depth basis unknown",
+    "Distance: 3,000 ft (assumed), typed"
+   ]
+  ]
+ },
+ "s4_incomplete": {
+  "radiosChecked": [
+   "n.000000417.connected.true",
+   "n.000000418.connected.false",
+   "n.000000418.zeros.true"
+  ],
+  "gapInputsAfterZeros": {
+   "000000417": 12,
+   "000000418": 12
+  },
+  "notes": [
+   "Ranking month used: 2026-04 (default: the last month covered by every loaded package)",
+   "12 of 12 gap months to fill (an unfilled month leaves this well incomplete, with no number)",
+   "12 of 12 gap months to fill (an unfilled month leaves this well incomplete, with no number)"
+  ],
+  "errorsBeforeRun": [],
+  "runDisabledBeforeRun": false,
+  "status": "Screening calculated from assumed rock, typed distances and your choices. Changing any input withdraws it.",
+  "errors": [],
+  "views": [
+   {
+    "title": "All offsets counted as connected (assumed): incomplete",
+    "rows": [
+     [
+      "000000417",
+      "incomplete: 12 gap months without a typed rate",
+      "no number",
+      "—",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "incomplete: 12 gap months without a typed rate",
+      "no number",
+      "—",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: incomplete: no total while a counted offset has no number"
+    ],
+    "rowLabels": [
+     "UIC 000000417: connected (assumed); distance 1,000 ft (assumed, typed); reported, public H-10 monthly volumes; incomplete: 12 gap months without a typed rate",
+     "UIC 000000418: connected (assumed); distance 3,000 ft (assumed, typed); reported, public H-10 monthly volumes; incomplete: 12 gap months without a typed rate"
+    ]
+   },
+   {
+    "title": "Your selection (connected as you chose): incomplete",
+    "rows": [
+     [
+      "000000417",
+      "incomplete: 12 gap months without a typed rate",
+      "no number",
+      "—",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "excluded by assumption",
+      "excluded by assumption",
+      "—",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: incomplete: no total while a counted offset has no number"
+    ],
+    "rowLabels": [
+     "UIC 000000417: connected (assumed); distance 1,000 ft (assumed, typed); reported, public H-10 monthly volumes; incomplete: 12 gap months without a typed rate"
+    ]
+   },
+   {
+    "title": "No offsets (the subject well alone): complete",
+    "rows": [
+     [
+      "000000417",
+      "excluded by assumption",
+      "excluded by assumption",
+      "—",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "excluded by assumption",
+      "excluded by assumption",
+      "—",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: no offsets counted"
+    ],
+    "rowLabels": []
+   }
+  ],
+  "labels": [
+   "screening ranking under the stated assumptions; not a pressure forecast",
+   "rise above undisturbed pressure (calculated); no absolute pressure, limit line or limit month without a pressure-as-of month"
+  ],
+  "warnings": [
+   "interference uses the no-edge assumption"
+  ],
+  "downloads": [
+   [
+    "Download interference JSON",
+    false
+   ],
+   [
+    "Download interference CSV",
+    false
+   ]
+  ]
+ },
+ "s4_complete": {
+  "notes": [
+   "Ranking month used: 2026-04 (default: the last month covered by every loaded package)",
+   "0 of 12 gap months to fill (an unfilled month leaves this well incomplete, with no number)",
+   "0 of 12 gap months to fill (an unfilled month leaves this well incomplete, with no number)"
+  ],
+  "errorsBeforeRun": [],
+  "status": "Screening calculated from assumed rock, typed distances and your choices. Changing any input withdraws it.",
+  "errors": [],
+  "h4": [
+   "Interference screening (calculated)",
+   "Warnings",
+   "Assumptions"
+  ],
+  "labels": [
+   "screening ranking under the stated assumptions; not a pressure forecast",
+   "rise above undisturbed pressure (calculated); no absolute pressure, limit line or limit month without a pressure-as-of month"
+  ],
+  "paras": [
+   "screening ranking under the stated assumptions; not a pressure forecast",
+   "Ranking month: 2026-04",
+   "Screening ranking from assumed reservoir properties and typed distances; closeness is not connectivity."
+  ],
+  "views": [
+   {
+    "title": "All offsets counted as connected (assumed): complete",
+    "rect": [
+     251,
+     2007,
+     313
+    ],
+    "rows": [
+     [
+      "000000417",
+      "partial history (lower bound)",
+      "14.6",
+      "60.1%",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "partial history (lower bound)",
+      "9.7",
+      "39.9%",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: 24.3 psi (calculated)"
+    ],
+    "removal": [],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)"
+    ]
+   },
+   {
+    "title": "Your selection (connected as you chose): complete",
+    "rect": [
+     580,
+     2007,
+     313
+    ],
+    "rows": [
+     [
+      "000000417",
+      "partial history (lower bound)",
+      "14.6",
+      "60.1%",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "partial history (lower bound)",
+      "9.7",
+      "39.9%",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: 24.3 psi (calculated)"
+    ],
+    "removal": [],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)"
+    ]
+   },
+   {
+    "title": "No offsets (the subject well alone): complete",
+    "rect": [
+     909,
+     2007,
+     313
+    ],
+    "rows": [
+     [
+      "000000417",
+      "excluded by assumption",
+      "excluded by assumption",
+      "—",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "excluded by assumption",
+      "excluded by assumption",
+      "—",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: no offsets counted"
+    ],
+    "removal": [],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)"
+    ]
+   }
+  ],
+  "threeViewsWithTables": true,
+  "warnings": [
+   "interference uses the no-edge assumption"
+  ],
+  "closing": "Screening ranking from assumed reservoir properties and typed distances; closeness is not connectivity.",
+  "closingOk": true,
+  "downloads": [
+   [
+    "Download interference JSON",
+    false
+   ],
+   [
+    "Download interference CSV",
+    false
+   ]
+  ],
+  "scroll": {
+   "innerWidth": 1280,
+   "scrollW": 1265,
+   "clientW": 1265,
+   "pageHScroll": false
+  }
+ },
+ "s4_mixed": {
+  "radiosChecked": [
+   "n.000000417.connected.true",
+   "n.000000418.connected.false",
+   "n.000000418.zeros.true"
+  ],
+  "status": "Screening calculated from assumed rock, typed distances and your choices. Changing any input withdraws it.",
+  "errors": [],
+  "views": [
+   {
+    "title": "All offsets counted as connected (assumed): complete",
+    "rows": [
+     [
+      "000000417",
+      "partial history (lower bound)",
+      "14.6",
+      "60.1%",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "partial history (lower bound)",
+      "9.7",
+      "39.9%",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: 24.3 psi (calculated)"
+    ],
+    "rowLabels": [
+     "UIC 000000417: connected (assumed); distance 1,000 ft (assumed, typed); reported, public H-10 monthly volumes; assumed, typed rates for gap months; added rise above undisturbed pressure (calculated); partial history: injection before the window start not included; the shown rise is a lower bound",
+     "UIC 000000418: connected (assumed); distance 3,000 ft (assumed, typed); reported, public H-10 monthly volumes; assumed, typed rates for gap months; added rise above undisturbed pressure (calculated); partial history: injection before the window start not included; the shown rise is a lower bound"
+    ]
+   },
+   {
+    "title": "Your selection (connected as you chose): complete",
+    "rows": [
+     [
+      "000000417",
+      "partial history (lower bound)",
+      "14.6",
+      "100.0%",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "excluded by assumption",
+      "excluded by assumption",
+      "—",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: 14.6 psi (calculated)"
+    ],
+    "rowLabels": [
+     "UIC 000000417: connected (assumed); distance 1,000 ft (assumed, typed); reported, public H-10 monthly volumes; assumed, typed rates for gap months; added rise above undisturbed pressure (calculated); partial history: injection before the window start not included; the shown rise is a lower bound"
+    ]
+   },
+   {
+    "title": "No offsets (the subject well alone): complete",
+    "rows": [
+     [
+      "000000417",
+      "excluded by assumption",
+      "excluded by assumption",
+      "—",
+      "1,000 ft (assumed)"
+     ],
+     [
+      "000000418",
+      "excluded by assumption",
+      "excluded by assumption",
+      "—",
+      "3,000 ft (assumed)"
+     ]
+    ],
+    "paras": [
+     "Total added at the subject well: no offsets counted"
+    ],
+    "rowLabels": []
+   }
+  ],
+  "threeViewsWithTables": true
+ },
+ "s5_withTrefNoAfterChoice": {
+  "status": "Screening calculated from assumed rock, typed distances and your choices. Changing any input withdraws it.",
+  "errors": [],
+  "views": [
+   {
+    "title": "All offsets counted as connected (assumed): complete",
+    "limit": "First month at the limit: limit month not determined: UIC 000000417 has no complete schedule through 2026-12 (no choice for after last report (2026-04))",
+    "removal": [
+     "Without UIC 000000417: no limit month found within the schedule",
+     "Without UIC 000000418: no limit month found within the schedule"
+    ]
+   },
+   {
+    "title": "Your selection (connected as you chose): complete",
+    "limit": "First month at the limit: limit month not determined: UIC 000000417 has no complete schedule through 2026-12 (no choice for after last report (2026-04))",
+    "removal": [
+     "Without UIC 000000417: no limit month found within the schedule",
+     "Without UIC 000000418: no limit month found within the schedule"
+    ]
+   },
+   {
+    "title": "No offsets (the subject well alone): complete",
+    "limit": "First month at the limit: 2026-05",
+    "removal": []
+   }
+  ],
+  "warnings": [
+   "interference uses the no-edge assumption",
+   "UICs 000000417 and 000000418: order not distinguishable (their added-psi ranges overlap under the sensitivity values)",
+   "all-connected: limit month not determined: UIC 000000417 has no complete schedule through 2026-12 (no choice for after last report (2026-04))",
+   "your-selection: limit month not determined: UIC 000000417 has no complete schedule through 2026-12 (no choice for after last report (2026-04))"
+  ]
+ },
+ "s5_withTref": {
+  "afterSelects": [
+   [
+    "n.000000417.after",
+    "shut-in",
+    "Shut in after last report"
+   ],
+   [
+    "n.000000418.after",
+    "shut-in",
+    "Shut in after last report"
+   ]
+  ],
+  "rows": [
+   [
+    [
+     "000000417",
+     "partial history (direction unknown)",
+     "0.9",
+     "50.2%",
+     "1,000 ft (assumed)"
+    ],
+    [
+     "000000418",
+     "partial history (direction unknown)",
+     "0.9",
+     "49.8%",
+     "3,000 ft (assumed)"
+    ]
+   ],
+   [
+    [
+     "000000417",
+     "partial history (direction unknown)",
+     "0.9",
+     "50.2%",
+     "1,000 ft (assumed)"
+    ],
+    [
+     "000000418",
+     "partial history (direction unknown)",
+     "0.9",
+     "49.8%",
+     "3,000 ft (assumed)"
+    ]
+   ],
+   [
+    [
+     "000000417",
+     "excluded by assumption",
+     "excluded by assumption",
+     "—",
+     "1,000 ft (assumed)"
+    ],
+    [
+     "000000418",
+     "excluded by assumption",
+     "excluded by assumption",
+     "—",
+     "3,000 ft (assumed)"
+    ]
+   ]
+  ],
+  "tref": "2025-12",
+  "errorsBeforeRun": [],
+  "status": "Screening calculated from assumed rock, typed distances and your choices. Changing any input withdraws it.",
+  "errors": [],
+  "paras": [
+   "screening ranking under the stated assumptions; not a pressure forecast",
+   "Ranking month: 2026-04 · pressure as of 2025-12 (assumed)",
+   "Screening ranking from assumed reservoir properties and typed distances; closeness is not connectivity."
+  ],
+  "labels": [
+   "screening ranking under the stated assumptions; not a pressure forecast",
+   "added pressure since the end of 2025-12 (calculated); absolute pressures psia bottomhole-absolute at the subject's declared datum",
+   "pressure as of 2025-12 (assumed)",
+   "limit month with each offset removed: one at a time; not additive"
+  ],
+  "views": [
+   {
+    "title": "All offsets counted as connected (assumed): complete",
+    "limit": "First month at the limit: 2026-05",
+    "removal": [
+     "Without UIC 000000417: 2026-05",
+     "Without UIC 000000418: 2026-05"
+    ],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)",
+     "Bottomhole (psia, calculated)"
+    ],
+    "total": "Total added at the subject well: 1.7 psi (calculated)"
+   },
+   {
+    "title": "Your selection (connected as you chose): complete",
+    "limit": "First month at the limit: 2026-05",
+    "removal": [
+     "Without UIC 000000417: 2026-05",
+     "Without UIC 000000418: 2026-05"
+    ],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)",
+     "Bottomhole (psia, calculated)"
+    ],
+    "total": "Total added at the subject well: 1.7 psi (calculated)"
+   },
+   {
+    "title": "No offsets (the subject well alone): complete",
+    "limit": "First month at the limit: 2026-05",
+    "removal": [],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)",
+     "Bottomhole (psia, calculated)"
+    ],
+    "total": "Total added at the subject well: no offsets counted"
+   }
+  ],
+  "sensitivity": [
+   [
+    "k (md)",
+    "rank unchanged",
+    "0.4 to 1.7",
+    "0.4 to 1.7"
+   ],
+   [
+    "distance, UIC 000000417 (ft)",
+    "rank unchanged",
+    "0.9 to 0.9",
+    "0.9 to 0.9"
+   ]
+  ],
+  "indistinguishable": [
+   "Interference screening (calculated)",
+   "Sensitivity (one at a time)",
+   "Warnings",
+   "Assumptions"
+  ],
+  "warnings": [
+   "interference uses the no-edge assumption",
+   "UICs 000000417 and 000000418: order not distinguishable (their added-psi ranges overlap under the sensitivity values)"
+  ],
+  "downloads": [
+   [
+    "Download interference JSON",
+    false
+   ],
+   [
+    "Download interference CSV",
+    false
+   ]
+  ]
+ },
+ "s6_interference": {
+  "json": {
+   "name": "swd-interference-screening-c04be786705a.json",
+   "chars": 502460,
+   "sha256": "4c87c49deaf7ffbec2255ae11c1cf7ddf9847197887576135e65ccd21cb6acf6",
+   "topKeys": [
+    "caseInputs",
+    "transient",
+    "interference",
+    "packages",
+    "schemaVersion",
+    "versions",
+    "contentSha256"
+   ],
+   "interference": "present",
+   "nodeVerify": {
+    "ok": true
+   },
+   "hasClosing7": true,
+   "hasClosing8": true
+  },
+  "csv": {
+   "name": "swd-interference-screening-c04be786705a.csv",
+   "chars": 32372,
+   "sha256": "4b9c26f486b70abd40d484c0d0f1a5a5b7523e4fd0ebe98cebfe94c446741287",
+   "lines": 408,
+   "fieldCountsPerLine": [
+    4
+   ],
+   "allFour": true,
+   "hasClosing7": true,
+   "hasClosing8": true,
+   "lastLines": [
+    "metadata | export | version offsetHistory | offset-history/1",
+    "metadata | export | version historyPackages | history-packages/1",
+    "metadata | export | contentSha256 | c04be786705a871c65b9f923d40610b574b231ae441bf9e56af4c327130f4c1f"
+   ]
+  }
+ },
+ "s5_wrongTref": {
+  "runDisabled": false,
+  "errorsBefore": [],
+  "errorsAfterRun": [
+   "The subject's rate schedule must start the month after the pressure-as-of month t_ref (2026-01): expected 2026-02, got 2026-01"
+  ],
+  "status": "Ready to run.",
+  "hasResults": 0
+ },
+ "s5_withoutTref": {
+  "status": "Screening calculated from assumed rock, typed distances and your choices. Changing any input withdraws it.",
+  "labels": [
+   "screening ranking under the stated assumptions; not a pressure forecast",
+   "rise above undisturbed pressure (calculated); no absolute pressure, limit line or limit month without a pressure-as-of month"
+  ],
+  "paras": [
+   "screening ranking under the stated assumptions; not a pressure forecast",
+   "Ranking month: 2026-04",
+   "Screening ranking from assumed reservoir properties and typed distances; closeness is not connectivity."
+  ],
+  "views": [
+   {
+    "title": "All offsets counted as connected (assumed): complete",
+    "limit": null,
+    "removal": [],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)"
+    ]
+   },
+   {
+    "title": "Your selection (connected as you chose): complete",
+    "limit": null,
+    "removal": [],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)"
+    ]
+   },
+   {
+    "title": "No offsets (the subject well alone): complete",
+    "limit": null,
+    "removal": [],
+    "monthlyHeaders": [
+     "Month",
+     "Own rise (psi, calculated)",
+     "Offsets added (psi, calculated)"
+    ]
+   }
+  ],
+  "noLimit": true,
+  "noRemoval": true,
+  "noBottomhole": true,
+  "absoluteValuesText": 0
+ },
+ "s3_nearbyWithdrawal": {
+  "afterOffsetEdit": {
+   "nearbyViews": 0,
+   "nearbyDownloads": [
+    [
+     "Download interference JSON",
+     true
+    ],
+    [
+     "Download interference CSV",
+     true
+    ]
+   ],
+   "buildupResult": true
+  },
+  "afterSubjectEdit": {
+   "nearbyViews": 0,
+   "nearbyDownloads": [
+    [
+     "Download interference JSON",
+     true
+    ],
+    [
+     "Download interference CSV",
+     true
+    ]
+   ],
+   "buildupResult": 0,
+   "buildupDownloads": [
+    [
+     "Download pressure buildup JSON",
+     true
+    ],
+    [
+     "Download pressure buildup CSV",
+     true
+    ]
+   ]
+  }
+ },
+ "s9_afterNearby": {
+  "innerWidth": 1280,
+  "scrollW": 1265,
+  "clientW": 1265,
+  "pageHScroll": false
+ },
+ "s2_lowK": {
+  "status": "Calculated from assumed rock and the rate schedule. Editing any input withdraws the result.",
+  "errors": [],
+  "h4": [
+   "Bottomhole pressure (calculated)",
+   "Pressure against distance (rise above initial; excludes skin)",
+   "Warnings",
+   "Assumptions"
+  ],
+  "paras": [
+   "FICTIONAL-INJ-A: initial 2,000 psia, limit 3,500 psia, datum Formation reference depth; all pressures bottomhole psia (from the case well). Pressures are psia, bottomhole-absolute.",
+   "First month at the limit: not determined: 2026-01: the step is too short for this model (wellbore storage and early-time effects are not modelled)",
+   "End of the schedule (2026-12): the step is too short for this model (wellbore storage and early-time effects are not modelled)",
+   "Fluid: c_w 2.822e-6 1/psi (brine model) · c_f 1.000e-4 1/psi (assumed) · c_t 1.028e-4 1/psi · viscosity 0.387 cP · Bw 1.0251 rb/STB · 180 °F · 5.0 wt% NaCl.",
+   "2026-01: the step is too short for this model (wellbore storage and early-time effects are not modelled)",
+   "2026-07: the step is too short for this model (wellbore storage and early-time effects are not modelled)",
+   "2026-12: the step is too short for this model (wellbore storage and early-time effects are not modelled)",
+   "Average pressure rise: not shown (2026-01: the step is too short for this model (wellbore storage and early-time effects are not modelled))",
+   "Labels: rock assumed · boundary assumed · schedule synthetic/assumed · pressures calculated.",
+   "Screening estimate from assumed rock and fluid properties; not a calibrated or permitted pressure."
+  ],
+  "tables": [
+   {
+    "caption": "FICTIONAL-INJ-A: calculated monthly pressure; a blocked month shows why it is not shown",
+    "rows": 12
+   }
+  ],
+  "monthlyRows": 12,
+  "blockedRows": 12,
+  "blockedTexts": [
+   "the step is too short for this model (wellbore storage and early-time effects are not modelled)"
+  ],
+  "blockedCellCounts": [
+   2
+  ],
+  "numbersInBlockedCells": [
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false",
+   "2:false"
+  ],
+  "warnings": [
+   "2026-01: the step is too short for this model (wellbore storage and early-time effects are not modelled); results from this month on are not shown"
+  ],
+  "svgPoints": 0,
+  "checks": {
+   "guardExact": true,
+   "limitLine": "First month at the limit: not determined: 2026-01: the step is too short for this model (wellbore storage and early-time effects are not modelled)",
+   "limitNotDetermined": true,
+   "neverNotReached": true,
+   "avgNotShown": "Average pressure rise: not shown (2026-01: the step is too short for this model (wellbore storage and early-time effects are not modelled))",
+   "noAvgTable": true,
+   "endLine": "End of the schedule (2026-12): the step is too short for this model (wellbore storage and early-time effects are not modelled)"
+  }
+ },
+ "s1b_missingMonth": {
+  "wells": [
+   "FICTIONAL-GAP-A",
+   "FICTIONAL-GAP-B"
+  ],
+  "months": [
+   [
+    "2028-01",
+    "1290.3225806451612",
+    ""
+   ],
+   [
+    "2028-02",
+    "2068.9655172413795",
+    ""
+   ],
+   [
+    "2028-03",
+    "",
+    "required"
+   ],
+   [
+    "2028-04",
+    "666.6666666666666",
+    ""
+   ]
+  ],
+  "missingLabel": "Rate for 2028-03 (not in the disposal case: enter a rate (0 = shut in))",
+  "calcDisabledWhileMissing": true,
+  "errorsWhileMissing": [
+   "Rate for 2028-03 is not entered (not in the disposal case: enter a rate (0 = shut in))"
+  ],
+  "afterFill": {
+   "calcDisabled": false,
+   "errors": [],
+   "trail": [
+    {
+     "key": "rate.2028-03",
+     "value": "0"
+    }
+   ]
+  },
+  "result": {
+   "status": "Calculated from assumed rock and the rate schedule. Editing any input withdraws the result.",
+   "limit": "First month at the limit: not reached within the schedule",
+   "monthlyRows": 4
+  }
+ },
+ "s3_M1_refusedCopy": {
+  "statusAtClick": "Calculating the pressure buildup…",
+  "errorsRightAfterRefusedCopy": [
+   "Well FICTIONAL-GAP-B has no Base forecast months to copy"
+  ],
+  "finalStatus": "Calculated from assumed rock and the rate schedule. Editing any input withdraws the result.",
+  "finalErrors": [
+   "Well FICTIONAL-GAP-B has no Base forecast months to copy"
+  ],
+  "resultShown": true,
+  "replacedError": false,
+  "limit": "First month at the limit: not reached within the schedule"
+ },
+ "s7_e05e10": {
+  "status": "# summary lines from the calculated case. Screening estimate from assumed inputs.",
+  "summaryLineCount": 8,
+  "summaryLinesSha256": [
+   "8788459b19659f1e5e01a2af9ffbd59fec29e4016c5b3fa0562dc516c5a20799",
+   "052d375755337d3e7e76374da1101f4fde16c8849773fd2a300e3014f7b3a5d3",
+   "ee067122f640a7d5bf1b2dea171b43e8986a7c58e0d4745710e8734bc9ab9143",
+   "7a5985c06af89754bc170f44e811638e5fe41aad82791f7e7bd920df83512f4c",
+   "dbc4d89c49e374d8a247241936ad3ba12592ef5c5567af4d7b29cf73f2f44dd8",
+   "414fd9f9c2c34d947bfda873edd37007be468010701408c733833a59eae1252d",
+   "b80585dbe0630a614878234ba70b98fe1e319dea0ec5c7beef9e7bd389e49e90",
+   "1400ed9e1c3859665dfcd29950b10c5b12745fbf035794fcc5923adfb02b5fff"
+  ],
+  "summaryLinesRedacted": [
+   "Unplaced water starts in #: # bbl over # months.",
+   "UIC-# is limited by its bottomhole limit; UIC-# is limited by its bottomhole limit.",
+   "No unsupported allocated pressures in the base case.",
+   "Least spare capacity: # shortfall of # bbl.",
+   "The compared case (UIC-#: J × # ID # in, availability #) keeps the first shortfall at # and changes unplaced water by # bbl.",
+   "UIC-#: #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. Pressure not checked: confirm this well's H-# pressure basis (psig or psia).",
+   "UIC-#: #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. Pressure not checked: confirm this well's H-# pressure basis (psig or psia).",
+   "Screening estimate from assumed inputs; not proven field capacity."
+  ],
+  "wellsComparedRowsSha256": [
+   "0b5bbc02408816d47f161481ca223d5874e754ad0d1cce16dcd0e1e770f63a79",
+   "f2d4d5b6fb8e105b186cc63aeab21eb7f4e44b8f7a01b3422c7d7ef1085029c9"
+  ],
+  "wellsComparedRowsRedacted": [
+   "UIC-# | # | # to # · # months with reported injection · # reported zero · window from reported rowsNo gap months in the window. | #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. | Pressure not checked: confirm this well's H-# pressure basis (psig or psia). | Synthetic: you'd gather | Above reported history",
+   "UIC-# | # | # to # · # months with reported injection · # reported zero · window from reported rowsNo gap months in the window. | #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. | Pressure not checked: confirm this well's H-# pressure basis (psig or psia). | Synthetic: you'd gather | Above reported history"
+  ]
+ },
+ "s7_panel": {
+  "hidden": false,
+  "wellCount": 2,
+  "wellsRedacted": [
+   "UIC-#",
+   "UIC-#"
+  ],
+  "copiedMonths": 12,
+  "emptyAfterCopy": 0,
+  "calcDisabled": false,
+  "errors": [],
+  "status": "Calculated from assumed rock and the rate schedule. Editing any input withdraws the result.",
+  "resultH4": [
+   "Bottomhole pressure (calculated)",
+   "Average pressure rise (closed boundary; excludes skin)",
+   "Warnings",
+   "Assumptions"
+  ],
+  "limitRedacted": "First month at the limit: #",
+  "monthlyRows": 12,
+  "blockedRows": 0,
+  "closing": true
+ },
+ "s7_e05e10_afterPanel": {
+  "status": "# summary lines from the calculated case. Screening estimate from assumed inputs.",
+  "summaryLineCount": 8,
+  "summaryLinesSha256": [
+   "8788459b19659f1e5e01a2af9ffbd59fec29e4016c5b3fa0562dc516c5a20799",
+   "052d375755337d3e7e76374da1101f4fde16c8849773fd2a300e3014f7b3a5d3",
+   "ee067122f640a7d5bf1b2dea171b43e8986a7c58e0d4745710e8734bc9ab9143",
+   "7a5985c06af89754bc170f44e811638e5fe41aad82791f7e7bd920df83512f4c",
+   "dbc4d89c49e374d8a247241936ad3ba12592ef5c5567af4d7b29cf73f2f44dd8",
+   "414fd9f9c2c34d947bfda873edd37007be468010701408c733833a59eae1252d",
+   "b80585dbe0630a614878234ba70b98fe1e319dea0ec5c7beef9e7bd389e49e90",
+   "1400ed9e1c3859665dfcd29950b10c5b12745fbf035794fcc5923adfb02b5fff"
+  ],
+  "summaryLinesRedacted": [
+   "Unplaced water starts in #: # bbl over # months.",
+   "UIC-# is limited by its bottomhole limit; UIC-# is limited by its bottomhole limit.",
+   "No unsupported allocated pressures in the base case.",
+   "Least spare capacity: # shortfall of # bbl.",
+   "The compared case (UIC-#: J × # ID # in, availability #) keeps the first shortfall at # and changes unplaced water by # bbl.",
+   "UIC-#: #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. Pressure not checked: confirm this well's H-# pressure basis (psig or psia).",
+   "UIC-#: #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. Pressure not checked: confirm this well's H-# pressure basis (psig or psia).",
+   "Screening estimate from assumed inputs; not proven field capacity."
+  ],
+  "wellsComparedRowsSha256": [
+   "0b5bbc02408816d47f161481ca223d5874e754ad0d1cce16dcd0e1e770f63a79",
+   "f2d4d5b6fb8e105b186cc63aeab21eb7f4e44b8f7a01b3422c7d7ef1085029c9"
+  ],
+  "wellsComparedRowsRedacted": [
+   "UIC-# | # | # to # · # months with reported injection · # reported zero · window from reported rowsNo gap months in the window. | #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. | Pressure not checked: confirm this well's H-# pressure basis (psig or psia). | Synthetic: you'd gather | Above reported history",
+   "UIC-# | # | # to # · # months with reported injection · # reported zero · window from reported rowsNo gap months in the window. | #× the highest reported month (# bbl/day treated as STB/day, #); not shown in reported history. # of # included history months at or above the peak forecast rate; # of # forecast months above the reported peak. | Pressure not checked: confirm this well's H-# pressure basis (psig or psia). | Synthetic: you'd gather | Above reported history"
+  ]
+ },
+ "s9": {
+  "innerWidth": 1280,
+  "scrollW": 1265,
+  "clientW": 1265,
+  "pageHScroll": false
+ },
+ "s8": {
+  "consoleErrors": [
+   "log: Failed to load resource: the server responded with a status of 404 (Not Found) http://127.0.0.1:4174/favicon.ico"
+  ]
+ },
+ "screenshots": {
+  "desktop-s1-panel-empty.png": "109556bbbd2f28ff8b98d98818e14bcdec544fc5920b78f9dfb11897dbb85fd1",
+  "desktop-s1-result.png": "d3da845960e5a4f38816e5b42df50a5e13b7e21e9a53208d0ff34803bc29adbf",
+  "desktop-s3-m1-refused-setup.png": "6582d3519baab1182ca662a07957b57aabaa981ba2016639b840e428730008b9",
+  "desktop-s4-packages-loaded.png": "7787845dc1c4b4007d6340012beed755d2bb012657c3bcc4ace495168879844b",
+  "desktop-s4-incomplete.png": "7dc2b1bed785c93d4e47e07d953833d2fbf1fafcd60f8864ccc4777e6f7e1253",
+  "desktop-s4-three-views.png": "d92f617ec182c9325133375fea5054bc449d857b79af1d9ba30099ce9e9cfde8",
+  "desktop-s4-mixed-selection.png": "b1acdca222df4045f91d3605e583a5fecc5ce1c39a20ba47499f961c0ff2beb8",
+  "desktop-s5-tref-no-after-choice.png": "0afad93ed29ed80906dd07930c3e3208204e5d60218bf8d30b9265ae17bc189a",
+  "desktop-s5-with-tref.png": "12ec0f3e8c292659fbee7e22b0383634bc0f7cdbd98312b5f1d621cd2a22c347",
+  "desktop-s5-without-tref.png": "74f9ef1cf9d8ae16c72f48ff0fccfeb871dbe2f136dfc2d0518acae21313ac81",
+  "desktop-s2-low-k-all-blocked.png": "a7dfd6cc678aa938e71936bb1e55e2a45c4d36e32809821817bc6c55461b6000",
+  "desktop-s1b-missing-month.png": "1b8ebba265ee501b37d6aaa2abc8173192df7d45c893b47b0f2963c65c150baa",
+  "desktop-s3-m1-refused-copy.png": "52a9d4ac4f56c777fa1999403093085f34318d0a1dc704e1974e0b5c16f2f495",
+  "desktop-s7-sample-panel.png": "9610d8212a897bae2ffece8ebf41447d7ce5b3deeca4ba8ed89cbaeb98d1d05e"
+ }
+}
