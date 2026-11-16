@@ -428,8 +428,10 @@ test('task 8 brief 3: without t_ref no limit month and no absolute values; the r
 test('task 8: with t_ref the limit month is shown per view; a schedule not starting after t_ref is refused with the core message',async()=>{
  const s=makeN();nearbyReady(s);s.setOffset(U1,'afterKind','shut-in');s.setOffset(U2,'afterKind','typed');s.setOffset(U2,'afterRate',500);
  s.setTRef('2027-11');
+ // Refused before Run with the core message (listed in the inputs messages; the core is not reached, so there is no run error).
+ assert.ok(nb(s).messages.some(m=>/must start the month after the pressure-as-of month/.test(m)));assert.equal(nb(s).canRun,false);
  await assert.rejects(()=>s.runInterference(),/must start the month after the pressure-as-of month/);
- assert.match(nb(s).error,/must start the month after/);
+ assert.equal(nb(s).error,null);
  s.setTRef('2027-12');s.setRankingMonth('2028-03');
  const r=await s.runInterference();assert.equal(r.mode,'since-t-ref');
  for(const v of r.views){const t=limitMonthText(r,v,nb(s).transient);assert.equal(typeof t,'string');assert.ok(t.length>0);}
@@ -596,4 +598,70 @@ test('fix M3: gap months to fill cover only months the core reads (through the r
  const key=nearbyShapeKey(s.snapshot());s.setRankingMonth('2028-03');assert.notEqual(nearbyShapeKey(s.snapshot()),key,'a ranking month change rebuilds the gap list');
  const src=await readFile('web/transient-buildup.mjs','utf8');
  assert.ok(src.includes("rk.addEventListener('change',"),'the ranking month applies on change (not while typing)');
+});
+
+// ---- Final fix wave (fictional data only) ----
+test('M3: t_ref and ranking-month checks show in the inputs messages before Run, in the core\'s own words',async()=>{
+ let called=0;const s=makeN({runInterference:async p=>{called++;return realInterference(p);}});
+ nearbyReady(s);s.setOffset(U1,'afterKind','shut-in');s.setOffset(U2,'afterKind','typed');s.setOffset(U2,'afterRate',500);
+ s.setTRef('2027-11');
+ const want=ix.tRefMessages('2027-11','2028-01',nb(s).rankingMonth);
+ assert.ok(want.length>0);for(const m of want)assert.ok(nb(s).messages.includes(m),m);
+ assert.equal(nb(s).canRun,false);
+ s.setTRef('2027-12');s.setRankingMonth('2027-12');
+ assert.ok(nb(s).messages.includes('Ranking month 2027-12 must be after the pressure-as-of month t_ref (2027-12)'),nb(s).messages.join('|'));
+ assert.equal(nb(s).canRun,false);
+ await assert.rejects(()=>s.runInterference(),/Ranking month 2027-12 must be after/);assert.equal(called,0);
+ s.setRankingMonth('2028-03');assert.deepEqual(nb(s).messages,[]);assert.equal(nb(s).canRun,true);
+ // Without t_ref neither check applies.
+ s.setTRef(null);s.setRankingMonth('2027-12');assert.deepEqual(nb(s).messages,[]);
+});
+
+test('I2: removal text reads "not determined: <reason>" when the core gives a reason; "not found" only for a completed search',()=>{
+ assert.equal(panel.removalText({uic:U1,limitMonth:'2028-05',note:null}),`Without UIC ${U1}: 2028-05`);
+ assert.equal(panel.removalText({uic:U1,limitMonth:null,note:'UIC 000000419 has no complete schedule through 2029-12 (no choice for after last report (2028-12))'}),
+  `Without UIC ${U1}: not determined: UIC 000000419 has no complete schedule through 2029-12 (no choice for after last report (2028-12))`);
+ assert.equal(panel.removalText({uic:U1,limitMonth:null,note:null}),`Without UIC ${U1}: no limit month found within the schedule`);
+});
+
+test('I2 session: a run whose removal search is not determined shows the reason, not "not found"',async()=>{
+ // U2 connected with no after-window choice: its window ends (2028-02) before the subject schedule does (2028-06).
+ const s=makeN();nearbyReady(s);s.setOffset(U1,'afterKind','shut-in');s.setOffset(U2,'connected',true);
+ s.setTRef('2027-12');s.setRankingMonth('2028-01');assert.deepEqual(nb(s).messages,[]);
+ const r=await s.runInterference(),all=r.views.find(v=>v.name==='all-connected');
+ const e=all.removalEffects.find(x=>x.uic===U1);
+ assert.equal(e.limitMonth,null);assert.match(e.note,/UIC 000000419 has no complete schedule through 2028-06/);
+ const t=panel.removalText(e);assert.match(t,/^Without UIC 000000418: not determined: UIC 000000419/);assert.doesNotMatch(t,/no limit month found/);
+});
+
+test('M1 and I1 panel: view notes and the per-month block reason are rendered; the none view reads "not counted"',async()=>{
+ const s=makeN();nearbyReady(s);
+ const r=await s.runInterference(),none=r.views.find(v=>v.name==='none'),sel=r.views.find(v=>v.name==='your-selection');
+ for(const row of none.rows){
+  const c=rankingCells(row);
+  assert.equal(c[1],ix.NOT_COUNTED);assert.equal(c[2],ix.NOT_COUNTED);assert.ok(!c.includes(ix.EXCLUDED));
+ }
+ assert.deepEqual(panel.rowLabelLines(none),[]);assert.equal(totalText(none),'no offsets counted');
+ // EXCLUDED stays for the user's not-connected well in your-selection.
+ assert.equal(rankingCells(sel.rows.find(x=>x.uic===U2))[1],ix.EXCLUDED);
+ const src=await readFile('web/transient-buildup.mjs','utf8');
+ assert.ok(src.includes('for(const x of v.notes)'),'view notes are shown next to the limit month');
+ assert.ok(src.includes('m.blocked'),'a blocked month shows its reason');
+ assert.equal(panel.monthCell(null,'outside the 100–10,000 psia range of the fluid model'),'not shown (outside the 100–10,000 psia range of the fluid model)');
+ assert.equal(panel.monthCell(null,null),'not shown');assert.equal(panel.monthCell(1234.56,null),'1,234.6');
+});
+
+test('D2: the forecast copy date is the local calendar date, not the UTC date',async()=>{
+ assert.equal(typeof panel.localDate,'function');
+ // Local 00:30 and 23:30: in any zone other than UTC one of these differs from its UTC date.
+ assert.equal(panel.localDate(new Date(2026,10,15,0,30)),'2026-11-15');
+ assert.equal(panel.localDate(new Date(2026,10,15,23,30)),'2026-11-15');
+ assert.equal(panel.localDate(new Date(2027,0,3,12,0)),'2027-01-03');
+ const src=await readFile('web/transient-buildup.mjs','utf8');
+ assert.ok(!/today=\(\)=>new Date\(\)\.toISOString\(\)/.test(src),'the default no longer uses the UTC date');
+ assert.ok(src.includes('today=()=>localDate()'));
+ // The default copy date is today's local date.
+ const s=createTransientSession({getSource:()=>'demo',runCalculate:realCalculate});s.onCaseResult(CASE);s.loadExample();
+ const before=panel.localDate();assert.equal(s.copyForecast(),null);
+ assert.ok([before,panel.localDate()].includes(s.snapshot().draft.schedule.origin.copiedAt));
 });

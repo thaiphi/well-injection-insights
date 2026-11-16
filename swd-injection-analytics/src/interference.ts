@@ -6,7 +6,7 @@
 // month ends are its #7 endHours shifted to that clock; every value is evaluated at a month end.
 // An offset schedule is never evaluated past its throughMonth (riseFromSteps would hold the last rate forever).
 import {type Rock,lineSourceRise,riseFromSteps,radiusOfInvestigation,TRANSIENT_MODEL_VERSION} from './transientModel.js';
-import {buildTransientCase,TRANSIENT_CASE_VERSION,type TransientInput,type TransientResult} from './transientCase.js';
+import {buildTransientCase,TRANSIENT_CASE_VERSION,PVT_BLOCK,type TransientInput,type TransientResult} from './transientCase.js';
 import {offsetSchedule,OFFSET_HISTORY_VERSION,type OffsetChoices,type OffsetSchedule} from './offsetHistory.js';
 import {joinedHistory,uics,HISTORY_PACKAGES_VERSION,type PackageSet} from './historyPackages.js';
 import type {DisposalCase} from './disposalCase.js';
@@ -16,6 +16,10 @@ export const INTERFERENCE_VERSION='interference-screening/1';
 export const CLOSING_8='Screening ranking from assumed reservoir properties and typed distances; closeness is not connectivity.';
 export const RANKING_LABEL='screening ranking under the stated assumptions; not a pressure forecast';
 export const EXCLUDED='excluded by assumption';
+/** A row in the "none" view: the subject alone, so no offset is counted (not the user's choice, so never EXCLUDED). */
+export const NOT_COUNTED='not counted in this view (subject alone)';
+export const PARTIAL_NOTE_DIRECTION='includes partial-history wells; direction unknown';
+export const PARTIAL_NOTE_LOWER='includes partial-history wells; lower bound';
 export const SHARE_NOTE='share not shown: mixed signs';
 export const REMOVAL_LABEL='limit month with each offset removed: one at a time; not additive';
 export const INDISTINGUISHABLE='order not distinguishable';
@@ -26,11 +30,11 @@ export const BBL_AS_STB='reported bbl/day treated as STB/day; Bw from the subjec
 export const MAX_OFFSETS=10;
 export type InterferenceInput={subject:TransientInput;tRef:string|null;rankingMonth:string;offsets:OffsetChoices[];
   sensitivity:{k?:{low:number;high:number};cf?:{low:number;high:number};distance?:Record<string,{low:number;high:number}>}};
-export type OffsetRow={uic:string;status:'complete'|'incomplete'|'partial-history'|'not-felt-yet'|'excluded';addedPsi:number|null;share:number|null;
+export type OffsetRow={uic:string;status:'complete'|'incomplete'|'partial-history'|'not-felt-yet'|'excluded'|'not-counted';addedPsi:number|null;share:number|null;
   distanceFt:number;directionUnknown:boolean;lowerBound:boolean;labels:string[]};
 export type View={name:'all-connected'|'your-selection'|'none';status:'complete'|'incomplete';rows:OffsetRow[];totalPsi:number|null;shareNote:string|null;
-  limitMonth:string|null;removalEffects:{uic:string;limitMonth:string|null}[];
-  monthly:{month:string;ownRisePsi:number|null;offsetsPsi:number|null;bottomholePsia:number|null}[]};
+  limitMonth:string|null;removalEffects:{uic:string;limitMonth:string|null;note:string|null}[];notes:string[];
+  monthly:{month:string;ownRisePsi:number|null;offsetsPsi:number|null;bottomholePsia:number|null;blocked:string|null}[]};
 export type InterferenceResult={inputs:InterferenceInput;mode:'since-t-ref'|'rise-above-undisturbed';views:View[];
   sensitivity:{factor:string;rankChanged:boolean;rangeByUic:Record<string,{low:number|null;high:number|null}>}[];
   indistinguishable:[string,string][];warnings:string[];labels:string[];assumptions:string[];closing:string;versions:Record<string,string>};
@@ -56,6 +60,16 @@ export function defaultRankingMonth(set:PackageSet):string{
   return ends[0];
 }
 
+/** The pre-run t_ref checks (the panel lists the same words before Run): the subject's schedule starts the month after t_ref,
+ * and the ranking month is after t_ref. [] without t_ref or with a malformed month (validate reports those itself). */
+export function tRefMessages(tRef:string|null,firstMonth:string|null|undefined,rankingMonth:string|null|undefined):string[]{
+  if(typeof tRef!=='string'||!MONTH.test(tRef)) return [];
+  const out:string[]=[],want=fromIndex(index(tRef)+1);
+  if(firstMonth!==want) out.push(`The subject's rate schedule must start the month after the pressure-as-of month t_ref (${tRef}): expected ${want}, got ${String(firstMonth)}`);
+  if(typeof rankingMonth==='string'&&MONTH.test(rankingMonth)&&index(rankingMonth)<=index(tRef)) out.push(`Ranking month ${rankingMonth} must be after the pressure-as-of month t_ref (${tRef})`);
+  return out;
+}
+
 type AbsStep={startHours:number;rateStbd:number};
 type Offset={c:OffsetChoices;rank:OffsetSchedule|null;rankError:string|null;steps:AbsStep[];
   seriesSteps:AbsStep[]|null;seriesNote:string|null};
@@ -79,9 +93,7 @@ function validate(result:DisposalCase,set:PackageSet,input:InterferenceInput):{m
   if(!tRefOk) out.push(`Pressure-as-of month (t_ref) must be a YYYY-MM month or empty, got ${String(input.tRef)}`);
   if(tRefOk&&input.tRef!==null){
     const first=isObj(input.subject)&&isObj(input.subject.schedule)&&Array.isArray(input.subject.schedule.months)?input.subject.schedule.months[0]?.month:undefined;
-    const want=fromIndex(index(input.tRef)+1);
-    if(first!==want) out.push(`The subject's rate schedule must start the month after the pressure-as-of month t_ref (${input.tRef}): expected ${want}, got ${String(first)}`);
-    if(rankOk&&index(input.rankingMonth)<=index(input.tRef)) out.push(`Ranking month ${input.rankingMonth} must be after the pressure-as-of month t_ref (${input.tRef})`);
+    out.push(...tRefMessages(input.tRef,first,rankOk?input.rankingMonth:null));
   }
   const loaded=uics(set);
   if(!Array.isArray(input.offsets)||input.offsets.length<1||input.offsets.length>MAX_OFFSETS) out.push(`Choose 1–${MAX_OFFSETS} offset wells`);
@@ -180,6 +192,7 @@ export function buildInterference(result:DisposalCase,set:PackageSet,input:Inter
       directionUnknown:partial&&withRef,lowerBound:partial&&!withRef,labels:out};
   };
   const excludedRow=(o:Offset):OffsetRow=>({uic:o.c.uic,status:'excluded',addedPsi:null,share:null,distanceFt:o.c.distanceFt,directionUnknown:false,lowerBound:false,labels:[distanceLabel(o.c.distanceFt),EXCLUDED]});
+  const notCountedRow=(o:Offset):OffsetRow=>({...excludedRow(o),status:'not-counted',labels:[distanceLabel(o.c.distanceFt),NOT_COUNTED]});
   const connectedRows=new Map(offsets.map(o=>[o.c.uic,asConnectedRow(o)]));
 
   // Limit search (t_ref only): P_i + own rise + counted offsets' rise since t_ref, at each subject month end.
@@ -196,8 +209,10 @@ export function buildInterference(result:DisposalCase,set:PackageSet,input:Inter
     return c;
   };
   // With no counted offset the subject is alone, so the answer is #7's own (including a PVT-high block that #7 counts as reached).
+  const ownBlock=tr.monthly.find(m=>m.blocked!==null);
+  const ownNote=ownBlock?`limit month not determined: the subject's own result is not shown from ${ownBlock.month} (${ownBlock.blocked})`:null;
   const limitSearch=(counted:Offset[]):{month:string|null;note:string|null}=>{
-    if(!counted.length) return {month:tr.firstMonthAtLimit,note:null};
+    if(!counted.length) return {month:tr.firstMonthAtLimit,note:tr.limitStatus==='not-determined'?ownNote:null};
     const missing=counted.find(o=>!o.seriesSteps);
     if(missing) return {month:null,note:`limit month not determined: ${missing.seriesNote}`};
     const cs=counted.map(contribOf);
@@ -211,6 +226,8 @@ export function buildInterference(result:DisposalCase,set:PackageSet,input:Inter
       }
       const p=pi+m.risePsi+cs.reduce((s,c)=>s+c[i],0);
       if(p>=limit) return {month:m.month,note:null};
+      // As #7: below 100 psia the fluid model does not apply, so no later month is read (a low-side block does not cross the limit).
+      if(p<100) return {month:null,note:`limit month not determined: the bottomhole pressure with the counted offsets is ${PVT_BLOCK} from ${m.month}`};
     }
     return {month:null,note:null};
   };
@@ -218,8 +235,8 @@ export function buildInterference(result:DisposalCase,set:PackageSet,input:Inter
   const warnings:string[]=[];
   const makeView=(name:View['name'],counted:Offset[]):View=>{
     const countedSet=new Set(counted.map(o=>o.c.uic));
-    const rows=offsets.map(o=>countedSet.has(o.c.uic)?{...connectedRows.get(o.c.uic)!,labels:[CONNECTED_LABEL,...connectedRows.get(o.c.uic)!.labels]}:excludedRow(o));
-    const countedRows=rows.filter(r=>r.status!=='excluded');
+    const rows=offsets.map(o=>countedSet.has(o.c.uic)?{...connectedRows.get(o.c.uic)!,labels:[CONNECTED_LABEL,...connectedRows.get(o.c.uic)!.labels]}:name==='none'?notCountedRow(o):excludedRow(o));
+    const countedRows=rows.filter(r=>r.status!=='excluded'&&r.status!=='not-counted');
     const complete=countedRows.every(r=>r.addedPsi!==null);
     const totalPsi=complete&&countedRows.length?countedRows.reduce((s,r)=>s+(r.addedPsi as number),0):null;
     let shareNote:string|null=null;
@@ -232,17 +249,23 @@ export function buildInterference(result:DisposalCase,set:PackageSet,input:Inter
     if(withRef){
       const l=limitSearch(counted);limitMonth=l.month;
       if(l.note) warnings.push(`${name}: ${l.note}`);
-      removalEffects=counted.map(o=>({uic:o.c.uic,limitMonth:limitSearch(counted.filter(x=>x!==o)).month}));
+      removalEffects=counted.map(o=>{const x=limitSearch(counted.filter(y=>y!==o));return {uic:o.c.uic,limitMonth:x.month,note:x.note===null?null:x.note.replace(/^limit month not determined: /,'')};});
     }
+    const notes=countedRows.some(r=>r.directionUnknown)?[PARTIAL_NOTE_DIRECTION]:countedRows.some(r=>r.lowerBound)?[PARTIAL_NOTE_LOWER]:[];
     // Monthly series at each subject month end. Null is never 0: no counted offset or an incomplete one gives offsetsPsi null.
     const seriesOk=counted.every(o=>o.seriesSteps);
     const cs=seriesOk?counted.map(contribOf):null;
+    // As #7: from the first month the absolute pressure leaves 100–10,000 psia, it is not shown for that month and every later one.
+    let pvtBlocked=false;
     const monthly=tr.monthly.map((m,i)=>{
-      const offsetsPsi=counted.length&&cs?cs.reduce((s,c)=>s+c[i],0):null;
-      const bottomholePsia=withRef&&m.risePsi!==null&&seriesOk?pi+m.risePsi+(offsetsPsi===null?0:offsetsPsi):null;
-      return {month:m.month,ownRisePsi:m.risePsi,offsetsPsi,bottomholePsia};
+      let offsetsPsi=counted.length&&cs?cs.reduce((s,c)=>s+c[i],0):null;
+      let bottomholePsia=withRef&&m.risePsi!==null&&seriesOk?pi+m.risePsi+(offsetsPsi===null?0:offsetsPsi):null;
+      if(bottomholePsia!==null&&(bottomholePsia<100||bottomholePsia>PVT_HIGH_PSIA)) pvtBlocked=true;
+      // A view-blocked month shows no offsets rise either, so the hidden absolute value cannot be recovered from the row.
+      if(pvtBlocked){bottomholePsia=null;if(m.blocked===null)offsetsPsi=null;}
+      return {month:m.month,ownRisePsi:m.risePsi,offsetsPsi,bottomholePsia,blocked:m.blocked??(pvtBlocked?PVT_BLOCK:null)};
     });
-    return {name,status:complete?'complete':'incomplete',rows,totalPsi,shareNote,limitMonth,removalEffects,monthly};
+    return {name,status:complete?'complete':'incomplete',rows,totalPsi,shareNote,limitMonth,removalEffects,notes,monthly};
   };
   const views=[makeView('all-connected',offsets),makeView('your-selection',offsets.filter(o=>o.c.connected===true)),makeView('none',[])];
 
@@ -312,7 +335,7 @@ export function buildInterference(result:DisposalCase,set:PackageSet,input:Inter
       historyPackages:HISTORY_PACKAGES_VERSION,disposalCase:result.methodVersion}};
 }
 
-const STATUS_ORDER:Record<OffsetRow['status'],number>={complete:0,'partial-history':0,'not-felt-yet':0,incomplete:1,excluded:2};
+const STATUS_ORDER:Record<OffsetRow['status'],number>={complete:0,'partial-history':0,'not-felt-yet':0,incomplete:1,excluded:2,'not-counted':2};
 function rowOrder(a:OffsetRow,b:OffsetRow):number{
   const an=a.addedPsi!==null,bn=b.addedPsi!==null;
   if(an&&bn) return (b.addedPsi as number)-(a.addedPsi as number)||(a.uic<b.uic?-1:a.uic>b.uic?1:0);

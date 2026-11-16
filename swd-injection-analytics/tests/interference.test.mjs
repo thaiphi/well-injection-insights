@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {buildDisposalCase} from '../dist/disposalCase.js';
 import {BANNED} from '../dist/caseSummary.js';
 import {lineSourceRise} from '../dist/transientModel.js';
-import {buildTransientCase} from '../dist/transientCase.js';
+import {buildTransientCase,PVT_BLOCK} from '../dist/transientCase.js';
 import {addPackage,packageFromVerified,EMPTY_PACKAGE_SET} from '../dist/historyPackages.js';
 const ix=await import('../dist/interference.js').catch(()=>({}));
 
@@ -155,7 +155,7 @@ test('B8: a not-connected offset changes nothing; none equals #7 alone',()=>{
   assert.deepEqual(n.monthly.map(m=>m.ownRisePsi),tr.monthly.map(m=>m.risePsi));
   assert.deepEqual(n.monthly.map(m=>m.bottomholePsia),tr.monthly.map(m=>m.bottomholePsia));
   assert.ok(n.monthly.every(m=>m.offsetsPsi===null));
-  assert.ok(n.rows.every(x=>x.status==='excluded'&&x.addedPsi===null&&x.labels.includes(ix.EXCLUDED)));
+  assert.ok(n.rows.every(x=>x.status==='not-counted'&&x.addedPsi===null&&x.labels.includes(ix.NOT_COUNTED)&&!x.labels.includes(ix.EXCLUDED)));
  }
 });
 
@@ -199,7 +199,7 @@ test('limit month with t_ref: first month P_i + own + counted offsets since t_re
   };
   const r=run(inp({tRef:'2027-12',rankingMonth:'2028-06'}),SET,c),v=view(r,'all-connected');
   assert.equal(v.limitMonth,firstAt([A,B,Cw]),`limit ${limit}`);
-  assert.deepEqual(v.removalEffects,[A,B,Cw].map(u=>({uic:u,limitMonth:firstAt([A,B,Cw].filter(x=>x!==u))})));
+  assert.deepEqual(v.removalEffects,[A,B,Cw].map(u=>({uic:u,limitMonth:firstAt([A,B,Cw].filter(x=>x!==u)),note:null})));
   if(limit===2420){assert.notEqual(v.limitMonth,null);assert.ok(v.removalEffects.some(e=>e.limitMonth!==v.limitMonth));}
  }
  // Monthly series: offsets since t_ref equal the hand sum; bottomhole = P_i + own + offsets.
@@ -238,7 +238,7 @@ test('limit month: a blocked subject month gives no number for that or later mon
  const r=run(inp({subject:s,offsets:[choice],tRef:'2027-12',rankingMonth:'2028-06'}),setOf(PF),c);
  for(const name of ['all-connected','your-selection'])assert.equal(view(r,name).limitMonth,null,name);
  assert.equal(view(r,'none').limitMonth,tr.firstMonthAtLimit);assert.equal(tr.limitStatus,'not-determined');
- assert.deepEqual(view(r,'all-connected').removalEffects,[{uic:X,limitMonth:tr.firstMonthAtLimit}]);
+ assert.deepEqual(view(r,'all-connected').removalEffects,[{uic:X,limitMonth:tr.firstMonthAtLimit,note:`the subject's own result is not shown from 2029-02 (${tr.monthly[bi].blocked})`}]);
  assert.ok(r.warnings.some(w=>/not determined/.test(w)&&/2029-02/.test(w)),JSON.stringify(r.warnings));
  for(const name of ['all-connected','none'])view(r,name).monthly.forEach((m,i)=>{
   if(i>=bi){assert.equal(m.ownRisePsi,null);assert.equal(m.bottomholePsia,null);}
@@ -253,7 +253,7 @@ test('no counted offset: the subject alone matches #7, including a month blocked
  const r=run(inp({subject:s,offsets:[chA({connected:false})],tRef:'2027-12',rankingMonth:'2028-06'}),setOf(PA),c);
  assert.equal(view(r,'your-selection').limitMonth,tr.firstMonthAtLimit);
  assert.equal(view(r,'none').limitMonth,tr.firstMonthAtLimit);
- assert.deepEqual(view(r,'all-connected').removalEffects,[{uic:A,limitMonth:tr.firstMonthAtLimit}]);
+ assert.deepEqual(view(r,'all-connected').removalEffects,[{uic:A,limitMonth:tr.firstMonthAtLimit,note:null}]);
 });
 
 test('limit month: a #7 block above 10,000 psia counted as reached stays reached when counted offsets add at least limit - 10,000',()=>{
@@ -265,14 +265,14 @@ test('limit month: a #7 block above 10,000 psia counted as reached stays reached
  assert.ok(hand(rock,1500,sA('2028-04'),T4)-hand(rock,1500,sA('2028-04'),R)>0);
  const r=run(inp({subject:s,offsets:[chA()],tRef:'2027-12',rankingMonth:'2028-03'}),setOf(PA),c);
  for(const name of ['all-connected','your-selection','none'])assert.equal(view(r,name).limitMonth,'2028-04',name);
- assert.deepEqual(view(r,'all-connected').removalEffects,[{uic:A,limitMonth:'2028-04'}]);
+ assert.deepEqual(view(r,'all-connected').removalEffects,[{uic:A,limitMonth:'2028-04',note:null}]);
  assert.ok(!r.warnings.some(w=>/not determined/.test(w)),JSON.stringify(r.warnings));
  // Negative offset (B shut in, close by): the sum is below limit - 10,000, so the month stays undetermined.
  const nb=hand(rock,100,sB('2028-04'),T4)-hand(rock,100,sB('2028-04'),R);
  assert.ok(nb<0,String(nb));
  const q=run(inp({subject:s,offsets:[chB({distanceFt:100})],tRef:'2027-12',rankingMonth:'2028-03'}),setOf(PB),c);
  assert.equal(view(q,'all-connected').limitMonth,null);assert.equal(view(q,'none').limitMonth,'2028-04');
- assert.deepEqual(view(q,'all-connected').removalEffects,[{uic:B,limitMonth:'2028-04'}]);
+ assert.deepEqual(view(q,'all-connected').removalEffects,[{uic:B,limitMonth:'2028-04',note:null}]);
  assert.ok(q.warnings.some(w=>/all-connected: limit month not determined/.test(w)),JSON.stringify(q.warnings));
 });
 
@@ -389,4 +389,108 @@ test('banned words absent from all text; deterministic; inputs not mutated',()=>
  assert.ok(texts.length>20);
  for(const t of texts)assert.doesNotMatch(t,BANNED);
  for(const t of [ix.CLOSING_8,ix.RANKING_LABEL,ix.EXCLUDED,ix.REMOVAL_LABEL])assert.doesNotMatch(t,BANNED);
+});
+
+// ---- Final fix wave (fictional data only) ----
+const caseAt=(reservoirPsia,limitPsia)=>buildDisposalCase({caseName:'Fictional interference case',demand:{id:'synthetic-demand/1',origin:'synthetic',content:'fictional',monthly:[{month:'2028-01',demandBbl:60000}],evidence:{fixture:'fictional'}},
+ wells:[{...WELL,reservoirPsia,limitPsia}],fluid:{referencePressurePsia:2000,temperatureF:180,salinityWtPercent:5},comparison:{wellId:'FICTIONAL-A',injectivityMultiplier:0.5,innerDiameterInches:5,availability:0.8}});
+const LOW_K={k:5,h:20,phi:0.15,cf:4e-6,rw:0.35,skin:0};
+// The reviewer's probe1 inputs: P_i 9,000, limit 9,900, two connected offsets, t_ref 2027-12.
+const probe1=(endB='2030-06',afterB={kind:'shut-in'})=>{
+ const c=caseAt(9000,9900),s=subject({rock:{...LOW_K},schedule:sched('2028-01',Array(24).fill(100))});
+ const set=setOf(pkg({id:'pa',uic:A,start:'2027-06',end:'2030-06',def:360000}),pkg({id:'pb',uic:B,start:'2027-06',end:endB,def:30000}));
+ const i=inp({subject:s,tRef:'2027-12',rankingMonth:'2028-06',offsets:[ch(A,{distanceFt:500,after:{kind:'shut-in'}}),ch(B,{distanceFt:3000,after:afterB})]});
+ return {c,s,set,i,tr:buildTransientCase(c,s),r:run(i,set,c)};
+};
+
+test('I1: a view bottomhole outside 100–10,000 psia is not shown from that month on, with the #7 block reason; the limit month is unchanged',()=>{
+ const {r,tr}=probe1();
+ assert.equal(tr.limitStatus,'not-reached');assert.ok(tr.monthly.every(m=>m.blocked===null));
+ for(const name of ['all-connected','your-selection']){
+  const v=view(r,name),bi=v.monthly.findIndex(m=>m.blocked!==null);
+  assert.ok(bi>0,name+': fixture must leave the range');
+  v.monthly.forEach((m,i)=>{
+   if(i>=bi){assert.equal(m.bottomholePsia,null,m.month);assert.equal(m.blocked,PVT_BLOCK,m.month);assert.equal(m.offsetsPsi,null,m.month);}
+   else{assert.equal(m.blocked,null,m.month);assert.ok(m.bottomholePsia>=100&&m.bottomholePsia<=10000,`${m.month} ${m.bottomholePsia}`);}
+   if(i<bi)assert.equal(typeof m.offsetsPsi,'number');assert.equal(typeof m.ownRisePsi,'number');
+  });
+  assert.equal(v.limitMonth,'2028-01',name);
+ }
+ // The subject alone mirrors #7, row for row, including its block field.
+ const n=view(r,'none');
+ assert.deepEqual(n.monthly.map(m=>[m.bottomholePsia,m.blocked]),tr.monthly.map(m=>[m.bottomholePsia,m.blocked]));
+});
+
+test('I1: a combined falloff below 100 psia before any crossing blocks the view and leaves the limit month not determined (as #7)',()=>{
+ const c=caseAt(400,1500),s=subject({rock:{...LOW_K},schedule:sched('2028-01',months('2028-01',24).map((_,i)=>i<12?0:300))});
+ const tr=buildTransientCase(c,s);
+ assert.equal(tr.limitStatus,'reached');assert.ok(tr.monthly.every(m=>m.blocked===null));
+ const set=setOf(pkg({id:'pa',uic:A,start:'2027-06',end:'2027-12',def:9000}));
+ const r=run(inp({subject:s,tRef:'2027-12',rankingMonth:'2028-01',offsets:[ch(A,{distanceFt:500,after:{kind:'shut-in'}})]}),set,c);
+ const v=view(r,'all-connected'),bi=v.monthly.findIndex(m=>m.blocked!==null);
+ assert.equal(v.monthly[bi]?.month,'2028-03','fixture: the combined pressure drops below 100 psia in 2028-03');
+ assert.ok(v.monthly.slice(bi).every(m=>m.bottomholePsia===null&&m.blocked===PVT_BLOCK));
+ // A search that walked past the block would report a 2029 month from hidden pressures.
+ assert.equal(v.limitMonth,null);
+ assert.ok(r.warnings.some(w=>w.startsWith('all-connected: limit month not determined')&&w.includes('2028-03')&&w.includes(PVT_BLOCK)),JSON.stringify(r.warnings));
+ assert.equal(view(r,'none').limitMonth,tr.firstMonthAtLimit);
+});
+
+test('I2: a removal effect carries the not-determined reason; null with no note only when the search completed',()=>{
+ // probe1b: UIC B has no after-window choice past its window, so any search that counts B is not determined.
+ const {r}=probe1('2028-12',null);
+ const v=view(r,'all-connected');
+ const noA=v.removalEffects.find(e=>e.uic===A),noB=v.removalEffects.find(e=>e.uic===B);
+ assert.equal(noA.limitMonth,null);assert.equal(typeof noA.note,'string');
+ assert.match(noA.note,/^UIC 000000419 has no complete schedule through 2029-12/);
+ assert.doesNotMatch(noA.note,/^limit month not determined/);
+ assert.deepEqual(noB,{uic:B,limitMonth:'2028-01',note:null});
+ // Removing the only counted offset leaves the subject alone: #7's own not-determined reason is carried.
+ const rk={...ROCK,k:0.034,phi:0.4,rw:2,cf:1e-4};
+ const s=subject({rock:rk,schedule:sched('2028-01',months('2028-01',24).map((_,i)=>i<13?0:30))});
+ const PF=pkg({id:'pf',uic:X,start:'2027-06',end:'2028-06',def:3000});
+ const q=run(inp({subject:s,offsets:[ch(X,{distanceFt:200,after:{kind:'typed',rateStbd:100}})],tRef:'2027-12',rankingMonth:'2028-06'}),setOf(PF),caseAt(2000,9000));
+ const e=view(q,'all-connected').removalEffects[0];
+ assert.equal(e.limitMonth,null);assert.match(e.note,/the subject's own result is not shown from 2029-02/);
+ // A completed search with no crossing: null and no note.
+ const z=run(inp({tRef:'2027-12',rankingMonth:'2028-06'}),SET,caseAt(2000,9000));
+ for(const x of view(z,'all-connected').removalEffects){assert.equal(x.limitMonth,null);assert.equal(x.note,null);}
+});
+
+test('M1: a view counting a partial-history well has a note: direction unknown with t_ref, lower bound without',()=>{
+ const w=run(inp({tRef:'2027-12',rankingMonth:'2028-06'}));
+ assert.ok(rowOf(view(w,'all-connected'),B).directionUnknown);
+ assert.deepEqual(view(w,'all-connected').notes,[ix.PARTIAL_NOTE_DIRECTION]);
+ assert.equal(ix.PARTIAL_NOTE_DIRECTION,'includes partial-history wells; direction unknown');
+ const n=run(inp());
+ assert.deepEqual(view(n,'all-connected').notes,[ix.PARTIAL_NOTE_LOWER]);
+ assert.equal(ix.PARTIAL_NOTE_LOWER,'includes partial-history wells; lower bound');
+ // The partial-history well not counted (the others have a prior rate, so are not partial): no note.
+ const prior={startMonth:'2026-01',rateStbd:1000};
+ const sel=run(inp({tRef:'2027-12',rankingMonth:'2028-06',offsets:[chA({prior}),chB({connected:false}),chC({prior})]}));
+ assert.ok(view(sel,'your-selection').rows.every(x=>!x.directionUnknown&&!x.lowerBound));
+ assert.deepEqual(view(sel,'all-connected').notes,[ix.PARTIAL_NOTE_DIRECTION]);
+ assert.deepEqual(view(sel,'your-selection').notes,[]);assert.deepEqual(view(sel,'none').notes,[]);
+});
+
+test('ruling: rows in the none view read "not counted in this view (subject alone)", never EXCLUDED',()=>{
+ assert.equal(ix.NOT_COUNTED,'not counted in this view (subject alone)');
+ const r=run(inp({offsets:[chA(),chB({connected:false}),chC()],tRef:'2027-12',rankingMonth:'2028-06'}));
+ for(const x of view(r,'none').rows){
+  assert.equal(x.status,'not-counted');assert.equal(x.addedPsi,null);assert.equal(x.share,null);
+  assert.ok(x.labels.includes(ix.NOT_COUNTED));assert.ok(!x.labels.includes(ix.EXCLUDED));
+ }
+ // EXCLUDED stays for the user's not-connected well in your-selection.
+ const b=rowOf(view(r,'your-selection'),B);assert.equal(b.status,'excluded');assert.ok(b.labels.includes(ix.EXCLUDED));
+});
+
+test('M3: tRefMessages is the core\'s own pre-run wording for t_ref and the ranking month',()=>{
+ assert.equal(typeof ix.tRefMessages,'function');
+ assert.deepEqual(ix.tRefMessages(null,'2028-01','2028-03'),[]);
+ assert.deepEqual(ix.tRefMessages('2027-12','2028-01','2028-03'),[]);
+ const m=ix.tRefMessages('2027-11','2028-01','2027-11');
+ assert.equal(m.length,2);
+ assert.equal(m[0],'The subject\'s rate schedule must start the month after the pressure-as-of month t_ref (2027-11): expected 2027-12, got 2028-01');
+ assert.equal(m[1],'Ranking month 2027-11 must be after the pressure-as-of month t_ref (2027-11)');
+ assert.throws(()=>run(inp({tRef:'2027-11'})),e=>e.message.includes(m[0]));
 });

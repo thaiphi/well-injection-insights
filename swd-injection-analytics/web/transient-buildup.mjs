@@ -3,7 +3,7 @@ import {fmtNumber} from '../dist/caseSummary.js';
 import {monthIndex,monthAt} from '../dist/planning.js';
 import {buildDisposalCase} from '../dist/disposalCase.js';
 import {sealTransient,PERMITTED_INTERVAL_LABEL} from '../dist/transientExport.js';
-import {buildInterference,defaultRankingMonth,CLOSING_8,RANKING_LABEL,EXCLUDED,REMOVAL_LABEL,INDISTINGUISHABLE} from '../dist/interference.js';
+import {buildInterference,defaultRankingMonth,tRefMessages,CLOSING_8,RANKING_LABEL,EXCLUDED,NOT_COUNTED,REMOVAL_LABEL,INDISTINGUISHABLE} from '../dist/interference.js';
 import {packageFromVerified,addPackage,removePackage as dropPackage,joinedHistory,uics,EMPTY_PACKAGE_SET} from '../dist/historyPackages.js';
 import {verifyExplorerPackage} from './explorer-package.mjs';
 
@@ -27,6 +27,8 @@ const MAX_MONTHS=120;
 
 const msg=e=>e instanceof Error?e.message:String(e);
 const clone=v=>structuredClone(v);
+/** The local calendar date as YYYY-MM-DD (the copy date the user sees; not the UTC date). */
+export function localDate(d=new Date()){return `${String(d.getFullYear()).padStart(4,'0')}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 /** Blank text is null (never 0); anything else is Number(text), so a typo is NaN and is refused by validation. */
 export function parseNumber(text){if(text===null||text===undefined)return null;const t=String(text).trim();return t===''?null:Number(t);}
 
@@ -74,7 +76,9 @@ export const NEARBY_TITLE='Nearby wells (interference screening)';
 export const SETUP_FIRST="Set up the subject well's buildup first";
 const NO_PACKAGES='Load at least one offset well package (Explorer .tar)';
 export const VIEW_TITLE={'all-connected':'All offsets counted as connected (assumed)','your-selection':'Your selection (connected as you chose)','none':'No offsets (the subject well alone)'};
-const ROW_STATUS={complete:'complete','partial-history':'partial history','not-felt-yet':'not felt yet',incomplete:'incomplete',excluded:EXCLUDED};
+const ROW_STATUS={complete:'complete','partial-history':'partial history','not-felt-yet':'not felt yet',incomplete:'incomplete',excluded:EXCLUDED,'not-counted':NOT_COUNTED};
+/** A row not counted in its view: the user's not-connected well (EXCLUDED) or any row of the "none" view (NOT_COUNTED). */
+const uncounted=r=>r.status==='excluded'||r.status==='not-counted';
 const AFTER_KINDS=['shut-in','hold-average','typed'];
 const OFFSET_KEYS=['distanceFt','connected','zerosAreShutIn','priorStart','priorRate','afterKind','afterLastN','afterRate','sensLow','sensHigh'];
 const emptyChoice=()=>({distanceFt:null,connected:null,zerosAreShutIn:null,gapRates:{},priorStart:null,priorRate:null,afterKind:null,afterLastN:null,afterRate:null,sensLow:null,sensHigh:null});
@@ -82,20 +86,20 @@ const emptyNearbySens=()=>({k:{low:null,high:null},cf:{low:null,high:null}});
 const distText=d=>`${fmtNumber(d,d<10?2:0)} ft (assumed)`;
 const finite=v=>typeof v==='number'&&Number.isFinite(v);
 /** Ranking-table cells: UIC, status, added psi, share, distance. Null is never 0: an incomplete row reads its status and "no number";
- * an excluded row reads EXCLUDED. Numbers are only the core's own values, never summed here. */
+ * an excluded row reads EXCLUDED; a row of the "none" view reads NOT_COUNTED. Numbers are only the core's own values, never summed here. */
 export function rankingCells(row){
  const dist=distText(row.distanceFt);
- if(row.status==='excluded')return [row.uic,EXCLUDED,EXCLUDED,'—',dist];
+ if(uncounted(row))return [row.uic,ROW_STATUS[row.status],ROW_STATUS[row.status],'—',dist];
  if(row.addedPsi===null)return [row.uic,row.labels.find(l=>l.startsWith('incomplete'))??ROW_STATUS.incomplete,'no number','—',dist];
  const status=ROW_STATUS[row.status]+(row.lowerBound?' (lower bound)':'')+(row.directionUnknown?' (direction unknown)':'');
  return [row.uic,status,fmtNumber(row.addedPsi,1),row.share===null?'—':fmtNumber(row.share*100,1)+'%',dist];
 }
 /** Every row's own labels, in table order (reported/assumed/calculated sources, partial history, not felt yet, each incomplete reason). */
-export const rowLabelLines=view=>view.rows.filter(r=>r.status!=='excluded').map(r=>`UIC ${r.uic}: ${r.labels.join('; ')}`);
+export const rowLabelLines=view=>view.rows.filter(r=>!uncounted(r)).map(r=>`UIC ${r.uic}: ${r.labels.join('; ')}`);
 /** The view total, or why there is none. */
 export function totalText(view){
  if(view.totalPsi!==null)return `${fmtNumber(view.totalPsi,1)} psi (calculated)`;
- return view.rows.some(r=>r.status!=='excluded')?'incomplete: no total while a counted offset has no number':'no offsets counted';
+ return view.rows.some(r=>!uncounted(r))?'incomplete: no total while a counted offset has no number':'no offsets counted';
 }
 /** First month at the limit for a view, or null without a pressure-as-of month (rise-only mode shows no limit month).
  * A null limit month reads "not determined" when the core noted it, otherwise "not reached"; the "none" view is #7's own answer. */
@@ -106,8 +110,11 @@ export function limitMonthText(r,view,transient){
  const note=r.warnings.find(w=>w.startsWith(`${view.name}: limit month not determined`));
  return note?note.slice(view.name.length+2):NOT_REACHED;
 }
-/** Removal effect: the limit month with one offset removed (one at a time; not additive). A null carries no reason, so none is invented. */
-export const removalText=e=>`Without UIC ${e.uic}: ${e.limitMonth??'no limit month found within the schedule'}`;
+/** Removal effect: the limit month with one offset removed (one at a time; not additive). A null with the core's reason reads
+ * "not determined: <reason>"; "not found" only when the search ran to the end of the schedule. */
+export const removalText=e=>`Without UIC ${e.uic}: ${e.limitMonth??(e.note?'not determined: '+e.note:'no limit month found within the schedule')}`;
+/** A monthly number, or why it is not shown (a block reason from the core); never 0. */
+export const monthCell=(v,blocked)=>typeof v==='number'&&Number.isFinite(v)?fmtNumber(v,1):blocked?`not shown (${blocked})`:'not shown';
 /** Nearby inputs are rebuilt only when this key changes (packages, gap-month lists, after-window kind, subject readiness, programmatic resets). */
 export function nearbyShapeKey(snap){
  const n=snap.nearby;
@@ -142,7 +149,7 @@ function intervalsOf(verified){
 
 /** DOM-free state machine. `generation` changes on every case result and invalidation; `seq` on every input edit.
  * Work started under an older generation or seq is ignored. `runCalculate({caseInput,input})` returns the sealed export (the worker in the browser). */
-export function createTransientSession({getSource,runCalculate,runInterference,today=()=>new Date().toISOString().slice(0,10),onChange=()=>{}}){
+export function createTransientSession({getSource,runCalculate,runInterference,today=()=>localDate(),onChange=()=>{}}){
  let result=null,draft=emptyDraft(),sealed=null,status='idle',error=null,generation=0,seq=0,revision=0,lastSource=NO_SOURCE,setup={start:'',count:''};
  let missing=[],copiedRates=new Map(),exampleLoaded=false;
  // #8 nearby wells: its own package set (separate from case insights), per-UIC choices and its own result slot.
@@ -213,6 +220,8 @@ export function createTransientSession({getSource,runCalculate,runInterference,t
    if(c.afterKind==='typed'&&!finite(c.afterRate))out.push(`${p}: type the rate after last report (STB/day, assumed)`);
    pair(c.sensLow,c.sensHigh,`Sensitivity distance for ${p}`);
   }
+  // The core's own t_ref checks, shown before Run.
+  out.push(...tRefMessages(tRef,draft.schedule.months[0]?.month??null,rankingMonth()));
   for(const [f,label] of [['k','k'],['cf','c_f']]){
    const v=nearbySens[f];
    for(const side of ['low','high'])if(v[side]===null&&v[side==='low'?'high':'low']!==null)out.push(`Sensitivity ${label} ${side} is not entered (fill low and high, or neither)`);
@@ -695,11 +704,12 @@ export function mountTransientBuildup(root,{getSource}){
    box.append(el('p',`Total added at the subject well: ${totalText(v)}`));
    if(v.shareNote)box.append(el('p',v.shareNote,'small'));
    const lm=limitMonthText(r,v,tr);if(lm!==null)box.append(el('p',`First month at the limit: ${lm}`));
+   for(const x of v.notes)box.append(el('p',x,'small'));
    if(withRef&&v.removalEffects.length){box.append(el('p',REMOVAL_LABEL,'small'));const ul=el('ul',undefined,'small');for(const e of v.removalEffects)ul.append(el('li',removalText(e)));box.append(ul);}
-   const counted=v.rows.some(x=>x.status!=='excluded');
+   const counted=v.rows.some(x=>!uncounted(x));
    const d=el('details');d.append(el('summary','Monthly at the subject well'));
    d.append(scroll(table(['Month','Own rise (psi, calculated)','Offsets added (psi, calculated)',...(withRef?['Bottomhole (psia, calculated)']:[])],
-    v.monthly.map(m=>[m.month,cell(m.ownRisePsi),m.offsetsPsi===null&&!counted?'no offsets counted':cell(m.offsetsPsi),...(withRef?[cell(m.bottomholePsia)]:[])]),`${name}: monthly values at the subject well; not shown means unavailable, never 0`),`Monthly, ${name}`));
+    v.monthly.map(m=>[m.month,monthCell(m.ownRisePsi,m.blocked),m.offsetsPsi===null&&!counted?'no offsets counted':cell(m.offsetsPsi),...(withRef?[monthCell(m.bottomholePsia,m.blocked)]:[])]),`${name}: monthly values at the subject well; not shown means unavailable, never 0`),`Monthly, ${name}`));
    box.append(d);grid.append(box);
   }
   nResults.append(grid);

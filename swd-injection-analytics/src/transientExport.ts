@@ -2,7 +2,7 @@
 // Same approach as caseInsights.ts (E05): canonical JSON, SHA-256 seal, verify = integrity hash + full recomputation from the stored inputs.
 // The helpers are private there, so the pattern is copied here. A null (blocked month, unavailable value) is never exported as 0.
 import {buildDisposalCase,type DisposalCase} from './disposalCase.js';
-import {buildTransientCase,type TransientResult} from './transientCase.js';
+import {buildTransientCase,scheduleFromForecast,type TransientResult} from './transientCase.js';
 import {buildInterference,type InterferenceResult} from './interference.js';
 import {addPackage,EMPTY_PACKAGE_SET,type LoadedPackage,type PackageSet} from './historyPackages.js';
 import type {PublicMonthly} from './publicArtifact.js';
@@ -94,9 +94,51 @@ const cell=(v:unknown)=>{
   let s=typeof v==='object'?JSON.stringify(v):String(v);if(/^[=+\-@\t\r]/.test(s))s="'"+s;
   return `"${s.replace(/"/g,'""')}"`;
 };
+/** Months of a copied schedule that the disposal case had (forecast); the others were typed. Null when not copied or not derivable. */
+function forecastMonths(s:SealedTransient):Set<string>|null{
+  const o=s.transient.inputs.schedule.origin;
+  if(typeof o!=='object'||o===null)return null;
+  try{return new Set(scheduleFromForecast(buildDisposalCase(s.caseInputs),s.transient.inputs.wellId,o.copiedAt).months.filter(m=>m.rateStbd!==null).map(m=>m.month));}
+  catch{return null;}
+}
+/** The stored inputs and choices, each field name carrying its label. A null is "unavailable", never 0. */
+function inputRows(s:SealedTransient):unknown[][]{
+  const rows:unknown[][]=[],t=s.transient,x=t.inputs,w=t.well.id,sec='inputs';
+  const r=x.rock;
+  rows.push([sec,w,'rock k_md (assumed)',r.k],[sec,w,'rock h_ft (assumed)',r.h],[sec,w,'rock phi_fraction (assumed)',r.phi],[sec,w,'rock cf_per_psi (assumed)',r.cf],
+    [sec,w,'rock rw_ft (assumed)',r.rw],[sec,w,'rock skin (assumed)',r.skin],[sec,w,'boundary_kind (assumed)',x.boundary.kind]);
+  if(x.boundary.kind==='closed')rows.push([sec,w,'re_ft (assumed)',x.boundary.re]);
+  else rows.push([sec,w,'stated_extent_ft (assumed)',x.boundary.statedExtentFt]);
+  const fm=forecastMonths(s);
+  for(const m of x.schedule.months){
+    const label=fm===null?t.labels.schedule:fm.has(m.month)?t.labels.schedule:'synthetic/assumed; typed, not in the disposal case';
+    rows.push([sec,m.month,`rate_stbd (${label})`,m.rateStbd]);
+  }
+  x.profileMonths.forEach((m,n)=>rows.push([sec,w,`profile_month ${n+1}`,m]));
+  for(const [f,v] of Object.entries(x.sensitivity))if(v)rows.push([sec,w,`sensitivity ${f} low (assumed)`,v.low],[sec,w,`sensitivity ${f} high (assumed)`,v.high]);
+  const i=s.interference;
+  if(i){
+    const o='offset-inputs',ii=i.inputs;
+    for(const c of [...ii.offsets].sort((a,b)=>a.uic<b.uic?-1:a.uic>b.uic?1:0)){
+      const u=c.uic;
+      rows.push([o,u,'distance_ft (assumed)',c.distanceFt],[o,u,'connected (assumed)',c.connected],[o,u,'zeros_are_shut_in (assumed)',c.zerosAreShutIn]);
+      for(const m of Object.keys(c.gapRates??{}).sort())rows.push([o,u,`gap_rate_stbd ${m} (assumed)`,c.gapRates[m]]);
+      rows.push([o,u,'prior_start_month (assumed)',c.prior?c.prior.startMonth:null],[o,u,'prior_rate_stbd (assumed)',c.prior?c.prior.rateStbd:null],
+        [o,u,'after_last_report (assumed)',c.after?c.after.kind:null]);
+      if(c.after?.kind==='hold-average')rows.push([o,u,'after_last_n (assumed)',c.after.lastN]);
+      if(c.after?.kind==='typed')rows.push([o,u,'after_rate_stbd (assumed)',c.after.rateStbd]);
+      const d=ii.sensitivity.distance?.[u];
+      if(d)rows.push([o,u,'sensitivity distance_ft low (assumed)',d.low],[o,u,'sensitivity distance_ft high (assumed)',d.high]);
+    }
+    rows.push([o,'interference','t_ref (assumed)',ii.tRef],[o,'interference','ranking_month',ii.rankingMonth]);
+    for(const f of ['k','cf'] as const){const v=ii.sensitivity[f];if(v)rows.push([o,'interference',`sensitivity ${f} low (assumed)`,v.low],[o,'interference',`sensitivity ${f} high (assumed)`,v.high]);}
+  }
+  return rows;
+}
 export function transientCsv(s:SealedTransient):string{
   const rows:unknown[][]=[['section','rule_or_well','field','value']];
   const t=s.transient,w=t.well.id,tm='transient-monthly';
+  rows.push(...inputRows(s));
   for(const [k,v] of Object.entries(t.labels))rows.push(['labels',w,`label ${k}`,v]);
   t.assumptions.forEach((a,n)=>rows.push(['assumptions',w,`assumption ${n+1}`,a]));
   rows.push([tm,w,'limit_status',t.limitStatus],[tm,w,'first_month_at_limit',t.firstMonthAtLimit],[tm,w,'end_bottomhole_psia',t.endBottomholePsia],
@@ -128,17 +170,20 @@ export function transientCsv(s:SealedTransient):string{
     for(const v of i.views){
       const sec=`interference-${v.name}`;
       rows.push([sec,'view','status',v.status],[sec,'view','total_psi',v.totalPsi],[sec,'view','share_note',v.shareNote],[sec,'view','limit_month',v.limitMonth]);
-      for(const r of v.removalEffects)rows.push([sec,'view',`limit_month_without ${r.uic}`,r.limitMonth]);
+      v.notes.forEach((x,n)=>rows.push([sec,'view',`note ${n+1}`,x]));
+      for(const r of v.removalEffects)rows.push([sec,'view',`limit_month_without ${r.uic}`,r.limitMonth],[sec,'view',`limit_month_without_note ${r.uic}`,r.note]);
       for(const r of v.rows){
         rows.push([sec,r.uic,'status',r.status],[sec,r.uic,'distance_ft',r.distanceFt],[sec,r.uic,'added_psi',r.addedPsi],[sec,r.uic,'share',r.share],
           [sec,r.uic,'direction_unknown',r.directionUnknown],[sec,r.uic,'lower_bound',r.lowerBound]);
         r.labels.forEach((l,n)=>rows.push([sec,r.uic,`label ${n+1}`,l]));
       }
-      for(const m of v.monthly)rows.push([sec,m.month,'own_rise_psi',m.ownRisePsi],[sec,m.month,'offsets_psi',m.offsetsPsi],[sec,m.month,'bottomhole_psia',m.bottomholePsia]);
+      for(const m of v.monthly)rows.push([sec,m.month,'own_rise_psi',m.ownRisePsi],[sec,m.month,'offsets_psi',m.offsetsPsi],[sec,m.month,'bottomhole_psia',m.bottomholePsia],[sec,m.month,'blocked',m.blocked]);
     }
   }
   for(const p of s.packages){
-    const v=p.permittedInterval,d=(x:number|null)=>x===null?'not reported':`${fmtNumber(x)} ft`;
+    const v=p.permittedInterval,d=(x:number|null)=>x===null?'not reported':`${fmtNumber(x)} ft`,a=p.artifactId;
+    rows.push(['packages',p.uic,`artifact_id ${a}`,a],['packages',p.uic,`manifest_sha256 ${a}`,p.manifestSha256],['packages',p.uic,`window_start ${a}`,p.window.startMonth],
+      ['packages',p.uic,`window_end ${a}`,p.window.endMonth],['packages',p.uic,`window_source ${a}`,p.window.source]);
     rows.push(['packages',p.uic,`permitted_interval ${p.artifactId}`,v?`top ${d(v.permitted_top_depth_ft)}; bottom ${d(v.permitted_bottom_depth_ft)}; ${v.label}`:null]);
   }
   t.warnings.forEach((x,n)=>rows.push(['warnings',w,`warning ${n+1}`,x]));

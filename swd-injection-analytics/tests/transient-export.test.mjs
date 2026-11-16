@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {buildDisposalCase} from '../dist/disposalCase.js';
-import {buildTransientCase,CLOSING_7} from '../dist/transientCase.js';
+import {buildTransientCase,scheduleFromForecast,CLOSING_7} from '../dist/transientCase.js';
 import {buildInterference,CLOSING_8} from '../dist/interference.js';
 import {addPackage,packageFromVerified,EMPTY_PACKAGE_SET} from '../dist/historyPackages.js';
 const tx=await import('../dist/transientExport.js').catch(()=>({}));
@@ -224,7 +224,7 @@ test('fix 1: the permitted interval round-trips with and without a value; the la
  // Older exports without the field still verify.
  const old=await tx.sealTransient(makeExport(true));assert.equal(await tx.verifyTransient(old),old);
  // CSV: one 4-column row per package in a packages section; null reads "unavailable", never 0.
- const rows=parseCsv(tx.transientCsv(s)).filter(r=>r[0]==='packages');
+ const rows=parseCsv(tx.transientCsv(s)).filter(r=>r[0]==='packages'&&r[2].startsWith('permitted_interval '));
  assert.deepEqual(rows,[['packages',A,'permitted_interval pa','top 4,000 ft; bottom 4,500 ft; as reported; depth basis unknown'],
   ['packages',B,'permitted_interval pb','top not reported; bottom 4,500 ft; as reported; depth basis unknown'],['packages',Cw,'permitted_interval pc','unavailable']]);
  assert.ok(!parseCsv(tx.transientCsv(await tx.sealTransient(makeExport(false)))).some(r=>r[0]==='packages'));
@@ -237,4 +237,90 @@ test('fix 1: a resealed interval edit verifies (stored evidence, like other unre
  assert.equal((await tx.verifyTransient(resealed)).packages[0].permittedInterval.permitted_top_depth_ft,4100);
  for(const bad of [{...INTERVAL,label:'calibrated depth'},{...INTERVAL,permitted_top_depth_ft:'4000'},{...INTERVAL,extra:1},'4000-4500'])
   await assert.rejects(async()=>tx.verifyTransient(await reseal({...clone(s),packages:s.packages.map((p,i)=>i===0?{...p,permittedInterval:bad}:p)})),STALE,JSON.stringify(bad));
+});
+
+// ---- Final fix wave: inputs, choices and package identities in the CSV (fictional data only) ----
+const csvRows=async x=>parseCsv(tx.transientCsv(await tx.sealTransient(x)));
+const find=(rows,sec,who,field)=>rows.filter(r=>r[0]===sec&&r[1]===who&&r[2]===field);
+const one=(rows,sec,who,field)=>{const f=find(rows,sec,who,field);assert.equal(f.length,1,`${sec} ${who} ${field}: ${JSON.stringify(f)}`);return f[0][3];};
+
+test('I3: CSV inputs section: rock, boundary, every schedule month with its origin label, profile months and #7 sensitivity (assumed)',async()=>{
+ const rows=await csvRows(makeExport(true));
+ const w='FICTIONAL-A';
+ for(const [k,v] of [['k_md','50'],['h_ft','100'],['phi_fraction','0.15'],['cf_per_psi','0.000004'],['rw_ft','0.35'],['skin','2']])assert.equal(one(rows,'inputs',w,`rock ${k} (assumed)`),v,k);
+ assert.equal(one(rows,'inputs',w,'boundary_kind (assumed)'),'infinite');
+ assert.equal(one(rows,'inputs',w,'stated_extent_ft (assumed)'),'unavailable');
+ const months=rows.filter(r=>r[0]==='inputs'&&/^\d{4}-\d{2}$/.test(r[1]));
+ assert.equal(months.length,24);
+ for(const r of months){assert.equal(r[2],'rate_stbd (synthetic/assumed)');assert.equal(r[3],'3000');}
+ assert.equal(one(rows,'inputs',w,'profile_month 1'),'2028-06');
+ assert.equal(one(rows,'inputs',w,'sensitivity k low (assumed)'),'25');assert.equal(one(rows,'inputs',w,'sensitivity k high (assumed)'),'100');
+ // Closed boundary: r_e.
+ const c=await csvRows(makeExport(false,subject({boundary:{kind:'closed',re:3000}})));
+ assert.equal(one(c,'inputs',w,'boundary_kind (assumed)'),'closed');assert.equal(one(c,'inputs',w,'re_ft (assumed)'),'3000');
+});
+
+test('I3: CSV schedule origin per month: a copied forecast month reads forecast; a month the case lacked reads typed',async()=>{
+ const ci={...CASE_INPUTS,demand:{...CASE_INPUTS.demand,monthly:[{month:'2028-01',demandBbl:60000},{month:'2028-03',demandBbl:30000}]}};
+ const result=buildDisposalCase(ci);
+ const sch=scheduleFromForecast(result,'FICTIONAL-A','2026-11-15');
+ assert.equal(sch.months[1].rateStbd,null,'fixture: 2028-02 is not in the case');
+ sch.months[1].rateStbd=500;
+ const subj=subject({schedule:sch,profileMonths:[],sensitivity:{}});
+ const rows=parseCsv(tx.transientCsv(await tx.sealTransient({caseInputs:ci,transient:buildTransientCase(result,subj),interference:null,packages:[]})));
+ const lab=m=>rows.find(r=>r[0]==='inputs'&&r[1]===m&&r[2].startsWith('rate_stbd'))[2];
+ assert.equal(lab('2028-01'),'rate_stbd (forecast (copied from disposal case, 2026-11-15))');
+ assert.equal(lab('2028-02'),'rate_stbd (synthetic/assumed; typed, not in the disposal case)');
+ assert.equal(lab('2028-03'),'rate_stbd (forecast (copied from disposal case, 2026-11-15))');
+});
+
+test('I3: CSV offset-inputs per UIC, t_ref, ranking month and #8 sensitivity; packages carry identity and window',async()=>{
+ const x=makeExport(true);
+ x.interference=buildInterference(CASE,SET,iinp({offsets:[ch(A,{distanceFt:1500,after:{kind:'typed',rateStbd:3000},prior:{startMonth:'2026-01',rateStbd:1000}}),
+  ch(B,{distanceFt:2500,after:{kind:'shut-in'},gapRates:{}}),ch(Cw,{distanceFt:4000,connected:false,after:{kind:'hold-average',lastN:3}})],
+  sensitivity:{k:{low:25,high:100},cf:{low:2e-6,high:8e-6},distance:{[A]:{low:1200,high:1800}}}}));
+ const rows=await csvRows(x);
+ assert.equal(one(rows,'offset-inputs',A,'distance_ft (assumed)'),'1500');
+ assert.equal(one(rows,'offset-inputs',A,'connected (assumed)'),'true');
+ assert.equal(one(rows,'offset-inputs',Cw,'connected (assumed)'),'false');
+ assert.equal(one(rows,'offset-inputs',A,'zeros_are_shut_in (assumed)'),'false');
+ assert.equal(one(rows,'offset-inputs',A,'prior_start_month (assumed)'),'2026-01');
+ assert.equal(one(rows,'offset-inputs',A,'prior_rate_stbd (assumed)'),'1000');
+ assert.equal(one(rows,'offset-inputs',B,'prior_start_month (assumed)'),'unavailable');
+ assert.equal(one(rows,'offset-inputs',A,'after_last_report (assumed)'),'typed');
+ assert.equal(one(rows,'offset-inputs',A,'after_rate_stbd (assumed)'),'3000');
+ assert.equal(one(rows,'offset-inputs',Cw,'after_last_report (assumed)'),'hold-average');
+ assert.equal(one(rows,'offset-inputs',Cw,'after_last_n (assumed)'),'3');
+ assert.equal(one(rows,'offset-inputs',A,'sensitivity distance_ft low (assumed)'),'1200');
+ assert.equal(one(rows,'offset-inputs',A,'sensitivity distance_ft high (assumed)'),'1800');
+ assert.equal(one(rows,'offset-inputs','interference','t_ref (assumed)'),'2027-12');
+ assert.equal(one(rows,'offset-inputs','interference','ranking_month'),'2028-06');
+ assert.equal(one(rows,'offset-inputs','interference','sensitivity k low (assumed)'),'25');
+ assert.equal(one(rows,'offset-inputs','interference','sensitivity cf high (assumed)'),'0.000008');
+ // A typed gap rate appears per month.
+ const g=makeExport(true);g.interference=buildInterference(CASE,SET,iinp());g.interference.inputs.offsets=g.interference.inputs.offsets.map(o=>o.uic===B?{...o,gapRates:{'2027-05':700}}:o);
+ assert.equal(one(await csvRows(g),'offset-inputs',B,'gap_rate_stbd 2027-05 (assumed)'),'700');
+ // Packages: identity and window, keyed by artifact ID.
+ for(const p of PACKAGES){
+  assert.equal(one(rows,'packages',p.uic,`artifact_id ${p.artifactId}`),p.artifactId);
+  assert.equal(one(rows,'packages',p.uic,`manifest_sha256 ${p.artifactId}`),p.manifestSha256);
+  assert.equal(one(rows,'packages',p.uic,`window_start ${p.artifactId}`),p.window.startMonth);
+  assert.equal(one(rows,'packages',p.uic,`window_end ${p.artifactId}`),p.window.endMonth);
+  assert.equal(one(rows,'packages',p.uic,`window_source ${p.artifactId}`),p.window.source);
+ }
+ for(const r of rows)assert.equal(r.length,4);
+});
+
+test('I1/I2/M1 in CSV: the view notes, the removal reason and the per-month block are exported',async()=>{
+ const rows=await csvRows(makeExport(true));
+ assert.ok(rows.some(r=>r[0]==='interference-all-connected'&&r[1]==='view'&&r[2]==='note 1'&&r[3]==='includes partial-history wells; direction unknown'),'partial-history note');
+ const b=find(rows,'interference-all-connected','2028-03','blocked');assert.equal(b.length,1);assert.equal(b[0][3],'unavailable');
+ assert.ok(rows.some(r=>r[0]==='interference-all-connected'&&r[2].startsWith('limit_month_without_note ')));
+});
+
+test('CSV: a label with a comma, a double quote and a line feed round-trips as one 4-field row',async()=>{
+ const x=makeExport(true),label='a, "quoted"\nsecond line';x.interference.labels.push(label);
+ const rows=await csvRows(x);
+ for(const r of rows)assert.equal(r.length,4,JSON.stringify(r));
+ assert.ok(rows.some(r=>r[0]==='labels'&&r[1]==='interference'&&r[3]===label));
 });
