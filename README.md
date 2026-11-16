@@ -24,9 +24,52 @@ Results are screening calculations with their assumptions shown. They are not fi
 
 Explorer (top) collects official RRC files and saves each result as a dataset version pinned with SHA-256. Its **Use in Injection Analytics** button opens this app and posts the package by `postMessage`. Analytics (bottom) re-hashes every file, waits for the engineer to confirm the dataset, then runs the capacity, pressure-buildup and nearby-wells calculations and seals each export. The diagram’s source and an interactive version, in which every box links to its source lines, are in [texas-rail-sync/docs](https://github.com/thaiphi/texas-rail-sync/tree/main/docs) (`system-diagram.json` and `system-diagram.html`).
 
+### Inside Analytics
+
+```mermaid
+flowchart TD
+  A["Explorer package<br/>hashes re-checked, engineer confirms"]
+  A --> B["H-10 history diagnostics<br/>a gap is never zero"]
+  A --> C["Test records<br/>injectivity J"]
+  A --> D["Wellhead to bottomhole<br/>pressure reconciliation"]
+  S["Sample case or your own case"] --> F["Produced-water forecast<br/>and reconciliation"]
+  F --> E["Disposal capacity case<br/>several wells"]
+  E --> G["What the case says<br/>history against forecast, uncertainty, summary"]
+  G --> H["Wells compared<br/>reported history per case well"]
+  A -. links .-> H
+  E --> T["Pressure buildup over time<br/>one well, assumed rock"]
+  T --> N["Nearby wells<br/>offsets ranked by pressure added"]
+  A -. offset packages .-> N
+  G --> X["Sealed exports<br/>JSON and CSV with SHA-256"]
+  T --> X
+  N --> X
+```
+
+The single-well tools (diagnostics, test records, pressure reconciliation) work on an Explorer package. The case path runs from the forecast to the exports. Reported history is evidence only: linking it never changes a case input.
+
 ## Zoomcamp final project
 
 This repository is the analysis half of a joint AI Dev Tools Zoomcamp submission with [Texas RRC Explorer](https://github.com/thaiphi/texas-rail-sync). The submission README, tracker (ZC-01 to ZC-10) and system-wide Docker, CD and observability live there. The Analytics part, with a demo walkthrough, is summarised in [docs/zoomcamp-analytics.md](docs/zoomcamp-analytics.md).
+
+## How each feature is built
+
+```mermaid
+flowchart LR
+  I["GitHub issue<br/>ANA-Exx"] --> D["Design<br/>docs/superpowers/specs"]
+  D --> O1{"Owner approves"}
+  O1 --> P["Plan"]
+  P --> EN["Engineer agent<br/>one task, test first"]
+  EN --> R["Reviewer agent<br/>independent, read-only"]
+  R -- changes --> EN
+  R --> Q["QA agent<br/>full gate and browser check"]
+  Q -- defect --> EN
+  Q --> L["Preservation layer recorded"]
+  L --> O2{"Owner accepts layer"}
+  O2 --> M["Owner: push and merge<br/>CI test and docker"]
+  M --> PUB["Owner publishes on Lovable"]
+```
+
+The main session is the orchestrator: it writes the design and plan, dispatches the agents in [.claude/agents/](.claude/agents/) and owns all Git. Agents never commit or push. See [AGENTS.md](AGENTS.md).
 
 ## Repository layout
 
