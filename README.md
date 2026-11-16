@@ -4,22 +4,30 @@
 
 SWD Injection Analytics is a browser-based engineering demonstration for saltwater-disposal (SWD) injection wells. It covers:
 - produced-water forecasting and reconciliation;
-- injection diagnostics;
+- injection diagnostics on reported H-10 history;
 - injectivity (J) estimates referenced to tests;
 - wellhead-to-bottomhole pressure reconciliation;
-- capacity scenarios;
-- technical exports.
+- multi-well disposal capacity scenarios;
+- a monitoring workflow ("What the case says"): history against forecast, uncertainty, and a case summary;
+- reported history linked to the user's own case wells ("Wells compared");
+- transient pressure buildup over time for one well, from assumed rock (line source or closed circle);
+- interference screening: ranking nearby wells by the pressure each adds;
+- sealed, re-verifiable JSON and CSV exports.
 
 It is the analysis half of a two-part system. **[Texas RRC Explorer](https://github.com/thaiphi/texas-rail-sync)** collects and verifies public Railroad Commission data. Its **Use in Injection Analytics** button hands a hash-verified evidence package to this app.
 
 Results are screening calculations with their assumptions shown. They are not field calibration, permitting or regulatory determinations.
+
+## Zoomcamp final project
+
+This repository is the analysis half of a joint AI Dev Tools Zoomcamp submission with [Texas RRC Explorer](https://github.com/thaiphi/texas-rail-sync). The submission README, tracker (ZC-01 to ZC-10) and system-wide Docker, CD and observability live there. The Analytics part, with a demo walkthrough, is summarised in [docs/zoomcamp-analytics.md](docs/zoomcamp-analytics.md).
 
 ## Repository layout
 
 - [swd-injection-analytics/](swd-injection-analytics/README.md): the preserved engineering application (calculations, imports, evidence, tests). [migration/source-manifest.json](migration/source-manifest.json) protects its 182 transferred files by hash. Changes to them go through reviewed preservation layers; see [migration/README.md](migration/README.md).
 - The outer TanStack/Vite project is the Lovable hosting adapter. Its home route forwards to the preserved app.
 - [HANDOVER.md](HANDOVER.md) covers setup on a new computer, project identities and open work. [AGENTS.md](AGENTS.md) holds the rules for AI agents working here.
-- Requirements are tracked as GitHub issues (`ANA-Exx`, [#1–#10](https://github.com/thaiphi/well-injection-insights/issues)). Course work for the combined system is tracked in Explorer's [Zoomcamp final project milestone](https://github.com/thaiphi/texas-rail-sync/milestones).
+- Requirements are tracked as GitHub issues (`ANA-Exx`, [#1–#10](https://github.com/thaiphi/well-injection-insights/issues); #1–#9 are done). Course work for the combined system is tracked in Explorer's [Zoomcamp final project milestone](https://github.com/thaiphi/texas-rail-sync/milestones).
 
 ## Run locally
 
