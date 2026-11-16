@@ -1,0 +1,35 @@
+{
+  "purpose": "#7 (ANA-E06) transient single-well buildup and #8 (ANA-E07) interference screening on one shared, display-only calculator inside the disposal case",
+  "acceptanceEvidence": "demo/E06-E07-TRANSIENT-INTERFERENCE-VERIFICATION.md",
+  "approvedDocs": [
+    "docs/superpowers/specs/2026-11-10-e06-transient-buildup-design.md",
+    "docs/superpowers/specs/2026-11-15-e07-interference-screening-design.md",
+    "docs/superpowers/plans/2026-11-15-transient-and-interference.md"
+  ],
+  "changes": [
+    "web/import-ui.mjs",
+    "web/index.html",
+    "web/redesign.css"
+  ],
+  "newFiles": [
+    "src/transientMath.ts",
+    "src/transientModel.ts",
+    "src/transientCase.ts",
+    "src/offsetHistory.ts",
+    "src/interference.ts",
+    "src/transientExport.ts",
+    "web/transient-buildup.mjs",
+    "web/transient-worker.mjs",
+    "tests/transient-math.test.mjs",
+    "tests/transient-model.test.mjs",
+    "tests/helpers/radial-fd.mjs",
+    "tests/transient-case.test.mjs",
+    "tests/offset-history.test.mjs",
+    "tests/interference.test.mjs",
+    "tests/transient-export.test.mjs",
+    "tests/transient-session.test.mjs"
+  ],
+  "rootFiles": [
+    "migration/layers/index.json"
+  ]
+}
