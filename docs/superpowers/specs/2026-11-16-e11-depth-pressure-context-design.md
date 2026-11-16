@@ -2,7 +2,7 @@
 
 Date: 2026-11-16. Issue: thaiphi/well-injection-insights #10 (PRD `docs/project-2-swd-injection-analytics-expansion-prd.md` §4, ANA-E11).
 
-**Status.** Draft for the owner's review. The owner said the brainstorming questions were already answered (2026-11-16), so this document is written from the recorded decisions:
+**Status.** The owner approved this document as a whole on 2026-11-16 ("approve"), after the builder check, including main's calls listed in the hand-over: case placement, no declared-vertical switch, Explorer depths not read automatically, limit-breaking curves still drawn, tests of any date shown, and no example for the sample case. The owner said the brainstorming questions were already answered (2026-11-16), so this document is written from the recorded decisions:
 - D15, D16 and D19 in `docs/project-2-decisions-2026-10-20.md`;
 - G20–G22 and the E11 recommendations in `docs/project-2-prd-v1.1-review-2026-10-17.md`;
 - the issue text.
