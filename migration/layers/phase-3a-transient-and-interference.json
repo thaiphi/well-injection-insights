@@ -1,7 +1,10 @@
 {
   "version": "swd-preservation-layer/1",
   "name": "phase-3a-transient-and-interference",
-  "status": "pending-review",
+  "status": "accepted",
+  "acceptedAt": "2026-11-16",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/E06-E07-TRANSIENT-INTERFERENCE-VERIFICATION.md",
   "purpose": "#7 (ANA-E06) transient single-well buildup and #8 (ANA-E07) interference screening on one shared, display-only calculator inside the disposal case",
   "parentBaselineSha256": "6176e62d6f0d724dc12dd63e74ada4cabc4d9f58dd04cec2a5f4ff8e773142e3",
   "approvedDocs": [
