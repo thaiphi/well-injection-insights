@@ -12,6 +12,7 @@ SWD Injection Analytics is a browser-based engineering demonstration for saltwat
 - reported history linked to the user's own case wells ("Wells compared");
 - transient pressure buildup over time for one well, from assumed rock (line source or closed circle);
 - interference screening: ranking nearby wells by the pressure each adds;
+- a depth view (review aid): casing, packer, intervals, formation tops and test points beside each case well's modelled pressure, for up to 4 wells;
 - sealed, re-verifiable JSON and CSV exports.
 
 It is the analysis half of a two-part system. **[Texas RRC Explorer](https://github.com/thaiphi/texas-rail-sync)** collects and verifies public Railroad Commission data. Its **Use in Injection Analytics** button hands a hash-verified evidence package to this app.
@@ -39,10 +40,12 @@ flowchart TD
   A -. links .-> H
   E --> T["Pressure buildup over time<br/>one well, assumed rock"]
   T --> N["Nearby wells<br/>offsets ranked by pressure added"]
+  E --> DV["Depth view<br/>wellbore beside modelled pressure"]
   A -. offset packages .-> N
   G --> X["Sealed exports<br/>JSON and CSV with SHA-256"]
   T --> X
   N --> X
+  DV --> X
 ```
 
 The single-well tools (diagnostics, test records, pressure reconciliation) work on an Explorer package. The case path runs from the forecast to the exports. Reported history is evidence only: linking it never changes a case input.
@@ -76,7 +79,7 @@ The main session is the orchestrator: it writes the design and plan, dispatches 
 - [swd-injection-analytics/](swd-injection-analytics/README.md): the preserved engineering application (calculations, imports, evidence, tests). [migration/source-manifest.json](migration/source-manifest.json) protects its 182 transferred files by hash. Changes to them go through reviewed preservation layers; see [migration/README.md](migration/README.md).
 - The outer TanStack/Vite project is the Lovable hosting adapter. Its home route forwards to the preserved app.
 - [HANDOVER.md](HANDOVER.md) covers setup on a new computer, project identities and open work. [AGENTS.md](AGENTS.md) holds the rules for AI agents working here.
-- Requirements are tracked as GitHub issues (`ANA-Exx`, [#1–#10](https://github.com/thaiphi/well-injection-insights/issues); #1–#9 are done). Course work for the combined system is tracked in Explorer's [Zoomcamp final project milestone](https://github.com/thaiphi/texas-rail-sync/milestones).
+- Requirements are tracked as GitHub issues (`ANA-Exx`, [#1–#10](https://github.com/thaiphi/well-injection-insights/issues); #1–#10 are done). Course work for the combined system is tracked in Explorer's [Zoomcamp final project milestone](https://github.com/thaiphi/texas-rail-sync/milestones).
 
 ## Run locally
 

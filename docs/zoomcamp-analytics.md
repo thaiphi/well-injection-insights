@@ -23,11 +23,11 @@ This page covers the Analytics half of the AI Dev Tools Zoomcamp final project. 
 | Criterion | Evidence in this repo |
 |---|---|
 | Problem description | [README.md](../README.md) and the PRD at `docs/project-2-swd-injection-analytics-expansion-prd.md` |
-| Product spec and public tracker | One approved design per feature in [docs/superpowers/specs/](superpowers/specs/). Issues [#1–#10](https://github.com/thaiphi/well-injection-insights/issues) (`ANA-E00` to `ANA-E11`); #1–#9 are done. |
+| Product spec and public tracker | One approved design per feature in [docs/superpowers/specs/](superpowers/specs/). Issues [#1–#10](https://github.com/thaiphi/well-injection-insights/issues) (`ANA-E00` to `ANA-E11`); #1–#10 are done. |
 | Agent team spec | [AGENTS.md](../AGENTS.md) and the roles in [.claude/agents/](../.claude/agents/): engineer, QA and reviewer. The main session acts as orchestrator. |
 | Context management | AGENTS.md plus modular docs: [HANDOVER.md](../HANDOVER.md), [migration/README.md](../migration/README.md), and the skills `preservation-layer` and `browser-check` in [.claude/skills/](../.claude/skills/). |
 | Application | A browser app with a Lovable/TanStack hosting adapter. Each feature is built design first, then planned, implemented test-first by agents, independently reviewed, browser-checked by QA, and accepted by the owner as a preservation layer. |
-| Testing | `npm test` (or `node scripts/check-all.mjs`) runs the full offline gate in one command. The engineering suite has 960 unit and integration tests, plus 248 carried numerical oracle comparisons. |
+| Testing | `npm test` (or `node scripts/check-all.mjs`) runs the full offline gate in one command. The engineering suite has 1,045 unit and integration tests, plus 248 carried numerical oracle comparisons. |
 | Containerization | The repo-root `Dockerfile`. The whole system runs with one `docker compose` command from the Explorer repo. |
 | Deployment | https://swdinjectionanalytics.lovable.app |
 | CI/CD | [CI](../.github/workflows/ci.yml) runs the `test` and `docker` jobs on every PR and on every push to `main`. Dev updates automatically from `main` (Lovable preview); production is published by hand. Rollback is described in the README. |
