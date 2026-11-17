@@ -1,7 +1,10 @@
 {
   "version": "swd-preservation-layer/1",
   "name": "phase-3d-depth-context",
-  "status": "pending-review",
+  "status": "accepted",
+  "acceptedAt": "2026-11-17",
+  "acceptedBy": "Thai Phi",
+  "acceptanceEvidence": "demo/E11-DEPTH-CONTEXT-VERIFICATION.md",
   "purpose": "#10 (ANA-E11) depth view: user-uploaded depth evidence beside the disposal case's modelled pressure, as a display-only review aid",
   "parentBaselineSha256": "0f3de8f43826beed03d8404196ba9b73dc62758e4cbbba45a74005d5b0ceeb2b",
   "approvedDocs": [
