@@ -3,7 +3,10 @@
  * No new pressure calculation, no test-point movement, no guessing across bases. */
 import type {DisposalCase,DisposalWell,HydraulicPoint} from './disposalCase.js';
 import {toAbsolute} from './wellAssumptions.js';
-import type {Profile,ProfileRow} from './depthProfile.js';
+import {MAX_DEPTH_FT,MAX_PRESSURE_PSI,type Profile,type ProfileRow} from './depthProfile.js';
+
+export const REFERENCE_DEPTH_TOO_BIG=`Reference depth must be at most ${MAX_DEPTH_FT} ft.`;
+export const REFERENCE_PRESSURE_TOO_BIG=`Reference pressure must be at most ${MAX_PRESSURE_PSI} psia.`;
 
 export const DEPTH_CONTEXT_VERSION='depth-context/1';
 export const REVIEW_AID='Review aid: user-supplied depth evidence beside modelled pressure. Not a calibrated correlation or a regulatory cross-section.';
@@ -160,6 +163,8 @@ export function buildDepthContext(profile:Profile,sources:readonly CurveSource[]
   if(selection.basis!=='MD'&&selection.basis!=='TVD')throw Error(`Unknown depth basis "${String(selection.basis)}"`);
   checkScenario(selection.scenario);
   for(const v of [selection.referenceDepthFt,selection.referencePressurePsia])if(v!==null&&!Number.isFinite(v))throw Error('Reference depth and pressure must be finite or null');
+  if(selection.referenceDepthFt!==null&&selection.referenceDepthFt>MAX_DEPTH_FT)throw Error(REFERENCE_DEPTH_TOO_BIG);
+  if(selection.referencePressurePsia!==null&&selection.referencePressurePsia>MAX_PRESSURE_PSI)throw Error(REFERENCE_PRESSURE_TOO_BIG);
   const tracks:Track[]=ids.map(wellId=>{
     const src=sources.find(s=>s.wellId===wellId);
     if(!src)throw Error(`No curve source for well ${wellId}`);

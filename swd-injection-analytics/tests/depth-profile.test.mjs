@@ -131,3 +131,17 @@ test('pruneProfile drops only absent wells, in row order',()=>{
   assert.equal(pruneProfile(p,[A,B]).dropped.length,0);
   assert.equal(pruneProfile(p,[]).profile.rows.length,0);
 });
+
+test('input bounds: depth and pressure above the limits are refused with the row; the limits are named constants',()=>{
+  assert.equal(m.MAX_DEPTH_FT,50000);assert.equal(m.MAX_PRESSURE_PSI,50000);
+  assert.equal(parseDepthProfile(csv(ref,{...cas,bottom_depth_ft:50000})).rows.length,2);
+  has(refused(csv(ref,{...cas,bottom_depth_ft:50001})),2,/bottom_depth_ft is above the 50000 ft limit/);
+  has(refused(csv({...ref,wellhead_below_reference_ft:50001})),1,/wellhead_below_reference_ft is above/);
+  has(refused(csv(ref,sv(50001,50001))),2,/md_ft is above/);
+  has(refused(csv(ref,sv(10,50001))),2,/tvd_ft is above/);
+  has(refused(csv(ref,{...base,kind:'packer',top_depth_ft:1e12,depth_basis:'MD'})),2,/not a plain number|above/);
+  has(refused(csv(ref,{...base,kind:'packer',top_depth_ft:'99999999999999',depth_basis:'MD'})),2,/top_depth_ft is above/);
+  const tp={...base,kind:'test-point',top_depth_ft:3000,depth_basis:'MD',pressure_basis:'psia',test_date:'2028-01-01',test_type:'static'};
+  assert.equal(parseDepthProfile(csv(ref,{...tp,pressure_psi:50000})).rows.length,2);
+  has(refused(csv(ref,{...tp,pressure_psi:50001})),2,/pressure_psi is above the 50000 psi limit/);
+});

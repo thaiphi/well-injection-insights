@@ -251,3 +251,37 @@ test('the drawing code reads no clock and makes no random ids',()=>{
   const src=svgMod.depthContextSvg.toString()+ex.depthSvg.toString();
   assert.ok(!/new Date|Date\.(now|UTC)|Math\.random|crypto/.test(src));
 });
+
+test('a drawing at the maximum depth has a bounded tick count on every axis; niceStep is open-ended',async()=>{
+  assert.equal(svgMod.niceStep(1e12,8)<=1e12,true);
+  for(const v of [1,7,999,5e4,3e6,1e12,1e300])assert.ok(v/svgMod.niceStep(v,8)<=8,String(v));
+  assert.throws(()=>svgMod.niceStep(Infinity,8),/not finite/);
+  const deep=uniformCase({wells:[{...well,tvdFt:50000,measuredDepthFt:50000,reservoirPsia:9000,limitPsia:9900,surfaceLimitPsia:9900}]});
+  const svg=ex.depthSvg(await ex.sealDepth(exportOf(deep,{wellIds:[A]})));
+  const ticks=svg.match(/<g class="depth-axis"[\s\S]*?<\/g>/)[0].match(/<line /g).length;
+  assert.ok(ticks<30,`depth ticks ${ticks}`);
+  assert.ok((svg.match(/<line [^>]*y1="78" [^>]*y2="498"/g)??[]).length<30);
+  assert.ok(svg.length<200000);
+});
+
+test('a track with no curve says why in the drawing (escaped, deterministic)',async()=>{
+  const shut=uniformCase({comparison:{wellId:A,injectivityMultiplier:0.5,innerDiameterInches:5,availability:0}});
+  const s1=ex.depthSvg(await ex.sealDepth(exportOf(shut,{scenario:'compared'}))),s2=ex.depthSvg(await ex.sealDepth(exportOf(shut,{scenario:'compared'})));
+  assert.equal(s1,s2);
+  const txt=[...s1.matchAll(/<text class="curve-gap"[^>]*>([^<]*)<\/text>/g)].map(x=>x[1]).join(' ');
+  assert.ok(txt.includes('no modelled curve:')&&txt.includes('shut in'),txt);
+  assert.deepEqual(await ex.verifyDepthSvg(s1),await ex.sealDepth(exportOf(shut,{scenario:'compared'})));
+  assert.ok(!/<text class="curve-gap"/.test(ex.depthSvg(await ex.sealDepth(exportOf(uniformCase())))));
+});
+
+test('the depth-axis title is inside the left margin (rotated, not anchored past x=0)',async()=>{
+  const svg=ex.depthSvg(await ex.sealDepth(exportOf(uniformCase())));
+  assert.match(svg,/<text transform="translate\(12,288\) rotate\(-90\)" text-anchor="middle">TVD depth below the depth reference \(ft\)<\/text>/);
+});
+
+test('a reference depth or pressure above the limits is refused by buildDepthContext',()=>{
+  const r=uniformCase(),sources=curveSources(r,'base','2028-02',[A]);
+  assert.throws(()=>buildDepthContext(profile,sources,sel({wellIds:[A],referenceDepthFt:50001})),/at most 50000 ft/);
+  assert.throws(()=>buildDepthContext(profile,sources,sel({wellIds:[A],referencePressurePsia:50001})),/at most 50000 psia/);
+  assert.ok(buildDepthContext(profile,sources,sel({wellIds:[A],referenceDepthFt:50000,referencePressurePsia:50000})));
+});

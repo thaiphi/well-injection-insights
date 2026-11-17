@@ -59,3 +59,16 @@ None.
 - `demo/e11-evidence/results-desktop.json`, `results-mobile.json`: per-check results with the measured values.
 - `demo/e11-evidence/screenshots-SHA256SUMS.txt`: SHA-256 of the 24 screenshots (12 per width; two names per width show the same image).
 - The screenshots, the downloaded JSON/CSV/SVG and the three scratchpad profiles stay in the QA scratchpad and are not committed.
+
+## Final-review fixes
+
+After the whole-branch review (`.superpowers/sdd/2026-11-16-e11-depth-context/final-review.md`) the following changed, and the driver was rerun at both widths (desktop 16 and mobile 16 checks, all PASS, no console error; screenshots and `results-*.json` and `screenshots-SHA256SUMS.txt` refreshed):
+
+- **I1 bounds.** Depth columns and the reference depth are limited to 50,000 ft and `pressure_psi` and the reference pressure to 50,000 (`MAX_DEPTH_FT`, `MAX_PRESSURE_PSI`). A larger value is refused with its row number (profile) or a message (panel). The axis step is now open-ended (10^k x 1, 2, 5), so tick counts stay bounded.
+- **I2 evidence detail.** Rows not placed now show the same detail as placed rows (values as entered, source, content-class label, basis, depth reference, and the reason in place of the conversion). Each shown well has a "Profile inputs" detail listing its depth-reference row and survey stations with sources.
+- **M-b.** A well that is back in the case is removed from the dropped list; its rows stay gone.
+- **M-c.** A bad entry in a reference box is refused with "must be numbers" and the earlier value is kept.
+- **M-d.** A track whose curve cannot be drawn states the reason inside the drawing.
+- **M-e.** The drawing's scroll wrapper has `tabindex="0"`, `role="region"` and an aria-label.
+- **Cosmetic.** The depth-axis title is now rotated inside the left margin and no longer clipped (confirmed on the desktop screenshot). Note 3 above (first bullet) is resolved.
+- Parked by ruling, unchanged: M-a, M-f, M-g.

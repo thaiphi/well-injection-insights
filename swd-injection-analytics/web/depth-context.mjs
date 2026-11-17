@@ -1,5 +1,5 @@
-import {parseDepthProfile,pruneProfile,ProfileError,FICTIONAL_DEPTH_PROFILE_CSV,CONTENT_CLASS_LABELS,PROFILE_COLUMNS} from '../dist/depthProfile.js';
-import {buildDepthContext,curveSources,REVIEW_AID,EXAMPLE_LABEL,EXAMPLE_ONLY_DEMO,DROPPED} from '../dist/depthContext.js';
+import {parseDepthProfile,pruneProfile,ProfileError,FICTIONAL_DEPTH_PROFILE_CSV,CONTENT_CLASS_LABELS,PROFILE_COLUMNS,MAX_DEPTH_FT,MAX_PRESSURE_PSI} from '../dist/depthProfile.js';
+import {buildDepthContext,curveSources,REVIEW_AID,EXAMPLE_LABEL,EXAMPLE_ONLY_DEMO,DROPPED,REFERENCE_DEPTH_TOO_BIG,REFERENCE_PRESSURE_TOO_BIG} from '../dist/depthContext.js';
 import {depthContextSvg,CURVE_LABEL,TEST_LABEL} from '../dist/depthContextSvg.js';
 import {sealDepth,verifyDepth,verifyDepthSvg,depthJson,depthCsv,depthSvg} from '../dist/depthContextExport.js';
 import {fmtNumber} from '../dist/caseSummary.js';
@@ -89,6 +89,8 @@ export function createDepthSession({getSource,onChange=()=>{}}={}){
           next.month=v;
         }else if(k==='referenceDepthFt'||k==='referencePressurePsia'){
           if(v!==null&&!(typeof v==='number'&&Number.isFinite(v))){refuse('Reference depth and pressure must be numbers.');return;}
+          if(v!==null&&k==='referenceDepthFt'&&v>MAX_DEPTH_FT){refuse(REFERENCE_DEPTH_TOO_BIG);return;}
+          if(v!==null&&k==='referencePressurePsia'&&v>MAX_PRESSURE_PSI){refuse(REFERENCE_PRESSURE_TOO_BIG);return;}
           next[k]=v;
         }
       }
@@ -113,6 +115,8 @@ export function createDepthSession({getSource,onChange=()=>{}}={}){
       result=next;sha=typeof contentSha256==='string'?contentSha256:null;context=null;message=null;
       const ids=caseWellIds(),ms=months();
       if(profile)adopt(profile,DROPPED);
+      // A well that is in the case again is no longer "dropped" or "not in the case". Its removed rows stay gone: upload the profile again to use them.
+      dropped=dropped.filter(d=>!ids.includes(d.wellId));
       selection={...selection,wellIds:selection.wellIds.filter(id=>ids.includes(id)),month:ms.includes(selection.month)?selection.month:ms[0]};
       onChange();
     },
@@ -141,13 +145,36 @@ export function createDepthSession({getSource,onChange=()=>{}}={}){
   };
 }
 
-/** The lists the panel renders, DOM-free: per shown well the rows and the modelled curve that could not be placed, and every pruned profile row
- * (these stay listed after Draw, also for wells that are no longer tracks). */
+/** What a profile row shows, DOM-free: the content class label, sources, declared basis, depth reference and every value as entered. */
+export function rowFacts(r,reference){
+  const f=[['Content class',CONTENT_CLASS_LABELS[r.contentClass]],['Source reference',r.sourceRef]];
+  if(r.bottomSourceRef)f.push(['Bottom source reference',r.bottomSourceRef]);
+  f.push(['Declared depth basis',r.basis??'not applicable']);
+  f.push(['Depth reference',reference?`${reference.name||'(unnamed)'}; wellhead ${fmtNumber(reference.wellheadBelowReferenceFt,1)} ft below it`:'not declared']);
+  for(const c of PROFILE_COLUMNS){const v=r.raw?.[c];if(v!==undefined&&v!=='')f.push([`As entered: ${c}`,v]);}
+  return f;
+}
+
+/** The lists the panel renders, DOM-free: per shown well the rows and the modelled curve that could not be placed (a row gap carries the same facts as a placed row,
+ * with the gap reason in place of the conversion), and every pruned profile row (these stay listed after Draw, also for wells that are no longer tracks). */
 export function reviewLists(snap){
   const gaps=(snap.context?snap.context.tracks:[]).map(t=>({wellId:t.wellId,items:[
-    ...t.items.filter(i=>i.placement.status==='gap').map(i=>({row:i.row.row,kind:i.row.kind,reason:i.placement.reason})),
+    ...t.items.filter(i=>i.placement.status==='gap').map(i=>({row:i.row.row,kind:i.row.kind,label:i.row.label,reason:i.placement.reason,facts:[...rowFacts(i.row,t.reference),['Not placed',i.placement.reason]]})),
     ...(t.curve.status==='gap'?[{row:null,kind:'modelled curve',reason:t.curve.reason}]:[])]}));
   return {gaps,dropped:snap.dropped.map(d=>({row:d.row,wellId:d.wellId,reason:d.reason}))};
+}
+
+/** Per shown well, its depth-reference row and survey stations as loaded, each with its source and content-class label (they are inputs, not drawn items). */
+export function profileInputs(snap){
+  const rows=snap.profile?snap.profile.rows:[];
+  return (snap.context?snap.context.tracks:[]).map(t=>({wellId:t.wellId,rows:rows.filter(r=>r.wellId===t.wellId&&(r.kind==='depth-reference'||r.kind==='survey'))
+    .map(r=>({row:r.row,kind:r.kind,contentClass:CONTENT_CLASS_LABELS[r.contentClass],sourceRef:r.sourceRef,facts:rowFacts(r,t.reference)}))}));
+}
+
+/** A reference input: '' is no reference; text the browser cannot read as a number (badInput) is NaN, which the session refuses with a message instead of clearing it. */
+export function referenceValue(text,badInput=false){
+  if(badInput)return NaN;
+  return String(text).trim()===''?null:Number(text);
 }
 
 // ---- DOM wiring (only runs when import-ui.mjs calls mountDepthContext) ----
@@ -222,21 +249,19 @@ export function mountDepthContext(anchor,{getSource}){
 
   function rowDetail(t,it){
     const r=it.row,p=it.placement,d=el('details');
-    const where=p.status==='placed'?`placed at ${num(p.topFt,1)}${p.bottomFt!==null?` to ${num(p.bottomFt,1)}`:''} ft ${snapBasis}`:'';
+    const where=p.status==='placed'?`placed at ${num(p.topFt,1)}${p.bottomFt!==null?` to ${num(p.bottomFt,1)}`:''} ft ${snapBasis}`:`not placed: ${p.reason}`;
     d.append(el('summary',`${t.wellId} row ${r.row}: ${r.kind}${r.label?` (${r.label})`:''}; ${where}`));
     const dl=el('dl');
     const add=(k,v)=>{dl.append(el('dt',k),el('dd',v));};
-    add('Content class',CONTENT_CLASS_LABELS[r.contentClass]);add('Source reference',r.sourceRef);
-    if(r.bottomSourceRef)add('Bottom source reference',r.bottomSourceRef);
-    add('Declared depth basis',r.basis??'not applicable');
-    add('Depth reference',t.reference?`${t.reference.name||'(unnamed)'}; wellhead ${num(t.reference.wellheadBelowReferenceFt,1)} ft below it`:'not declared');
+    const facts=rowFacts(r,t.reference);
+    for(const [k,v] of facts.slice(0,facts.findIndex(f=>f[0].startsWith('As entered'))<0?facts.length:facts.findIndex(f=>f[0].startsWith('As entered'))))add(k,v);
     if(p.status==='placed'){
       if(p.conversion){
         add('Converted',`from ${p.conversion.from} with a survey; stations used: ${p.conversion.stations.map(stationText).join(' and ')}`);
         if(p.conversion.topStations)add('Top converted',`stations used: ${p.conversion.topStations.map(stationText).join(' and ')}`);
       }else add('Converted','no, drawn as entered');
-    }
-    for(const c of PROFILE_COLUMNS){const v=r.raw?.[c];if(v!==undefined&&v!=='')add(`As entered: ${c}`,v);}
+    }else add('Not placed',p.reason);
+    for(const [k,v] of facts)if(k.startsWith('As entered'))add(k,v);
     d.append(dl);return d;
   }
   let snapBasis='';
@@ -246,10 +271,10 @@ export function mountDepthContext(anchor,{getSource}){
     output.replaceChildren();
     if(!ctx)return;
     snapBasis=ctx.selection.basis;
-    const mkSvg=c=>{const w=el('div',undefined,'depth-svg');w.append(svgNode(depthContextSvg(c,null)));return w;};
+    const mkSvg=c=>{const w=el('div',undefined,'depth-svg');w.tabIndex=0;w.setAttribute('role','region');w.setAttribute('aria-label','Depth view drawing; scrolls sideways on a narrow screen');w.append(svgNode(depthContextSvg(c,null)));return w;};
     // The same single drawing as the export, at its natural width; on a narrow screen the wrapper scrolls, not the page.
     output.append(mkSvg(ctx));
-    const lists=reviewLists(snap);
+    const lists=reviewLists(snap),inputs=profileInputs(snap);
     const srcs=new Map(snap.sources.map(s=>[s.wellId,s]));
     for(const t of ctx.tracks){
       const sec=el('section');sec.append(el('h4',t.wellId));
@@ -261,6 +286,13 @@ export function mountDepthContext(anchor,{getSource}){
       if(t.surveyNote)notes.append(el('li',t.surveyNote));
       if(notes.children.length)sec.append(notes);
       for(const it of t.items)if(it.placement.status==='placed')sec.append(rowDetail(t,it));
+      const notPlaced=t.items.filter(it=>it.placement.status==='gap');
+      if(notPlaced.length){sec.append(el('p','Rows not placed, with their values as entered','small'));for(const it of notPlaced)sec.append(rowDetail(t,it));}
+      const pin=inputs.find(x=>x.wellId===t.wellId);
+      const pd=el('details');pd.append(el('summary',`${t.wellId}: Profile inputs (depth reference and survey stations)`));
+      if(pin&&pin.rows.length){for(const pr of pin.rows){const rd=el('details');rd.append(el('summary',`row ${pr.row}: ${pr.kind}; ${pr.contentClass}; source: ${pr.sourceRef}`));const dl=el('dl');for(const [k,v] of pr.facts)dl.append(el('dt',k),el('dd',v));rd.append(dl);pd.append(rd);}}
+      else pd.append(el('p','No depth-reference or survey rows for this well.','small'));
+      sec.append(pd);
       const cd=el('details');cd.append(el('summary',`${t.wellId}: modelled curve detail`));
       const src=srcs.get(t.wellId),dl=el('dl');
       const add=(k,v)=>{dl.append(el('dt',k),el('dd',v));};
@@ -318,7 +350,7 @@ export function mountDepthContext(anchor,{getSource}){
   for(const [b,i] of Object.entries(basisInputs))i.addEventListener('change',()=>{if(i.checked)session.select({basis:b});});
   scenario.addEventListener('change',()=>session.select({scenario:scenario.value}));
   month.addEventListener('change',()=>session.select({month:month.value}));
-  const numOrNull=i=>i.value.trim()===''?null:Number(i.value);
+  const numOrNull=i=>referenceValue(i.value,i.validity?.badInput===true);
   refDepth.addEventListener('change',()=>session.select({referenceDepthFt:numOrNull(refDepth)}));
   refPress.addEventListener('change',()=>session.select({referencePressurePsia:numOrNull(refPress)}));
   draw.onclick=()=>session.draw();

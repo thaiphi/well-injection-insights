@@ -28,9 +28,13 @@ function wrap(text:string,max:number):string[] {
   if(cur)out.push(cur);
   return out.length?out:[''];
 }
-function niceStep(max:number,target:number):number {
-  const steps=[1,2,5,10,20,25,50,100,200,250,500,1000,2000,2500,5000,10000,20000,50000];
-  return steps.find(s=>max/s<=target)??100000;
+/** Smallest step of the form 10^k x {1,2,5} (k >= 0) with at most `target` steps across `max`: the tick count stays bounded for any finite value. */
+export function niceStep(max:number,target:number):number {
+  if(!Number.isFinite(max))throw Error('Depth view axis is not finite');
+  if(!(max>0))return 1;
+  for(let k=0;;k++) {
+    for(const m of [1,2,5]) {const s=m*10**k;if(max/s<=target)return s;}
+  }
 }
 const niceCeil=(v:number):number=>{if(!(v>0))return 1;const s=niceStep(v,4);return Math.ceil(v/s)*s;};
 
@@ -72,7 +76,7 @@ export function depthContextSvg(ctx:DepthContext,metadataJson:string|null):strin
     body.push(`<line x1="${LEFT-10}" y1="${n(y(d))}" x2="${LEFT-6}" y2="${n(y(d))}" stroke="${GRAY}"/>`);
     body.push(`<text x="${LEFT-12}" y="${n(y(d)+3)}">${n(d)}</text>`);
   }
-  body.push(`<text x="${LEFT-6}" y="${TOP-16}" text-anchor="end">${esc(`${sel.basis} depth below the depth reference (ft)`)}</text>`);
+  body.push(`<text transform="translate(12,${TOP+PLOT_H/2}) rotate(-90)" text-anchor="middle">${esc(`${sel.basis} depth below the depth reference (ft)`)}</text>`);
   body.push('</g>');
   const notes:string[]=[];
   ctx.tracks.forEach((t:Track,i:number)=>{
@@ -122,6 +126,9 @@ export function depthContextSvg(ctx:DepthContext,metadataJson:string|null):strin
       const lx=px(c.limitMarker.pressurePsia),ly=y(c.limitMarker.depthFt);
       g.push(`<polygon class="limit" points="${n(lx)},${n(ly-6)} ${n(lx+6)},${n(ly)} ${n(lx)},${n(ly+6)} ${n(lx-6)},${n(ly)}" fill="#fff" stroke="#111"><title>${esc(LIMIT_LABEL)}</title></polygon>`);
       for(const x of c.notes)if(!notes.includes(x))notes.push(x);
+    } else {
+      // A curve that cannot be drawn says why, in its own track (the reason is part of the drawing, not only of the JSON).
+      wrap(`no modelled curve: ${c.reason}`,30).forEach((s,k)=>g.push(`<text class="curve-gap" x="${SW+PGAP+6}" y="${TOP+18+k*11}" font-size="9" fill="${GRAY}">${esc(s)}</text>`));
     }
     for(const {row:r,placement:p} of ordered) {
       if(p.status!=='placed'||r.kind!=='test-point'||p.pressurePsia===undefined)continue;

@@ -95,7 +95,7 @@
      "modelled depths follow the case's declared MD and TVD, not the survey",
      "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
     ],
-    "rowDetails": 8
+    "rowDetails": 9
    },
    {
     "well": "FICTIONAL-INJ-B",
@@ -109,7 +109,7 @@
      "modelled depths follow the case's declared MD and TVD, not the survey",
      "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
     ],
-    "rowDetails": 2
+    "rowDetails": 6
    }
   ],
   "legend": [
@@ -153,8 +153,8 @@
   "svg": {
    "name": "swd-depth-context-8e345df358fc.svg",
    "type": "image/svg+xml",
-   "chars": 76474,
-   "sha256": "3010c1eabafb7faed9eb16467ead034ac2edf19901e537b8b59ef21de087d036",
+   "chars": 76505,
+   "sha256": "df6ae1c6d21f17eb94efab7edda539bc0c267a90cf612b3d97616d25ce0725e2",
    "verify": {
     "ok": true,
     "contentSha256": "8e345df358fc7b69f036319d85724902c709dde64cf720c0a992abb331b8b3ab"
@@ -379,8 +379,8 @@
   "svg": {
    "name": "swd-depth-context-3b68b472e33e.svg",
    "type": "image/svg+xml",
-   "chars": 76833,
-   "sha256": "a080e3216eb8f99db7c8933fdfa34461905110b22034f823eea2507ecfc68359",
+   "chars": 76864,
+   "sha256": "dde557b84b3578ea77ff2ed2bb1e747ce36bb29cf4aeda879af751879b5b2857",
    "verify": {
     "ok": true,
     "contentSha256": "3b68b472e33e5b1445a06fa399e1e35a70e3a6889e539e86f43742e3f0369307"
@@ -443,8 +443,8 @@
   "svg": {
    "name": "swd-depth-context-e8f2863b78ff.svg",
    "type": "image/svg+xml",
-   "chars": 76762,
-   "sha256": "751c30516a238a4563cd95fd5317c7a1ed3c39b932ba55ad64d78e4bb3fcd653",
+   "chars": 76793,
+   "sha256": "57a3a6a55fd9e50a9e7e4af5d97661bf2118f902fec8f3ee7fa282dfa8f6cbe9",
    "verify": {
     "ok": true,
     "contentSha256": "e8f2863b78ffe36d6a253d3721159129170aa58dd9fd9f47809cc37ff193a388"
@@ -1197,17 +1197,17 @@
  },
  "allPass": true,
  "screenshots": {
-  "mobile-s1-demo-tvd.png": "2bb90e80d9cb79614c55871754632164710d07d381f05496086dbf0b7da7c822",
-  "mobile-s2-demo-md.png": "26cdbb7d4206c798883d273a5f60b74010c7fa0aee5d534ae6af2777aa355741",
-  "mobile-s3-shut-in-compared.png": "f1105de50deb48abff3b132757d290a22ace6324b840253ec99e29490993329a",
-  "mobile-s3-flagged-curve.png": "2bb90e80d9cb79614c55871754632164710d07d381f05496086dbf0b7da7c822",
-  "mobile-s4-survey-note.png": "2bb90e80d9cb79614c55871754632164710d07d381f05496086dbf0b7da7c822",
-  "mobile-s6-user-drawn.png": "d815f8ad3f77505ba8ebf9b3cd50e038b513976f78bd7ceebeeff093b8b74c36",
-  "mobile-s6-bad-profile-refused.png": "32c3b454d864f0bc9d298d6b86acd5d969a46032709ed180d49199e7372a9af4",
-  "mobile-s8-sample-panels.png": "78f790267ae34c3c4c4d878a5471b48fc8999728698b1d8f38150aaf23679c0d",
-  "mobile-s8-sample-case-insights.png": "55d44b9587e175d88913d325c7a9417b5361b884248139b03e0b7e8f97764aa6",
-  "mobile-s8-sensitivity-view.png": "387a94f31da524bcc34013f3fdf05a35f3d7e7cdcc04d335ef4fc98e248cddfa",
-  "mobile-s10-mobile-drawing.png": "0e88fc2e2e54924f245db3065b30604403d00c823650c16bfc1c2d77049845d9",
-  "mobile-s10-controls.png": "cbc26c44470779c3916f79169dd84fb088eb6d4e032fe7e7b8ad1b22670e7e29"
+  "mobile-s1-demo-tvd.png": "d2c8a0c1b9cc1d8dd5a280aba1e24a37f7d1fec99bc3d9d8ee689bce3f47b2d5",
+  "mobile-s2-demo-md.png": "5d47fcf5b4de2f4fcddc09f9e19da562120ba17ecac19b31581873c3ad8db0e7",
+  "mobile-s3-shut-in-compared.png": "b3316b6b1fb655b5846e504cbbc3f4a4af030df658ce4347fa4987de60614af8",
+  "mobile-s3-flagged-curve.png": "d2c8a0c1b9cc1d8dd5a280aba1e24a37f7d1fec99bc3d9d8ee689bce3f47b2d5",
+  "mobile-s4-survey-note.png": "d2c8a0c1b9cc1d8dd5a280aba1e24a37f7d1fec99bc3d9d8ee689bce3f47b2d5",
+  "mobile-s6-user-drawn.png": "be43b00fa67c5051076de8acfc226dac9ea0e0ce95f74ee300a7936c4ad07909",
+  "mobile-s6-bad-profile-refused.png": "7e3e844537a0d4dd196bcc2059331915e99b3db9ac3cfbdb1bbefbfd228acf33",
+  "mobile-s8-sample-panels.png": "6bbdde6078a8efe4a92eb01d3f47ac90c67e5fb67f70c57e0a4711153e090ee0",
+  "mobile-s8-sample-case-insights.png": "6cea83560aec29481176fefdaa7fdd8f76f4a3994e682b96ca323bf85d2c8593",
+  "mobile-s8-sensitivity-view.png": "03e6544eba693e77b1991825db99626470d022a1ec9457ec290f6356ba46302c",
+  "mobile-s10-mobile-drawing.png": "a3b0e548b5684b5874d7373da68ce86aa49be7df58b5976c55b0d6192aee7c02",
+  "mobile-s10-controls.png": "8e060dbc10dc47342406de2a6c5ece6b6999069e56304aed3155c2b91f12dd2f"
  }
 }

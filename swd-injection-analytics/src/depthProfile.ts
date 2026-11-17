@@ -21,6 +21,9 @@ export class ProfileError extends Error {
   }
 }
 
+/** Input bounds: a mis-keyed cell is refused with its row, never drawn. */
+export const MAX_DEPTH_FT=50000;
+export const MAX_PRESSURE_PSI=50000;
 const MAX_ROWS=2000,MAX_WELLS=20,MAX_REF=200,EPS=1e-6;
 const KINDS:readonly ProfileKind[]=['depth-reference','survey','casing','packer','permitted-interval','perforated-interval','formation-top','test-point'];
 const CLASSES:readonly ContentClass[]=['public-reported','measured','assumed','literature'];
@@ -98,10 +101,12 @@ export function parseDepthProfile(text:string):Profile {
     const whFt=num('wellhead_below_reference_ft'),sizeIn=num('size_in'),pressurePsi=num('pressure_psi');
     for(const [c,v] of [['top_depth_ft',topFt],['bottom_depth_ft',bottomFt],['md_ft',mdFt],['tvd_ft',tvdFt],['wellhead_below_reference_ft',whFt]] as const) {
       if(v!==null&&v<0)bad(`${c} is negative`);
+      if(v!==null&&v>MAX_DEPTH_FT)bad(`${c} is above the ${MAX_DEPTH_FT} ft limit (${v})`);
     }
     if(topFt!==null&&bottomFt!==null&&topFt>bottomFt)bad('top_depth_ft is deeper than bottom_depth_ft');
     if(sizeIn!==null&&sizeIn<=0)bad('size_in must be greater than 0');
     if(pressurePsi!==null&&pressurePsi<=0)bad('pressure_psi must be greater than 0');
+    if(pressurePsi!==null&&pressurePsi>MAX_PRESSURE_PSI)bad(`pressure_psi is above the ${MAX_PRESSURE_PSI} psi limit (${pressurePsi})`);
 
     const basisRaw=cell('depth_basis');
     const basis=BASES.find(b=>b===basisRaw)??null;

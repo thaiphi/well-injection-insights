@@ -252,3 +252,82 @@ test('protected-file wiring: one import, one mount call, the sensitivity hide ru
   const css=await readFile(new URL('../web/redesign.css',import.meta.url),'utf8');
   assert.ok(css.includes('main[data-view="sensitivity"] #depth-context'));
 });
+
+test('reference inputs above the limits are refused with a message and the old value stays',()=>{
+  const s=drawn();
+  s.select({referenceDepthFt:3000,referencePressurePsia:2500});
+  s.select({referenceDepthFt:50001});
+  assert.match(s.snapshot().message,/Reference depth must be at most 50000 ft/);
+  assert.equal(s.snapshot().selection.referenceDepthFt,3000);
+  s.select({referencePressurePsia:50001});
+  assert.match(s.snapshot().message,/Reference pressure must be at most 50000 psia/);
+  assert.equal(s.snapshot().selection.referencePressurePsia,2500);
+  s.select({referenceDepthFt:50000,referencePressurePsia:50000});
+  assert.equal(s.snapshot().message,null);assert.equal(s.snapshot().selection.referenceDepthFt,50000);
+});
+
+test('a bad entry in a reference input is refused visibly, not cleared (referenceValue + session)',()=>{
+  assert.ok(Number.isNaN(panel.referenceValue('',true)));
+  assert.equal(panel.referenceValue('  ',false),null);
+  assert.equal(panel.referenceValue('3000.5',false),3000.5);
+  const s=drawn();s.select({referenceDepthFt:3000});
+  s.select({referenceDepthFt:panel.referenceValue('',true)});
+  assert.match(s.snapshot().message,/must be numbers/);
+  assert.equal(s.snapshot().selection.referenceDepthFt,3000);
+  s.select({referencePressurePsia:Infinity});
+  assert.match(s.snapshot().message,/must be numbers/);
+});
+
+test('a well removed by a recalculation and added back is no longer listed as dropped; its rows stay gone',()=>{
+  const s=drawn();
+  s.onCaseResult(CASE_A_ONLY,null);
+  assert.ok(s.snapshot().dropped.length>0&&s.snapshot().dropped.every(d=>d.wellId===B));
+  s.onCaseResult(CASE,null);
+  const snap=s.snapshot();
+  assert.deepEqual(snap.dropped,[]);
+  assert.ok(snap.profile.rows.every(r=>r.wellId===A));
+  assert.deepEqual(reviewLists(snap).dropped,[]);
+  // The same for a well that was NOT_IN_CASE at upload and joins later.
+  const t=make();t.onCaseResult(CASE_A_ONLY,null);t.loadExample();
+  assert.ok(t.snapshot().dropped.every(d=>d.reason===NOT_IN_CASE)&&t.snapshot().dropped.length>0);
+  t.onCaseResult(CASE,null);assert.deepEqual(t.snapshot().dropped,[]);
+});
+
+test('rows not placed carry the same evidence detail as placed rows (values, source, class label, basis, depth reference, reason)',()=>{
+  const s=ready();s.loadExample();s.select({wellIds:[B],basis:'MD'});s.draw();
+  const snap=s.snapshot();
+  const gaps=reviewLists(snap).gaps.find(g=>g.wellId===B).items;
+  const permit=gaps.find(g=>g.kind==='permitted-interval');
+  assert.ok(permit,JSON.stringify(gaps));
+  const f=Object.fromEntries(permit.facts);
+  assert.equal(f['Content class'],'Public, as reported');
+  assert.equal(f['Source reference'],'fictional example: permit record');
+  assert.equal(f['Declared depth basis'],'TVD');
+  assert.match(f['Depth reference'],/KB; wellhead 18.0 ft below it/);
+  assert.equal(f['As entered: top_depth_ft'],'2900');assert.equal(f['As entered: bottom_depth_ft'],'3200');
+  assert.equal(f['Not placed'],permit.reason);
+  // The unknown-basis packer is listed with its value too.
+  const pk=gaps.find(g=>g.kind==='packer');
+  assert.equal(Object.fromEntries(pk.facts)['As entered: top_depth_ft'],'2850');
+  assert.equal(Object.fromEntries(pk.facts)['Declared depth basis'],'unknown');
+});
+
+test('profileInputs lists the depth-reference row and survey stations of each shown well with source and class label',()=>{
+  const s=ready();s.loadExample();s.select({wellIds:[A,B],basis:'MD'});s.draw();
+  const inputs=panel.profileInputs(s.snapshot());
+  assert.deepEqual(inputs.map(x=>x.wellId),[A,B]);
+  const a=inputs[0].rows,b=inputs[1].rows;
+  assert.deepEqual(a.map(r=>r.kind),['depth-reference','survey','survey','survey']);
+  assert.deepEqual(b.map(r=>r.kind),['depth-reference']);
+  assert.ok(a.every(r=>r.sourceRef.startsWith('fictional example')&&r.contentClass==='Assumed'));
+  const st=Object.fromEntries(a[3].facts);
+  assert.equal(st['As entered: md_ft'],'3318');assert.equal(st['As entered: tvd_ft'],'3018');assert.equal(st['Source reference'],'fictional example: survey station');
+  assert.deepEqual(panel.profileInputs(ready().snapshot()),[]);
+});
+
+test('the panel sets textContent only and makes the drawing scroller keyboard-reachable',async()=>{
+  const src=await readFile(new URL('../web/depth-context.mjs',import.meta.url),'utf8');
+  assert.ok(!/innerHTML|insertAdjacentHTML|outerHTML/.test(src));
+  assert.ok(src.includes("w.tabIndex=0;w.setAttribute('role','region');w.setAttribute('aria-label'"));
+  assert.ok(src.includes('Profile inputs'));
+});

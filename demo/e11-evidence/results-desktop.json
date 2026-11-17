@@ -95,7 +95,7 @@
      "modelled depths follow the case's declared MD and TVD, not the survey",
      "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
     ],
-    "rowDetails": 8
+    "rowDetails": 9
    },
    {
     "well": "FICTIONAL-INJ-B",
@@ -109,7 +109,7 @@
      "modelled depths follow the case's declared MD and TVD, not the survey",
      "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
     ],
-    "rowDetails": 2
+    "rowDetails": 6
    }
   ],
   "legend": [
@@ -153,8 +153,8 @@
   "svg": {
    "name": "swd-depth-context-8e345df358fc.svg",
    "type": "image/svg+xml",
-   "chars": 76474,
-   "sha256": "3010c1eabafb7faed9eb16467ead034ac2edf19901e537b8b59ef21de087d036",
+   "chars": 76505,
+   "sha256": "df6ae1c6d21f17eb94efab7edda539bc0c267a90cf612b3d97616d25ce0725e2",
    "verify": {
     "ok": true,
     "contentSha256": "8e345df358fc7b69f036319d85724902c709dde64cf720c0a992abb331b8b3ab"
@@ -379,8 +379,8 @@
   "svg": {
    "name": "swd-depth-context-3b68b472e33e.svg",
    "type": "image/svg+xml",
-   "chars": 76833,
-   "sha256": "a080e3216eb8f99db7c8933fdfa34461905110b22034f823eea2507ecfc68359",
+   "chars": 76864,
+   "sha256": "dde557b84b3578ea77ff2ed2bb1e747ce36bb29cf4aeda879af751879b5b2857",
    "verify": {
     "ok": true,
     "contentSha256": "3b68b472e33e5b1445a06fa399e1e35a70e3a6889e539e86f43742e3f0369307"
@@ -443,8 +443,8 @@
   "svg": {
    "name": "swd-depth-context-e8f2863b78ff.svg",
    "type": "image/svg+xml",
-   "chars": 76762,
-   "sha256": "751c30516a238a4563cd95fd5317c7a1ed3c39b932ba55ad64d78e4bb3fcd653",
+   "chars": 76793,
+   "sha256": "57a3a6a55fd9e50a9e7e4af5d97661bf2118f902fec8f3ee7fa282dfa8f6cbe9",
    "verify": {
     "ok": true,
     "contentSha256": "e8f2863b78ffe36d6a253d3721159129170aa58dd9fd9f47809cc37ff193a388"
@@ -681,7 +681,9 @@
   },
   "svgW": 722
  },
- "consoleErrors": [],
+ "consoleErrors": [
+  "log: Failed to load resource: the server responded with a status of 404 (Not Found) http://127.0.0.1:4174/favicon.ico"
+ ],
  "checks": {
   "0_panel_hidden_before_result": {
    "ok": true,
@@ -1192,22 +1194,24 @@
   },
   "9_no_console_errors": {
    "ok": true,
-   "detail": []
+   "detail": [
+    "log: Failed to load resource: the server responded with a status of 404 (Not Found) http://127.0.0.1:4174/favicon.ico"
+   ]
   }
  },
  "allPass": true,
  "screenshots": {
-  "desktop-s1-demo-tvd.png": "51696b6be7f061406608f1fe2f8ae3cac315522f9394a52916fbc4db87c42097",
-  "desktop-s2-demo-md.png": "bb5c70fb647687dbcef2db9dc283c84132d4a06b02b9745a86495131656adfd8",
-  "desktop-s3-shut-in-compared.png": "37d428fdb91c7789018a77dbb1a25d36c097ded805dd3debcf27f76cf5b33696",
-  "desktop-s3-flagged-curve.png": "c81d6e20bceae1c4699a96516dfeabc043c2b1fb1f624f6a3b9ed5a8f0e99765",
-  "desktop-s4-survey-note.png": "4093fa45fd4e6dea1af0fdf084216591fecbf72b82b8b334851ff715c886bfaf",
-  "desktop-s6-user-drawn.png": "80962ab644c76b7d18f7b724909c9822d8be5035d0a2a83e746ccf75bafedfd7",
-  "desktop-s6-bad-profile-refused.png": "45a4192c9201de8fc887cf7aa9d3f07408019cbb0ee51172ebf1cfc09802f05a",
-  "desktop-s8-sample-panels.png": "1d848e144987f5f639a9f7256ba70c68d2bc0495c64b5917c8e1f84147531f6c",
-  "desktop-s8-sample-case-insights.png": "b9bec946b4178fc8495b7bddf74d3c2532ce3adf55ce7c302f1abadc1dbf4bb3",
-  "desktop-s8-sensitivity-view.png": "c9a9e932eaf0bf6b569b44f2032afe36dfd5afe307ca257c7b5c9d51fdc27484",
-  "desktop-s10-desktop-drawing.png": "51696b6be7f061406608f1fe2f8ae3cac315522f9394a52916fbc4db87c42097",
-  "desktop-s10-controls.png": "6641fa663b733cde1f23eb599610eaf1e5d49295381affaee07562715b73cf64"
+  "desktop-s1-demo-tvd.png": "306c0586c668e56d48ed2741cd465ddae26b1f4e1de31d13c9aeac497f39fd21",
+  "desktop-s2-demo-md.png": "939e747bfdcbefa1c1f16f78ce49b5d3fbfedf46a51c335a70eabdac7c85170f",
+  "desktop-s3-shut-in-compared.png": "ec333aaeea9edea314d1679b1ba86d2f128a6670f46839f5e84e85b672e95989",
+  "desktop-s3-flagged-curve.png": "f6193055a4a34a7581f7d64369728e6f21a29f4e3a80988537a27617c4f9a333",
+  "desktop-s4-survey-note.png": "a6779d890db859bffa1ad67a2718b2ae9bd13a576b677d47b8dcb263a977c2d8",
+  "desktop-s6-user-drawn.png": "822ba7d4dfa66ad6d3bfbb2c63024131f3db1172dbf7e4a88cbb94bbe9556666",
+  "desktop-s6-bad-profile-refused.png": "dc3cbde72ef65365d23515fdc2614f991349f35db08890f9f7f1044c2ad6b674",
+  "desktop-s8-sample-panels.png": "c5feaac2839213b5077d1df50a83891cdd799f642a2f7e1925c5386f64dd5ef6",
+  "desktop-s8-sample-case-insights.png": "d4fb0bf9a0c40df9f7e11110b5f9a8a2ecfabb2ed69cb39d8f05de5baa745c35",
+  "desktop-s8-sensitivity-view.png": "4d1104b6dbd4ee980df4ea195ee6d7320639c68bc1307cb4a6230d9379aae9da",
+  "desktop-s10-desktop-drawing.png": "306c0586c668e56d48ed2741cd465ddae26b1f4e1de31d13c9aeac497f39fd21",
+  "desktop-s10-controls.png": "cefe99fd550473be8aa1a8ca6f3e00ff75f6b74d03a5c4f4cea236922a6556bc"
  }
 }
