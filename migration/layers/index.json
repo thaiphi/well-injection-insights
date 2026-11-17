@@ -44,6 +44,10 @@
     {
       "name": "phase-3a-transient-and-interference",
       "baseline": "migration/layers/phase-3a-transient-and-interference.json"
+    },
+    {
+      "name": "phase-3d-depth-context",
+      "baseline": "migration/layers/phase-3d-depth-context.json"
     }
   ]
 }

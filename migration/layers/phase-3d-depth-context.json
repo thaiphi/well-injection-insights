@@ -1,0 +1,89 @@
+{
+  "version": "swd-preservation-layer/1",
+  "name": "phase-3d-depth-context",
+  "status": "pending-review",
+  "purpose": "#10 (ANA-E11) depth view: user-uploaded depth evidence beside the disposal case's modelled pressure, as a display-only review aid",
+  "parentBaselineSha256": "0f3de8f43826beed03d8404196ba9b73dc62758e4cbbba45a74005d5b0ceeb2b",
+  "approvedDocs": [
+    {
+      "path": "docs/superpowers/specs/2026-11-16-e11-depth-pressure-context-design.md",
+      "sha256": "5758b834a83c234ab5de1dbaedff41e661361abaa41bf93a01311a8dc25309cb"
+    },
+    {
+      "path": "docs/superpowers/plans/2026-11-16-e11-depth-context.md",
+      "sha256": "6a62d7ee0b95b1264ca5cc09135a00882da3f6e43b0a40f91e03da705d4ccf14"
+    }
+  ],
+  "changes": [
+    {
+      "path": "web/import-ui.mjs",
+      "archive": "migration/baselines/phase-3d-depth-context-before/swd-injection-analytics/web/import-ui.mjs",
+      "beforeSha256": "768f6f83732241c7e305c650071f4b84ff3743ecd2f3d56c08c58f00bf613824",
+      "beforeBytes": 71141,
+      "afterSha256": "065cb870ca7de19c226b42fb65bef26ef015d484e516e9fbdbcb76c25beacedd",
+      "afterBytes": 71261
+    },
+    {
+      "path": "web/redesign.css",
+      "archive": "migration/baselines/phase-3d-depth-context-before/swd-injection-analytics/web/redesign.css",
+      "beforeSha256": "9d9d997622cd010696496afa8790fbee6a09b6518b414b464d87e60e2a11cc28",
+      "beforeBytes": 11991,
+      "afterSha256": "ba12e4056b76df699302ae7470517c0e2442f03f9d01a513348e1fa99e7daf4c",
+      "afterBytes": 12036
+    }
+  ],
+  "newFiles": [
+    {
+      "path": "src/depthProfile.ts",
+      "sha256": "e2aa5187f28c31ec1290e906bc11f0a7d1aacc54871effdd411066026148b14f",
+      "bytes": 13220
+    },
+    {
+      "path": "src/depthContext.ts",
+      "sha256": "5e47cfa5db74c64df359ccdddaeb0512b1867d70748a229e2433d88ce4752e29",
+      "bytes": 12546
+    },
+    {
+      "path": "src/depthContextSvg.ts",
+      "sha256": "9b7d12aaaf4cbd65b4d34ef993ea2770a882003598b0c6e3b97991674e7c2de8",
+      "bytes": 13244
+    },
+    {
+      "path": "src/depthContextExport.ts",
+      "sha256": "80bbd27626027a65e17a2032da95cfb7b5bf6f73c89ac3ea46569b3539d4a6bf",
+      "bytes": 13346
+    },
+    {
+      "path": "web/depth-context.mjs",
+      "sha256": "6a5e7d29b5f1f241de36905db1a1370f8f652be0c8095942f701dc7417e68635",
+      "bytes": 25083
+    },
+    {
+      "path": "tests/depth-profile.test.mjs",
+      "sha256": "9310839d946b4c77868bed9d1b71445dc30aceac6874bf2902729d59d9dfb954",
+      "bytes": 10159
+    },
+    {
+      "path": "tests/depth-context.test.mjs",
+      "sha256": "b25aa89fc23059104d173862375be094821814d6298498866b00a5768f837a43",
+      "bytes": 21351
+    },
+    {
+      "path": "tests/depth-context-export.test.mjs",
+      "sha256": "7543435833e868336af2f73296b22b448817128926bc667b0d4af62427cf6323",
+      "bytes": 17790
+    },
+    {
+      "path": "tests/depth-session.test.mjs",
+      "sha256": "9f7aa73e5ab3fb32b67d465bce05640edf910efdb7938ae0eae8fba6f80ef5a6",
+      "bytes": 21397
+    }
+  ],
+  "rootFiles": [
+    {
+      "path": "migration/layers/index.json",
+      "sha256": "6c6809a3ef4c859aab78675fe7d4fbc2fde0f0714917ef13479edf00461a8725",
+      "bytes": 1468
+    }
+  ]
+}
