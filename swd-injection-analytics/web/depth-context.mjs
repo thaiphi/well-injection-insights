@@ -9,6 +9,7 @@ import {fmtNumber} from '../dist/caseSummary.js';
  * Display only: it reads the disposal case result and never changes it. */
 
 export const PANEL_TITLE='Depth view (review aid)';
+export const NOT_IN_CASE='not a well in this case';
 export const NO_CASE='Load or calculate a disposal case to choose wells';
 export const NEED_PROFILE='Load a depth profile first (upload a CSV, or the fictional example on the demo case).';
 export const NEED_WELLS='Tick 1 to 4 wells to show.';
@@ -16,7 +17,7 @@ export const NEED_BASIS='Choose a display basis, MD or TVD.';
 export const MAX_WELLS_MESSAGE='Show at most 4 wells at a time.';
 export const NEED_DRAW='Draw the depth view first.';
 export const PROFILE_REFUSED='The profile was refused; nothing was loaded. Fix the rows listed and upload it again.';
-export const MESSAGES=[NO_CASE,NEED_PROFILE,NEED_WELLS,NEED_BASIS,MAX_WELLS_MESSAGE,NEED_DRAW,PROFILE_REFUSED];
+export const MESSAGES=[NOT_IN_CASE,NO_CASE,NEED_PROFILE,NEED_WELLS,NEED_BASIS,MAX_WELLS_MESSAGE,NEED_DRAW,PROFILE_REFUSED];
 const MAX_WELLS=4;
 const NO_SOURCE=Symbol('no-source');
 const msg=e=>e instanceof Error?e.message:String(e);
@@ -37,10 +38,11 @@ export function createDepthSession({getSource,onChange=()=>{}}={}){
   const followSource=()=>{const src=sourceNow();if(lastSource!==NO_SOURCE&&src!==lastSource)clearAll();lastSource=src;};
   const withdraw=()=>{generation++;context=null;onChange();};
   const refuse=text=>{message=text;onChange();};
-  /** Rows of wells that are not case wells are dropped and listed; the dropped list accumulates until the profile is cleared. */
-  const adopt=next=>{
+  /** Rows of wells that are not case wells are pruned and listed with a reason: NOT_IN_CASE at upload, DROPPED when a later case result removes the well.
+   * The list accumulates until the profile is cleared. Only DROPPED rows travel in the export (the others were never case rows). */
+  const adopt=(next,reason)=>{
     const pr=pruneProfile(next,caseWellIds());
-    profile=pr.profile;dropped=[...dropped,...pr.dropped].sort((a,b)=>a.row-b.row);
+    profile=pr.profile;dropped=[...dropped,...pr.dropped.map(d=>({...d,reason}))].sort((a,b)=>a.row-b.row);
   };
   return {
     snapshot(){
@@ -54,7 +56,7 @@ export function createDepthSession({getSource,onChange=()=>{}}={}){
       message=null;
       try{
         const parsed=parseDepthProfile(text);
-        problems=[];dropped=[];adopt(parsed);
+        problems=[];dropped=[];adopt(parsed,NOT_IN_CASE);
       }catch(e){
         // A refused upload loads nothing and also drops the earlier profile, so the panel never shows evidence the user thinks was replaced.
         profile=null;dropped=[];
@@ -110,7 +112,7 @@ export function createDepthSession({getSource,onChange=()=>{}}={}){
       generation++;followSource();
       result=next;sha=typeof contentSha256==='string'?contentSha256:null;context=null;message=null;
       const ids=caseWellIds(),ms=months();
-      if(profile)adopt(profile);
+      if(profile)adopt(profile,DROPPED);
       selection={...selection,wellIds:selection.wellIds.filter(id=>ids.includes(id)),month:ms.includes(selection.month)?selection.month:ms[0]};
       onChange();
     },
@@ -122,7 +124,7 @@ export function createDepthSession({getSource,onChange=()=>{}}={}){
       const kind=EXPORTS[format];
       if(!kind)throw new Error('Unsupported depth view export format: '+format);
       if(!context||!result||!profile)throw new Error(NEED_DRAW);
-      const gen=generation,shown=context,res=result,prof=profile,drop=[...dropped],digest=sha;
+      const gen=generation,shown=context,res=result,prof=profile,drop=dropped.filter(d=>d.reason===DROPPED).map(({row,wellId})=>({row,wellId})),digest=sha;
       const changed=()=>gen!==generation;
       try{
         const sel=shown.selection;
@@ -139,6 +141,15 @@ export function createDepthSession({getSource,onChange=()=>{}}={}){
   };
 }
 
+/** The lists the panel renders, DOM-free: per shown well the rows and the modelled curve that could not be placed, and every pruned profile row
+ * (these stay listed after Draw, also for wells that are no longer tracks). */
+export function reviewLists(snap){
+  const gaps=(snap.context?snap.context.tracks:[]).map(t=>({wellId:t.wellId,items:[
+    ...t.items.filter(i=>i.placement.status==='gap').map(i=>({row:i.row.row,kind:i.row.kind,reason:i.placement.reason})),
+    ...(t.curve.status==='gap'?[{row:null,kind:'modelled curve',reason:t.curve.reason}]:[])]}));
+  return {gaps,dropped:snap.dropped.map(d=>({row:d.row,wellId:d.wellId,reason:d.reason}))};
+}
+
 // ---- DOM wiring (only runs when import-ui.mjs calls mountDepthContext) ----
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const num=(v,digits=0)=>typeof v==='number'&&Number.isFinite(v)?fmtNumber(v,digits):'—';
@@ -148,14 +159,16 @@ const stationText=s=>`MD ${num(s.mdFt,1)} ft / TVD ${num(s.tvdFt,1)} ft`;
 const STYLE=`#depth-context .depth-controls{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;margin:10px 0}
 #depth-context fieldset{border:1px solid #d9e2ec;border-radius:6px;margin:0;padding:6px 12px}
 #depth-context fieldset label{display:inline-flex;gap:6px;align-items:center;margin-right:14px}
-#depth-context .depth-svg{max-width:100%;overflow-x:hidden}
-#depth-context .depth-svg svg{display:block;max-width:100%;height:auto}
-#depth-context .depth-tracks{display:flex;flex-direction:row;gap:12px}
+#depth-context{min-width:0;max-width:100%}
+#depth-context .depth-svg{max-width:100%;overflow-x:auto}
+#depth-context .depth-svg svg{display:block;max-width:none}
+#depth-context fieldset{min-width:0;max-width:100%}
+#depth-context fieldset label{overflow-wrap:anywhere}
 #depth-context details{margin:6px 0}
 #depth-context dl{display:grid;grid-template-columns:max-content 1fr;gap:2px 12px;margin:6px 0}
 #depth-context dd{margin:0;overflow-wrap:anywhere}
 #depth-context li{overflow-wrap:anywhere}
-@media (max-width:599px){#depth-context .depth-tracks{flex-direction:column}#depth-context .depth-controls>*{flex:1 1 100%}#depth-context dl{grid-template-columns:1fr}}`;
+@media (max-width:599px){#depth-context .depth-controls>*{flex:1 1 100%;min-width:0}#depth-context dl{grid-template-columns:1fr}}`;
 
 export function mountDepthContext(anchor,{getSource}){
   const root=el('section',undefined,'panel');root.id='depth-context';root.hidden=true;root.setAttribute('aria-labelledby','depth-context-title');
@@ -190,7 +203,6 @@ export function mountDepthContext(anchor,{getSource}){
   anchor.after(root);
 
   let wellsKey='',monthsKey='',renderedContext=undefined,exporting=false;
-  const narrow=typeof matchMedia==='function'?matchMedia('(max-width:599px)'):null;
   const session=createDepthSession({getSource,onChange:()=>render()});
 
   function syncWells(snap){
@@ -235,20 +247,14 @@ export function mountDepthContext(anchor,{getSource}){
     if(!ctx)return;
     snapBasis=ctx.selection.basis;
     const mkSvg=c=>{const w=el('div',undefined,'depth-svg');w.append(svgNode(depthContextSvg(c,null)));return w;};
-    if(narrow?.matches&&ctx.tracks.length>1){
-      // Below 600 px each well gets its own drawing, stacked, on the shared depth axis; each drawing has its own pressure scale.
-      const box=el('div',undefined,'depth-tracks');
-      for(const t of ctx.tracks)box.append(mkSvg({...ctx,tracks:[t]}));
-      output.append(box);
-    }else output.append(mkSvg(ctx));
+    // The same single drawing as the export, at its natural width; on a narrow screen the wrapper scrolls, not the page.
+    output.append(mkSvg(ctx));
+    const lists=reviewLists(snap);
     const srcs=new Map(snap.sources.map(s=>[s.wellId,s]));
     for(const t of ctx.tracks){
       const sec=el('section');sec.append(el('h4',t.wellId));
-      const gaps=t.items.filter(i=>i.placement.status==='gap');
       const gl=el('ul',undefined,'small');gl.setAttribute('aria-label',`Gaps for ${t.wellId}`);
-      for(const g of gaps)gl.append(el('li',`row ${g.row.row} (${g.row.kind}): ${g.placement.reason}`));
-      for(const d of snap.dropped.filter(x=>x.wellId===t.wellId))gl.append(el('li',`row ${d.row}: ${DROPPED}`));
-      if(t.curve.status==='gap')gl.append(el('li',`modelled curve: ${t.curve.reason}`));
+      for(const g of lists.gaps.find(x=>x.wellId===t.wellId).items)gl.append(el('li',g.row===null?`${g.kind}: ${g.reason}`:`row ${g.row} (${g.kind}): ${g.reason}`));
       sec.append(el('p',gl.children.length?'Gaps and reasons':'No gaps in the rows placed.','small'),gl);
       const notes=el('ul',undefined,'small');
       if(t.curve.status==='drawn'){for(const n of t.curve.notes)notes.append(el('li',n));if(t.curve.flagged)for(const r of t.curve.reasons)notes.append(el('li',`case flags this point: ${r}`));}
@@ -288,7 +294,7 @@ export function mountDepthContext(anchor,{getSource}){
     status.textContent=snap.message??(snap.profile?`${snap.profile.rows.length} profile rows loaded.`:'');
     problemsBox.replaceChildren();
     if(snap.problems.length){const ul=el('ul',undefined,'small');ul.setAttribute('aria-label','Profile rows refused');for(const p of snap.problems)ul.append(el('li',p.row===null?p.reason:`row ${p.row}: ${p.reason}`));problemsBox.append(ul);}
-    if(snap.dropped.length&&!snap.context){const ul=el('ul',undefined,'small');ul.setAttribute('aria-label','Dropped profile rows');for(const d of snap.dropped)ul.append(el('li',`${d.wellId} row ${d.row}: ${DROPPED}`));problemsBox.append(ul);}
+    if(snap.dropped.length){const ul=el('ul',undefined,'small');ul.setAttribute('aria-label','Dropped profile rows');for(const d of reviewLists(snap).dropped)ul.append(el('li',`${d.wellId} row ${d.row}: ${d.reason}`));problemsBox.append(ul);}
     if(snap.context!==renderedContext){renderedContext=snap.context;renderOutput(snap);}
     for(const b of [jsonBtn,csvBtn,svgBtn])b.disabled=exporting||!snap.context;
   }
@@ -316,7 +322,6 @@ export function mountDepthContext(anchor,{getSource}){
   refDepth.addEventListener('change',()=>session.select({referenceDepthFt:numOrNull(refDepth)}));
   refPress.addEventListener('change',()=>session.select({referencePressurePsia:numOrNull(refPress)}));
   draw.onclick=()=>session.draw();
-  narrow?.addEventListener?.('change',()=>{renderedContext=undefined;render();});
   document.addEventListener('disposal-case-result',event=>session.onCaseResult(event.detail.result,event.detail.contentSha256??null));
   document.addEventListener('disposal-case-invalidated',()=>session.onInvalidated());
   document.addEventListener('workspace-source',()=>session.onSourceSwitch());

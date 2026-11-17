@@ -7,7 +7,7 @@ import {FICTIONAL_DEPTH_PROFILE_CSV} from '../dist/depthProfile.js';
 import {REVIEW_AID,EXAMPLE_LABEL,EXAMPLE_ONLY_DEMO,DROPPED,GAP_SHUT_IN} from '../dist/depthContext.js';
 import {verifyDepth,verifyDepthSvg} from '../dist/depthContextExport.js';
 const panel=await import('../web/depth-context.mjs').catch(e=>({loadError:e}));
-const {createDepthSession,PANEL_TITLE,NO_CASE}=panel;
+const {createDepthSession,reviewLists,PANEL_TITLE,NO_CASE,NOT_IN_CASE}=panel;
 
 // Fictional data only (FICTIONAL-INJ-A/B).
 const A='FICTIONAL-INJ-A',B='FICTIONAL-INJ-B';
@@ -197,6 +197,43 @@ test('generated copy has no banned word (REVIEW_AID negates "calibrated")',async
   const src=await readFile(new URL('../web/depth-context.mjs',import.meta.url),'utf8');
   for(const m of src.matchAll(/'([^'\\\n]{8,})'/g))assert.ok(!BANNED.test(m[1]),`banned word in literal "${m[1]}"`);
   assert.equal(s.snapshot().message,null);
+});
+
+test('after Draw, a recalculation without well B keeps B rows in the dropped list with DROPPED',()=>{
+  const s=drawn();
+  const bRows=s.snapshot().profile.rows.filter(r=>r.wellId===B).map(r=>r.row);
+  s.onCaseResult(CASE_A_ONLY,null);s.select({basis:'TVD'});s.draw();
+  const snap=s.snapshot();assert.ok(snap.context);assert.deepEqual(snap.context.tracks.map(t=>t.wellId),[A]);
+  const lists=reviewLists(snap);
+  assert.deepEqual(lists.dropped.map(d=>d.row),bRows);
+  assert.ok(lists.dropped.every(d=>d.wellId===B&&d.reason===DROPPED));
+  assert.deepEqual(lists.gaps.map(g=>g.wellId),[A]);
+});
+
+test('reviewLists: gaps carry row, kind and reason per shown well; the curve gap is listed too',()=>{
+  const wells=[{...WELL,availability:0},{...WELL,id:B}];
+  const s=make();s.onCaseResult(buildDisposalCase(caseInput(wells)),null);s.loadExample();
+  s.select({wellIds:[A,B],basis:'MD'});s.draw();
+  const lists=reviewLists(s.snapshot());
+  const a=lists.gaps.find(g=>g.wellId===A);
+  assert.ok(a.items.some(i=>i.row===null&&i.kind==='modelled curve'&&i.reason===GAP_SHUT_IN));
+  const b=lists.gaps.find(g=>g.wellId===B);
+  assert.ok(b.items.some(i=>Number.isInteger(i.row)&&i.kind&&i.reason));
+  assert.deepEqual(reviewLists(ready().snapshot()),{gaps:[],dropped:[]});
+});
+
+test('a well that was never in the case is NOT_IN_CASE at upload; only DROPPED rows travel in the export',async()=>{
+  assert.equal(NOT_IN_CASE,'not a well in this case');
+  const s=make();s.onCaseResult(CASE_A_ONLY,null);s.loadExample();
+  let snap=s.snapshot();
+  assert.ok(snap.dropped.length>0);assert.ok(snap.dropped.every(d=>d.wellId===B&&d.reason===NOT_IN_CASE));
+  assert.ok(snap.profile.rows.every(r=>r.wellId===A));
+  s.select({wellIds:[A],basis:'TVD'});s.draw();
+  const sealed=JSON.parse((await s.exportDepth('json')).text);
+  assert.deepEqual(sealed.dropped,[]);
+  // A later recalculation that removes a well the profile had still uses DROPPED.
+  const t=drawn();t.onCaseResult(CASE_A_ONLY,null);
+  assert.ok(t.snapshot().dropped.every(d=>d.reason===DROPPED));
 });
 
 test('CR byte counts: import-ui.mjs 4, index.html 3, redesign.css 0, new files 0',async()=>{
