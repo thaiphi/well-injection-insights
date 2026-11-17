@@ -1,0 +1,1213 @@
+{
+ "chrome": "Chrome/157.0.8103.39",
+ "viewport": [
+  1280,
+  900,
+  "0"
+ ],
+ "port": "4174",
+ "s0_afterCalc": {
+  "hidden": false,
+  "visible": true,
+  "status": "",
+  "wellBoxes": [
+   "FICTIONAL-INJ-A",
+   "FICTIONAL-INJ-B"
+  ],
+  "example": {
+   "json": true,
+   "csv": true,
+   "svg": true,
+   "example": false,
+   "exampleTitle": "",
+   "clear": true
+  },
+  "exampleNote": "fictional example — not typical values",
+  "reviewAid": "Review aid: user-supplied depth evidence beside modelled pressure. Not a calibrated correlation or a regulatory cross-section.",
+  "checkedWells": [],
+  "basis": []
+ },
+ "s1_loaded": {
+  "status": "16 profile rows loaded.",
+  "example": {
+   "json": true,
+   "csv": true,
+   "svg": true,
+   "example": false,
+   "exampleTitle": "",
+   "clear": false
+  },
+  "dropped": [],
+  "problems": []
+ },
+ "s1_draw": {
+  "svgs": 1,
+  "status": "16 profile rows loaded.",
+  "basisLabel": "TVD depth below the depth reference (ft)",
+  "tracks": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "casing": 1,
+    "packer": 1,
+    "permitted": 0,
+    "perforated": 1,
+    "formationTop": 2,
+    "formationBand": 1,
+    "testPoint": 2,
+    "curve": {
+     "nodes": 2,
+     "dashed": null,
+     "stroke": "#1f4e8c",
+     "model": "uniform",
+     "topFt": 17.980952380952374,
+     "bottomFt": 3017.980952380952
+    },
+    "limitMarker": true,
+    "limitDepthFt": 3017.980952380952
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "casing": 0,
+    "packer": 0,
+    "permitted": 1,
+    "perforated": 0,
+    "formationTop": 0,
+    "formationBand": 0,
+    "testPoint": 0,
+    "curve": {
+     "nodes": 2,
+     "dashed": null,
+     "stroke": "#1f4e8c",
+     "model": "uniform",
+     "topFt": 17.980952380952374,
+     "bottomFt": 3017.980952380952
+    },
+    "limitMarker": true,
+    "limitDepthFt": 3017.980952380952
+   }
+  ],
+  "sections": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "gapsHeading": "No gaps in the rows placed.",
+    "gaps": [],
+    "notes": [
+     "modelled depths follow the case's declared MD and TVD, not the survey",
+     "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
+    ],
+    "rowDetails": 8
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "gapsHeading": "Gaps and reasons",
+    "gaps": [
+     "row 13 (casing): no survey for this well; cannot convert MD to TVD",
+     "row 15 (packer): depth basis not stated",
+     "row 16 (test-point): pressure basis not stated"
+    ],
+    "notes": [
+     "modelled depths follow the case's declared MD and TVD, not the survey",
+     "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
+    ],
+    "rowDetails": 2
+   }
+  ],
+  "legend": [
+   "modelled (case, assumed inputs) (dashed red: the point breaks a case limit)",
+   "measured (as entered, with source)",
+   "declared bottomhole maximum at the pressure datum (case input)",
+   "test dates differ from the modelled month; a test is evidence, not a check of the curve",
+   "modelled depths follow the case's declared MD and TVD, not the survey",
+   "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared",
+   "pressure datum, exact for this model under the straight-slope assumption",
+   "Review aid: user-supplied depth evidence beside modelled pressure. Not a calibrated correlation or a regulatory",
+   "cross-section."
+  ],
+  "reviewAid": "Review aid: user-supplied depth evidence beside modelled pressure. Not a calibrated correlation or a regulatory cross-section.",
+  "testDateNote": "test dates differ from the modelled month; a test is evidence, not a check of the curve",
+  "curveDetails": 2
+ },
+ "s5_exports_s1": {
+  "json": {
+   "name": "swd-depth-context-8e345df358fc.json",
+   "type": "application/json",
+   "chars": 47435,
+   "sha256": "7e50b63d0c2789b9b6af2a2d36f22e502f4dfb4adeee86824ee19637ef24a19d",
+   "verify": {
+    "ok": true,
+    "keys": [
+     "profile",
+     "dropped",
+     "sources",
+     "selection",
+     "caseRef",
+     "context",
+     "schemaVersion",
+     "versions",
+     "contentSha256"
+    ],
+    "contentSha256": "8e345df358fc7b69f036319d85724902c709dde64cf720c0a992abb331b8b3ab",
+    "verifiedHashMatches": true
+   }
+  },
+  "svg": {
+   "name": "swd-depth-context-8e345df358fc.svg",
+   "type": "image/svg+xml",
+   "chars": 76474,
+   "sha256": "3010c1eabafb7faed9eb16467ead034ac2edf19901e537b8b59ef21de087d036",
+   "verify": {
+    "ok": true,
+    "contentSha256": "8e345df358fc7b69f036319d85724902c709dde64cf720c0a992abb331b8b3ab"
+   },
+   "sameContentShaAsJson": true
+  },
+  "csv": {
+   "name": "swd-depth-context-8e345df358fc.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 15670,
+   "sha256": "a057298ec5c067c9e5ba515a2b8a16e1b48ee046a449f663e3ee43c1b94d7aff",
+   "lines": 221,
+   "fieldCountsPerLine": [
+    4
+   ],
+   "allFour": true
+  },
+  "filenamesShareHash": true
+ },
+ "s2_md": {
+  "svgs": 1,
+  "basisLabel": "MD depth below the depth reference (ft)",
+  "tracks": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "casing": 1,
+    "packer": 1,
+    "permitted": 0,
+    "perforated": 1,
+    "formationTop": 1,
+    "formationBand": 0,
+    "testPoint": 2,
+    "curve": {
+     "nodes": 2,
+     "dashed": null,
+     "stroke": "#1f4e8c",
+     "model": "uniform",
+     "topFt": 18.011849901250834,
+     "bottomFt": 3317.972350230415
+    },
+    "limitMarker": true,
+    "limitDepthFt": 3317.972350230415
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "casing": 1,
+    "packer": 0,
+    "permitted": 0,
+    "perforated": 0,
+    "formationTop": 0,
+    "formationBand": 0,
+    "testPoint": 0,
+    "curve": {
+     "nodes": 2,
+     "dashed": null,
+     "stroke": "#1f4e8c",
+     "model": "uniform",
+     "topFt": 18.011849901250834,
+     "bottomFt": 3317.972350230415
+    },
+    "limitMarker": true,
+    "limitDepthFt": 3317.972350230415
+   }
+  ],
+  "sections": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "gaps": [
+     "row 8 (formation-top): outside the survey range"
+    ]
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "gaps": [
+     "row 14 (permitted-interval): no survey for this well; cannot convert TVD to MD",
+     "row 15 (packer): depth basis not stated",
+     "row 16 (test-point): no survey for this well; cannot convert TVD to MD"
+    ]
+   }
+  ]
+ },
+ "s3_afterInputEdit": {
+  "hidden": true,
+  "status": "Load or calculate a disposal case to choose wells"
+ },
+ "s3_shutIn": {
+  "target": "FICTIONAL-INJ-A",
+  "scenario": "compared",
+  "tracks": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "curve": null,
+    "limit": false
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "curve": {
+     "nodes": 2,
+     "dashed": null,
+     "stroke": "#1f4e8c",
+     "model": "uniform",
+     "topFt": 17.980952380952374,
+     "bottomFt": 3017.980952380952
+    },
+    "limit": true
+   }
+  ],
+  "sections": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "gaps": [
+     "modelled curve: shut in this month; no modelled curve"
+    ],
+    "notes": []
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "gaps": [
+     "row 13 (casing): no survey for this well; cannot convert MD to TVD",
+     "row 15 (packer): depth basis not stated",
+     "row 16 (test-point): pressure basis not stated"
+    ],
+    "notes": [
+     "modelled depths follow the case's declared MD and TVD, not the survey",
+     "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
+    ]
+   }
+  ]
+ },
+ "s3_flagged": {
+  "model": "uniform",
+  "tracks": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "casing": 1,
+    "packer": 1,
+    "permitted": 0,
+    "perforated": 1,
+    "formationTop": 2,
+    "formationBand": 1,
+    "testPoint": 2,
+    "curve": {
+     "nodes": 2,
+     "dashed": "6 4",
+     "stroke": "#c62828",
+     "model": "uniform",
+     "topFt": 17.944924354507663,
+     "bottomFt": 8017.944924354508
+    },
+    "limitMarker": true,
+    "limitDepthFt": 8017.944924354508
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "casing": 0,
+    "packer": 0,
+    "permitted": 1,
+    "perforated": 0,
+    "formationTop": 0,
+    "formationBand": 0,
+    "testPoint": 0,
+    "curve": {
+     "nodes": 2,
+     "dashed": null,
+     "stroke": "#1f4e8c",
+     "model": "uniform",
+     "topFt": 17.944924354507663,
+     "bottomFt": 3017.992650217153
+    },
+    "limitMarker": true,
+    "limitDepthFt": 3017.992650217153
+   }
+  ],
+  "sections": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "gaps": [],
+    "notes": [
+     "modelled depths follow the case's declared MD and TVD, not the survey",
+     "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption",
+     "case flags this point: Required flowing surface pressure is below 100 psia: gravity/low-pressure operation requires unmodeled flow control; this allocation is unsupported."
+    ]
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "gaps": [
+     "row 13 (casing): no survey for this well; cannot convert MD to TVD",
+     "row 15 (packer): depth basis not stated",
+     "row 16 (test-point): pressure basis not stated"
+    ],
+    "notes": [
+     "modelled depths follow the case's declared MD and TVD, not the survey",
+     "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
+    ]
+   }
+  ],
+  "status": "16 profile rows loaded."
+ },
+ "s5_exports_flagged": {
+  "json": {
+   "name": "swd-depth-context-3b68b472e33e.json",
+   "type": "application/json",
+   "chars": 47799,
+   "sha256": "02e3d58f27c824aa1ed09d807f63bbeef1f6707aa376eabc0c28fc282c8428a9",
+   "verify": {
+    "ok": true,
+    "keys": [
+     "profile",
+     "dropped",
+     "sources",
+     "selection",
+     "caseRef",
+     "context",
+     "schemaVersion",
+     "versions",
+     "contentSha256"
+    ],
+    "contentSha256": "3b68b472e33e5b1445a06fa399e1e35a70e3a6889e539e86f43742e3f0369307",
+    "verifiedHashMatches": true
+   }
+  },
+  "svg": {
+   "name": "swd-depth-context-3b68b472e33e.svg",
+   "type": "image/svg+xml",
+   "chars": 76833,
+   "sha256": "a080e3216eb8f99db7c8933fdfa34461905110b22034f823eea2507ecfc68359",
+   "verify": {
+    "ok": true,
+    "contentSha256": "3b68b472e33e5b1445a06fa399e1e35a70e3a6889e539e86f43742e3f0369307"
+   },
+   "sameContentShaAsJson": true
+  },
+  "csv": {
+   "name": "swd-depth-context-3b68b472e33e.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 15873,
+   "sha256": "9737a37d621ca4b255a157f6724e09f57fd6a50fdb7b1bbe76d1862fb2d94077",
+   "lines": 222,
+   "fieldCountsPerLine": [
+    4
+   ],
+   "allFour": true
+  },
+  "filenamesShareHash": true
+ },
+ "s4": {
+  "notesA": [
+   "modelled depths follow the case's declared MD and TVD, not the survey",
+   "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption",
+   "survey TVD at the case's pressure datum differs from the case TVD by 20 ft; the curve is not moved"
+  ],
+  "gapsA": [],
+  "curveA": {
+   "nodes": 2,
+   "dashed": null,
+   "stroke": "#1f4e8c",
+   "model": "uniform",
+   "topFt": 17.980952380952374,
+   "bottomFt": 2998.0190476190473
+  },
+  "status": "16 profile rows loaded."
+ },
+ "s5_exports_s4": {
+  "json": {
+   "name": "swd-depth-context-e8f2863b78ff.json",
+   "type": "application/json",
+   "chars": 47532,
+   "sha256": "a1c4209d121c32f9bc32231b41d85473cd4e54cd3d5553a30bfb325995957973",
+   "verify": {
+    "ok": true,
+    "keys": [
+     "profile",
+     "dropped",
+     "sources",
+     "selection",
+     "caseRef",
+     "context",
+     "schemaVersion",
+     "versions",
+     "contentSha256"
+    ],
+    "contentSha256": "e8f2863b78ffe36d6a253d3721159129170aa58dd9fd9f47809cc37ff193a388",
+    "verifiedHashMatches": true
+   }
+  },
+  "svg": {
+   "name": "swd-depth-context-e8f2863b78ff.svg",
+   "type": "image/svg+xml",
+   "chars": 76762,
+   "sha256": "751c30516a238a4563cd95fd5317c7a1ed3c39b932ba55ad64d78e4bb3fcd653",
+   "verify": {
+    "ok": true,
+    "contentSha256": "e8f2863b78ffe36d6a253d3721159129170aa58dd9fd9f47809cc37ff193a388"
+   },
+   "sameContentShaAsJson": true
+  },
+  "csv": {
+   "name": "swd-depth-context-e8f2863b78ff.csv",
+   "type": "text/csv;charset=utf-8",
+   "chars": 15755,
+   "sha256": "db9fcd55a774c251b383e19cf83e8c47164cdbcb54dba15fca88302e7a85133a",
+   "lines": 221,
+   "fieldCountsPerLine": [
+    4
+   ],
+   "allFour": true
+  },
+  "filenamesShareHash": true
+ },
+ "setupUser": [
+  "Confirmed Produced-water history: seed417-history.csv. Origin: user; content: synthetic; SHA-256 4ab5b0e115c5c25d37e414cbff3677464fcad3ab02f96d6e03635d913c0d776",
+  "Confirmed Producer schedule: schedule.csv. Origin: user; content: synthetic; SHA-256 6078827ff8740b6941645477901719b83ed800cffdcf5b63daab06cf51a5a0bb",
+  "Confirmed Constant-J injector: assumed-injectors.csv. Origin: user; content: synthetic; SHA-256 44996c0f7b91ae838b8bb0b5479e8e4adeee6b111a9cb8403628eaa4ad229fcc"
+ ],
+ "s6_user_afterCalc": {
+  "visible": true,
+  "example": {
+   "json": true,
+   "csv": true,
+   "svg": true,
+   "example": true,
+   "exampleTitle": "The fictional example is only for the demo case.",
+   "clear": true
+  },
+  "exampleNote": "The fictional example is only for the demo case.",
+  "wellBoxes": [
+   "FICTIONAL-INJ-A",
+   "FICTIONAL-INJ-B"
+  ],
+  "status": ""
+ },
+ "s6_user_upload": {
+  "status": "7 profile rows loaded.",
+  "dropped": [
+   "FICTIONAL-OTHER row 8: not a well in this case"
+  ],
+  "problems": [],
+  "buttons": {
+   "json": true,
+   "csv": true,
+   "svg": true,
+   "example": true,
+   "exampleTitle": "The fictional example is only for the demo case.",
+   "clear": false
+  }
+ },
+ "s6_user_draw": {
+  "tracks": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "casing": 1,
+    "packer": 0,
+    "permitted": 0,
+    "perforated": 1,
+    "formationTop": 0,
+    "formationBand": 0,
+    "testPoint": 1,
+    "curve": {
+     "nodes": 2,
+     "dashed": null,
+     "stroke": "#1f4e8c",
+     "model": "uniform",
+     "topFt": 20.025000000000013,
+     "bottomFt": 3020.025
+    },
+    "limitMarker": true,
+    "limitDepthFt": 3020.025
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "casing": 1,
+    "packer": 0,
+    "permitted": 0,
+    "perforated": 0,
+    "formationTop": 1,
+    "formationBand": 0,
+    "testPoint": 0,
+    "curve": {
+     "nodes": 2,
+     "dashed": null,
+     "stroke": "#1f4e8c",
+     "model": "uniform",
+     "topFt": 0,
+     "bottomFt": 3000
+    },
+    "limitMarker": true,
+    "limitDepthFt": 3000
+   }
+  ],
+  "sections": [
+   {
+    "well": "FICTIONAL-INJ-A",
+    "gaps": [],
+    "notes": [
+     "modelled depths follow the case's declared MD and TVD, not the survey",
+     "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
+    ]
+   },
+   {
+    "well": "FICTIONAL-INJ-B",
+    "gaps": [],
+    "notes": [
+     "modelled depths follow the case's declared MD and TVD, not the survey",
+     "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
+    ]
+   }
+  ]
+ },
+ "s6_bad_upload": {
+  "status": "The profile was refused; nothing was loaded. Fix the rows listed and upload it again.",
+  "problems": [
+   "row 3: top_depth_ft is not a plain number (\"3,250\")"
+  ],
+  "svgs": 0,
+  "buttons": {
+   "json": true,
+   "csv": true,
+   "svg": true,
+   "example": true,
+   "exampleTitle": "The fictional example is only for the demo case.",
+   "clear": true
+  },
+  "statusRows": "The profile was refused; nothing was loaded. Fix the rows listed and upload it again."
+ },
+ "s7": {
+  "before": {
+   "status": "7 profile rows loaded.",
+   "checked": [
+    "FICTIONAL-INJ-A"
+   ],
+   "basis": [
+    "TVD"
+   ]
+  },
+  "afterSwitchHidden": true,
+  "after": {
+   "status": "",
+   "clear": true,
+   "checked": [],
+   "basis": [],
+   "svgs": 0,
+   "dropped": [],
+   "problems": []
+  }
+ },
+ "s8_sample": {
+  "depthPanel": {
+   "visible": true,
+   "status": "",
+   "example": {
+    "json": true,
+    "csv": true,
+    "svg": true,
+    "example": true,
+    "exampleTitle": "The fictional example is only for the demo case.",
+    "clear": true
+   },
+   "exampleNote": "The fictional example is only for the demo case."
+  },
+  "headings": {
+   "caseInsights": [
+    "What the case says",
+    "Wells compared",
+    "Reported history vs forecast",
+    "Assumed well-performance cases"
+   ],
+   "transientBuildup": [
+    "Pressure buildup over time (assumed rock)",
+    "Nearby wells (interference screening)"
+   ]
+  },
+  "summaryLineCount": 8,
+  "summaryLinesSha256": [
+   "8788459b19659f1e5e01a2af9ffbd59fec29e4016c5b3fa0562dc516c5a20799",
+   "052d375755337d3e7e76374da1101f4fde16c8849773fd2a300e3014f7b3a5d3",
+   "ee067122f640a7d5bf1b2dea171b43e8986a7c58e0d4745710e8734bc9ab9143",
+   "7a5985c06af89754bc170f44e811638e5fe41aad82791f7e7bd920df83512f4c",
+   "dbc4d89c49e374d8a247241936ad3ba12592ef5c5567af4d7b29cf73f2f44dd8",
+   "414fd9f9c2c34d947bfda873edd37007be468010701408c733833a59eae1252d",
+   "b80585dbe0630a614878234ba70b98fe1e319dea0ec5c7beef9e7bd389e49e90",
+   "1400ed9e1c3859665dfcd29950b10c5b12745fbf035794fcc5923adfb02b5fff"
+  ],
+  "e10BaselineSha256": [
+   "8788459b19659f1e5e01a2af9ffbd59fec29e4016c5b3fa0562dc516c5a20799",
+   "052d375755337d3e7e76374da1101f4fde16c8849773fd2a300e3014f7b3a5d3",
+   "ee067122f640a7d5bf1b2dea171b43e8986a7c58e0d4745710e8734bc9ab9143",
+   "7a5985c06af89754bc170f44e811638e5fe41aad82791f7e7bd920df83512f4c",
+   "dbc4d89c49e374d8a247241936ad3ba12592ef5c5567af4d7b29cf73f2f44dd8",
+   "414fd9f9c2c34d947bfda873edd37007be468010701408c733833a59eae1252d",
+   "b80585dbe0630a614878234ba70b98fe1e319dea0ec5c7beef9e7bd389e49e90",
+   "1400ed9e1c3859665dfcd29950b10c5b12745fbf035794fcc5923adfb02b5fff"
+  ]
+ },
+ "s8_buildup": {
+  "text": [
+   "Pressure buildup over time (assumed rock)",
+   "Nearby wells (interference screening)"
+  ],
+  "pressureBuildup": true,
+  "nearby": true
+ },
+ "s8_sensitivity": {
+  "panelHidden": false,
+  "panelVisible": false,
+  "workspaceHidden": false,
+  "hash": "#injection/sensitivity"
+ },
+ "s10_pageScroll_sample": {
+  "innerWidth": 1280,
+  "scrollW": 1265,
+  "clientW": 1265,
+  "pageHScroll": false
+ },
+ "s10_pageScroll_with_drawing": {
+  "innerWidth": 1280,
+  "scrollW": 1265,
+  "clientW": 1265,
+  "pageHScroll": false,
+  "wrapper": {
+   "scrollW": 971,
+   "clientW": 971,
+   "scrollLeftAfterSet": 0,
+   "overflowX": "auto"
+  },
+  "svgW": 722
+ },
+ "consoleErrors": [],
+ "checks": {
+  "0_panel_hidden_before_result": {
+   "ok": true,
+   "detail": true
+  },
+  "0_panel_shown_nothing_preselected": {
+   "ok": true,
+   "detail": {
+    "checked": [],
+    "basis": []
+   }
+  },
+  "0_panel_directly_after_transient_buildup": {
+   "ok": true,
+   "detail": true
+  },
+  "1_nothing_drawn_before_Draw": {
+   "ok": true,
+   "detail": {
+    "svgs": 0,
+    "btn": {
+     "json": true,
+     "csv": true,
+     "svg": true,
+     "example": false,
+     "exampleTitle": "",
+     "clear": false
+    }
+   }
+  },
+  "1A_schematic_and_curve": {
+   "ok": true,
+   "detail": {
+    "ta": {
+     "well": "FICTIONAL-INJ-A",
+     "casing": 1,
+     "packer": 1,
+     "permitted": 0,
+     "perforated": 1,
+     "formationTop": 2,
+     "formationBand": 1,
+     "testPoint": 2,
+     "curve": {
+      "nodes": 2,
+      "dashed": null,
+      "stroke": "#1f4e8c",
+      "model": "uniform",
+      "topFt": 17.980952380952374,
+      "bottomFt": 3017.980952380952
+     },
+     "limitMarker": true,
+     "limitDepthFt": 3017.980952380952
+    }
+   }
+  },
+  "1A_curve_runs_18ft_to_datum": {
+   "ok": true,
+   "detail": {
+    "top": 17.980952380952374,
+    "bottom": 3017.980952380952,
+    "limitDepth": 3017.980952380952
+   }
+  },
+  "1A_limit_marker": {
+   "ok": true,
+   "detail": 3017.980952380952
+  },
+  "1B_gaps_listed": {
+   "ok": true,
+   "detail": {
+    "gaps": [
+     "row 13 (casing): no survey for this well; cannot convert MD to TVD",
+     "row 15 (packer): depth basis not stated",
+     "row 16 (test-point): pressure basis not stated"
+    ]
+   }
+  },
+  "1_review_aid_sentence": {
+   "ok": true,
+   "detail": "Review aid: user-supplied depth evidence beside modelled pressure. Not a calibrated correlation or a regulatory cross-section."
+  },
+  "1_exports_enabled_after_draw": {
+   "ok": true,
+   "detail": {
+    "json": false,
+    "csv": false,
+    "svg": false,
+    "example": false,
+    "exampleTitle": "",
+    "clear": false
+   }
+  },
+  "5_json_verifies": {
+   "ok": true,
+   "detail": {
+    "ok": true,
+    "keys": [
+     "profile",
+     "dropped",
+     "sources",
+     "selection",
+     "caseRef",
+     "context",
+     "schemaVersion",
+     "versions",
+     "contentSha256"
+    ],
+    "contentSha256": "8e345df358fc7b69f036319d85724902c709dde64cf720c0a992abb331b8b3ab",
+    "verifiedHashMatches": true
+   }
+  },
+  "5_svg_verifies": {
+   "ok": true,
+   "detail": {
+    "ok": true,
+    "contentSha256": "8e345df358fc7b69f036319d85724902c709dde64cf720c0a992abb331b8b3ab"
+   }
+  },
+  "5_csv_four_fields": {
+   "ok": true,
+   "detail": {
+    "counts": [
+     4
+    ],
+    "lines": 221
+   }
+  },
+  "5_filenames_share_hash": {
+   "ok": true,
+   "detail": [
+    "swd-depth-context-8e345df358fc.json",
+    "swd-depth-context-8e345df358fc.csv",
+    "swd-depth-context-8e345df358fc.svg"
+   ]
+  },
+  "5_tampered_json_refused": {
+   "ok": true,
+   "detail": true
+  },
+  "2_MD_withdraws_drawing": {
+   "ok": true,
+   "detail": {
+    "svgs": 0,
+    "btn": {
+     "json": true,
+     "csv": true,
+     "svg": true,
+     "example": false,
+     "exampleTitle": "",
+     "clear": false
+    },
+    "basis": [
+     "MD"
+    ]
+   }
+  },
+  "2_MD_drawn_again": {
+   "ok": true,
+   "detail": "MD depth below the depth reference (ft)"
+  },
+  "2_scenario_withdraws_drawing": {
+   "ok": true,
+   "detail": {
+    "svgs": 0,
+    "scenario": "compared"
+   }
+  },
+  "2_redraw_after_scenario": {
+   "ok": true,
+   "detail": 1
+  },
+  "2_month_withdraws_drawing": {
+   "ok": true,
+   "detail": {
+    "svgs": 0,
+    "month": "2026-02"
+   }
+  },
+  "3_profile_kept_across_recalc_shutin": {
+   "ok": true,
+   "detail": {
+    "status": "16 profile rows loaded.",
+    "checked": [
+     "FICTIONAL-INJ-A",
+     "FICTIONAL-INJ-B"
+    ],
+    "basis": [
+     "TVD"
+    ]
+   }
+  },
+  "3_shut_in_reason_shown": {
+   "ok": true,
+   "detail": {
+    "target": "FICTIONAL-INJ-A",
+    "gaps": [
+     "modelled curve: shut in this month; no modelled curve"
+    ]
+   }
+  },
+  "3_shut_in_no_curve": {
+   "ok": true,
+   "detail": null
+  },
+  "3_profile_kept_across_recalc_deep": {
+   "ok": true,
+   "detail": {
+    "status": "16 profile rows loaded.",
+    "checked": [
+     "FICTIONAL-INJ-A",
+     "FICTIONAL-INJ-B"
+    ],
+    "basis": [
+     "TVD"
+    ],
+    "scenario": "compared"
+   }
+  },
+  "3_curve_flagged_dashed": {
+   "ok": true,
+   "detail": {
+    "nodes": 2,
+    "dashed": "6 4",
+    "stroke": "#c62828",
+    "model": "uniform",
+    "topFt": 17.944924354507663,
+    "bottomFt": 8017.944924354508
+   }
+  },
+  "3_case_reason_listed": {
+   "ok": true,
+   "detail": [
+    "modelled depths follow the case's declared MD and TVD, not the survey",
+    "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption",
+    "case flags this point: Required flowing surface pressure is below 100 psia: gravity/low-pressure operation requires unmodeled flow control; this allocation is unsupported."
+   ]
+  },
+  "3_limit_marker_shows": {
+   "ok": true,
+   "detail": 8017.944924354508
+  },
+  "5_flagged_json_verifies": {
+   "ok": true,
+   "detail": {
+    "ok": true,
+    "keys": [
+     "profile",
+     "dropped",
+     "sources",
+     "selection",
+     "caseRef",
+     "context",
+     "schemaVersion",
+     "versions",
+     "contentSha256"
+    ],
+    "contentSha256": "3b68b472e33e5b1445a06fa399e1e35a70e3a6889e539e86f43742e3f0369307",
+    "verifiedHashMatches": true
+   }
+  },
+  "5_flagged_svg_verifies": {
+   "ok": true,
+   "detail": {
+    "ok": true,
+    "contentSha256": "3b68b472e33e5b1445a06fa399e1e35a70e3a6889e539e86f43742e3f0369307"
+   }
+  },
+  "5_flagged_csv_four_fields": {
+   "ok": true,
+   "detail": [
+    4
+   ]
+  },
+  "4_survey_note_shown": {
+   "ok": true,
+   "detail": [
+    "modelled depths follow the case's declared MD and TVD, not the survey",
+    "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption",
+    "survey TVD at the case's pressure datum differs from the case TVD by 20 ft; the curve is not moved"
+   ]
+  },
+  "1A_no_survey_note_at_TVD_3000": {
+   "ok": true,
+   "detail": [
+    "modelled depths follow the case's declared MD and TVD, not the survey",
+    "uniform brine model: a straight line from the required wellhead pressure to the bottomhole pressure at the declared pressure datum, exact for this model under the straight-slope assumption"
+   ]
+  },
+  "5_s4_json_verifies": {
+   "ok": true,
+   "detail": {
+    "ok": true,
+    "keys": [
+     "profile",
+     "dropped",
+     "sources",
+     "selection",
+     "caseRef",
+     "context",
+     "schemaVersion",
+     "versions",
+     "contentSha256"
+    ],
+    "contentSha256": "e8f2863b78ffe36d6a253d3721159129170aa58dd9fd9f47809cc37ff193a388",
+    "verifiedHashMatches": true
+   }
+  },
+  "5_s4_svg_verifies": {
+   "ok": true,
+   "detail": {
+    "ok": true,
+    "contentSha256": "e8f2863b78ffe36d6a253d3721159129170aa58dd9fd9f47809cc37ff193a388"
+   }
+  },
+  "5_s4_csv_four_fields": {
+   "ok": true,
+   "detail": [
+    4
+   ]
+  },
+  "6_example_refused_in_user_case": {
+   "ok": true,
+   "detail": {
+    "disabled": true,
+    "note": "The fictional example is only for the demo case.",
+    "title": "The fictional example is only for the demo case."
+   }
+  },
+  "6_user_profile_uploads": {
+   "ok": true,
+   "detail": {
+    "status": "7 profile rows loaded."
+   }
+  },
+  "6_not_in_case_row_dropped_listed": {
+   "ok": true,
+   "detail": [
+    "FICTIONAL-OTHER row 8: not a well in this case"
+   ]
+  },
+  "6_user_profile_draws": {
+   "ok": true,
+   "detail": [
+    {
+     "well": "FICTIONAL-INJ-A",
+     "casing": 1,
+     "packer": 0,
+     "permitted": 0,
+     "perforated": 1,
+     "formationTop": 0,
+     "formationBand": 0,
+     "testPoint": 1,
+     "curve": {
+      "nodes": 2,
+      "dashed": null,
+      "stroke": "#1f4e8c",
+      "model": "uniform",
+      "topFt": 20.025000000000013,
+      "bottomFt": 3020.025
+     },
+     "limitMarker": true,
+     "limitDepthFt": 3020.025
+    },
+    {
+     "well": "FICTIONAL-INJ-B",
+     "casing": 1,
+     "packer": 0,
+     "permitted": 0,
+     "perforated": 0,
+     "formationTop": 1,
+     "formationBand": 0,
+     "testPoint": 0,
+     "curve": {
+      "nodes": 2,
+      "dashed": null,
+      "stroke": "#1f4e8c",
+      "model": "uniform",
+      "topFt": 0,
+      "bottomFt": 3000
+     },
+     "limitMarker": true,
+     "limitDepthFt": 3000
+    }
+   ]
+  },
+  "6_bad_profile_refused_with_row": {
+   "ok": true,
+   "detail": {
+    "problems": [
+     "row 3: top_depth_ft is not a plain number (\"3,250\")"
+    ],
+    "status": "The profile was refused; nothing was loaded. Fix the rows listed and upload it again."
+   }
+  },
+  "6_bad_profile_loads_nothing_and_withdraws": {
+   "ok": true,
+   "detail": {
+    "svgs": 0,
+    "clear": true
+   }
+  },
+  "7_source_switch_clears_profile": {
+   "ok": true,
+   "detail": {
+    "status": "",
+    "clear": true,
+    "checked": []
+   }
+  },
+  "8_sample_existing_panels_present": {
+   "ok": true,
+   "detail": {
+    "ci": [
+     "What the case says",
+     "Wells compared",
+     "Reported history vs forecast",
+     "Assumed well-performance cases"
+    ],
+    "tb": [
+     "Pressure buildup over time (assumed rock)",
+     "Nearby wells (interference screening)"
+    ],
+    "ciHidden": false,
+    "tbHidden": false,
+    "cis": true,
+    "order": [
+     "DIV",
+     "P",
+     "DIV",
+     "DETAILS",
+     "disposal-results",
+     "case-insights",
+     "transient-buildup",
+     "depth-context",
+     "disposal-sensitivity",
+     "disposal-input-details",
+     "disposal-status",
+     "DIV"
+    ]
+   }
+  },
+  "8_sample_summary_lines_unchanged_vs_e10": {
+   "ok": true,
+   "detail": {
+    "n": 8,
+    "baseline": true
+   }
+  },
+  "8_sample_no_example": {
+   "ok": true,
+   "detail": {
+    "example": true,
+    "note": "The fictional example is only for the demo case."
+   }
+  },
+  "8_sample_pressure_buildup_nearby_present": {
+   "ok": true,
+   "detail": {
+    "text": [
+     "Pressure buildup over time (assumed rock)",
+     "Nearby wells (interference screening)"
+    ],
+    "pressureBuildup": true,
+    "nearby": true
+   }
+  },
+  "8_depth_context_hidden_on_sensitivity": {
+   "ok": true,
+   "detail": {
+    "panelHidden": false,
+    "panelVisible": false,
+    "workspaceHidden": false,
+    "hash": "#injection/sensitivity"
+   }
+  },
+  "10_no_page_hscroll_sample_view": {
+   "ok": true,
+   "detail": {
+    "innerWidth": 1280,
+    "scrollW": 1265,
+    "clientW": 1265,
+    "pageHScroll": false
+   }
+  },
+  "10_no_page_hscroll_with_drawing": {
+   "ok": true,
+   "detail": {
+    "innerWidth": 1280,
+    "scrollW": 1265,
+    "clientW": 1265,
+    "pageHScroll": false,
+    "wrapper": {
+     "scrollW": 971,
+     "clientW": 971,
+     "scrollLeftAfterSet": 0,
+     "overflowX": "auto"
+    }
+   }
+  },
+  "10_drawing_scrolls_inside_wrapper": {
+   "ok": true,
+   "detail": {
+    "scrollW": 971,
+    "clientW": 971,
+    "scrollLeftAfterSet": 0,
+    "overflowX": "auto"
+   }
+  },
+  "9_no_console_errors": {
+   "ok": true,
+   "detail": []
+  }
+ },
+ "allPass": true,
+ "screenshots": {
+  "desktop-s1-demo-tvd.png": "51696b6be7f061406608f1fe2f8ae3cac315522f9394a52916fbc4db87c42097",
+  "desktop-s2-demo-md.png": "bb5c70fb647687dbcef2db9dc283c84132d4a06b02b9745a86495131656adfd8",
+  "desktop-s3-shut-in-compared.png": "37d428fdb91c7789018a77dbb1a25d36c097ded805dd3debcf27f76cf5b33696",
+  "desktop-s3-flagged-curve.png": "c81d6e20bceae1c4699a96516dfeabc043c2b1fb1f624f6a3b9ed5a8f0e99765",
+  "desktop-s4-survey-note.png": "4093fa45fd4e6dea1af0fdf084216591fecbf72b82b8b334851ff715c886bfaf",
+  "desktop-s6-user-drawn.png": "80962ab644c76b7d18f7b724909c9822d8be5035d0a2a83e746ccf75bafedfd7",
+  "desktop-s6-bad-profile-refused.png": "45a4192c9201de8fc887cf7aa9d3f07408019cbb0ee51172ebf1cfc09802f05a",
+  "desktop-s8-sample-panels.png": "1d848e144987f5f639a9f7256ba70c68d2bc0495c64b5917c8e1f84147531f6c",
+  "desktop-s8-sample-case-insights.png": "b9bec946b4178fc8495b7bddf74d3c2532ce3adf55ce7c302f1abadc1dbf4bb3",
+  "desktop-s8-sensitivity-view.png": "c9a9e932eaf0bf6b569b44f2032afe36dfd5afe307ca257c7b5c9d51fdc27484",
+  "desktop-s10-desktop-drawing.png": "51696b6be7f061406608f1fe2f8ae3cac315522f9394a52916fbc4db87c42097",
+  "desktop-s10-controls.png": "6641fa663b733cde1f23eb599610eaf1e5d49295381affaee07562715b73cf64"
+ }
+}
